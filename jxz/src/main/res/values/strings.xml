@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">君行早</string>
+    <string name="common_enter_activity">当前所在页面,</string>
+
+    <string name="qv_add">+</string>
+    <string name="qv_remove">-</string>
+    <string name="add_tag">添加海域</string>
+
+    <string name="dialog_btn_confim">确认</string>
+    <string name="dialog_btn_cancel">取消</string>
+    <string name="dialog_title_alert">提示</string>
+    <string name="loading_press">请稍候，正在提交...</string>
+    <string name="msg_wso_error">很抱歉，数据加载出错了</string>
+    <string name="logout">确认要注销登录吗？</string>
+    <string name="confir_receipt">您已确认消费了吗？</string>
+
+    <!-- 注册 -->
+    <string name="register_phone">手&#160;&#160;机&#160;&#160;号</string>
+    <string name="register_code">验&#160;&#160;证&#160;&#160;码</string>
+    <string name="register_input_pwd">输入密码</string>
+    <string name="register_input_pwd_again">重复密码</string>
+
+    <!-- actionSheet -->
+    <string name="title">从手机图库选择</string>
+    <string name="content">拍照</string>
+    <string name="cancel">取消</string>
+    <string name="copyright">北京中电和讯科技有限公司</string>
+
+    <!-- fragment_home -->
+    <string name="classroom">班级</string>
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+
+
+    <string name="send">发送</string>
+    <string name="viewpager_indicator" formatted="false">%d/%d</string>
+</resources>

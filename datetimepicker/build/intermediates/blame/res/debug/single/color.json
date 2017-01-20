@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\res\\merged\\debug\\color\\date_picker_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\color\\date_picker_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\res\\merged\\debug\\color\\done_text_color.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\color\\done_text_color.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\res\\merged\\debug\\color\\done_text_color_dark.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\color\\done_text_color_dark.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\res\\merged\\debug\\color\\date_picker_year_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\color\\date_picker_year_selector.xml"
+    }
+]

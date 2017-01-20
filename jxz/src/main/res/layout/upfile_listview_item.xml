@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="#ffffff"
+    tools:ignore="HardcodedText,DisableBaselineAlignment" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.zdhx.androidbase.util.RoundCornerImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/upfile_list_img"
+                android:src="@drawable/video_head"
+                />
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:lines="1"
+                        android:padding="5dp"
+                        android:text="title"
+                        android:id="@+id/upfile_list_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:padding="5dp"
+                        android:text="username"
+                        android:id="@+id/upfile_list_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp" />
+
+
+                    <TextView
+                        android:padding="5dp"
+                        android:text="textsize"
+                        android:id="@+id/upfile_list_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/upfile_list_delete"
+                android:padding="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_delete_address"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

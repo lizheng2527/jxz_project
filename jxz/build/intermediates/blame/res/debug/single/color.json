@@ -1,0 +1,102 @@
+[
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\sendcircle_text_color.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\sendcircle_text_color.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\btn_shot_blue_text_color.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\btn_shot_blue_text_color.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\btn_sea_code_text_color.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\btn_sea_code_text_color.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\abc_search_url_text_holo.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\abc_search_url_text_holo.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\system_msg_nikename_color.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\system_msg_nikename_color.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\done_text_color_dark.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\color\\done_text_color_dark.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\date_picker_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\color\\date_picker_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\date_picker_year_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\color\\date_picker_year_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\ccp_pref_summary.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\ccp_pref_summary.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\login_btn_text.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\login_btn_text.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\common_top_bar_right_string_color.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\common_top_bar_right_string_color.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\btn_full_blue_text_color.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\btn_full_blue_text_color.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\done_text_color.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\color\\done_text_color.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\ccp_list_textcolor_time.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\ccp_list_textcolor_time.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\primary_text_light.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\primary_text_light.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\edit_save_btn_text_color.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\edit_save_btn_text_color.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\launcher_tab_text_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\launcher_tab_text_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\ccp_pref_title.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\ccp_pref_title.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\white_color_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\white_color_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\actionbar_text_white_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\actionbar_text_white_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\btn_dialog.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\btn_dialog.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\main_botton_text_color.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\main_botton_text_color.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\btn_active_text_color.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\btn_active_text_color.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\btn_select_size_text_color.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\btn_select_size_text_color.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\color\\operation_btn_color_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\color\\operation_btn_color_selector.xml"
+    }
+]

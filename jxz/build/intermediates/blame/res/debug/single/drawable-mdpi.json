@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\logo.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-mdpi\\logo.png"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_launcher.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    }
+]

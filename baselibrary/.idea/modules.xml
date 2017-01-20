@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../ZDIM/ZDIM.iml" filepath="$PROJECT_DIR$/../ZDIM/ZDIM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baselibrary.iml" filepath="$PROJECT_DIR$/baselibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../datetimepicker/datetimepicker.iml" filepath="$PROJECT_DIR$/../datetimepicker/datetimepicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../photoSelector/photoSelector.iml" filepath="$PROJECT_DIR$/../photoSelector/photoSelector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../uikit/uikit.iml" filepath="$PROJECT_DIR$/../uikit/uikit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../zdhx-im-yunxin.iml" filepath="$PROJECT_DIR$/../zdhx-im-yunxin.iml" />
+    </modules>
+  </component>
+</project>

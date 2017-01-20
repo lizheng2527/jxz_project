@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="nineoldanimatin">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../ZDIM/libs/nineoldanimatin.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

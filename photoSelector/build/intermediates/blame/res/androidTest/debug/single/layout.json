@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_photoselector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_photoselector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\layout_photoitem.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\debug\\res\\layout\\layout_photoitem.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\view_camera.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\debug\\res\\layout\\view_camera.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\layout_album.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\debug\\res\\layout\\layout_album.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\view_photopreview.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\debug\\res\\layout\\view_photopreview.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_photopreview.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_photopreview.xml"
+    }
+]

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText,DisableBaselineAlignment" >
+
+    <LinearLayout
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/title_color"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_centerInParent="true"
+                android:textColor="#ffffff"
+                android:text="教材选择"/>
+            <ImageView
+                android:id="@+id/activity_selectscro_goback"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_width="50dp"
+                android:scaleType="fitXY"
+                android:background="@drawable/topbar_back_bt"
+                android:layout_height="50dp" />
+        </RelativeLayout>
+        <ListView
+            android:layout_width="match_parent"
+            android:divider="@color/list_divider"
+            android:scrollbars="none"
+            android:dividerHeight="1dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/activity_tree_listview">
+        </ListView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/list_divider"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/activity_tree_commit"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:padding="5dp"
+        android:gravity="center"
+        android:background="@color/title_color"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="18sp"
+        android:layout_centerInParent="true"
+        android:textColor="#ffffff"
+        android:text="确定"/>
+</RelativeLayout>

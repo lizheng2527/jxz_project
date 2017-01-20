@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="HardcodedText,DisableBaselineAlignment" >
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
+        <ImageView
+            android:visibility="invisible"
+            android:id="@+id/tree_img"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:gravity="center|left"
+            android:id="@+id/tree_tv"
+            android:layout_width="200dp"
+            android:text="组视图"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/title_color"
+            android:padding="5dp"/>
+    </LinearLayout>
+    <CheckBox
+        android:id="@+id/tree_check"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        style="@style/CCPCheckBox"
+        android:visibility="visible" />
+
+</RelativeLayout>

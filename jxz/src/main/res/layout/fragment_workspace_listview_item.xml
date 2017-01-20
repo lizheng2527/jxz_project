@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="#ffffff"
+    tools:ignore="HardcodedText,DisableBaselineAlignment" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.zdhx.androidbase.util.RoundCornerImageView
+                android:id="@+id/fileHeadImg"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="#aaaaaa"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/fileTitle"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="文件标题"
+                        android:singleLine="true"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_gravity="right"
+                        android:id="@+id/fileSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:gravity="right"
+                        android:text="(500kb)"
+                        android:textColor="#555555"
+                        android:textSize="13sp" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="5dp"
+                    android:visibility="invisible"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/fileuserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="上传姓名"
+                        android:textColor="#555555"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/createTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="2016-11-11 11:11"
+                        android:textColor="#555555"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/browseClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="浏览:"
+                    android:textColor="#555555"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/browse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="22"
+                    android:textColor="#555555"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/downClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="下载:"
+                    android:textColor="#555555"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="18"
+                    android:textColor="#555555"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:textColor="#555555"
+                android:textSize="10sp"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:layout_marginRight="20dp"
+                android:id="@+id/download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/download" />
+
+            <ImageView
+                android:id="@+id/delete_nor"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/delete_nor" />
+
+            <ImageView
+                android:id="@+id/good_nor"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/good_nor" />
+
+            <ImageView
+                android:id="@+id/quality_nor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/quality_nor" />
+        </LinearLayout>
+        <com.zdhx.androidbase.ui.downloadui.NumberProgressBar
+            android:id="@+id/amd_progressBar"
+            style="@style/NumberProgressBar_Default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            />
+    </LinearLayout>
+</LinearLayout>

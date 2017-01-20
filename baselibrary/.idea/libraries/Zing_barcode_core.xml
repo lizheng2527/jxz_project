@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Zing_barcode_core">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../ZDIM/libs/Zing_barcode_core.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

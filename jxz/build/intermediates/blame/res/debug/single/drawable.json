@@ -1,0 +1,314 @@
+[
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_right_press.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_right_press.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_button_full_blue.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_button_full_blue.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_circle_blue.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_circle_blue.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_black_textcolor_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\drawable\\btn_black_textcolor_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\ckbox_order.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\ckbox_order.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_left.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_left.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\alertdialog_left_btn_normal.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\alertdialog_left_btn_normal.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\background_tab.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\background_tab.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_single_press.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_single_press.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_sea_area_img.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_sea_area_img.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\alertdialog_right_btn_normal.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\alertdialog_right_btn_normal.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\umeng_update_dialog_bg.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\umeng_update_dialog_bg.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\chat_send_btn_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\chat_send_btn_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_center.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_center.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_center_press.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_center_press.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_button_red.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_button_red.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_button_select_size.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_button_select_size.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_single_normal.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_single_normal.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\umeng_update_button_cancel_bg_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\umeng_update_button_cancel_bg_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_dark_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\drawable\\bg_dark_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_green_selector_rectangle.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\drawable\\btn_green_selector_rectangle.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_checkbox_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\drawable\\btn_checkbox_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\umeng_update_button_cancel_bg_normal.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\umeng_update_button_cancel_bg_normal.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_button_green.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_button_green.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_left_press.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_left_press.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\alertdialog_right_btn_click.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\alertdialog_right_btn_click.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_circle_green.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_circle_green.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\sea_code_img_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\sea_code_img_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\umeng_update_button_cancel_bg_focused.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\umeng_update_button_cancel_bg_focused.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\login_button_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\login_button_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\list_item_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\list_item_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\transparent.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\transparent.png"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_button_shot_blue.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_button_shot_blue.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\alertdialog_single_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\alertdialog_single_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_back_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\drawable\\btn_back_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_button_active.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_button_active.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_brand_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\tab_brand_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\alertdialog_bg.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\alertdialog_bg.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\qv_bg_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\qv_bg_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_selector_ordercar.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_selector_ordercar.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_right_normal.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_right_normal.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\alertdialog_left_btn_click.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\alertdialog_left_btn_click.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\cm_red_circle.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\cm_red_circle.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\list_selector_transition.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\list_selector_transition.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\wheel_val.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\wheel_val.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_camera_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\drawable\\btn_camera_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_left_normal.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_left_normal.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_me_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\tab_me_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_circle_red.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_circle_red.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_cm_order_pressed.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_cm_order_pressed.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\umeng_update_button_cancel_bg_tap.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\umeng_update_button_cancel_bg_tap.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_index_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\tab_index_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\ssdk_oks_classic_progressbar.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\ssdk_oks_classic_progressbar.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\progress_drawable.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\progress_drawable.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\ssdk_oks_classic_platform_cell_back.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\ssdk_oks_classic_platform_cell_back.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_expense_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\tab_expense_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_back_arrow_white_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\drawable\\bg_back_arrow_white_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\alertdialog_right_btn_select.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\alertdialog_right_btn_select.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_right.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_right.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_dialog_window.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_dialog_window.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_single.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_single.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_center_normal.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_center_normal.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\done_background_color.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\drawable\\done_background_color.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\icon_check_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\icon_check_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_cm_order_normal.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_cm_order_normal.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_button_blue.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_button_blue.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\comm_list_item_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\comm_list_item_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_button.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_button.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\done_background_color_dark.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\drawable\\done_background_color_dark.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\actionsheet_top_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\actionsheet_top_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_cm_order_selecter.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_cm_order_selecter.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\topbar_back_bt.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\topbar_back_bt.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_dialog_listitem_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_dialog_listitem_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\umeng_update_wifi_disable.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\umeng_update_wifi_disable.png"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_tab.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_tab.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\alertdialog_left_btn_select.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\alertdialog_left_btn_select.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_dialog_btnbar.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_dialog_btnbar.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\qv_btn_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\qv_btn_selector.xml"
+    }
+]

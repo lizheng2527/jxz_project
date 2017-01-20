@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_dark_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\drawable\\bg_dark_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_black_textcolor_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\drawable\\btn_black_textcolor_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_checkbox_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\drawable\\btn_checkbox_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_camera_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\drawable\\btn_camera_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_green_selector_rectangle.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\drawable\\btn_green_selector_rectangle.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_back_arrow_white_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\drawable\\bg_back_arrow_white_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_back_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\drawable\\btn_back_selector.xml"
+    }
+]

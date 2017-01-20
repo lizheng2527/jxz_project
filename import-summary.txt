@@ -1,0 +1,104 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* ic_launcher-web.png
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:18.0.0
+gson-2.2.1.jar => com.google.code.gson:gson:2.2.1
+
+Potentially Missing Dependency:
+-------------------------------
+When we replaced the following .jar files with a Gradle dependency, we
+inferred the dependency version number from the filename. This
+specific version may not actually be available from the repository.
+If you get a build error stating that the dependency is missing, edit
+the version number to for example "+" to pick up the latest version
+instead. (This may require you to update your code if the library APIs
+have changed.)
+
+gson-2.2.1.jar => version 2.2.1 in com.google.code.gson:gson:2.2.1
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app\src\main\AndroidManifest.xml
+* assets\ => app\src\main\assets\
+* libs\alipaySingle-20160428.jar => app\libs\alipaySingle-20160428.jar
+* libs\armeabi\libAudioEngine.so => app\src\main\jniLibs\armeabi\libAudioEngine.so
+* libs\armeabi\libbspatch.so => app\src\main\jniLibs\armeabi\libbspatch.so
+* libs\armeabi\libcocklogic.so => app\src\main\jniLibs\armeabi\libcocklogic.so
+* libs\armeabi\libCpuFeatures.so => app\src\main\jniLibs\armeabi\libCpuFeatures.so
+* libs\armeabi\libentryexpro.so => app\src\main\jniLibs\armeabi\libentryexpro.so
+* libs\armeabi\libHCAlarm.so => app\src\main\jniLibs\armeabi\libHCAlarm.so
+* libs\armeabi\libHCCore.so => app\src\main\jniLibs\armeabi\libHCCore.so
+* libs\armeabi\libHCCoreDevCfg.so => app\src\main\jniLibs\armeabi\libHCCoreDevCfg.so
+* libs\armeabi\libHCDisplay.so => app\src\main\jniLibs\armeabi\libHCDisplay.so
+* libs\armeabi\libHCGeneralCfgMgr.so => app\src\main\jniLibs\armeabi\libHCGeneralCfgMgr.so
+* libs\armeabi\libHCIndustry.so => app\src\main\jniLibs\armeabi\libHCIndustry.so
+* libs\armeabi\libhcnetsdk.so => app\src\main\jniLibs\armeabi\libhcnetsdk.so
+* libs\armeabi\libHCPlayBack.so => app\src\main\jniLibs\armeabi\libHCPlayBack.so
+* libs\armeabi\libHCPreview.so => app\src\main\jniLibs\armeabi\libHCPreview.so
+* libs\armeabi\libHCVoiceTalk.so => app\src\main\jniLibs\armeabi\libHCVoiceTalk.so
+* libs\armeabi\libPlayCtrl.so => app\src\main\jniLibs\armeabi\libPlayCtrl.so
+* libs\armeabi\libPlayCtrl_v5.so => app\src\main\jniLibs\armeabi\libPlayCtrl_v5.so
+* libs\armeabi\libPlayCtrl_v7.so => app\src\main\jniLibs\armeabi\libPlayCtrl_v7.so
+* libs\armeabi\libSystemTransform.so => app\src\main\jniLibs\armeabi\libSystemTransform.so
+* libs\armeabi\libtnet-2.0.17.2-agoo.so => app\src\main\jniLibs\armeabi\libtnet-2.0.17.2-agoo.so
+* libs\armeabi\libuptsmaddon.so => app\src\main\jniLibs\armeabi\libuptsmaddon.so
+* libs\AudioEngineSDK.jar => app\libs\AudioEngineSDK.jar
+* libs\httpmime-4.2.2.jar => app\libs\httpmime-4.2.2.jar
+* libs\libammsdk.jar => app\libs\libammsdk.jar
+* libs\mips\libentryexpro.so => app\src\main\jniLibs\mips\libentryexpro.so
+* libs\mips\libuptsmaddon.so => app\src\main\jniLibs\mips\libuptsmaddon.so
+* libs\MobCommons-2016.0426.1819.jar => app\libs\MobCommons-2016.0426.1819.jar
+* libs\MobTools-2016.0426.1819.jar => app\libs\MobTools-2016.0426.1819.jar
+* libs\pgyer_sdk_2.2.2.jar => app\libs\pgyer_sdk_2.2.2.jar
+* libs\PlayerSDK.jar => app\libs\PlayerSDK.jar
+* libs\ShareSDK-Core-2.7.2.jar => app\libs\ShareSDK-Core-2.7.2.jar
+* libs\ShareSDK-QQ-2.7.2.jar => app\libs\ShareSDK-QQ-2.7.2.jar
+* libs\ShareSDK-SinaWeibo-2.7.2.jar => app\libs\ShareSDK-SinaWeibo-2.7.2.jar
+* libs\ShareSDK-Wechat-2.7.2.jar => app\libs\ShareSDK-Wechat-2.7.2.jar
+* libs\ShareSDK-Wechat-Core-2.7.2.jar => app\libs\ShareSDK-Wechat-Core-2.7.2.jar
+* libs\ShareSDK-Wechat-Moments-2.7.2.jar => app\libs\ShareSDK-Wechat-Moments-2.7.2.jar
+* libs\UPPayAssistEx.jar => app\libs\UPPayAssistEx.jar
+* libs\x86\libentryexpro.so => app\src\main\jniLibs\x86\libentryexpro.so
+* libs\x86\libuptsmaddon.so => app\src\main\jniLibs\x86\libuptsmaddon.so
+* libs\x86_64\libentryexpro.so => app\src\main\jniLibs\x86_64\libentryexpro.so
+* libs\x86_64\libuptsmaddon.so => app\src\main\jniLibs\x86_64\libuptsmaddon.so
+* res\ => app\src\main\res\
+* src\ => app\src\main\java\
+* src\.define => app\src\main\resources\.define
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

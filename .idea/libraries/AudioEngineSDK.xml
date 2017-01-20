@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="AudioEngineSDK">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jxz/libs/AudioEngineSDK.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
