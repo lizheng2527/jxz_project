@@ -427,7 +427,7 @@ public class FileUtils {
     }
 
     /**
-     * 获取展示的视频文件
+     * 获取展示手机的所有视频文件
      * @param context
      * @param extension
      */

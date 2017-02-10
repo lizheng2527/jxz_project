@@ -1,6 +1,8 @@
 
 package com.zdhx.androidbase.ui.treadssearch;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 /**
@@ -16,6 +18,16 @@ public class UpFileBean implements Serializable {
     private Boolean checkTag;
     private String showName;
     private String absolutePath;
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
+    private Bitmap bitmap;
 
     public String getAbsolutePath() {
         return absolutePath;

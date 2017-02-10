@@ -4,11 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.zdhx.volley.RequestQueue;
-import com.zdhx.volley.Response.ErrorListener;
-import com.zdhx.volley.Response.Listener;
-import com.zdhx.volley.toolbox.StringRequest;
-import com.zdhx.volley.toolbox.Volley;
+import volley.RequestQueue;
+import volley.Response;
+import volley.toolbox.StringRequest;
+import volley.toolbox.Volley;
+
 
 /**
  * @author Li.Xin @ 立思辰合众 使用方法： RequestWithCache qCache = new
@@ -58,7 +58,7 @@ public class RequestWithCache {
 	 * @author 容联•云通讯 Modify By Li.Xin @ 立思辰合众 注意不要导错包
 	 */
 	public String getRseponse(final String url, final RequestListener listener,
-                              ErrorListener errorListener) {
+                              Response.ErrorListener errorListener) {
 		Log.i("Url", url);
 		if (!NetUtils.isNetworkConnected()) {
 			ToastUtil.showMessage("网络连接不可用");
@@ -68,7 +68,7 @@ public class RequestWithCache {
 		final SharedPreferences sharedPreferenceskey = mContext
 				.getSharedPreferences(SHAREDPREFERENCES_KEY, 0);
 
-		Listener<String> netlistener = new Listener<String>() {
+		Response.Listener<String> netlistener = new Response.Listener<String>() {
 			@Override
 			public void onResponse(String response) {
 				Log.i("Response", response);

@@ -18,6 +18,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -26,15 +27,15 @@ import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.entity.User;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.PreferenceUtil;
-import com.zdhx.volley.Request;
-import com.zdhx.volley.RequestQueue;
-import com.zdhx.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import cn.sharesdk.framework.ShareSDK;
+import volley.Request;
+import volley.RequestQueue;
+import volley.toolbox.Volley;
 
 public class ECApplication extends Application {
     private static ECApplication instance;
@@ -78,6 +79,7 @@ public class ECApplication extends Application {
                 .threadPoolSize(5).build();
         loader = ImageLoader.getInstance();
         loader.init(config);
+        Fresco.initialize(this);
     }
 
     public String getAddress(){
@@ -129,7 +131,7 @@ public class ECApplication extends Application {
         return mVolleyQueue;
     }
 
-    public static void addRequest(Request<?> req, String tag,boolean shouldCache) {
+    public static void addRequest(Request<?> req, String tag, boolean shouldCache) {
         req.setTag(tag);
         req.setShouldCache(shouldCache);
         getRequestQueue().add(req);

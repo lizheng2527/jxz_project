@@ -1,6 +1,7 @@
 package com.zdhx.androidbase.ui.account;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,11 +10,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.SystemConst;
 import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.entity.User;
 import com.zdhx.androidbase.ui.MainActivity;
@@ -25,6 +28,7 @@ import com.zdhx.androidbase.util.RunnableWrap;
 import com.zdhx.androidbase.util.StringUtil;
 import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.ZddcUtil;
+import com.zdhx.androidbase.view.dialog.ECAlertDialog;
 import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 
 import java.io.IOException;
@@ -47,6 +51,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     private TextView txt_regist, txt_re_pwd;
 
     private ECProgressDialog dialog;
+
+    private ImageView ip;
+
+    private ECAlertDialog buildAlert;
 
     @Override
     protected int getLayoutId() {
@@ -79,6 +87,43 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             etxt_username.setText(ECApplication.getInstance().getCurrentUser().getLoginName());
             etxt_pwd.setText(ECApplication.getInstance().getCurrentUser().getPassWord());
         }
+
+        ip = (ImageView) findViewById(R.id.ip);
+        ip.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                buildAlert = ECAlertDialog.buildAlert(context,R.string.title, null, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final String name = ((EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText))).getText().toString();
+                        SystemConst.setTextIp(name);
+                    }
+                });
+                buildAlert.setTitle("修改地址");
+                buildAlert.setCanceledOnTouchOutside(false);
+                buildAlert.setContentView(R.layout.config_dcaddress_dialog);
+                String server = "";
+                final EditText editText = (EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText));
+                TextView delectTV = (TextView) buildAlert.getWindow().findViewById(R.id.delectTV);
+                delectTV.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        editText.setText("");
+                    }
+                });
+                if (!server.equals("")) {
+                    editText.setText(server);
+                }
+                if(!buildAlert.isShowing()){
+                    buildAlert.show();
+                    editText.setSelection(editText.getText().length());
+                    editText.setSelectAllOnFocus(true);
+                }
+                return true;
+            }
+        });
 
     }
 

@@ -1,12 +1,12 @@
 package com.photoselector.ui;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.photoselector.model.AlbumModel;
+
+import java.util.ArrayList;
 
 public class AlbumAdapter extends MBaseAdapter<AlbumModel> {
 
@@ -22,6 +22,7 @@ public class AlbumAdapter extends MBaseAdapter<AlbumModel> {
 			convertView = albumItem;
 		} else
 			albumItem = (AlbumItem) convertView;
+
 		albumItem.update(models.get(position));
 		return convertView;
 	}

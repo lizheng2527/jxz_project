@@ -139,8 +139,12 @@ public class IntentUtil {
 		intent.putExtra("oneshot", 0);
 
 		intent.putExtra("configchange", 0);
-
-		Uri uri = Uri.fromFile(new File(param));
+		Uri uri = null;
+		if (param.contains("http")){
+			uri = Uri.parse(param);
+		}else{
+			uri = Uri.fromFile(new File(param));
+		}
 
 		intent.setDataAndType(uri, "video/*");
 

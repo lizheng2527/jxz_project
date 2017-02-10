@@ -49,7 +49,7 @@ public class WorkSpaceFragment extends Fragment {
 
     private static int gridSelectionIndex = 0;
 
-    public int selectIndexTag = 0;
+    public static int selectIndexTag = 0;
     //workSpace加载的gridView
     private GridView gridView;
     private ArrayList gridList;
@@ -205,13 +205,14 @@ public class WorkSpaceFragment extends Fragment {
 
     }
 
-    public void onActReFresh(String name,String clickId,String type){
+    public void onActReFresh(String name,String clickId,String type,String eclassIds){
         if (dialog != null){
             dialog.show();
         }
         this.name = name;
         this.clickId = clickId;
         this.type = type;
+        this.eclassIds = eclassIds;
         switch(workSpaceGridAdapter.index){
             case 0:
                 resourceStyle = "9";
@@ -244,7 +245,7 @@ public class WorkSpaceFragment extends Fragment {
                 resourceStyle = "8";
                 break;
         }
-        ListViewDatas(selectIndexTag,name,"",resourceStyle,clickId,type,null,null,"","","0","1");
+        ListViewDatas(selectIndexTag,name,"",resourceStyle,clickId,type,null,eclassIds,"","","0","1");
     }
 
     private HashMap<String,ParameterValue> hashMap = new HashMap<>();
@@ -433,6 +434,7 @@ public class WorkSpaceFragment extends Fragment {
 
     private int start;
     private int refreshCnt;
+    private boolean isLoadMoring = false;
     public void initXListView(final XListView listView, final BaseAdapter adapter){
         listView.setPullLoadEnable(true);
         final Handler mHandler = new Handler();
@@ -450,6 +452,10 @@ public class WorkSpaceFragment extends Fragment {
 
             @Override
             public void onLoadMore() {
+                if (isLoadMoring){
+                    return;
+                }
+                isLoadMoring = true;
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -590,11 +596,13 @@ public class WorkSpaceFragment extends Fragment {
                             }
                             workSpaceListViewAdapter = new WorkSpaceListViewAdapter(list,context,WorkSpaceFragment.this,lv);
                             workSpaceListViewAdapter.notifyDataSetChanged();
+                            isLoadMoring = false;
                             onLoad(lv);
                         }
                     },5);
                 } catch (IOException e) {
                     e.printStackTrace();
+                    isLoadMoring = false;
                 }
             }
         }).start();
@@ -626,7 +634,9 @@ public class WorkSpaceFragment extends Fragment {
                 list.get(position).setHighQuantity("1");
             }
         }
-        gridView.setSelection(gridSelectionIndex);
+//        gridView.setSelection(gridSelectionIndex);
+        workSpaceListViewAdapter = new WorkSpaceListViewAdapter(list,context,WorkSpaceFragment.this,lv);
         workSpaceListViewAdapter.notifyDataSetChanged();
+        ToastUtil.showMessage("刷新完毕");
     }
 }

@@ -1,17 +1,24 @@
 package com.photoselector.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MBaseAdapter<T> extends BaseAdapter {
 
 	protected Context context;
 	protected ArrayList<T> models;
+
+	public ArrayList<T> getModels(){
+		if (models != null){
+			return models;
+		}
+		return null;
+	}
 
 	public MBaseAdapter(Context context, ArrayList<T> models) {
 		this.context = context;
@@ -50,6 +57,7 @@ public class MBaseAdapter<T> extends BaseAdapter {
 			return;
 		this.models.clear();
 		for (T t : models) {
+//			Log.e("TAG","获取到的models："+p.getOriginalPath());
 			this.models.add(t);
 		}
 		notifyDataSetChanged();

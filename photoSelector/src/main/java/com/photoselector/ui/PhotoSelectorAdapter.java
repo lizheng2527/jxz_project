@@ -25,6 +25,13 @@ public class PhotoSelectorAdapter extends MBaseAdapter<PhotoModel> {
 	private LayoutParams itemLayoutParams;
 	private onItemClickListener mCallback;
 	private OnClickListener cameraListener;
+
+	@Override
+	public ArrayList<PhotoModel> getModels() {
+		ArrayList<PhotoModel> photoModels = super.getModels();
+		return photoModels;
+	}
+
 	private PhotoSelectorAdapter(Context context, ArrayList<PhotoModel> models) {
 		super(context, models);
 	}
@@ -49,6 +56,7 @@ public class PhotoSelectorAdapter extends MBaseAdapter<PhotoModel> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		PhotoItem item = null;
 		TextView tvCamera = null;
+//		Log.e("TAG",models.size()+"");
 		if (position == 0 && CommonUtils.isNull(models.get(position).getOriginalPath())) { // 当时第一个时，显示按钮
 			if (convertView == null || !(convertView instanceof TextView)) {
 				tvCamera = (TextView) LayoutInflater.from(context).inflate(R.layout.view_camera, null);
@@ -69,8 +77,8 @@ public class PhotoSelectorAdapter extends MBaseAdapter<PhotoModel> {
 			item.setImageDrawable(models.get(position));
 			item.setSelected(models.get(position).isChecked());
 			item.setOnClickListener(mCallback, position);
+			Log.w("d","路径为："+models.get(position).getOriginalPath());
 		}
-		Log.e("d","路径为："+models.get(position).getOriginalPath());
 		return convertView;
 	}
 }

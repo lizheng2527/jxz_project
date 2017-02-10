@@ -8,8 +8,6 @@ import android.provider.MediaStore;
 import android.support.v4.util.LruCache;
 import android.widget.ImageView;
 
-import com.zdhx.androidbase.util.LogUtil;
-
 public class MyVideoThumbLoader {
 	private ImageView imgView;
 	private String path;
@@ -20,7 +18,7 @@ public class MyVideoThumbLoader {
 	@SuppressLint("NewApi")
 	public MyVideoThumbLoader(){
 		int maxMemory = (int) Runtime.getRuntime().maxMemory();//获取最大的运行内存
-		int maxSize = maxMemory /4;//拿到缓存的内存大小 35
+		int maxSize = maxMemory /4;//拿到缓存的内存大小
 		lruCache = new LruCache<String, Bitmap>(maxSize){
 			@Override
 			protected int sizeOf(String key, Bitmap value) {
@@ -38,17 +36,23 @@ public class MyVideoThumbLoader {
 	}
 	public void addVideoThumbToCache(String path,Bitmap bitmap){
 		if(getVideoThumbToCache(path) == null){
-			//当前地址没有缓存时，就添加
-			lruCache.put(path, bitmap);
-			LogUtil.e("存储成功"+path);
+			//当前地址没有缓存，就添加,并且路径和bitmap都不为空时
+			if (path != null&&bitmap != null){
+				lruCache.put(path, bitmap);
+			}
 		}
 	}
 	public Bitmap getVideoThumbToCache(String path){
+		if (path != null){
+			return lruCache.get(path);
+		}
 
-		return lruCache.get(path);
+		return null;
+
 
 	}
 	public void showThumbByAsynctack(String path,ImageView imgview){
+
 
 		if(getVideoThumbToCache(path) == null){
 			//异步加载
@@ -59,7 +63,9 @@ public class MyVideoThumbLoader {
 
 	}
 
-	class MyBobAsynctack extends AsyncTask<String, Void, Bitmap> {
+
+
+	public class MyBobAsynctack extends AsyncTask<String, Void, Bitmap> {
 		private ImageView imgView;
 		private String path;
 
@@ -72,7 +78,7 @@ public class MyVideoThumbLoader {
 		protected Bitmap doInBackground(String... params) {//这里的创建缩略图方法是调用VideoUtil类的方法，也是通过 android中提供的 ThumbnailUtils.createVideoThumbnail(vidioPath, kind);
 			//这里的创建缩略图方法是调用VideoUtil类的方法，也是通过 android中提供的 ThumbnailUtils.createVideoThumbnail(vidioPath, kind);
 			Bitmap bitmap = createVideoThumbnail(params[0], 70, 50, MediaStore.Video.Thumbnails.MICRO_KIND);
-			//加入缓存中
+//			//加入缓存中
 			if(getVideoThumbToCache(params[0]) == null){
 				addVideoThumbToCache(path, bitmap);
 			}
@@ -80,8 +86,11 @@ public class MyVideoThumbLoader {
 		}
 		@Override
 		protected void onPostExecute(Bitmap bitmap) {
-			if(imgView.getTag().equals(path)){//通过 Tag可以绑定 图片地址和 imageView，这是解决Listview加载图片错位的解决办法之一
-				imgView.setImageBitmap(bitmap);
+			if (imgView.getTag() != null){
+				if(imgView.getTag().equals(path)){//通过 Tag可以绑定 图片地址和 imageView，这是解决Listview加载图片错位的解决办法之一
+					if (bitmap != null)
+						imgView.setImageBitmap(bitmap);
+				}
 			}
 		}
 	}

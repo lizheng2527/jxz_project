@@ -44,7 +44,7 @@ public class AlbumItem extends LinearLayout {
 	public void update(AlbumModel album) {
 		setAlbumImage(album.getRecent());
 		setName(album.getName());
-		setCount(album.getCount());
+//		setCount(album.getCount());
 		isCheck(album.isCheck());
 	}
 

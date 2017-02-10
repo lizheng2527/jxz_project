@@ -106,12 +106,16 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
 	private RelativeLayout[] mTabContainers;
 
-	private LinearLayout typeMenu;
+	private static LinearLayout typeMenu;
+	private static String menuTitleForFirst = "班级";
+	private static String menuTitleForSecond = "教师备课资源";
 	//主页显示的菜单选项
 	public static ArrayList<String> homeMenuDatas;
 	public static ArrayList<String> homeMenuDatasForService = new ArrayList<>();
 	//选择菜单的计数器（用来统计显示的条目）
 	public static int menuPosition;
+	//工作平台菜单计数器（用来统计显示的条目）
+	public static int menuPositionForWork;
 	//选择菜单显示的文字
 	private TextView menuSelectedTV;
 
@@ -137,6 +141,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
     //跳转到搜索工作平台资源请求码
     private final int UPFILEACTIVITYCODE = 4;
 
+	//用来承接互动交流和工作平台菜单显示的过度变量
+	private int indexForMenu;
 	/**
 	 * 缓存三个TabView
 	 */
@@ -223,20 +229,30 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		typeMenu.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				ECListDialog d = new ECListDialog(MainActivity.this,homeMenuDatas,menuPosition);
+
+				switch (SELECTMENUINDEX){
+					case 0:
+						indexForMenu = menuPosition;
+						break;
+					case 1:
+						indexForMenu = menuPositionForWork;
+						break;
+				}
+				ECListDialog d = new ECListDialog(MainActivity.this,homeMenuDatas,indexForMenu);
 				d.setOnDialogItemClickListener(new ECListDialog.OnDialogItemClickListener() {
 					@Override
 					public void onDialogItemClick(Dialog d, int position) {
 						if (SELECTMENUINDEX == 0){
 							menuPosition = position;
 							menuSelectedTV.setText(homeMenuDatas.get(position));
+							menuTitleForFirst = homeMenuDatas.get(position);
 							homeFragment.setDatasToNull();
 							homeFragment.initDatasForMain();
 							homeFragment.getSwitch();
 						}
 
 						if (SELECTMENUINDEX == 1){
-							menuPosition = position;
+							menuPositionForWork = position;
 							workSpaceFragment.selectIndexTag = position;
 							if (position == 0){
 								workSpaceFragment.dialog.show();
@@ -248,6 +264,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 							}
 
 							menuSelectedTV.setText(homeMenuDatas.get(position));
+							menuTitleForSecond = homeMenuDatas.get(position);
 //							doToast(homeMenuDatas.get(position));
 						}
 						//TODO
@@ -317,13 +334,12 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 				titleImgSecond.setImageResource(R.drawable.nav_search);
 				titleImgThird.setImageResource(R.drawable.nav_edit);
 				fragTitle.setText("互动交流");
-				menuSelectedTV.setText("班级");
+				menuSelectedTV.setText(menuTitleForFirst);
 				if (homeMenuDatas != null){
 					homeMenuDatas.clear();
 
 				}else{
 					homeMenuDatas = new ArrayList<String>();
-
 				}
 				if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
 					homeMenuDatas.add("班级");
@@ -345,7 +361,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 				titleImgSecond.setImageResource(R.drawable.nav_search);
 				titleImgThird.setImageResource(R.drawable.upload);
 				fragTitle.setText("工作平台");
-				menuSelectedTV.setText("教师备课资源");
+				menuSelectedTV.setText(menuTitleForSecond);
 				if (homeMenuDatas != null){
 					homeMenuDatas.clear();
 				}else{
@@ -381,7 +397,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 				index = 3;
 				break;
 		}
-		menuPosition = 0;
+//		menuPosition = 0;
 		if (currentTabIndex != index) {
 			FragmentTransaction trx = getSupportFragmentManager()
 					.beginTransaction();
@@ -549,9 +565,15 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			String name = (String) map.get("name");
 			String clickId = (String) map.get("clickId");
 			String type = (String) map.get("type");
-			if (clickId != null){
-				workSpaceFragment.onActReFresh(name,clickId,type);
+			String eclassIds = (String) map.get("eclassIds");
+			if (clickId != null|eclassIds != null){
+				workSpaceFragment.onActReFresh(name,clickId,type,eclassIds);
 				map.clear();
+			}else{
+				if (name != null){
+					workSpaceFragment.onActReFresh(name,clickId,type,eclassIds);
+					map.clear();
+				}
 			}
 		}
 		if (requestCode == UPFILEACTIVITYCODE){

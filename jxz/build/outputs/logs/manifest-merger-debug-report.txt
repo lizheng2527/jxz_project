@@ -20,12 +20,22 @@ ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:7
 MERGED from [AndroidBase:datetimepicker:unspecified] D:\01_work\jxz-project\AndroidBase\datetimepicker\build\intermediates\bundles\default\AndroidManifest.xml:22:5-24:41
 MERGED from [AndroidBase:photoSelector:unspecified] D:\01_work\jxz-project\AndroidBase\photoSelector\build\intermediates\bundles\default\AndroidManifest.xml:7:5-9:41
 MERGED from [AndroidBase:baselibrary:unspecified] D:\01_work\jxz-project\AndroidBase\baselibrary\build\intermediates\bundles\default\AndroidManifest.xml:7:5-9:41
+MERGED from [io.reactivex:rxandroid:1.2.1] C:\Users\lizheng\.android\build-cache\395528eb9cc38f71c2192c1bce3e46d03db8eb82\output\AndroidManifest.xml:19:5-43
+MERGED from [top.zibin:Luban:1.0.9] C:\Users\lizheng\.android\build-cache\19f3749060d1a2d48ce1f4db09ced06f407b74c1\output\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.fresco:fresco:0.12.0] C:\Users\lizheng\.android\build-cache\89788ea9f3b1694224c4cb807f464750c5e394a0\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:0.12.0] C:\Users\lizheng\.android\build-cache\8f7c4f965c2bd8f3eb49c79c56d38fd567804bf6\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-webp:0.12.0] C:\Users\lizheng\.android\build-cache\13afcec7eeb215fbcec87980c006e5c1053e39c4\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-base:0.12.0] C:\Users\lizheng\.android\build-cache\820dc35b7ffc7f16402c382073b6c7b3f5f0e69a\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:0.12.0] C:\Users\lizheng\.android\build-cache\d5be8438c6c8c192bc113b4ee5e0f6ba89a03c41\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:webpsupport:0.12.0] C:\Users\lizheng\.android\build-cache\9a4294a892050375d27898331c8891112e5cb208\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:0.12.0] C:\Users\lizheng\.android\build-cache\0722fedbbaca85121fef68e4bcd0f8c1963c8324\output\AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support:support-v4:25.1.0] C:\Users\lizheng\.android\build-cache\3442ceb91625477f2c31f5b2f0f0f0382ad35998\output\AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:support-fragment:25.1.0] C:\Users\lizheng\.android\build-cache\400e295da899747b147f1da8d533694754fe22d0\output\AndroidManifest.xml:21:5-23:60
 MERGED from [com.android.support:support-media-compat:25.1.0] C:\Users\lizheng\.android\build-cache\24a52cca8e86d3574cfe3254e52a342b23a3ffce\output\AndroidManifest.xml:21:5-23:63
 MERGED from [com.android.support:support-core-ui:25.1.0] C:\Users\lizheng\.android\build-cache\c68f38145c038e821d14e63a9ac40fbb8837a5ce\output\AndroidManifest.xml:21:5-23:58
 MERGED from [com.android.support:support-core-utils:25.1.0] C:\Users\lizheng\.android\build-cache\c4fb83047cb08602aea998e694e181253abe2606\output\AndroidManifest.xml:21:5-23:61
 MERGED from [com.android.support:support-compat:25.1.0] C:\Users\lizheng\.android\build-cache\e9c7981610f6f598506f303179227120f88055f5\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.facebook.fresco:fbcore:0.12.0] C:\Users\lizheng\.android\build-cache\82976f984aed5e1b761a15d914c9249bf5e0aa4a\output\AndroidManifest.xml:5:5-7:41
 	tools:overrideLibrary
 		ADDED from [com.android.support:support-v4:25.1.0] C:\Users\lizheng\.android\build-cache\3442ceb91625477f2c31f5b2f0f0f0382ad35998\output\AndroidManifest.xml:23:9-51
 	android:targetSdkVersion

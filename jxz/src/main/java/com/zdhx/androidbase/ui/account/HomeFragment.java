@@ -24,12 +24,14 @@ import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.xlistview.XListView;
 import com.zdhx.androidbase.util.DateUtil;
 import com.zdhx.androidbase.util.InputTools;
+import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.NetUtils;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.ProgressUtil;
 import com.zdhx.androidbase.util.RunnableWrap;
 import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.ZddcUtil;
+import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,7 +46,7 @@ import static com.zdhx.androidbase.ui.xlistview.XListViewUtils.onLoad;
  * Created by lizheng on 2012/12/24.
  *
  * 点击GridView：是重新加载当前资源（清空原有的搜索条件）
- * 下拉刷新：重新加载当前资源（清空原有的搜索条件）
+ * 下拉刷新：重新加载当前资源（根据现有的搜索条件）
  * 左右滑动刷新：按照当前搜索添加展示各个类型文件资源
  * 点击左上角菜单：重新刷新资源，搜索条件不清空
  * 主页
@@ -54,9 +56,17 @@ public class HomeFragment extends Fragment {
     /**
      * 记录当前加载的是否有下一页
      */
-    private String status = "0";
+    private String status0 = "0";
+    private String status1 = "0";
+    private String status2 = "0";
+    private String status3 = "0";
+    private String status4 = "0";
 
-    private int loadMorePager;
+    private int loadMorePager0;
+    private int loadMorePager1;
+    private int loadMorePager2;
+    private int loadMorePager3;
+    private int loadMorePager4;
 
     private GridView grid;
 
@@ -111,6 +121,8 @@ public class HomeFragment extends Fragment {
 
     private int gridAdapterIndex ;
 
+    private ECProgressDialog dialog;
+
 //    private static boolean workSpaceDatasIsLoad;
 
     /**
@@ -122,6 +134,90 @@ public class HomeFragment extends Fragment {
         myDatas = null;
         resDatas = null;
         attDatas = null;
+    }
+
+    /**
+     * 设置加载更多页码
+     * @param count
+     */
+    private void setLoadMorePager(int count){
+        switch (HomeGridAdapter.index){
+            case 0:
+                loadMorePager0 = count;
+                break;
+            case 1:
+                loadMorePager1 = count;
+                break;
+            case 2:
+                loadMorePager2 = count;
+                break;
+            case 3:
+                loadMorePager3 = count;
+                break;
+            case 4:
+                loadMorePager4 = count;
+                break;
+        }
+    }
+    /**
+     * 设置是否有下一页标记
+     * @param count
+     */
+    private void setStatus(String count){
+        switch (HomeGridAdapter.index){
+            case 0:
+                status0 = count;
+                break;
+            case 1:
+                status1 = count;
+                break;
+            case 2:
+                status2 = count;
+                break;
+            case 3:
+                status3 = count;
+                break;
+            case 4:
+                status4 = count;
+                break;
+        }
+    }
+    /**
+     * 获取是否有下一页标记
+     */
+    private String getStatus(){
+        switch (HomeGridAdapter.index){
+            case 0:
+                return status0 ;
+            case 1:
+                return status1 ;
+            case 2:
+                return status2 ;
+            case 3:
+                return status3 ;
+            case 4:
+                return status4 ;
+        }
+        return null;
+    }
+    /**
+     * 获取加载更多页码
+     */
+    private int getLoadMorePager(){
+
+        switch (HomeGridAdapter.index){
+            case 0:
+                return loadMorePager0;
+            case 1:
+                return loadMorePager1;
+            case 2:
+                return loadMorePager2;
+            case 3:
+                return loadMorePager3;
+            case 4:
+                return loadMorePager4;
+        }
+        return 1;
     }
 
     /**
@@ -148,8 +244,6 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    //    public void setWorkSpaceDatasIsLoad(boolean tag){
-//        workSpaceDatasIsLoad = tag;
 //    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -162,6 +256,9 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         context = getActivity();
+        dialog = new ECProgressDialog(context);
+        dialog.setPressText("正在加载数据..");
+        dialog.show();
         linear = (LinearLayout) getView().findViewById(R.id.rl_bottom);
         replyET = (EditText) getView().findViewById(R.id.et_reply);
         sendBtn = (Button) getView().findViewById(R.id.btn_send);
@@ -192,6 +289,9 @@ public class HomeFragment extends Fragment {
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+                                    if (dialog.isShowing()){
+                                        dialog.dismiss();
+                                    }
                                     ProgressUtil.hide();
                                     hideEdit();
                                     Treads.DataListBean chi = new Treads.DataListBean();
@@ -344,6 +444,7 @@ public class HomeFragment extends Fragment {
         });
         //第一次加载默认为加载全部
         initTreadsDatas(0);
+
     }
 
     /**
@@ -510,6 +611,7 @@ public class HomeFragment extends Fragment {
         }
         this.eclassId = eclassId;
 
+        if (!dialog.isShowing())
         ProgressUtil.show(context,"正在刷新..");
         hashMap.put("startDate",new ParameterValue(this.startDate));
         hashMap.put("endDate",new ParameterValue(this.endDate));
@@ -545,7 +647,8 @@ public class HomeFragment extends Fragment {
                 break;
         }
         hashMap.put("pageNo",new ParameterValue("1"));
-        loadMorePager = 1;
+//        loadMorePager = 1;
+        setLoadMorePager(1);
     }
 
     /**
@@ -560,43 +663,37 @@ public class HomeFragment extends Fragment {
                     hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
-                           status = treads.getStatus();//记录当前是否有下一页
+//                           status = treads.getStatus();//记录当前是否有下一页
+                    setStatus(treads.getStatus());
                     handler.postDelayed(new Runnable() {
                         public void run() {
                             viewPagerListTreadsDatas = treads.getDataList();
                             if (treads != null) {
+                                setDatasToNotNull(viewPagerListTreadsDatas);
                                 if (viewPagerListTreadsDatas == null){
                                     viewPagerListTreadsDatas = new ArrayList<Treads.DataListBean>();
                                 }
                                 treadsListViewAdapter = new TreadsListViewAdapter(viewPagerListTreadsDatas,context,HomeFragment.this);
-//                                switch (HomeGridAdapter.index){
-//                                    case 0:
-//                                        allDatas = viewPagerListTreadsDatas;
-//                                        break;
-//                                    case 1:
-//                                        interactDatas = viewPagerListTreadsDatas;
-//                                        break;
-//                                    case 2:
-//                                        myDatas = viewPagerListTreadsDatas;
-//                                        break;
-//                                    case 3:
-//                                        resDatas = viewPagerListTreadsDatas;
-//                                        break;
-//                                    case 4:
-//                                        attDatas = viewPagerListTreadsDatas;
-//                                        break;
-//                                }
                                 setDatasToNotNull(viewPagerListTreadsDatas);
                                 if (listView != null){
                                     listView.setAdapter(treadsListViewAdapter);
                                     ProgressUtil.hide();
+                                    if (dialog.isShowing()){
+                                        dialog.dismiss();
+                                    }
                                 }else{
                                     allreadsListView.setAdapter(treadsListViewAdapter);
                                     ProgressUtil.hide();
+                                    if (dialog.isShowing()){
+                                        dialog.dismiss();
+                                    }
                                 }
                             } else {
                                 ToastUtil.showMessage("请检查网络");
                                 ProgressUtil.hide();
+                                if (dialog.isShowing()){
+                                    dialog.dismiss();
+                                }
                             }
                         }
                     }, 5);
@@ -660,7 +757,9 @@ public class HomeFragment extends Fragment {
             public void onRefresh() {
                 start = ++refreshCnt;
                 ProgressUtil.hide();
-
+                if (dialog.isShowing()){
+                    dialog.dismiss();
+                }
                 switch (gridAdapterIndex){
                     case 0:
                         initDatasForRefrush(startDate,endDate,name,eclassId,allreadsListView);
@@ -728,12 +827,17 @@ public class HomeFragment extends Fragment {
      * 加载更多时调用的方法
      * @param listView
      */
+    private boolean isLoadMoring = false;
     private void onDatasChanged(final XListView listView){
-        if (status.equals("1")){
+        if (getStatus().equals("1")){
             ToastUtil.showMessage("已无更多..");
             onLoad(listView);
             return;
         }
+        if (isLoadMoring){
+            return;
+        }
+        isLoadMoring = true;
         hashMap.put("startDate",new ParameterValue(startDate));
         hashMap.put("endDate",new ParameterValue(endDate));
         if (name != null){
@@ -773,7 +877,9 @@ public class HomeFragment extends Fragment {
                 hashMap.put("tabsType",new ParameterValue("teacher"));
                 break;
         }
-        hashMap.put("pageNo",new ParameterValue(loadMorePager+1+""));
+        hashMap.put("pageNo",new ParameterValue(getLoadMorePager()+1+""));
+        LogUtil.w("当前加载页数："+getLoadMorePager()+1+"");
+        LogUtil.w("当前加载页数："+getLoadMorePager()+1+"");
         new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
             public void run() {
@@ -781,34 +887,41 @@ public class HomeFragment extends Fragment {
                 try {
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
-                    status = treads.getStatus();
+//                    status = treads.getStatus();
+                    setStatus(treads.getStatus());
                     handler.postDelayed(new Runnable() {
                         public void run() {
                             List<Treads.DataListBean> list = treads.getDataList();
+                            //TODO
                             switch (HomeGridAdapter.index){
                                 case 0:
                                     if (list != null&&list.size()>0){
                                         allDatas.addAll(list);
+                                        treadsListViewAdapter = new TreadsListViewAdapter(allDatas,context,HomeFragment.this);
                                     }
                                     break;
                                 case 1:
                                     if (list != null&&list.size()>0){
                                         interactDatas.addAll(list);
+                                        treadsListViewAdapter = new TreadsListViewAdapter(interactDatas,context,HomeFragment.this);
                                     }
                                     break;
                                 case 2:
                                     if (list != null&&list.size()>0){
                                         myDatas.addAll(list);
+                                        treadsListViewAdapter = new TreadsListViewAdapter(myDatas,context,HomeFragment.this);
                                     }
                                     break;
                                 case 3:
                                     if (list != null&&list.size()>0){
                                         resDatas.addAll(list);
+                                        treadsListViewAdapter = new TreadsListViewAdapter(resDatas,context,HomeFragment.this);
                                     }
                                     break;
                                 case 4:
                                     if (list != null&&list.size()>0){
                                         attDatas.addAll(list);
+                                        treadsListViewAdapter = new TreadsListViewAdapter(attDatas,context,HomeFragment.this);
                                     }
                                     break;
                             }
@@ -816,7 +929,8 @@ public class HomeFragment extends Fragment {
                             if (list == null||list.size()== 0 ){
 //                                ToastUtil.showMessage("已无更多");
                             }else{
-                                loadMorePager++;
+                                setLoadMorePager(getLoadMorePager()+1);
+                                isLoadMoring = false;
                             }
                             onLoad(listView);
                         }
@@ -825,6 +939,13 @@ public class HomeFragment extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                     ToastUtil.showMessage("连接服务器失败");
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            onLoad(listView);
+                            isLoadMoring = false;
+                        }
+                    },2000);
                 }
             }
         }).start();
@@ -868,7 +989,6 @@ public class HomeFragment extends Fragment {
         }else{
             hashMap.put("eclassId",new ParameterValue(eclassId));
         }
-
         hashMap.put("startDate",new ParameterValue(this.startDate));
         hashMap.put("endDate",new ParameterValue(this.endDate));
         switch (HomeGridAdapter.index){
@@ -903,6 +1023,7 @@ public class HomeFragment extends Fragment {
                 break;
         }
         hashMap.put("pageNo",new ParameterValue("1"));
+        setLoadMorePager(1);
         new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
             public void run() {
@@ -910,24 +1031,8 @@ public class HomeFragment extends Fragment {
                 try {
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
-                    status = treads.getStatus();
-//                    switch (HomeGridAdapter.index){
-//                        case 0:
-//                            allDatas = viewPagerListTreadsDatas;
-//                            break;
-//                        case 1:
-//                            interactDatas = viewPagerListTreadsDatas;
-//                            break;
-//                        case 2:
-//                            myDatas = viewPagerListTreadsDatas;
-//                            break;
-//                        case 3:
-//                            resDatas = viewPagerListTreadsDatas;
-//                            break;
-//                        case 4:
-//                            attDatas = viewPagerListTreadsDatas;
-//                            break;
-//                    }
+//                    status = treads.getStatus();
+                    setStatus(treads.getStatus());
                     setDatasToNotNull(viewPagerListTreadsDatas);
                     handler.postDelayed(new Runnable() {
                         public void run() {
@@ -937,7 +1042,31 @@ public class HomeFragment extends Fragment {
                                 if (viewPagerListTreadsDatas == null){
                                     viewPagerListTreadsDatas = new ArrayList<Treads.DataListBean>();
                                 }
-                                treadsListViewAdapter = new TreadsListViewAdapter(viewPagerListTreadsDatas,context,HomeFragment.this);
+                                switch (HomeGridAdapter.index){
+                                    case 0:
+                                            allDatas = viewPagerListTreadsDatas;
+                                            treadsListViewAdapter = new TreadsListViewAdapter(allDatas,context,HomeFragment.this);
+                                        break;
+                                    case 1:
+                                        interactDatas = viewPagerListTreadsDatas;
+                                        treadsListViewAdapter = new TreadsListViewAdapter(interactDatas,context,HomeFragment.this);
+                                        break;
+                                    case 2:
+                                        myDatas = viewPagerListTreadsDatas;
+                                        treadsListViewAdapter = new TreadsListViewAdapter(myDatas,context,HomeFragment.this);
+                                        break;
+                                    case 3:
+                                        resDatas = viewPagerListTreadsDatas;
+                                        treadsListViewAdapter = new TreadsListViewAdapter(resDatas,context,HomeFragment.this);
+
+                                        break;
+                                    case 4:
+                                        attDatas = viewPagerListTreadsDatas;
+                                        treadsListViewAdapter = new TreadsListViewAdapter(attDatas,context,HomeFragment.this);
+
+                                        break;
+                                }
+//                                treadsListViewAdapter = new TreadsListViewAdapter(viewPagerListTreadsDatas,context,HomeFragment.this);
                                 if (listView != null){
                                     listView.setAdapter(treadsListViewAdapter);
                                 }else{

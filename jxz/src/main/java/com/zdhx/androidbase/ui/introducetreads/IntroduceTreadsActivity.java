@@ -1,10 +1,12 @@
 package com.zdhx.androidbase.ui.introducetreads;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -39,12 +41,14 @@ import com.zdhx.androidbase.ui.treadssearch.MyVideoThumbLoader;
 import com.zdhx.androidbase.ui.treadssearch.UpFileBean;
 import com.zdhx.androidbase.ui.treadssearch.VideoShowActivity;
 import com.zdhx.androidbase.util.InputTools;
+import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.ProgressUtil;
 import com.zdhx.androidbase.util.RoundCornerImageView;
 import com.zdhx.androidbase.util.RunnableWrap;
 import com.zdhx.androidbase.util.Tools;
 import com.zdhx.androidbase.util.ZddcUtil;
+import com.zdhx.androidbase.view.dialog.ECAlertDialog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -108,6 +112,8 @@ public class IntroduceTreadsActivity extends BaseActivity{
 	private TextView videoCountTV;
 
 	private HashMap<String,ParameterValue> map;
+
+	public static ArrayList<String> fileNames = new ArrayList<>();
 	@Override
 	protected int getLayoutId() {
 		return R.layout.activity_sendnewcircle;
@@ -307,7 +313,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 	}
 
 	/**
-	 * 初始化上传附件的视图（文件、图片）
+	 * 初始化上传附件的视图（视频、图片）
 	 */
 	private void initPopMenu() {
 		view = context.getLayoutInflater().inflate(
@@ -356,24 +362,19 @@ public class IntroduceTreadsActivity extends BaseActivity{
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-//		if (requestCode == 1) {
-//			if (data != null) {
-//				classTV.setText("发送到：" + data.getStringExtra("className"));
-//				departmentId = data.getStringExtra("classId");
-//			}
-//		}
 //		********从视频管理器回来**********************************************************************************************
 
 		if(VIDEOCODE == requestCode) {
 			ArrayList<UpFileBean> list = (ArrayList<UpFileBean>) MainActivity.map.get("celectList");
+			MainActivity.map.remove("celectList");
 			mVideoThumbLoader = (MyVideoThumbLoader) MainActivity.map.get("mVideoThumbLoader");
+			MainActivity.map.remove("mVideoThumbLoader");
 			if (list == null){
 				return;
 			}
 			if (mVideoThumbLoader == null){
 				return;
 			}
-			upFileBeens.clear();
 			upFileBeens.addAll(list);
 			if (upFileBeens.size()>0){
 				videoCountTV.setVisibility(View.VISIBLE);
@@ -771,6 +772,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 				vh.userName = (TextView) convertView.findViewById(R.id.upfile_list_username);
 				vh.delete = (ImageView) convertView.findViewById(R.id.upfile_list_delete);
 				vh.fileSize = (TextView) convertView.findViewById(R.id.upfile_list_size);
+				vh.rename = (ImageView) convertView.findViewById(R.id.upfile_list_rename);
 				convertView.setTag(vh);
 			}else{
 				vh = (ViewHolder) convertView.getTag();
@@ -787,27 +789,126 @@ public class IntroduceTreadsActivity extends BaseActivity{
 			return convertView;
 		}
 
-		private void addClick(ViewHolder vh, final int position){
+		private void addClick(final ViewHolder vh, final int position){
 			vh.delete.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					upFileBeens.remove(position);
-					listViewAdapter.notifyDataSetChanged();
-					if (upFileBeens.size() == 0){
-						//TODO
-						videoCountTV.setVisibility(View.GONE);
-					}
+					ECAlertDialog.buildAlert(context, "是否删除本条信息？", "确定", "取消", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							upFileBeens.remove(position);
+							listViewAdapter.notifyDataSetChanged();
+							if (upFileBeens.size() == 0){
+								videoCountTV.setVisibility(View.GONE);
+							}
+						}
+					}, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+
+						}
+					}).show();
+				}
+			});
+			vh.rename.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					upDateFileName(vh,position);
 				}
 			});
 
 		}
-
 		class ViewHolder{
 			private RoundCornerImageView img;
 			private TextView title;
 			private TextView userName;
 			private ImageView delete;
 			private TextView fileSize;
+			private ImageView rename;
 		}
+	}
+	private ECAlertDialog buildAlert = null;
+	private void upDateFileName(final ListViewAdapter.ViewHolder vh,final int position) {
+		buildAlert = ECAlertDialog.buildAlert(this,R.string.title, null, new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				final String name = ((EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText))).getText().toString();
+				if (name == null&&name.equals("")){
+					doToast("标题不能为空！");
+					return;
+				}else{
+					//选中要修改的文件地址
+					String selectUrl = upFileBeens.get(position).getAbsolutePath();
+					File file = new File(selectUrl);
+					LogUtil.w("选中文件路径："+file.getAbsolutePath());
+					LogUtil.w("选中文件名称："+file.getName());
+					String oldPath = file.getPath();
+					String lastStr = FileUtils.getExtensionName(file.getName());
+					if (name != null&&!name.equals("")){
+						String newFileUrl = file.getAbsolutePath().replace(file.getName(),name)+"."+lastStr;
+						File newFile = new File(newFileUrl);
+						if (fileNames.contains(newFile.getName())){
+							doToast("该文件名已存在！");
+							return;
+						}
+						boolean isSuccess = file.renameTo(newFile);
+						if (isSuccess){
+							UpFileBean newBean = new UpFileBean();
+							newBean.setFileSize(FileUtils.formatFileLength(newFile.length()));
+							newBean.setIndex(upFileBeens.get(position).getIndex());
+							newBean.setTitle(newFile.getName());
+							newBean.setUserName(ECApplication.getInstance().getCurrentUser().getName());
+							newBean.setPath(oldPath);
+							newBean.setAbsolutePath(newFile.getAbsolutePath());
+//							vh.img.setTag(newBean.getPath());
+							upFileBeens.remove(position);
+							upFileBeens.add(newBean);
+							dealwithMediaScanIntentData(newFile.getAbsolutePath());
+							listViewAdapter.notifyDataSetChanged();
+							MyVideoThumbLoader.getMyVideoThumbLoader().showThumbByAsynctack(newBean.getAbsolutePath(),vh.img);
+						}else{
+							doToast("修改失败");
+							return;
+						}
+					}else{
+						doToast("请输入新名称..");
+						return;
+					}
+					LogUtil.w("选中文件的后缀："+lastStr);
+//					lv.setAdapter(listAdapter);
+				}
+			}
+		});
+		buildAlert.setTitle("修改标题");
+		buildAlert.setCanceledOnTouchOutside(false);
+		buildAlert.setContentView(R.layout.config_dcaddress_dialog);
+		String server = "";
+		final EditText editText = (EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText));
+		TextView delectTV = (TextView) buildAlert.getWindow().findViewById(R.id.delectTV);
+		delectTV.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				editText.setText("");
+			}
+		});
+		if (!server.equals("")) {
+			editText.setText(server);
+		}
+		if(!buildAlert.isShowing()){
+			buildAlert.show();
+			editText.setSelection(editText.getText().length());
+			editText.setSelectAllOnFocus(true);
+		}
+	}
+
+	public void dealwithMediaScanIntentData(String path)
+	{
+		Intent mediaScanIntent = new Intent(
+				Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+		Uri contentUri = Uri.fromFile(new File(path));
+		mediaScanIntent.setData(contentUri);
+		this.sendBroadcast(mediaScanIntent);
 	}
 }

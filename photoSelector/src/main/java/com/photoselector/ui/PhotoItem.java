@@ -67,7 +67,7 @@ public class PhotoItem extends LinearLayout implements OnCheckedChangeListener, 
 			}
 		}, new Random().nextInt(10));
 	}
-	
+
 	public void clearImageDrawable() {
 		ivPhoto.setImageResource(R.drawable.bg_grey_dark);
 	}

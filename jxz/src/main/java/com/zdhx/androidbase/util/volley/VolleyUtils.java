@@ -4,17 +4,17 @@ import android.util.Log;
 
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.util.NetUtils;
-import com.zdhx.volley.AuthFailureError;
-import com.zdhx.volley.DefaultRetryPolicy;
-import com.zdhx.volley.NetworkError;
-import com.zdhx.volley.NoConnectionError;
-import com.zdhx.volley.Request;
-import com.zdhx.volley.RequestQueue;
-import com.zdhx.volley.Response;
-import com.zdhx.volley.ServerError;
-import com.zdhx.volley.TimeoutError;
-import com.zdhx.volley.VolleyError;
-import com.zdhx.volley.toolbox.StringRequest;
+import volley.AuthFailureError;
+import volley.DefaultRetryPolicy;
+import volley.NetworkError;
+import volley.NoConnectionError;
+import volley.Request;
+import volley.RequestQueue;
+import volley.Response;
+import volley.ServerError;
+import volley.TimeoutError;
+import volley.VolleyError;
+import volley.toolbox.StringRequest;
 
 import java.io.File;
 import java.util.List;

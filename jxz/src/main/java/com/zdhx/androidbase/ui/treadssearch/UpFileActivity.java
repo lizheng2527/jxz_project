@@ -7,11 +7,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -28,7 +28,9 @@ import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.ui.MainActivity;
+import com.zdhx.androidbase.ui.account.ImagePagerActivity;
 import com.zdhx.androidbase.ui.base.BaseActivity;
+import com.zdhx.androidbase.ui.introducetreads.compressImg.PictureUtil;
 import com.zdhx.androidbase.ui.plugin.FileExplorerActivity;
 import com.zdhx.androidbase.ui.plugin.FileUtils;
 import com.zdhx.androidbase.ui.treadstree.ScroTreeActivity;
@@ -42,6 +44,8 @@ import com.zdhx.androidbase.view.dialog.ECAlertDialog;
 import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -97,6 +101,10 @@ public class UpFileActivity extends BaseActivity {
 	private Boolean isOpenTag = true;
 
 	private TextView commit;
+	//当修改名称时，判定是否存在该名字
+	public static ArrayList<String> imgForRename = new ArrayList<>();
+	public static ArrayList<String> videoForRename = new ArrayList<>();
+	public static ArrayList<String> fileForRename = new ArrayList<>();
 
 	@Override
 	protected int getLayoutId() {
@@ -155,13 +163,6 @@ public class UpFileActivity extends BaseActivity {
 
 		listAdapter = new ListViewAdapter();
 		lv.setAdapter(listAdapter);
-		lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-			@Override
-			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//				upDateFileName(position);
-				return true;
-			}
-		});
 		imageBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -215,7 +216,7 @@ public class UpFileActivity extends BaseActivity {
 					return;
 				}
 				for (int i = 0; i < upFileBeens.size(); i++) {
-					File file = new File(upFileBeens.get(i).getPath());
+					File file = new File(upFileBeens.get(i).getAbsolutePath());
 					files.add(file);
 				}
 				new ProgressThreadWrap(context, new RunnableWrap() {
@@ -232,7 +233,12 @@ public class UpFileActivity extends BaseActivity {
 								}
 							},5);
 						} catch (IOException e) {
-							dialog.dismiss();
+							handler.postDelayed(new Runnable() {
+								@Override
+								public void run() {
+									dialog.dismiss();
+								}
+							},5);
 							e.printStackTrace();
 						}
 					}
@@ -249,7 +255,7 @@ public class UpFileActivity extends BaseActivity {
 	}
 
 	//
-	private void upDateFileName(final int position) {
+	private void upDateFileName(final ListViewAdapter.ViewHolder vh,final int position) {
 		buildAlert = ECAlertDialog.buildAlert(this,R.string.title, null, new DialogInterface.OnClickListener() {
 
 			@Override
@@ -257,36 +263,49 @@ public class UpFileActivity extends BaseActivity {
 				final String name = ((EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText))).getText().toString();
 				if (name == null&&name.equals("")){
 					doToast("标题不能为空！");
+					return;
 				}else{
-
-//					File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-//					File file = new File(idr,"IMG_1181.JPG");
-//					File newFile = new File(idr,"rename.jpg");
-//					file.renameTo(newFile);
-
-
-					File file = new File(upFileBeens.get(position).getAbsolutePath());
-					LogUtil.w("文件原路径："+upFileBeens.get(position).getAbsolutePath());
-					String endWith = FileUtils.getStringEndWith(file.getAbsolutePath());
-					LogUtil.w("文件后缀名："+endWith);
-					String pathWithoutName = FileUtils.getStringPathWithoutName(file.getAbsolutePath());
-					LogUtil.w("文件路径去掉文件名："+pathWithoutName);
-					if (name !=null&&name.length()>0){
-						File newFile = new File(pathWithoutName+"/"+name+"."+endWith);
-						boolean tag = file.renameTo(newFile);
-						LogUtil.w("修改是否成功："+tag);
-						LogUtil.w("修改后的路径："+newFile.getAbsolutePath());
-
-//						UpFileBean bean = upFileBeens.get(position);
-//						bean.setAbsolutePath(newFile.getAbsolutePath());
-//						bean.setFileSize(FileUtils.formatFileLength(newFile.length()));
-//						bean.setTitle(newFile.getName());
-//						bean.setIndex(IMAGEBTNCODE);
-//						bean.setPath(newFile.getPath());
-//						upFileBeens.remove(position);
-//						upFileBeens.add(bean);
+					//选中要修改的文件地址
+					String selectUrl = upFileBeens.get(position).getAbsolutePath();
+					Bitmap bitmap = null;
+					if (upFileBeens.get(position).getIndex() == IMAGEBTNCODE){
+						bitmap = upFileBeens.get(position).getBitmap();
 					}
-					lv.setAdapter(listAdapter);
+					File file = new File(selectUrl);
+					LogUtil.w("选中文件路径："+file.getAbsolutePath());
+					LogUtil.w("选中文件名称："+file.getName());
+					String oldPath = file.getPath();
+					String lastStr = FileUtils.getExtensionName(file.getName());
+					if (name != null){
+						String newFileUrl = file.getAbsolutePath().replace(file.getName(),name)+"."+lastStr;
+						File newFile = new File(newFileUrl);
+						boolean isSuccess = file.renameTo(newFile);
+						if (isSuccess){
+							UpFileBean newBean = new UpFileBean();
+							newBean.setFileSize(FileUtils.formatFileLength(newFile.length()));
+							newBean.setIndex(upFileBeens.get(position).getIndex());
+							newBean.setTitle(newFile.getName());
+							newBean.setUserName(ECApplication.getInstance().getCurrentUser().getName());
+							newBean.setPath(oldPath);
+							newBean.setAbsolutePath(newFile.getAbsolutePath());
+							if (upFileBeens.get(position).getIndex() == IMAGEBTNCODE){
+								if (bitmap != null)
+									newBean.setBitmap(bitmap);
+							}
+							upFileBeens.remove(position);
+							upFileBeens.add(newBean);
+							dealwithMediaScanIntentData(newFile.getAbsolutePath());
+							listAdapter.notifyDataSetChanged();
+						}else{
+							doToast("修改失败");
+							return;
+						}
+					}else{
+						doToast("请输入新名称..");
+						return;
+					}
+					LogUtil.w("选中文件的后缀："+lastStr);
+//					lv.setAdapter(listAdapter);
 				}
 			}
 		});
@@ -313,27 +332,26 @@ public class UpFileActivity extends BaseActivity {
 		}
 	}
 
+	public void dealwithMediaScanIntentData(String path)
+	{
+		Intent mediaScanIntent = new Intent(
+				Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+		Uri contentUri = Uri.fromFile(new File(path));
+		mediaScanIntent.setData(contentUri);
+		this.sendBroadcast(mediaScanIntent);
+	}
 
+	//	private List<File> sendFiles = new ArrayList<File>();
+//	private List<Bitmap> nowBmp = new ArrayList<Bitmap>();
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if (requestCode == IMAGEBTNCODE&&data !=null&&resultCode == RESULT_OK){
 			paths = PhotoSelectorActivity.selected;
-			if (paths !=null||paths.size()>0){
-				for (int i = 0; i < paths.size(); i++) {
-					File file = new File(paths.get(i).getOriginalPath());
-					bean = new UpFileBean();
-					bean.setFileSize(FileUtils.formatFileLength(file.length()));
-					bean.setIndex(IMAGEBTNCODE);
-					bean.setTitle(file.getName());
-					bean.setUserName("userName");
-					bean.setPath(file.getPath());
-					bean.setAbsolutePath(file.getAbsolutePath());
-					upFileBeens.add(bean);
-				}
-			}
-			listAdapter.notifyDataSetChanged();
+			if (paths != null&&paths.size()>0)
+				Compress(paths);
+
 		}
 		if (requestCode == FILEBTNCODE&&data !=null&&resultCode == RESULT_OK){
 
@@ -344,8 +362,9 @@ public class UpFileActivity extends BaseActivity {
 				bean.setFileSize(FileUtils.formatFileLength(file.length()));
 				bean.setIndex(FILEBTNCODE);
 				bean.setTitle(file.getName());
-				bean.setUserName("userName");
-				bean.setPath(path);
+				bean.setUserName(ECApplication.getInstance().getCurrentUser().getName());
+				bean.setPath(file.getPath());
+				bean.setAbsolutePath(file.getAbsolutePath());
 				upFileBeens.add(bean);
 			}
 			listAdapter.notifyDataSetChanged();
@@ -377,6 +396,38 @@ public class UpFileActivity extends BaseActivity {
 
 	}
 
+	/**
+	 * 压缩图片并存放到即将展示的集合中
+	 */
+	public void Compress(List<PhotoModel> paths) {
+		try {
+			for (int i = 0; i < paths.size(); i++) {
+				if (paths.get(i) != null) {
+					File f = new File(paths.get(i).getOriginalPath());
+					File fs = new File(PictureUtil.getAlbumDir(), "small_"
+							+ f.getName());
+					Bitmap bm = PictureUtil.getSmallBitmap(paths.get(i)
+							.getOriginalPath());
+					if (bm != null) {
+						FileOutputStream fos = new FileOutputStream(fs);
+						bm.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+						bean = new UpFileBean();
+						bean.setBitmap(bm);
+						bean.setFileSize(FileUtils.formatFileLength(fs.length()));
+						bean.setIndex(IMAGEBTNCODE);
+						bean.setTitle(fs.getName());
+						bean.setUserName(ECApplication.getInstance().getCurrentUser().getName());
+						bean.setPath(fs.getPath());
+						bean.setAbsolutePath(fs.getAbsolutePath());
+						upFileBeens.add(bean);
+					}
+				}
+			}
+			listAdapter.notifyDataSetChanged();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 
 	class ListViewAdapter extends BaseAdapter{
 
@@ -401,7 +452,7 @@ public class UpFileActivity extends BaseActivity {
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView, ViewGroup parent) {
 			ViewHolder vh = null;
 			if (convertView == null){
 				vh = new ViewHolder();
@@ -411,13 +462,25 @@ public class UpFileActivity extends BaseActivity {
 				vh.userName = (TextView) convertView.findViewById(R.id.upfile_list_username);
 				vh.delete = (ImageView) convertView.findViewById(R.id.upfile_list_delete);
 				vh.fileSize = (TextView) convertView.findViewById(R.id.upfile_list_size);
+				vh.rename = (ImageView) convertView.findViewById(R.id.upfile_list_rename);
 				convertView.setTag(vh);
 			}else{
 				vh = (ViewHolder) convertView.getTag();
 			}
 			switch(upFileBeens.get(position).getIndex()){
 				case IMAGEBTNCODE:
-					vh.img.setImageBitmap(getImageThumbnail(upFileBeens.get(position).getPath(), 40, 40));
+//					vh.img.setImageBitmap(getImageThumbnail(upFileBeens.get(position).getAbsolutePath(), 40, 40));
+					vh.img.setImageBitmap(upFileBeens.get(position).getBitmap());
+					vh.img.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							doToast("点击预览");
+							Intent intent = new Intent(context, ImagePagerActivity.class);
+							intent.putExtra("images", new String[]{upFileBeens.get(position).getAbsolutePath()});
+							intent.putExtra("image_index",0);
+							startActivity(intent);
+						}
+					});
 					break;
 				case FILEBTNCODE:
 					vh.img.setImageResource(R.drawable.icon_file);
@@ -425,7 +488,11 @@ public class UpFileActivity extends BaseActivity {
 				case VIDEOBTNCODE:
 					if (mVideoThumbLoader !=null){
 						Bitmap b = mVideoThumbLoader.getVideoThumbToCache(upFileBeens.get(position).getPath());
-						vh.img.setImageBitmap(b);
+						if (b == null){
+							mVideoThumbLoader.showThumbByAsynctack(upFileBeens.get(position).getAbsolutePath(), vh.img);
+						}else{
+							vh.img.setImageBitmap(b);
+						}
 					}
 					break;
 			}
@@ -437,23 +504,40 @@ public class UpFileActivity extends BaseActivity {
 			return convertView;
 		}
 
-		private void addClick(ViewHolder vh, final int position){
+		private void addClick(final ViewHolder vh, final int position){
 			vh.delete.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					upFileBeens.remove(position);
-					listAdapter.notifyDataSetChanged();
+					ECAlertDialog.buildAlert(context, "是否删除本条信息？", "确定", "取消", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							upFileBeens.remove(position);
+							listAdapter.notifyDataSetChanged();
+						}
+					}, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+
+						}
+					}).show();
+
+				}
+			});
+			vh.rename.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					upDateFileName(vh,position);
 				}
 			});
 
 		}
-
 		class ViewHolder{
 			private RoundCornerImageView img;
 			private TextView title;
 			private TextView userName;
 			private ImageView delete;
 			private TextView fileSize;
+			private ImageView rename;
 		}
 	}
 

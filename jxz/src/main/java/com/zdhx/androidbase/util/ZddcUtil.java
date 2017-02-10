@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
+import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.SystemConst;
 import com.zdhx.androidbase.entity.ParameterValue;
 
@@ -653,6 +654,7 @@ public class ZddcUtil {
 	public static String buildChapterTree(Map<String, ParameterValue> map) throws IOException {
 		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!buildChapterTree.action", map);
 	}
+	public static String buildChapterTreeStr = "/il/mobile!buildChapterTree.action";
 	/**
 	 * 获取班级树
 	 *
@@ -662,6 +664,7 @@ public class ZddcUtil {
 	public static String getEclassJsonTree(Map<String, ParameterValue> map) throws IOException {
 		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!getEclassJsonTree.action", map);
 	}
+	public static String getEclassJsonTreeStr = "/il/mobile!getEclassJsonTree.action";
 
 	/**
 	 * 发布动态
@@ -700,7 +703,7 @@ public class ZddcUtil {
 	 * @throws IOException
 	 */
 	public static String getUserInfo(Map<String, ParameterValue> map) throws IOException {
-		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/bd/user!getUserInfo.action", map);
+		return getUrlResponse(checkUrl(ECApplication.getInstance().getAddress()) + "/bd/user!getUserInfo.action", map);
 	}
 
 	/**
@@ -708,7 +711,7 @@ public class ZddcUtil {
 	 * @throws IOException
 	 */
 	public static String checkLogin(Map<String, ParameterValue> map) throws IOException {
-		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/bd/welcome!ajaxValidationUser.action", map);
+		return getUrlResponse(checkUrl(ECApplication.getInstance().getAddress()) + "/bd/welcome!ajaxValidationUser.action", map);
 	}
 	
 }

@@ -20,15 +20,17 @@ import com.zdhx.androidbase.ui.treelistview.bean.TreeBean;
 import com.zdhx.androidbase.ui.treelistview.bean.TreeBean1;
 import com.zdhx.androidbase.ui.treelistview.utils.Node;
 import com.zdhx.androidbase.ui.treelistview.utils.adapter.TreeListViewAdapter;
-import com.zdhx.androidbase.util.ProgressThreadWrap;
+import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressUtil;
-import com.zdhx.androidbase.util.RunnableWrap;
 import com.zdhx.androidbase.util.ZddcUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import volley.Response;
+import volley.VolleyError;
+
 
 public class ScroTreeActivity extends BaseActivity{
 	private ImageView back;
@@ -49,12 +51,17 @@ public class ScroTreeActivity extends BaseActivity{
 	public static HashMap<String,String> positionMap = new HashMap<>();
 	public static HashMap<String,String> positionMapForSearchWork = new HashMap<>();
 	public static HashMap<String,String> positionMapForUpFile = new HashMap<>();
+	public static HashMap<String,String> positionMapForEclassTree = new HashMap<>();
 
 	private static boolean firstTag = false;
 
 	private TextView title;
 
 	private String className;
+
+	private RequestWithCacheGet cacheGet;
+
+	private String json = "";
 
 	@Override
 	protected int getLayoutId() {
@@ -73,6 +80,7 @@ public class ScroTreeActivity extends BaseActivity{
 			}
 		});
 		context = this;
+		cacheGet = new RequestWithCacheGet(context);
 		ProgressUtil.show(context,"正在加载数据");
 		lv = (ListView) findViewById(R.id.activity_scrotree_lv);
 		list = new ArrayList<>();
@@ -81,170 +89,101 @@ public class ScroTreeActivity extends BaseActivity{
 		if (SearchWorkTreeCode != null && SearchWorkTreeCode.equals("SearchWorkTreeCode")){
 			title.setText("教材选择");
 			className = "SearchWorkActivity";
-		}else if (SearchWorkTreeCode != null && SearchWorkTreeCode.equals("upFileTree")){
+		}
+		else if (SearchWorkTreeCode != null && SearchWorkTreeCode.equals("upFileTree")){
 			title.setText("章节选择");
 			className = "UpFileActivity";
-		}else{
+		}
+		else if (SearchWorkTreeCode != null && SearchWorkTreeCode.equals("SearchWorkForEclassTree")){
+			//工作平台中，学生生成的班级查询树
+			title.setText("班级选择");
+			className = "SearchWorkForEclassTree";
+		}
+		else{
+			//积分查询班级树
 			title.setText("班级选择");
 			className = "SelectScroActivity";
-			if (!MainActivity.ScroSearchTag){//选择的班级被清空
-				positionMap.clear();
-				positionMap.put("20130418090523475737274383301974","true");
-			}
+//			if (!MainActivity.ScroSearchTag){//选择的班级被清空
+//				positionMap.clear();
+//				positionMap.put("20130418090523475737274383301974","true");
+//			}
 		}
-		new ProgressThreadWrap(this, new RunnableWrap() {
-			@Override
-			public void run() {
+		if (SearchWorkTreeCode != null && SearchWorkTreeCode.equals("SearchWorkTreeCode")){
+			LogUtil.w("教材选择");
+			MainActivity.map.remove("SearchWorkTreeCode");
+			initBooksDatas();
+		}
+		else if (SearchWorkTreeCode != null && SearchWorkTreeCode.equals("upFileTree")){
+			MainActivity.map.remove("SearchWorkTreeCode");
+			LogUtil.w("章节选择");
+			initBooksDatas();
+		}
+		else if (SearchWorkTreeCode != null && SearchWorkTreeCode.equals("SearchWorkForEclassTree")){
+			MainActivity.map.remove("SearchWorkForEclassTree");
+			LogUtil.w("搜索资源班级树选择");
+			initEClassDatas();
+		}
+		else {
+			initEClassDatas();
+			LogUtil.w("积分排名处");
+		}
 
-				String json = "";
-				if (SearchWorkTreeCode != null && SearchWorkTreeCode.equals("SearchWorkTreeCode")){
-					MainActivity.map.remove("SearchWorkTreeCode");
-					HashMap<String,ParameterValue> urlMap = new HashMap<String, ParameterValue>();
-					urlMap.put("userId", new ParameterValue(ECApplication.getInstance().getCurrentUser().getId()));
-					urlMap.putAll(ECApplication.getInstance().getLoginUrlMap());
-					List<TreeBean1> beans = new ArrayList<>();
-					try {
-						json = ZddcUtil.buildChapterTree(urlMap);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					beans = new Gson().fromJson(json, new TypeToken<List<TreeBean1>>(){}.getType());
-					for (int i = 0; i < beans.size(); i++) {
-						treeBean = new TreeBean();
-						treeBean.setId(beans.get(i).getId());
-						treeBean.setLabel(beans.get(i).getName());
-						treeBean.setpId(beans.get(i).getParentId());
-						treeBean.setContactId(beans.get(i).getId());
-						treeBean.setLeafSize(beans.get(i).getChild().size()+"");
-						treeBean.setType(beans.get(i).getType());
-						list.add(treeBean);
-						for (int i1 = 0; i1 < beans.get(i).getChild().size(); i1++) {
-							getChildBeans(beans.get(i).getChild().get(i1));
-						}
-					}
-					if (list != null){
-						listForWork = list;
-					}
-					if (!firstTag){
-						for (int i = 0; i < list.size(); i++) {
-							if (list.get(i).getId().equals("20130424113427190508721241586190")){
-								positionMapForSearchWork.put(list.get(i).getContactId(),"true");
-								firstTag = true;
+		try {
+			adapter = new SimpleTreeListViewAdapterForScro<TreeBean>(lv,context,list,0,className);
+			lv.setAdapter(adapter);
+			adapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener() {
+				@Override
+				public void onClick(Node node, int arg0) {
+					if (className.equals("SearchWorkActivity")){
+						if (node.isLeaf()) {
+							if (positionMapForSearchWork.containsKey(node.getContactId())) {
+								positionMapForSearchWork.remove(node.getContactId());
+							} else {
+								positionMapForSearchWork.clear();
+								positionMapForSearchWork.put(node.getContactId(), "true");
 							}
+							adapter.notifyDataSetChanged();
 						}
 					}
-				}else if (SearchWorkTreeCode != null && SearchWorkTreeCode.equals("upFileTree")){
-					MainActivity.map.remove("SearchWorkTreeCode");
-					List<TreeBean1> beans = new ArrayList<>();
-					try {
-						json = ZddcUtil.buildChapterTree(ECApplication.getInstance().getLoginUrlMap());
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					beans = new Gson().fromJson(json, new TypeToken<List<TreeBean1>>(){}.getType());
-					for (int i = 0; i < beans.size(); i++) {
-						treeBean = new TreeBean();
-						treeBean.setId(beans.get(i).getId());
-						treeBean.setLabel(beans.get(i).getName());
-						treeBean.setpId(beans.get(i).getParentId());
-						treeBean.setContactId(beans.get(i).getId());
-						treeBean.setLeafSize(beans.get(i).getChild().size()+"");
-						treeBean.setType(beans.get(i).getType());
-						list.add(treeBean);
-						for (int i1 = 0; i1 < beans.get(i).getChild().size(); i1++) {
-							getChildBeans(beans.get(i).getChild().get(i1));
+					else if (className.equals("UpFileActivity")){
+						if (node.isLeaf()) {
+							if (positionMapForUpFile.containsKey(node.getContactId())) {
+								positionMapForUpFile.remove(node.getContactId());
+							} else {
+								positionMapForUpFile.clear();
+								positionMapForUpFile.put(node.getContactId(), "true");
+							}
+							adapter.notifyDataSetChanged();
 						}
 					}
-				} else {
-					try {
-						json = ZddcUtil.getEclassJsonTree(ECApplication.getInstance().getLoginUrlMap());
-						ScroTreeBean bean = new Gson().fromJson(json,ScroTreeBean.class);
-						for (int i = 0; i < bean.getEclassList().size(); i++) {
-							treeBean = new TreeBean();
-							treeBean.setId(bean.getEclassList().get(i).getId());
-							treeBean.setpId(bean.getEclassList().get(i).getParentId());
-							treeBean.setContactId(bean.getEclassList().get(i).getId());
-							treeBean.setType(bean.getEclassList().get(i).getType());
-							treeBean.setLabel(bean.getEclassList().get(i).getName());
-							list.add(treeBean);
+					else if (className.equals("SearchWorkForEclassTree")){
+						if (node.isLeaf()) {
+							if (positionMapForEclassTree.containsKey(node.getContactId())) {
+								positionMapForEclassTree.remove(node.getContactId());
+							} else {
+								positionMapForEclassTree.clear();
+								positionMapForEclassTree.put(node.getContactId(), "true");
+							}
+							adapter.notifyDataSetChanged();
 						}
-						for (int i = 0; i < bean.getGradeList().size(); i++) {
-							treeBean = new TreeBean();
-							treeBean.setId(bean.getGradeList().get(i).getId());
-							treeBean.setpId(bean.getGradeList().get(i).getParentId());
-							treeBean.setContactId(bean.getGradeList().get(i).getId());
-							treeBean.setType(bean.getGradeList().get(i).getType());
-							treeBean.setLabel(bean.getGradeList().get(i).getName());
-							list.add(treeBean);
-						}
+					}
 
-						for (int i = 0; i < bean.getSchoolList().size(); i++) {
-							treeBean = new TreeBean();
-							treeBean.setId(bean.getSchoolList().get(i).getId());
-							treeBean.setpId(bean.getSchoolList().get(i).getParentId());
-							treeBean.setContactId(bean.getSchoolList().get(i).getId());
-							treeBean.setType(bean.getSchoolList().get(i).getType());
-							treeBean.setLabel(bean.getSchoolList().get(i).getName());
-							list.add(treeBean);
+					else{
+						if (node.isLeaf()) {
+							if (positionMap.containsKey(node.getContactId())) {
+								positionMap.remove(node.getContactId());
+							} else {
+								positionMap.clear();
+								positionMap.put(node.getContactId(), "true");
+							}
+							adapter.notifyDataSetChanged();
 						}
-					} catch (IOException e) {
-						e.printStackTrace();
 					}
-					if (list != null)
-						listForScro = list;
 				}
-				handler.postDelayed(new Runnable() {
-					@Override
-					public void run() {
-
-						try {
-							adapter = new SimpleTreeListViewAdapterForScro<TreeBean>(lv,context,list,0,className);
-							lv.setAdapter(adapter);
-							ProgressUtil.hide();
-							adapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener() {
-								@Override
-								public void onClick(Node node, int arg0) {
-									if (className.equals("SearchWorkActivity")){
-										if (node.isLeaf()) {
-											if (positionMapForSearchWork.containsKey(node.getContactId())) {
-												positionMapForSearchWork.remove(node.getContactId());
-											} else {
-												positionMapForSearchWork.clear();
-												positionMapForSearchWork.put(node.getContactId(), "true");
-											}
-											adapter.notifyDataSetChanged();
-										}
-									}else if (className.equals("UpFileActivity")){
-										if (node.isLeaf()) {
-											if (positionMapForUpFile.containsKey(node.getContactId())) {
-												positionMapForUpFile.remove(node.getContactId());
-											} else {
-												positionMapForUpFile.clear();
-												positionMapForUpFile.put(node.getContactId(), "true");
-											}
-											adapter.notifyDataSetChanged();
-										}
-									}else{
-										if (node.isLeaf()) {
-											if (positionMap.containsKey(node.getContactId())) {
-												positionMap.remove(node.getContactId());
-											} else {
-												positionMap.clear();
-												positionMap.put(node.getContactId(), "true");
-											}
-											adapter.notifyDataSetChanged();
-										}
-									}
-								}
-							});
-							ProgressUtil.hide();
-						} catch (IllegalAccessException e) {
-							e.printStackTrace();
-						}
-					}
-				},5);
-			}
-		}).start();
+			});
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
 
 		commit = (TextView) findViewById(R.id.activity_scrotree_commit);
 		commit.setOnClickListener(new View.OnClickListener() {
@@ -260,7 +199,8 @@ public class ScroTreeActivity extends BaseActivity{
 							}
 						}
 					}
-				}else if (className.equals("UpFileActivity")){
+				}
+				else if (className.equals("UpFileActivity")){
 					for(String elt:positionMapForUpFile.keySet()){
 						for (int i = 0; i < list.size(); i++) {
 							if (list.get(i).getContactId().equals(elt)){
@@ -269,7 +209,18 @@ public class ScroTreeActivity extends BaseActivity{
 							}
 						}
 					}
-				}else{
+				}
+				else if (className.equals("SearchWorkForEclassTree")){
+					for(String elt:positionMapForEclassTree.keySet()){
+						for (int i = 0; i < list.size(); i++) {
+							if (list.get(i).getContactId().equals(elt)){
+								MainActivity.map.put("ScroTreeBean",list.get(i));
+								ScroTreeActivity.this.finish();
+							}
+						}
+					}
+				}
+				else{
 					for(String elt:positionMap.keySet()){
 						for (int i = 0; i < list.size(); i++) {
 							if (list.get(i).getContactId().equals(elt)){
@@ -287,6 +238,11 @@ public class ScroTreeActivity extends BaseActivity{
 	public void onBackPressed() {
 		super.onBackPressed();
 	}
+
+	/**
+	 * 递归所用到的方法
+	 * @param bean
+	 */
 	private void getChildBeans(TreeBean1.ChildBean bean){
 		treeBean = new TreeBean();
 		treeBean.setId(bean.getId());
@@ -301,5 +257,197 @@ public class ScroTreeActivity extends BaseActivity{
 				getChildBeans(bean.getChild().get(i));
 			}
 		}
+	}
+
+	/**
+	 * 初始化上传资源以及查询资源树的数据
+	 * @param json
+	 */
+	public void initTreeDatas(String json){
+		List<TreeBean1> beans = new ArrayList<>();
+		beans = new Gson().fromJson(json, new TypeToken<List<TreeBean1>>(){}.getType());
+		for (int i = 0; i < beans.size(); i++) {
+			treeBean = new TreeBean();
+			treeBean.setId(beans.get(i).getId());
+			treeBean.setLabel(beans.get(i).getName());
+			treeBean.setpId(beans.get(i).getParentId());
+			treeBean.setContactId(beans.get(i).getId());
+			treeBean.setLeafSize(beans.get(i).getChild().size()+"");
+			treeBean.setType(beans.get(i).getType());
+			list.add(treeBean);
+			for (int i1 = 0; i1 < beans.get(i).getChild().size(); i1++) {
+				getChildBeans(beans.get(i).getChild().get(i1));
+			}
+		}
+		if (list != null){
+			listForWork = list;
+		}
+		if (!firstTag){
+			for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getId().equals("20130424113427190508721241586190")){
+					positionMapForSearchWork.put(list.get(i).getContactId(),"true");
+					firstTag = true;
+				}
+			}
+		}
+	}
+
+	/**
+	 * 初始化班级排名处树数据
+	 * @param json
+	 */
+	public void initEClassTreeDatas(String json){
+		ScroTreeBean bean = new Gson().fromJson(json,ScroTreeBean.class);
+		for (int i = 0; i < bean.getEclassList().size(); i++) {
+			treeBean = new TreeBean();
+			treeBean.setId(bean.getEclassList().get(i).getId());
+			treeBean.setpId(bean.getEclassList().get(i).getParentId());
+			treeBean.setContactId(bean.getEclassList().get(i).getId());
+			treeBean.setType(bean.getEclassList().get(i).getType());
+			treeBean.setLabel(bean.getEclassList().get(i).getName());
+			list.add(treeBean);
+		}
+		for (int i = 0; i < bean.getGradeList().size(); i++) {
+			treeBean = new TreeBean();
+			treeBean.setId(bean.getGradeList().get(i).getId());
+			treeBean.setpId(bean.getGradeList().get(i).getParentId());
+			treeBean.setContactId(bean.getGradeList().get(i).getId());
+			treeBean.setType(bean.getGradeList().get(i).getType());
+			treeBean.setLabel(bean.getGradeList().get(i).getName());
+			list.add(treeBean);
+		}
+
+		for (int i = 0; i < bean.getSchoolList().size(); i++) {
+			treeBean = new TreeBean();
+			treeBean.setId(bean.getSchoolList().get(i).getId());
+			treeBean.setpId(bean.getSchoolList().get(i).getParentId());
+			treeBean.setContactId(bean.getSchoolList().get(i).getId());
+			treeBean.setType(bean.getSchoolList().get(i).getType());
+			treeBean.setLabel(bean.getSchoolList().get(i).getName());
+			list.add(treeBean);
+		}
+		if (list != null)
+			listForScro = list;
+
+	}
+
+	/**
+	 * 展示已经加载好的树
+	 */
+	public void setListView(){
+		try {
+			adapter = new SimpleTreeListViewAdapterForScro<TreeBean>(lv,context,list,0,className);
+			lv.setAdapter(adapter);
+			ProgressUtil.hide();
+			adapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener() {
+				@Override
+				public void onClick(Node node, int arg0) {
+					if (className.equals("SearchWorkActivity")){
+						if (node.isLeaf()) {
+							if (positionMapForSearchWork.containsKey(node.getContactId())) {
+								positionMapForSearchWork.remove(node.getContactId());
+							} else {
+								positionMapForSearchWork.clear();
+								positionMapForSearchWork.put(node.getContactId(), "true");
+							}
+							adapter.notifyDataSetChanged();
+						}
+					}else if (className.equals("UpFileActivity")){
+						if (node.isLeaf()) {
+							if (positionMapForUpFile.containsKey(node.getContactId())) {
+								positionMapForUpFile.remove(node.getContactId());
+							} else {
+								positionMapForUpFile.clear();
+								positionMapForUpFile.put(node.getContactId(), "true");
+							}
+							adapter.notifyDataSetChanged();
+						}
+					}else{
+						if (node.isLeaf()) {
+							if (positionMap.containsKey(node.getContactId())) {
+								positionMap.remove(node.getContactId());
+							} else {
+								positionMap.clear();
+								positionMap.put(node.getContactId(), "true");
+							}
+							adapter.notifyDataSetChanged();
+						}
+					}
+				}
+			});
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 获取上传资源以及资源搜索树数据
+	 */
+	private void initBooksDatas(){
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+
+				HashMap<String,ParameterValue> urlMap = new HashMap<String, ParameterValue>();
+				urlMap.put("userId", new ParameterValue(ECApplication.getInstance().getCurrentUser().getId()));
+				urlMap.putAll(ECApplication.getInstance().getLoginUrlMap());
+				String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+ZddcUtil.buildChapterTreeStr,urlMap);
+				json = cacheGet.getRseponse(url, new RequestWithCacheGet.RequestListener() {
+					@Override
+					public void onResponse(String response) {
+						System.out.println(response + "response");
+						if (response != null && !response.equals(RequestWithCacheGet.NOT_OUTOFDATE)) {
+							initTreeDatas(response);
+							setListView();
+						}
+					}
+				}, new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+
+					}
+				});
+				if ((json != null && !json.equals(RequestWithCacheGet.NO_DATA))) {
+					initTreeDatas(json);
+					setListView();
+				}
+			}
+		},500);
+
+	}
+
+	/**
+	 * 获取积分排名处树数据
+	 */
+	private void initEClassDatas(){
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				HashMap<String,ParameterValue> urlMap = new HashMap<String, ParameterValue>();
+				urlMap.put("userId", new ParameterValue(ECApplication.getInstance().getCurrentUser().getId()));
+				urlMap.putAll(ECApplication.getInstance().getLoginUrlMap());
+				String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+ZddcUtil.getEclassJsonTreeStr,urlMap);
+				json = cacheGet.getRseponse(url, new RequestWithCacheGet.RequestListener() {
+					@Override
+					public void onResponse(String response) {
+						System.out.println(response + "response");
+						if (response != null && !response.equals(RequestWithCacheGet.NOT_OUTOFDATE)) {
+							initEClassTreeDatas(response);
+							setListView();
+						}
+					}
+				}, new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+
+					}
+				});
+				if ((json != null && !json.equals(RequestWithCacheGet.NO_DATA))) {
+					initEClassTreeDatas(json);
+					setListView();
+				}
+			}
+		},500);
+
 	}
 }

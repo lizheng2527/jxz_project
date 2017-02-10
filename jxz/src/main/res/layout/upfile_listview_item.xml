@@ -78,6 +78,14 @@
                 </LinearLayout>
             </LinearLayout>
             <ImageView
+                android:id="@+id/upfile_list_rename"
+                android:padding="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/btn_rename"/>
+            <ImageView
                 android:id="@+id/upfile_list_delete"
                 android:padding="10dp"
                 android:layout_gravity="center_vertical"

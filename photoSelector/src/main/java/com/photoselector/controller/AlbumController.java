@@ -1,18 +1,20 @@
 package com.photoselector.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore.Images.ImageColumns;
 import android.provider.MediaStore.Images.Media;
+import android.util.Log;
 
 import com.photoselector.model.AlbumModel;
 import com.photoselector.model.PhotoModel;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AlbumController {
 
@@ -34,9 +36,16 @@ public class AlbumController {
 			if (cursor.getLong(cursor.getColumnIndex(ImageColumns.SIZE)) > 1024 * 10) {
 				PhotoModel photoModel = new PhotoModel();
 				photoModel.setOriginalPath(cursor.getString(cursor.getColumnIndex(ImageColumns.DATA)));
-				photos.add(photoModel);
+				if (new File(photoModel.getOriginalPath()).length() > 1){
+					photos.add(photoModel);
+				}
 			}
 		} while (cursor.moveToPrevious());
+			for (int i = 0; i < photos.size(); i++) {
+				File file = new File(photos.get(i).getOriginalPath());
+				Log.w("d","即将展示图片的结果集合："+photos.get(i).getOriginalPath()+"长度为"+file.length());
+			}
+//		}
 		return photos;
 	}
 
@@ -50,6 +59,7 @@ public class AlbumController {
 			return new ArrayList<AlbumModel>();
 		cursor.moveToLast();
 		AlbumModel current = new AlbumModel("最近照片", 0, cursor.getString(cursor.getColumnIndex(ImageColumns.DATA)), true); // "最近照片"相册
+		//TODO
 		albums.add(current);
 		do {
 			if (cursor.getInt(cursor.getColumnIndex(ImageColumns.SIZE)) < 1024 * 10)
@@ -81,6 +91,7 @@ public class AlbumController {
 			if (cursor.getLong(cursor.getColumnIndex(ImageColumns.SIZE)) > 1024) {
 				PhotoModel photoModel = new PhotoModel();
 				photoModel.setOriginalPath(cursor.getString(cursor.getColumnIndex(ImageColumns.DATA)));
+				if (new File(photoModel.getOriginalPath()).length() > 1)
 				photos.add(photoModel);
 			}
 		} while (cursor.moveToPrevious());

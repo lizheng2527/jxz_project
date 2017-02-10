@@ -75,13 +75,22 @@ public class SimpleTreeListViewAdapterForScro<T> extends TreeListViewAdapter<T> 
 			}else{
 				holder.checkBox1.setChecked(false);
 			}
-		}else if (className.equals("UpFileActivity")){
+		}
+		else if (className.equals("UpFileActivity")){
 			if(ScroTreeActivity.positionMapForUpFile.get(node.getContactId()) != null){
 				holder.checkBox1.setChecked(true);
 			}else{
 				holder.checkBox1.setChecked(false);
 			}
-		}else{
+		}
+		else if (className.equals("SearchWorkForEclassTree")){
+			if(ScroTreeActivity.positionMapForEclassTree.get(node.getContactId()) != null){
+				holder.checkBox1.setChecked(true);
+			}else{
+				holder.checkBox1.setChecked(false);
+			}
+		}
+		else{
 			if(ScroTreeActivity.positionMap.get(node.getContactId()) != null){
 				holder.checkBox1.setChecked(true);
 			}else{
@@ -153,14 +162,24 @@ public class SimpleTreeListViewAdapterForScro<T> extends TreeListViewAdapter<T> 
 						ScroTreeActivity.positionMapForSearchWork.clear();
 						ScroTreeActivity.positionMapForSearchWork.put(node.getContactId(),"true");
 					}
-				}else if (className.equals("UpFileActivity")){
+				}
+				else if (className.equals("UpFileActivity")){
 					if (ScroTreeActivity.positionMapForUpFile.containsKey(node.getContactId())){
 						ScroTreeActivity.positionMapForUpFile.remove(node.getContactId());
 					}else{
 						ScroTreeActivity.positionMapForUpFile.clear();
 						ScroTreeActivity.positionMapForUpFile.put(node.getContactId(),"true");
 					}
-				}else{
+				}
+				else if (className.equals("SearchWorkForEclassTree")){
+					if (ScroTreeActivity.positionMapForEclassTree.containsKey(node.getContactId())){
+						ScroTreeActivity.positionMapForEclassTree.remove(node.getContactId());
+					}else{
+						ScroTreeActivity.positionMapForEclassTree.clear();
+						ScroTreeActivity.positionMapForEclassTree.put(node.getContactId(),"true");
+					}
+				}
+				else{
 					if (ScroTreeActivity.positionMap.containsKey(node.getContactId())){
 						ScroTreeActivity.positionMap.remove(node.getContactId());
 					}else{

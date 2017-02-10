@@ -48,12 +48,12 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_choice_green.png"
     },
     {
-        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
-        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
-    },
-    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_checkbox_normal.png",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_checkbox_normal.png"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\bg_album_border.9.png",

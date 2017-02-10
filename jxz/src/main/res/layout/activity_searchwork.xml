@@ -148,7 +148,7 @@
                 android:layout_height="match_parent"
                 android:textSize="16sp"
                 android:textColor="#555555"
-                android:text="语文"
+                android:text="无"
                 android:gravity="center|bottom"
                 />
             <ImageView
@@ -159,6 +159,47 @@
                 android:src="@drawable/more"/>
         </LinearLayout>
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="40dp"
+            android:background="#555555"/>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:id="@+id/search_eclass_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginLeft="30dp"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:text="班级:"
+                android:textColor="#222222"
+                android:textSize="16sp"
+                android:gravity="center|left|bottom"
+                />
+            <TextView
+                android:singleLine="true"
+                android:clickable="true"
+                android:id="@+id/search_eclass_tree"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textSize="16sp"
+                android:textColor="#555555"
+                android:text="无"
+                android:gravity="center|bottom"
+                />
+            <ImageView
+                android:layout_marginTop="25dp"
+                android:layout_width="15dp"
+                android:layout_marginRight="50dp"
+                android:layout_height="15dp"
+                android:src="@drawable/more"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/belowLine"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="30dp"

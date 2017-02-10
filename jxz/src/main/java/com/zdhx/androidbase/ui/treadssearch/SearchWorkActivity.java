@@ -16,9 +16,11 @@ import com.android.datetimepicker.time.TimePickerDialog;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.ui.MainActivity;
+import com.zdhx.androidbase.ui.account.WorkSpaceFragment;
 import com.zdhx.androidbase.ui.base.BaseActivity;
 import com.zdhx.androidbase.ui.treadstree.ScroTreeActivity;
 import com.zdhx.androidbase.ui.treelistview.bean.TreeBean;
+import com.zdhx.androidbase.util.LogUtil;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -50,6 +52,11 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 	private LinearLayout dateVis;
 	private TextView dateLine;
 
+	private LinearLayout eclassLinear;
+	private TextView belowLine;
+
+	private TextView eClassTreeBtn;
+
 	private HashMap<String,ParameterValue> hashMap = new HashMap<>();
 	@Override
 	protected int getLayoutId() {
@@ -62,6 +69,7 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 		context = this;
 		getTopBarView().setVisibility(View.GONE);
 		title = (TextView) findViewById(R.id.search_title);
+		belowLine = (TextView) findViewById(R.id.belowLine);
 		title.setText("资源搜索");
 		books = (TextView) findViewById(R.id.books);
 		books.setText("教材");
@@ -75,8 +83,13 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 		dateFrom = (TextView) findViewById(R.id.search_treads_from);
 		dateTo = (TextView) findViewById(R.id.search_treads_to);
 		selectTree = (TextView) findViewById(R.id.search_treads_tree);
-		if (lable != null){
-			selectTree.setText(lable);
+		eclassLinear = (LinearLayout) findViewById(R.id.search_eclass_linear);
+		eClassTreeBtn = (TextView) findViewById(R.id.search_eclass_tree);
+		if (lableForBooks != null&&eclassOrBooks != null){
+			selectTree.setText(lableForBooks);
+		}
+		if (lableForEclass != null&&eclassOrBooks != null){
+			eClassTreeBtn.setText(lableForEclass);
 		}
 		commitBtn = (Button) findViewById(R.id.search_treads_commitBtn);
 		backImg.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +102,21 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 			@Override
 			public void onClick(View v) {
 				onClickTree(v,"books");
+			}
+		});
+
+
+		if (WorkSpaceFragment.selectIndexTag == 1){
+			eclassLinear.setVisibility(View.VISIBLE);
+			belowLine.setVisibility(View.VISIBLE);
+		}else{
+			eclassLinear.setVisibility(View.GONE);
+			belowLine.setVisibility(View.GONE);
+		}
+		eClassTreeBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onClickTree(v,"eClass");
 			}
 		});
 	}
@@ -120,22 +148,34 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 	private String name;
 	private String clickId;
 	private String type;
-	private TreeBean treeBean;
+	private String eclassIds;
+	private static TreeBean treeBean;
+	private static TreeBean treeBeanForEclass;
 	/**
 	 * 点击搜索资源
 	 */
 	private void searchTreads(){
 		name = searchName.getText().toString();
+		MainActivity.map.put("name",name);
 		if (treeBean != null){
 			clickId = treeBean.getId();
 			type = treeBean.getType();
-		}else{
-			doToast("请选择学科");
-			return;
+			MainActivity.map.put("clickId",clickId);
+			MainActivity.map.put("type",type);
 		}
-		MainActivity.map.put("name",name);
-		MainActivity.map.put("clickId",clickId);
-		MainActivity.map.put("type",type);
+		if (treeBeanForEclass != null){
+			eclassIds = treeBeanForEclass.getId();
+			MainActivity.map.put("eclassIds",eclassIds);
+		//TODO
+		}
+		if (name == null||name.equals("")){
+			if (treeBean == null||treeBean.getId() == null||treeBean.getType() == null){
+				if (treeBeanForEclass == null||treeBeanForEclass.getId() == null){
+					doToast("请选择搜索条件..");
+					return;
+				}
+			}
+		}
 		this.finish();
 	}
 
@@ -199,24 +239,40 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 	 */
 	private void onClickTree(View v,String tag){
 		eclassOrBooks = tag;
-		MainActivity.map.put("SearchWorkTreeCode","SearchWorkTreeCode");
+		if (tag.equals("books")){
+			MainActivity.map.put("SearchWorkTreeCode","SearchWorkTreeCode");
+		}else{
+			MainActivity.map.put("SearchWorkTreeCode","SearchWorkForEclassTree");
+		}
 		startActivityForResult(new Intent(context,ScroTreeActivity.class),WORKTREEACTIVITYCODE);
 	}
-//	private List<TreeBean> list = new ArrayList<>();
+	//	private List<TreeBean> list = new ArrayList<>();
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == WORKTREEACTIVITYCODE){
-			TreeBean bean = (TreeBean) MainActivity.map.get("ScroTreeBean");
-			if (bean != null){
-				MainActivity.map.remove("ScroTreeBean");
-				lable = bean.getLabel();
-				selectTree.setText(lable);
-				treeBean = bean;
+			if (eclassOrBooks != null&&eclassOrBooks.equals("books")){
+				TreeBean bean = (TreeBean) MainActivity.map.get("ScroTreeBean");
+				if (bean != null){
+					MainActivity.map.remove("ScroTreeBean");
+					lableForBooks = bean.getLabel();
+					selectTree.setText(lableForBooks);
+					treeBean = bean;
+				}
+			}else{
+				TreeBean bean = (TreeBean) MainActivity.map.get("ScroTreeBean");
+				if (bean != null){
+					MainActivity.map.remove("ScroTreeBean");
+					lableForEclass = bean.getLabel();
+					eClassTreeBtn.setText(lableForEclass);
+					treeBeanForEclass = bean;
+					LogUtil.w(treeBeanForEclass.toString());
+				}
 			}
 		}
 	}
-	private static String lable ;
+	private static String lableForBooks ;
+	private static String lableForEclass ;
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();

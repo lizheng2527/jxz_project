@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.zdhx.androidbase.util.LogUtil;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -37,15 +39,15 @@ public class ImageLoader {
 	}
 
 	// 锟斤拷锟斤拷要锟侥凤拷锟斤拷
-	public void DisplayImage(String url, ImageView imageView, boolean isLoadOnlyFromCache) {
+    public void DisplayImage(String url, ImageView imageView, boolean isLoadOnlyFromCache) {
 		imageViews.put(imageView, url);
 		// 锟饺达拷锟节存缓锟斤拷锟叫诧拷锟斤拷
-
 		Bitmap bitmap = memoryCache.get(url);
-		if (bitmap != null)
-			imageView.setImageBitmap(bitmap);
+
+		if (bitmap != null){
+            imageView.setImageBitmap(bitmap);
+        }
 		else if (!isLoadOnlyFromCache){
-			
 			// 锟斤拷没锟叫的伙拷锟斤拷锟斤拷锟斤拷锟竭程硷拷锟斤拷图片
 			queuePhoto(url, imageView);
 		}
@@ -58,7 +60,6 @@ public class ImageLoader {
 
 	private Bitmap getBitmap(String url) {
 		File f = fileCache.getFile(url);
-		
 		// 锟饺达拷锟侥硷拷锟斤拷锟斤拷锟叫诧拷锟斤拷锟角凤拷锟斤拷
 		Bitmap b = null;
 		if (f != null && f.exists()){
@@ -80,13 +81,25 @@ public class ImageLoader {
 			OutputStream os = new FileOutputStream(f);
 			CopyStream(is, os);
 			os.close();
-			bitmap = decodeFile(f);
+			BitmapFactory.Options newOpts = new BitmapFactory.Options();
+			newOpts.inJustDecodeBounds = false;
+			newOpts.inPurgeable = true;
+			newOpts.inInputShareable = true;
+			// Do not compress
+			newOpts.inSampleSize = 1;
+			newOpts.inPreferredConfig = Bitmap.Config.RGB_565;
+			bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(), newOpts);
+
+			LogUtil.w("下载下来的大图地址："+f.getAbsolutePath());
+			LogUtil.w("下载下来的大图大小："+f.length()/1024);
+//			bitmap = decodeFile(f);
 			return bitmap;
 		} catch (Exception ex) {
 //			Log.e("", "getBitmap catch Exception...\nmessage = " + ex.getMessage());
 			return null;
 		}
 	}
+	private int j ;
 
 	// decode锟斤拷锟酵计拷锟斤拷野锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷约锟斤拷锟斤拷诖锟斤拷锟斤拷模锟斤拷锟斤拷锟斤拷锟斤拷每锟斤拷图片锟侥伙拷锟斤拷锟叫∫诧拷锟斤拷锟斤拷锟斤拷频锟�
 	private Bitmap decodeFile(File f) {

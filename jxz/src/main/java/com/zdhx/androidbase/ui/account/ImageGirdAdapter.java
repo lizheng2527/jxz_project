@@ -2,14 +2,14 @@ package com.zdhx.androidbase.ui.account;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ImageUrlBean;
-import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.lazyImageLoader.cache.ImageLoader;
 
 import java.util.ArrayList;
@@ -51,13 +51,16 @@ public class ImageGirdAdapter extends BaseAdapter {
 		if (convertView == null) {
 			holder = new Holder();
 			convertView = View.inflate(context, R.layout.gv_item_image, null);
-			holder.imageGV = (ImageView) convertView.findViewById(R.id.imageGV);
+			holder.imageGV = (SimpleDraweeView) convertView.findViewById(R.id.imageGV);
 			convertView.setTag(holder);
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
-		loader.DisplayImage(list.get(position).getShowUrl(),holder.imageGV,false);
-//		LogUtil.e("duozhang:"+list.get(position));
+
+
+//		loader.DisplayImage(list.get(position).getShowUrl(),holder.imageGV,false);
+		Uri uri = Uri.parse(list.get(position).getShowUrl());
+		holder.imageGV.setImageURI(uri);
 		holder.imageGV.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -65,7 +68,6 @@ public class ImageGirdAdapter extends BaseAdapter {
 					urls[i] = list.get(i).getDownLoadUrl();
 				}
 				Intent intent = new Intent(context, ImagePagerActivity.class);
-				//图片url,为了演示这里使用常量，一般从数据库中或网络中获取
 				intent.putExtra("images", urls);
 				intent.putExtra("image_index",position);
 				frag.startActivity(intent);
@@ -75,7 +77,7 @@ public class ImageGirdAdapter extends BaseAdapter {
 	}
 	
 	class Holder{
-		private ImageView imageGV;
+		private SimpleDraweeView imageGV;
 	}
 
 

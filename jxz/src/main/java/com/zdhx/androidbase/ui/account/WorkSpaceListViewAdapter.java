@@ -1,6 +1,7 @@
 package com.zdhx.androidbase.ui.account;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -13,11 +14,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.zdhx.androidbase.Constant;
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.entity.WorkSpaceDatasBean;
+import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.downloadui.DownloadAsyncTask;
 import com.zdhx.androidbase.ui.downloadui.NumberProgressBar;
 import com.zdhx.androidbase.ui.plugin.FileUtils;
@@ -26,15 +29,16 @@ import com.zdhx.androidbase.util.IntentUtil;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.ProgressUtil;
-import com.zdhx.androidbase.util.RoundCornerImageView;
 import com.zdhx.androidbase.util.RunnableWrap;
 import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.ZddcUtil;
 import com.zdhx.androidbase.util.lazyImageLoader.cache.ImageLoader;
+import com.zdhx.androidbase.view.dialog.ECAlertDialog;
 import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,6 +64,8 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
     private Handler handler;
 
     private XListView listView;
+
+    private int showProBarPosition = -1;
 
     public WorkSpaceListViewAdapter(List<WorkSpaceDatasBean.DataListBean> list, Context context, WorkSpaceFragment frag, XListView ListView) {
         this.list = list;
@@ -98,7 +104,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
             vh = (ViewHolder) view.getTag();
         }
 //        头像-----------------------------------------------
-        vh.fileHeadImg = (RoundCornerImageView) view.findViewById(R.id.fileHeadImg);
+        vh.fileHeadImg = (SimpleDraweeView) view.findViewById(R.id.fileHeadImg);
         String resourceStyle = list.get(i).getResourceStyle();
         if (resourceStyle != null){//有时候服务器会返回null（非正常数据）
             switch (resourceStyle){
@@ -113,8 +119,10 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                     break;
                 case "4":
                     String url = ZddcUtil.getUrlAnd(ECApplication.getInstance().getAddress()+ list.get(i).getIconUrl(),ECApplication.getInstance().getLoginUrlMap());
-                    loader.DisplayImage(url, vh.fileHeadImg,false);
-                    LogUtil.e(url);
+//                    loader.DisplayImage(url, vh.fileHeadImg,false);
+//                    LogUtil.e(url);
+                    Uri uri = Uri.parse(url);
+                    vh.fileHeadImg.setImageURI(uri);
                     break;
                 case "5":
                     vh.fileHeadImg.setImageResource(R.drawable.music);
@@ -156,15 +164,41 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         }else{
             vh.deleteImg.setVisibility(View.VISIBLE);
         }
+//        预览------------------------------------------------------
+        vh.btnPreview = (ImageView) view.findViewById(R.id.btn_pre);
+        String getName = list.get(i).getName().toLowerCase();
+        if (getName.contains(".jpg")||getName.contains(".jpeg")||getName.contains(".png")||getName.contains(".mp4")||getName.contains("avi")||getName.contains(".3gp")){
+            vh.btnPreview.setVisibility(View.VISIBLE);
+        }else{
+            vh.btnPreview.setVisibility(View.GONE);
+        }
 //        下载-----------------------------------------------
         vh.downloadImg = (ImageView) view.findViewById(R.id.download);
         String name = list.get(i).getName();
+        //如果是自己上传的，隐藏下载按钮
+        if (list.get(i).getUserName().equals(ECApplication.getInstance().getCurrentUser().getName())){
+            vh.downloadImg.setVisibility(View.GONE);
+        }else{
+            vh.downloadImg.setVisibility(View.VISIBLE);
+        }
         File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         File file = new File(idr,name);
         if (file.exists()){
             vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
+            vh.btnPreview.setVisibility(View.GONE);
         }else{
             vh.downloadImg.setImageResource(R.drawable.download);
+        }
+
+        //判断当前是否正在下载任务，如果下载任务，进行标记，将其他的progressBar设置为隐藏
+        if (downTag){
+            if (i == showProBarPosition){
+                vh.progressBar.setVisibility(View.VISIBLE);
+            }else{
+                vh.progressBar.setVisibility(View.INVISIBLE);
+            }
+        }else{
+            vh.progressBar.setVisibility(View.INVISIBLE);
         }
 
         vh.highQuantityImgS = (ImageView) view.findViewById(R.id.good_nor);
@@ -235,11 +269,71 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         vh.downClick = (LinearLayout) view.findViewById(R.id.downClick);
         vh.browseClick = (LinearLayout) view.findViewById(R.id.browseClick);
 
+
         addClick(vh,i);
         return view;
     }
 
+    public boolean downTag = false;
+
     private void addClick(final ViewHolder vh, final int i) {
+        vh.btnPreview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String getName = list.get(i).getName().toLowerCase();
+                if (getName.contains(".mp4")||getName.contains("avi")||getName.contains(".3gp")){
+
+                    String downUrl = list.get(i).getDownUrl();
+                    String videoUrl = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+downUrl,ECApplication.getInstance().getLoginUrlMap());
+                    if(getName.contains(Constant.ATTACHMENT_3GP)){
+
+                        frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(videoUrl));
+                    }
+                    else if(getName.contains(Constant.ATTACHMENT_AVI)){
+
+                        frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(videoUrl));
+
+                    }else if(getName.contains(Constant.ATTACHMENT_MP4)){
+
+                        frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(videoUrl));
+                    }
+                }else{
+                    Intent intent = new Intent(context, ImagePagerActivity.class);
+                    intent.putExtra("images", new String[]{ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap())});
+                    intent.putExtra("image_index",0);
+                    frag.startActivity(intent);
+                }
+                new ProgressThreadWrap(context, new RunnableWrap() {
+                    @Override
+                    public void run() {
+                        if (list.get(i).getUserName().equals(ECApplication.getInstance().getCurrentUser().getName())){
+                            return;
+                        }
+                        String resouceId = list.get(i).getId();
+                        String userId = ECApplication.getInstance().getCurrentUser().getId();
+                        String type = "1";
+                        HashMap<String,ParameterValue> map = new HashMap<String, ParameterValue>();
+                        map.put("resouceId",new ParameterValue(resouceId));
+                        map.put("userId",new ParameterValue(userId));
+                        map.put("type",new ParameterValue(type));
+                        map.putAll(ECApplication.getInstance().getLoginUrlMap());
+                        try {
+                            ZddcUtil.doPreviewOrDown(map);
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    list.get(i).setBrowse(list.get(i).getBrowse()+1);
+                                    notifyDataSetChanged();
+                                }
+                            },5);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
         vh.downClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -253,46 +347,44 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
             }
         });
 
-        vh.fileHeadImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String style = list.get(i).getResourceStyle();
-                if (style.equals("6")){
-                    list.get(i).getDownUrl();
-                    String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap());
-                    LogUtil.e("视频播放地址:"+url);
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    frag.startActivity(intent);
-                }
-            }
-        });
         vh.deleteImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressUtil.show(context,"正在删除");
-                map.clear();
-                map.put("ids",new ParameterValue(list.get(i).getId()));
-                map.putAll(ECApplication.getInstance().getLoginUrlMap());
-                new ProgressThreadWrap(context, new RunnableWrap() {
+                ECAlertDialog.buildAlert(context, "是否删除本条信息？", "确定", "取消", new DialogInterface.OnClickListener() {
                     @Override
-                    public void run() {
-                        try {
-                            ZddcUtil.deleteChapterResource(map);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        handler.postDelayed(new Runnable() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        ProgressUtil.show(context,"正在删除");
+                        map.clear();
+                        map.put("ids",new ParameterValue(list.get(i).getId()));
+                        map.putAll(ECApplication.getInstance().getLoginUrlMap());
+                        new ProgressThreadWrap(context, new RunnableWrap() {
                             @Override
                             public void run() {
-                                list.remove(i);
-                                ProgressUtil.hide();
-                                notifyDataSetChanged();
+                                try {
+                                    ZddcUtil.deleteChapterResource(map);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        list.remove(i);
+                                        ProgressUtil.hide();
+                                        notifyDataSetChanged();
+                                    }
+                                },5);
+
                             }
-                        },5);
+                        }).start();
+                    }
+                }, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
                     }
-                }).start();
+                }).show();
+
 
             }
         });
@@ -313,7 +405,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         vh.downloadImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                vh.downloadImg.setClickable(false);
+
                 //TODO判断当前下载附件是否存在
                 String name = list.get(i).getName();
                 File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
@@ -345,16 +437,58 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                         }else if(Constant.ATTACHMENT_TXT.equals(lastName)){
                             frag.getActivity().startActivity(IntentUtil.getTextFileIntent(file.getPath(), false));
 
-                        }else if(Constant.ATTACHMENT_JPG.equals(lastName)){
+                            //展示所有已经下载过的图片
+                        }else if(Constant.ATTACHMENT_JPG.equals(lastName)|Constant.ATTACHMENT_PNG.equals(lastName)){
+//                            File dir = Luban.get()
+                            File[] files = idr.listFiles();
+                            ArrayList<String> paths = new ArrayList<String>();
+                            int selectCount = 0;
+                            for (int i = 0; i < files.length; i++) {
+                                if (files[i].getAbsolutePath().contains(".jpg")||files[i].getAbsolutePath().contains(".png")||files[i].getAbsolutePath().contains(".jpeg")||files[i].getAbsolutePath().contains(".JPG")){
+                                    if (files[i].getAbsolutePath().contains(name)){
+                                        selectCount = i;
+                                    }
+                                    paths.add(files[i].getAbsolutePath());
+                                }
+                            }
+                            String[] urls = new String[paths.size()];
+                            for (int i1 = 0; i1 < paths.size(); i1++) {
+                                urls[i1] = paths.get(i1);
+//                                if (paths.get(i1).equals(file.getAbsolutePath())||paths.get(i1).equals(file.getPath())){
+//                                    selectCount = i1;
+//                                }
+//                                LogUtil.e(urls[i1]);
+                            }
+                            Intent intent = new Intent(context, ImagePagerActivity.class);
+                            intent.putExtra("images", urls);
+                            for (int i1 = 0; i1 < urls.length; i1++) {
+                                LogUtil.e("获取到的图片路径："+urls[i1]);
+                            }
+                            intent.putExtra("image_index",selectCount);
+                            MainActivity.map.put("selectCountForPager",name);
+                            frag.startActivity(intent);
+                        }
+//                        else if(Constant.ATTACHMENT_PNG.equals(lastName)){
+//                            frag.getActivity().startActivity(IntentUtil.getImageFileIntent(file.getPath()));
+//
+//                        }
+                        else if(Constant.ATTACHMENT_GIF.equals(lastName)){
                             frag.getActivity().startActivity(IntentUtil.getImageFileIntent(file.getPath()));
 
-                        }else if(Constant.ATTACHMENT_PNG.equals(lastName)){
-                            frag.getActivity().startActivity(IntentUtil.getImageFileIntent(file.getPath()));
+                        }else if(Constant.ATTACHMENT_3GP.equals(lastName)){
 
-                        }else if(Constant.ATTACHMENT_GIF.equals(lastName)){
-                            frag.getActivity().startActivity(IntentUtil.getImageFileIntent(file.getPath()));
+                            frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getPath()));
+                        }
+                        else if(Constant.ATTACHMENT_AVI.equals(lastName)){
+
+                            frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getPath()));
+
+                        }else if(Constant.ATTACHMENT_MP4.equals(lastName)){
+
+                            frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getPath()));
 
                         }else{
+
                             frag.getActivity().startActivity(IntentUtil.getAllFileIntent(file.getPath()));
                         }
                     } catch (Exception e) {
@@ -368,25 +502,30 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                     return;
                 }
                 final ECProgressDialog dialog = new ECProgressDialog(context);
+                if (downTag){
+                    ToastUtil.showMessage("正在执行下载任务...");
+                    return;
+                }
                 dialog.show();
                 // 下载处理
                 vh.progressBar.setVisibility(View.VISIBLE);
                 final DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(new DownloadAsyncTask.DownloadResponser() {
                     @Override
                     public void predownload() {
-
+                        showProBarPosition = i;
+                        downTag = true;
                     }
 
                     @Override
                     public void downloading(int progress, int position) {
                         dialog.dismiss();
                         vh.progressBar.setProgress(progress);
+                        vh.downloadImg.setClickable(false);
                     }
 
                     @Override
                     public void downloaded(File file, int position) {
                         vh.progressBar.setVisibility(View.INVISIBLE);
-
                         new ProgressThreadWrap(context, new RunnableWrap() {
                             @Override
                             public void run() {
@@ -406,6 +545,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                             vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
                                             list.get(i).setDown(list.get(i).getDown()+1);
                                             notifyDataSetChanged();
+                                            downTag = false;
                                         }
                                     },5);
 
@@ -429,15 +569,47 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
             }
         });
     }
+
+//    private void compressIntoLuBan(Context context, final String path, final String name){
+//        File eFile = new File("/data/user/0/com.zdhx.em.jxz/cache/luban_disk_cache/"+name);
+//        if (eFile.exists()){
+//            return;
+//        }
+//        Luban.get(context)
+//                .load(new File(path))                     //传人要压缩的图片
+//                .putGear(Luban.THIRD_GEAR)      //设定压缩档次，默认三挡
+//                .setCompressListener(new OnCompressListener() { //设置回调
+//
+//                    @Override
+//                    public void onStart() {
+//                        // TODO 压缩开始前调用，可以在方法内启动 loading UI
+//                        LogUtil.w("开始压缩"+path);
+//                    }
+//                    @Override
+//                    public void onSuccess(File file) {
+//                        // TODO 压缩成功后调用，返回压缩后的图片文件
+//                        file.getParent();
+//                        String oldPath = file.getAbsolutePath();
+//                        oldPath.replace(file.getName(),name);
+//                        File newFile = new File(oldPath);
+//                        file.renameTo(newFile);
+//                    }
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        // TODO 当压缩过去出现问题时调用
+//                        LogUtil.w("压缩失败");
+//                    }
+//                }).launch();//启动压缩
+//    }
     class ViewHolder{
-        private RoundCornerImageView fileHeadImg;//文件头像
+        private SimpleDraweeView fileHeadImg;//文件头像
         private TextView name;
         private TextView size;
         private TextView userName;
         private TextView createTime;
         private TextView browse;
         private TextView down;
-        private ImageView downloadImg,deleteImg,highQuantityImgS,highQuantityImgB;
+        private ImageView downloadImg,deleteImg,highQuantityImgS,highQuantityImgB,btnPreview;
         private LinearLayout downClick;
         private LinearLayout browseClick;
         private NumberProgressBar progressBar;

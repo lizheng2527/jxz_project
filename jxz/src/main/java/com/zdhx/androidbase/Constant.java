@@ -22,7 +22,10 @@ public class Constant {
 	public static final String ATTACHMENT_JPEG = "jpeg";	
 	public static final String ATTACHMENT_GIF  = "gif";	
 	public static final String ATTACHMENT_PNG  = "png";	
-	public static final String ATTACHMENT_BMP  = "bmp";	
+	public static final String ATTACHMENT_MP4  = "mp4";
+	public static final String ATTACHMENT_3GP  = "3gp";
+	public static final String ATTACHMENT_AVI  = "avi";
+	public static final String ATTACHMENT_BMP  = "bmp";
 	public static final String ATTACHMENT_RAR  = "rar";	
 	public static final String ATTACHMENT_ZIP  = "zip";	
 }

@@ -3,21 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.zdhx.androidbase.ui.photoview.PhotoView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:adjustViewBounds="true"
-        android:scaleType="centerInside"
-        android:src="@drawable/icon_img_loading"
-        android:contentDescription="@string/app_name" />
-
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
+
+    <com.zdhx.androidbase.ui.photoview.PhotoView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerInside"
+        android:src="@drawable/icon_img_loading"
+         />
 
 </FrameLayout>

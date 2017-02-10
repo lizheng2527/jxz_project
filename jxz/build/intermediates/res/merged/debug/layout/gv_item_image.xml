@@ -18,10 +18,10 @@
             android:layout_marginTop="5dp"
             >
 
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/imageGV"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:contentDescription="@null"
                 android:gravity="center"
                 android:scaleType="centerCrop"

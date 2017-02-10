@@ -1,12 +1,5 @@
 package com.zdhx.androidbase.util.volley;
 
-import com.zdhx.volley.AuthFailureError;
-import com.zdhx.volley.NetworkResponse;
-import com.zdhx.volley.Request;
-import com.zdhx.volley.Response;
-import com.zdhx.volley.VolleyLog;
-import com.zdhx.volley.toolbox.HttpHeaderParser;
-
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
@@ -21,6 +14,13 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import volley.AuthFailureError;
+import volley.NetworkResponse;
+import volley.Request;
+import volley.Response;
+import volley.VolleyLog;
+import volley.toolbox.HttpHeaderParser;
 
 /**
  * 带文件Request
