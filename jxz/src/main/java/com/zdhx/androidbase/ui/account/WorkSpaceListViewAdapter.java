@@ -112,7 +112,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
             switch (resourceStyle){
                 case "1":
                     vh.fileHeadImg.setImageResource(R.drawable.word);
-                    vh.btnPreview.setVisibility(View.VISIBLE);
+                    vh.btnPreview.setVisibility(View.GONE);
                     break;
                 case "2":
                     vh.fileHeadImg.setImageResource(R.drawable.ppt);
