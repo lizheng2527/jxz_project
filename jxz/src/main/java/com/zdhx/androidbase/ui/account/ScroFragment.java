@@ -152,7 +152,6 @@ public class ScroFragment extends Fragment {
         this.endDate = endDate;
         this.clickId = clickId;
         map.clear();
-//        map.putAll(ECApplication.getInstance().getLoginUrlMap());
         if (startDate != null){
             map.put("startDate",new ParameterValue(startDate));
         }else{

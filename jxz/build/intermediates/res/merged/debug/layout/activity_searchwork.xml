@@ -126,6 +126,7 @@
             android:layout_marginRight="40dp"
             android:background="#555555"/>
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -250,10 +251,11 @@
             android:onClick="onClick"
             android:id="@+id/search_treads_commitBtn"
             android:layout_marginTop="80dp"
-            android:text="搜索"
+            android:text="搜    索"
             android:textSize="18sp"
             android:background="@drawable/bg_button_radius"
             android:layout_width="250dp"
+            android:textColor="@color/white"
             android:layout_height="wrap_content" />
     </LinearLayout>
 

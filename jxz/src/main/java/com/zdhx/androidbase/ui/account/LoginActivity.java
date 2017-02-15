@@ -58,6 +58,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     @Override
     protected int getLayoutId() {
+
         return R.layout.login;
     }
 
@@ -88,6 +89,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             etxt_pwd.setText(ECApplication.getInstance().getCurrentUser().getPassWord());
         }
 
+        //配置IP地址“test”为测试地址，不输入为正式地址
         ip = (ImageView) findViewById(R.id.ip);
         ip.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

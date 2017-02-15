@@ -23,6 +23,7 @@ import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.util.LogUtil;
 
 public class XListView extends ListView implements OnScrollListener {
 
@@ -48,7 +49,7 @@ public class XListView extends ListView implements OnScrollListener {
 	private boolean mEnablePullLoad;
 	private boolean mPullLoading;
 	private boolean mIsFooterReady = false;
-	
+
 	// total list items, used to detect is at the bottom of listview.
 	private int mTotalItemCount;
 
@@ -120,9 +121,10 @@ public class XListView extends ListView implements OnScrollListener {
 		super.setAdapter(adapter);
 	}
 
+
 	/**
 	 * enable or disable pull down refresh feature.
-	 * 
+	 *
 	 * @param enable
 	 */
 	public void setPullRefreshEnable(boolean enable) {
@@ -136,7 +138,7 @@ public class XListView extends ListView implements OnScrollListener {
 
 	/**
 	 * enable or disable pull up load more feature.
-	 * 
+	 *
 	 * @param enable
 	 */
 	public void setPullLoadEnable(boolean enable) {
@@ -169,7 +171,7 @@ public class XListView extends ListView implements OnScrollListener {
 	}
 
 	/**
-	 * stop load more, reset footer view.
+	 *TODO stop load more, reset footer view.
 	 */
 	public void stopLoadMore() {
 		if (mPullLoading == true) {
@@ -180,7 +182,7 @@ public class XListView extends ListView implements OnScrollListener {
 
 	/**
 	 * set last refresh time
-	 * 
+	 *
 	 * @param time
 	 */
 	public void setRefreshTime(String time) {
@@ -234,8 +236,8 @@ public class XListView extends ListView implements OnScrollListener {
 		int height = mFooterView.getBottomMargin() + (int) delta;
 		if (mEnablePullLoad && !mPullLoading) {
 			if (height > PULL_LOAD_MORE_DELTA) { // height enough to invoke load
-													// more.
 				mFooterView.setState(XListViewFooter.STATE_READY);
+				// TODO: 2017/2/14
 			} else {
 				mFooterView.setState(XListViewFooter.STATE_NORMAL);
 			}
@@ -254,7 +256,6 @@ public class XListView extends ListView implements OnScrollListener {
 			invalidate();
 		}
 	}
-
 	private void startLoadMore() {
 		mPullLoading = true;
 		mFooterView.setState(XListViewFooter.STATE_LOADING);
@@ -281,10 +282,11 @@ public class XListView extends ListView implements OnScrollListener {
 				// the first item is showing, header has shown or pull down.
 				updateHeaderHeight(deltaY / OFFSET_RADIO);
 				invokeOnScrolling();
-			} else if (getLastVisiblePosition() == mTotalItemCount - 1
-					&& (mFooterView.getBottomMargin() > 0 || deltaY < 0)) {
+			} else if (getLastVisiblePosition() == mTotalItemCount - 1 && (mFooterView.getBottomMargin() > 0 || deltaY < 0)) {
+				LogUtil.w("判断时候的item数量："+mTotalItemCount);
 				// last item, already pulled up or want to pull up.
 				updateFooterHeight(-deltaY / OFFSET_RADIO);
+//				startLoadMore();
 			}
 			break;
 		default:
@@ -302,12 +304,15 @@ public class XListView extends ListView implements OnScrollListener {
 				resetHeaderHeight();
 			} else if (getLastVisiblePosition() == mTotalItemCount - 1) {
 				// invoke load more.
-				if (mEnablePullLoad
-						&& mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
+				if (mEnablePullLoad && mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
 					startLoadMore();
 				}
 				resetFooterHeight();
 			}
+
+			LogUtil.w("总item数量："+mTotalItemCount);
+			boolean f = getLastVisiblePosition() == mTotalItemCount - 1;
+			LogUtil.w("重新设置高度："+f);
 			break;
 		}
 		return super.onTouchEvent(ev);
@@ -348,6 +353,7 @@ public class XListView extends ListView implements OnScrollListener {
 			mScrollListener.onScroll(view, firstVisibleItem, visibleItemCount,
 					totalItemCount);
 		}
+		//TODO
 	}
 
 	public void setXListViewListener(IXListViewListener l) {
@@ -370,4 +376,6 @@ public class XListView extends ListView implements OnScrollListener {
 
 		public void onLoadMore();
 	}
+
+
 }

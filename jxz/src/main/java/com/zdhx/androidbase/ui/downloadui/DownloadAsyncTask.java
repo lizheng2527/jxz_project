@@ -55,14 +55,18 @@ public class DownloadAsyncTask extends AsyncTask<String, Integer, File> {
 			map.put(position, this);
 		}
 		File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+		File dir = new File(idr+"/jxz");
+		if (!dir.exists()){
+			dir.mkdir();
+		}
 		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-			idr = mContext.getFilesDir();
+			dir = mContext.getFilesDir();
 		}
 		File file = null;
-		if (!idr.exists()) {
+		if (!dir.exists()) {
 			try {
 				// 按照指定的路径创建文件夹
-				idr.mkdirs();
+				dir.mkdirs();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -93,7 +97,7 @@ public class DownloadAsyncTask extends AsyncTask<String, Integer, File> {
 				return null;
 			}
 			
-			file = new File(idr, filename);
+			file = new File(dir, filename);
 			if ( file.exists() && file.length() == totalSize) {
 				publishProgress(100);
 				conn.disconnect();

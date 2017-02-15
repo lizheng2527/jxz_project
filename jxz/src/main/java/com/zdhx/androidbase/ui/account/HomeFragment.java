@@ -123,7 +123,26 @@ public class HomeFragment extends Fragment {
 
     private ECProgressDialog dialog;
 
-//    private static boolean workSpaceDatasIsLoad;
+    public void setListViewSelection(int position){
+        switch (HomeGridAdapter.index){
+            case 0:
+                allreadsListView.setSelection(position+1);
+                break;
+            case 1:
+                interactreadsTtListView.setSelection(position+1);
+                break;
+            case 2:
+                myTreadsListView.setSelection(position+1);
+                break;
+            case 3:
+                resourcesTreadsListView.setSelection(position+1);
+                break;
+            case 4:
+                attendsTreadsListView.setSelection(position+1);
+                break;
+        }
+
+    }
 
     /**
      * 清空缓存的展示数据
@@ -787,7 +806,6 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void run() {
                         onDatasChanged(listView);
-
                     }
                 }, 1);
             }
@@ -879,7 +897,6 @@ public class HomeFragment extends Fragment {
         }
         hashMap.put("pageNo",new ParameterValue(getLoadMorePager()+1+""));
         LogUtil.w("当前加载页数："+getLoadMorePager()+1+"");
-        LogUtil.w("当前加载页数："+getLoadMorePager()+1+"");
         new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
             public void run() {
@@ -887,45 +904,60 @@ public class HomeFragment extends Fragment {
                 try {
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
-//                    status = treads.getStatus();
                     setStatus(treads.getStatus());
                     handler.postDelayed(new Runnable() {
                         public void run() {
                             List<Treads.DataListBean> list = treads.getDataList();
-                            //TODO
                             switch (HomeGridAdapter.index){
                                 case 0:
                                     if (list != null&&list.size()>0){
                                         allDatas.addAll(list);
                                         treadsListViewAdapter = new TreadsListViewAdapter(allDatas,context,HomeFragment.this);
+                                        LinearLayout lin = (LinearLayout) allTreadsView.findViewById(R.id.linear_all);
+                                        lin.removeAllViews();
+                                        lin.addView(allreadsListView);
                                     }
                                     break;
                                 case 1:
                                     if (list != null&&list.size()>0){
                                         interactDatas.addAll(list);
                                         treadsListViewAdapter = new TreadsListViewAdapter(interactDatas,context,HomeFragment.this);
+                                        LinearLayout lin = (LinearLayout) interacttreadsTreadsView.findViewById(R.id.linear_interact);
+                                        lin.removeAllViews();
+                                        lin.addView(interactreadsTtListView);
                                     }
                                     break;
                                 case 2:
                                     if (list != null&&list.size()>0){
                                         myDatas.addAll(list);
                                         treadsListViewAdapter = new TreadsListViewAdapter(myDatas,context,HomeFragment.this);
+                                        LinearLayout lin = (LinearLayout) myTreadsView.findViewById(R.id.linear_my);
+                                        lin.removeAllViews();
+                                        lin.addView(myTreadsListView);
                                     }
                                     break;
                                 case 3:
                                     if (list != null&&list.size()>0){
                                         resDatas.addAll(list);
                                         treadsListViewAdapter = new TreadsListViewAdapter(resDatas,context,HomeFragment.this);
+                                        LinearLayout lin = (LinearLayout) resourcesTreadsView.findViewById(R.id.linear_res);
+                                        lin.removeAllViews();
+                                        lin.addView(resourcesTreadsListView);
                                     }
                                     break;
                                 case 4:
                                     if (list != null&&list.size()>0){
                                         attDatas.addAll(list);
                                         treadsListViewAdapter = new TreadsListViewAdapter(attDatas,context,HomeFragment.this);
+                                        LinearLayout lin = (LinearLayout) attendsTreadsView.findViewById(R.id.linear_att);
+                                        lin.removeAllViews();
+                                        lin.addView(attendsTreadsListView);
                                     }
                                     break;
                             }
                             treadsListViewAdapter.notifyDataSetChanged();
+                            //TODO
+
                             if (list == null||list.size()== 0 ){
 //                                ToastUtil.showMessage("已无更多");
                             }else{

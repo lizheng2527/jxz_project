@@ -6,8 +6,22 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import com.google.gson.Gson;
+import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.entity.ParameterValue;
+import com.zdhx.androidbase.entity.User;
+import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.base.BaseActivity;
+import com.zdhx.androidbase.util.LogUtil;
+import com.zdhx.androidbase.util.ProgressThreadWrap;
+import com.zdhx.androidbase.util.ProgressUtil;
+import com.zdhx.androidbase.util.RunnableWrap;
+import com.zdhx.androidbase.util.ToastUtil;
+import com.zdhx.androidbase.util.ZddcUtil;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * @Title: WelcomeActivity.java
@@ -34,57 +48,76 @@ public class WelcomeActivity extends BaseActivity {
 	}
 
 	private void initUI() {
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
+//		User user = ECApplication.getInstance().getCurrentUser();
+//		if(user != null){
+//			login(ECApplication.getInstance().getCurrentUser().getLoginName(),ECApplication.getInstance().getCurrentUser().getPassWord());
+//		}else{
+			new Handler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
 					goIntent();
-			}
-		}, 2000);
+				}
+			},2000);
+//		}
 	}
 
 	private void goIntent() {
+
         startActivity(new Intent(context, LoginActivity.class));
         finish();
     }
-	
-//	public void login() {
-//		VolleyUtils.requestService(SystemConst.LOGIN_URL, Params.getLoginParams("1", ECApplication.getInstance().getCurrentUser().getLoginName(), ECApplication.getInstance().getCurrentUser().getLoginPsw()), new ResultListenerImpl(
-//				this) {
-//			@Override
-//			public void onSuccess(String response) {
-//				super.onSuccess(response);
-//				LoginVo vo = GsonUtil.deser(response, LoginVo.class);
-//				if (vo == null) {
-//					doToast(context.getResources().getString(R.string.msg_wso_error));
-//					return;
-//				}
-//				if (vo.getResult() == 1) {
-//					if (vo.getList() != null && vo.getList().size() > 0) {
-//					} else {
-//						User user = ECApplication.getInstance().getCurrentUser();
-//						user.setLogin(false);
-//						ECApplication.getInstance().saveUser(user);
-//						doToast("登录失败，请重试");
-//					}
-//					goIntent();
-//					finish();
-//				} else {
-//					User user = ECApplication.getInstance().getCurrentUser();
-//					user.setLogin(false);
-//					ECApplication.getInstance().saveUser(user);
-//					doToast(vo.getMsg());
-//					goIntent();
-//					finish();
-//				}
-//			}
-//
-//			@Override
-//			public void onError() {
-//				super.onError();
-//				goIntent();
-//			}
-//		},false);
-//	}
-	
+
+
+	HashMap<String,ParameterValue> loginMap;
+	HashMap<String,ParameterValue> userInfoMap = new HashMap<>();
+	private User userInfos;
+	String loginJson;
+	private void login(final String loginName,final String password) {
+
+		ProgressUtil.show(context,"正在登陆..");
+		loginMap = new HashMap<String, ParameterValue>();
+		loginMap.put("loginName", new ParameterValue(loginName));
+		loginMap.put("password", new ParameterValue(password));
+		userInfoMap.put("sys_auto_authenticate", new ParameterValue("true"));
+		userInfoMap.put("sys_username", new ParameterValue(loginName));
+		userInfoMap.put("sys_password", new ParameterValue(password));
+		new ProgressThreadWrap(context, new RunnableWrap() {
+			@Override
+			public void run() {
+				try {
+					loginJson = ZddcUtil.checkLogin(loginMap);
+					if (loginJson.contains("true")) {
+						String userInfoJson = ZddcUtil.getUserInfo(userInfoMap);
+						if (userInfoJson.length() != 0) {
+							userInfos = new Gson().fromJson(userInfoJson, User.class);
+							userInfos.setLoginName(loginMap.get("loginName").getValues().get(0));
+							userInfos.setPassWord(loginMap.get("password").getValues().get(0));
+							LogUtil.e(userInfos.toString());
+							ECApplication.getInstance().saveUser(userInfos);
+							ECApplication.getInstance().setCurrentUserMap(userInfoMap);
+							ECApplication.getInstance().setLoginUrlMap("sys_auto_authenticate", new ParameterValue("true"));
+							ECApplication.getInstance().setLoginUrlMap("sys_username", new ParameterValue(loginName));
+							ECApplication.getInstance().setLoginUrlMap("sys_password", new ParameterValue(password));
+						}
+					}
+					new Handler().postDelayed(new Runnable() {
+						public void run() {
+							ProgressUtil.hide();
+							if (loginJson.contains("true")) {
+								startActivity(new Intent(context, MainActivity.class));
+								finish();
+							} else {
+								goIntent();
+							}
+						}
+					}, 5);
+				} catch (IOException e) {
+					e.printStackTrace();
+					ProgressUtil.hide();
+					ToastUtil.showMessage("连接服务器失败");
+				}
+			}
+		}).start();
+	}
 	
 }

@@ -102,7 +102,6 @@ public class ECApplication extends Application {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-
         return false;
     }
 
@@ -162,6 +161,7 @@ public class ECApplication extends Application {
     }
 
     public HashMap<String,ParameterValue> getCurrentUserMap(){
+
         return userInfoMap;
     }
 

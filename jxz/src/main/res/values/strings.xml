@@ -39,5 +39,7 @@
 
 
     <string name="send">发送</string>
+    <string name="launch">展开</string>
+    <string name="retract">收起</string>
     <string name="viewpager_indicator" formatted="false">%d/%d</string>
 </resources>

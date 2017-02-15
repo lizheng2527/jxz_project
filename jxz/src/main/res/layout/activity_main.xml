@@ -135,6 +135,7 @@
         <RelativeLayout
             android:id="@+id/btn_container_me"
             android:layout_width="0dp"
+            android:visibility="gone"
             android:layout_height="match_parent"
             android:layout_weight="1" >
 

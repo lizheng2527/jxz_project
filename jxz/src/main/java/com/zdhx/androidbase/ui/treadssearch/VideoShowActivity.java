@@ -19,6 +19,7 @@ import com.zdhx.androidbase.ui.base.BaseActivity;
 import com.zdhx.androidbase.ui.plugin.FileUtils;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
+import com.zdhx.androidbase.util.ProgressUtil;
 import com.zdhx.androidbase.util.RunnableWrap;
 
 import java.io.File;
@@ -52,6 +53,7 @@ public class VideoShowActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getTopBarView().setVisibility(View.GONE);
+		ProgressUtil.show(this,"正在加载...");
 		lv = (ListView) findViewById(R.id.video_list);
 		commit = (TextView) findViewById(R.id.video_commit);
 		back = (ImageView) findViewById(R.id.video_back);
@@ -90,6 +92,7 @@ public class VideoShowActivity extends BaseActivity {
 						adapter = new MyAdapter();
 						if (fileList.size()>0)
 							lv.setAdapter(adapter);
+						ProgressUtil.hide();
 					}
 				},100);
 			}
@@ -121,9 +124,6 @@ public class VideoShowActivity extends BaseActivity {
 	class MyAdapter extends BaseAdapter{
 
 		public MyAdapter() {
-//			if (fileList == null){
-//				fileList = new ArrayList<>();
-//			}
 			mVideoThumbLoader = MyVideoThumbLoader.getMyVideoThumbLoader();
 		}
 
@@ -160,13 +160,9 @@ public class VideoShowActivity extends BaseActivity {
 			File file = new File(path);
 			vh.img.setTag(path);//绑定imageview
 
-//			if (mVideoThumbLoader !=null&&mVideoThumbLoader.getVideoThumbToCache(path)!=null){
-//				vh.img.setImageBitmap(mVideoThumbLoader.getVideoThumbToCache(path));
-//			}else{
 			vh.img.setImageResource(R.drawable.video_head);
 			mVideoThumbLoader.showThumbByAsynctack(path, vh.img);
-
-//			}
+			LogUtil.w(path);
 			vh.title.setText(fileList.get(position).getTitle());
 			vh.fileSize.setText(fileList.get(position).getFileSize());
 			addClick(vh,position);

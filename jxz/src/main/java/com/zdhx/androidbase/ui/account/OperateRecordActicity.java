@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,6 +39,8 @@ public class OperateRecordActicity extends BaseActivity{
 
     private Handler handler = new Handler();
 
+    private ImageView backImg;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_operate;
@@ -48,6 +51,13 @@ public class OperateRecordActicity extends BaseActivity{
         super.onCreate(savedInstanceState);
         getTopBarView().setVisibility(View.GONE);
         lv = (ListView) findViewById(R.id.operateLV);
+        backImg = (ImageView) findViewById(R.id.activity_selectscro_goback);
+        backImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         operatetitle = (TextView) findViewById(R.id.operatetitle);
         context = this;
         ProgressUtil.show(context,"正在加载数据");
@@ -87,6 +97,11 @@ public class OperateRecordActicity extends BaseActivity{
                 }
             }
         }).start();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     class OperateAdapter extends BaseAdapter{

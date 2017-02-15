@@ -5,7 +5,15 @@ import java.io.Serializable;
 public class ImageUrlBean implements Serializable{
 	private String showUrl;
 	private String downLoadUrl;
+	private String name;
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public ImageUrlBean(String showUrl, String downLoadUrl) {
 		this.showUrl = showUrl;

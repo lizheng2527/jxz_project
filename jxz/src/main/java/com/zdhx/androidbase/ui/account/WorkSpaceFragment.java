@@ -595,6 +595,9 @@ public class WorkSpaceFragment extends Fragment {
                                 loadMorePager++;
                             }
                             workSpaceListViewAdapter = new WorkSpaceListViewAdapter(list,context,WorkSpaceFragment.this,lv);
+                            LinearLayout lin = (LinearLayout) getView().findViewById(R.id.linear_work_lv);
+                            lin.removeAllViews();
+                            lin.addView(lv);
                             workSpaceListViewAdapter.notifyDataSetChanged();
                             isLoadMoring = false;
                             onLoad(lv);
@@ -634,9 +637,9 @@ public class WorkSpaceFragment extends Fragment {
                 list.get(position).setHighQuantity("1");
             }
         }
-//        gridView.setSelection(gridSelectionIndex);
         workSpaceListViewAdapter = new WorkSpaceListViewAdapter(list,context,WorkSpaceFragment.this,lv);
-        workSpaceListViewAdapter.notifyDataSetChanged();
-        ToastUtil.showMessage("刷新完毕");
+        lv.setAdapter(workSpaceListViewAdapter);
+        lv.setSelection(position);
+//        workSpaceListViewAdapter.notifyDataSetChanged();
     }
 }

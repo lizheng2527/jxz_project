@@ -26,8 +26,7 @@ import java.util.HashMap;
 
 /**
  * @Title: CheckActivity.java
- * @Package com.zdhx.edu.im.ui.v3.carmanage
- * @Description: 订车单审核
+ * @Description: 推优审核
  * @author Li.xin @ 立思辰合众
  * @date 2016-3-30 上午10:42:16
  */
@@ -139,7 +138,6 @@ public class CheckActivity extends BaseActivity {
 					map.put("content",new ParameterValue(content));
 					try {
 						ZddcUtil.doQuantity(map);
-
 						handler.postDelayed(new Runnable() {
 							@Override
 							public void run() {

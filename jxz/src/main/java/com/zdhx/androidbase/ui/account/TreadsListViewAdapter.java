@@ -32,6 +32,7 @@ import com.zdhx.androidbase.util.IntentUtil;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.ProgressUtil;
+import com.zdhx.androidbase.util.RoundCornerImageView;
 import com.zdhx.androidbase.util.RunnableWrap;
 import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.Tools;
@@ -65,7 +66,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
     private Handler handler;
 
     private HomeFragment fragment;
-
 
     public TreadsListViewAdapter(List<Treads.DataListBean> list, Activity context, HomeFragment fragment) {
 
@@ -114,11 +114,23 @@ public class TreadsListViewAdapter extends BaseAdapter {
         }else{
             vh.delete.setVisibility(View.VISIBLE);
         }
-        vh.threadUserHead = (SimpleDraweeView) view.findViewById(R.id.fragment_home_viewpager_listview_item_userhead);
-        String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getImagePath(),ECApplication.getInstance().getLoginUrlMap());
-//        loader.DisplayImage(url,vh.threadUserHead,false);
-        Uri threadFileHeadUri = Uri.parse(url);
-        vh.threadUserHead.setImageURI(threadFileHeadUri);
+        vh.threadUserHead = (RoundCornerImageView) view.findViewById(R.id.fragment_home_viewpager_listview_item_userhead);
+        String userHeadStr = list.get(i).getImagePath();
+        if (userHeadStr != null&&!userHeadStr.equals("")){
+            if (userHeadStr.contains("man")){
+                vh.threadUserHead.setImageResource(R.drawable.man);
+            }
+            if (userHeadStr.contains("women")){
+                vh.threadUserHead.setImageResource(R.drawable.women);
+            }
+            if (userHeadStr.contains("boy")){
+                vh.threadUserHead.setImageResource(R.drawable.boy);
+            }
+            if (userHeadStr.contains("girl")){
+                vh.threadUserHead.setImageResource(R.drawable.girl);
+            }
+        }
+
 
         vh.threadUserName = (TextView) view.findViewById(R.id.fragment_home_viewpager_listview_item_username);
         vh.threadUserName.setText(list.get(i).getUserName());
@@ -139,14 +151,23 @@ public class TreadsListViewAdapter extends BaseAdapter {
         vh.replyRel = (RelativeLayout) view.findViewById(R.id.replyRel);
         vh.replyCount = (TextView) view.findViewById(R.id.replyCount);
         vh.replyContent = (LinearLayout) view.findViewById(R.id.fragment_home_viewpager_listview_item_context);
+        vh.launchOrRetract = (TextView) view.findViewById(R.id.launchorretract);
+        vh.launchOrRetract.setText("展开");
         int replyCounts = list.get(i).getChild().size();
-
         vh.replyContent.removeAllViews();
         if (replyCounts>0){
-            for (int j = 0; j < replyCounts; j++) {
-                String name = list.get(i).getChild().get(j).getUserName()+":";
-                String content = list.get(i).getChild().get(j).getContent();
-                addReplyBody(vh,name,content);
+            if (replyCounts <2){
+                for (int j = 0; j < replyCounts; j++) {
+                    String name = list.get(i).getChild().get(j).getUserName()+":";
+                    String content = list.get(i).getChild().get(j).getContent();
+                    addReplyBody(vh,name,content);
+                }
+            }else{
+                for (int j = 0; j < 2; j++) {
+                    String name = list.get(i).getChild().get(j).getUserName()+":";
+                    String content = list.get(i).getChild().get(j).getContent();
+                    addReplyBody(vh,name,content);
+                }
             }
         }
         vh.replyCount.setText(replyCounts+"");
@@ -189,17 +210,21 @@ public class TreadsListViewAdapter extends BaseAdapter {
             vh.linearwhat.setVisibility(View.GONE);
         }else{
             vh.linearwhat.setVisibility(View.VISIBLE);
+            if (replyCounts >2){
+                vh.launchOrRetract.setVisibility(View.VISIBLE);
+            }else {
+                vh.launchOrRetract.setVisibility(View.GONE);
+            }
         }
 
 //       附件*******************************************************************************************************
-
         vh.simpleImage = (SimpleDraweeView) view.findViewById(R.id.simpleImage);
         vh.muchImages = (GridView) view.findViewById(R.id.fragment_home_viewpager_listview_item_grid);
         vh.fileName = (TextView) view.findViewById(R.id.filename);
         vh.fileSize = (TextView) view.findViewById(R.id.filesize);
         vh.threadFileHead = (SimpleDraweeView) view.findViewById(R.id.filehead);
         vh.l = (LinearLayout) view.findViewById(R.id.lineargone);
-
+        vh.address = (TextView) view.findViewById(R.id.outUrl);
 
 
         if (list.get(i).getAttachment().getIconList() ==null){//没有图片展示
@@ -209,8 +234,19 @@ public class TreadsListViewAdapter extends BaseAdapter {
             vh.fileSize.setVisibility(View.GONE);
             vh.threadFileHead.setVisibility(View.GONE);
             vh.l.setVisibility(View.GONE);
+            vh.address.setVisibility(View.GONE);
+            vh.fileName.setTextColor(Color.parseColor("#000000"));
         }else{
+
+            //      外部链接*******************************************************************************************************
+            if (list.get(i).getAttachment().getIconList().size() > 0&&list.get(i).getAttachment().getIconList().get(0).getAddress() != null){
+                vh.address.setVisibility(View.VISIBLE);
+                vh.address.setText(list.get(i).getAttachment().getIconList().get(0).getAddress());
+            }else{
+                vh.address.setVisibility(View.GONE);
+            }
             if (list.get(i).getAttachment().getType().equals("other")){//有附件展示(判断返回的加载头像地址是否为空)
+
                 if(list.get(i).getAttachment().getIconList().get(0).getImg() == null||list.get(i).getAttachment().getIconList().get(0).getImg().equals("")){
                     vh.simpleImage.setVisibility(View.GONE);
                     vh.muchImages.setVisibility(View.GONE);
@@ -218,6 +254,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
                     vh.fileSize.setVisibility(View.GONE);
                     vh.threadFileHead.setVisibility(View.GONE);
                     vh.l.setVisibility(View.GONE);
+                    vh.fileName.setTextColor(Color.parseColor("#000000"));
                 }else{
                     vh.simpleImage.setVisibility(View.GONE);
                     vh.muchImages.setVisibility(View.GONE);
@@ -229,58 +266,66 @@ public class TreadsListViewAdapter extends BaseAdapter {
                     vh.fileSize.setText(list.get(i).getAttachment().getIconList().get(0).getFileSize());
                     String threadFileHeadUrl = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getAttachment().getIconList().get(0).getImg(),ECApplication.getInstance().getLoginUrlMap());
                     LogUtil.e("threadFileHeadUrl:"+threadFileHeadUrl);
-//                    loader.DisplayImage(threadFileHeadUrl,vh.threadFileHead,false);
                     Uri uri = Uri.parse(threadFileHeadUrl);
                     vh.threadFileHead.setImageURI(uri);
+                    String lastName = list.get(i).getAttachment().getIconList().get(0).getFileName();
+                    if (lastName.contains(Constant.ATTACHMENT_3GP)||lastName.contains(Constant.ATTACHMENT_AVI)||lastName.contains(Constant.ATTACHMENT_MP4)||lastName.contains(Constant.ATTACHMENT_FLV)){
+                        vh.fileName.setTextColor(Color.parseColor("#4cbbda"));
+                    }else{
+                        vh.fileName.setTextColor(Color.parseColor("#000000"));
+                    }
                 }
-            }else{//展示图片
+            }else {//展示图片
                 vh.fileName.setVisibility(View.GONE);
                 vh.fileSize.setVisibility(View.GONE);
                 vh.threadFileHead.setVisibility(View.GONE);
+                vh.muchImages.setVisibility(View.GONE);
+                vh.simpleImage.setVisibility(View.GONE);
                 vh.l.setVisibility(View.GONE);
                 ArrayList<Treads.DataListBean.AttachmentBean.IconListBean> arrs = (ArrayList<Treads.DataListBean.AttachmentBean.IconListBean>) list.get(i).getAttachment().getIconList();
-                if (arrs.size() == 1){//单张展示
-                    vh.muchImages.setVisibility(View.GONE);
-                    vh.simpleImage.setVisibility(View.VISIBLE);
-//                    String imgUrl = arrs.get(0).getImg();
-                    if (arrs.get(0).getImg() == null||arrs.get(0).getImg().equals("")){
-                        vh.simpleImage.setVisibility(View.GONE);
+                if (arrs != null && arrs.size() > 0) {
+                    if (arrs.size() == 1) {//单张展示
                         vh.muchImages.setVisibility(View.GONE);
-                        vh.fileName.setVisibility(View.GONE);
-                        vh.fileSize.setVisibility(View.GONE);
-                        vh.threadFileHead.setVisibility(View.GONE);
-                        vh.l.setVisibility(View.GONE);
-                    }else{
-                        vh.simpleImage.setImageResource(R.drawable.actionsheet_single_pressed);
-                        String simpleImageUrl = ZddcUtil.getUrlFirstAnd(ECApplication.getInstance().getAddress()+arrs.get(0).getImg(),ECApplication.getInstance().getLoginUrlMap());
-                        LogUtil.e("simpleImageUrl:"+simpleImageUrl);
-                        Uri uri = Uri.parse(simpleImageUrl);
-                        vh.simpleImage.setImageURI(uri);
-//                        loader.DisplayImage(simpleImageUrl,vh.simpleImage,false);
-                    }
-                }else{//Grid展示
-                    vh.simpleImage.setVisibility(View.GONE);
-                    vh.muchImages.setVisibility(View.VISIBLE);
-                    ArrayList<ImageUrlBean> urls = new ArrayList<>();
-                    for (int j = 0; j < arrs.size(); j++) {
-                        if (arrs.get(j).getImg() == null||arrs.get(j).getImg().equals("")){
-
-                        }else{
-                            ImageUrlBean bean = new ImageUrlBean();
-                            bean.setShowUrl(ZddcUtil.getUrlFirstAnd(ECApplication.getInstance().getAddress()+arrs.get(j).getImg(),ECApplication.getInstance().getLoginUrlMap()));
-                            bean.setDownLoadUrl(ZddcUtil.getUrlFirstAnd(ECApplication.getInstance().getAddress()+arrs.get(j).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()));
-                            urls.add(bean);
+                        vh.simpleImage.setVisibility(View.VISIBLE);
+                        if (arrs.get(0).getImg() == null || arrs.get(0).getImg().equals("")) {
+                            vh.simpleImage.setVisibility(View.GONE);
+                            vh.muchImages.setVisibility(View.GONE);
+                            vh.fileName.setVisibility(View.GONE);
+                            vh.fileSize.setVisibility(View.GONE);
+                            vh.threadFileHead.setVisibility(View.GONE);
+                            vh.l.setVisibility(View.GONE);
+                        } else {
+                            vh.simpleImage.setImageResource(R.drawable.actionsheet_single_pressed);
+                            String simpleImageUrl = ZddcUtil.getUrlFirstAnd(ECApplication.getInstance().getAddress() + arrs.get(0).getImg(), ECApplication.getInstance().getLoginUrlMap());
+                            LogUtil.e("simpleImageUrl:" + simpleImageUrl);
+                            Uri uri = Uri.parse(simpleImageUrl);
+                            vh.simpleImage.setImageURI(uri);
                         }
-                    }
-                    if (urls.size()>0){
-                        ImageGirdAdapter adapter = new ImageGirdAdapter((Activity) context,urls,fragment);
-                        vh.muchImages.setAdapter(adapter);
-                        Tools.setGridViewHeightBasedOnChildren(vh.muchImages);
+                    } else {//Grid展示
+                        vh.simpleImage.setVisibility(View.GONE);
+                        vh.muchImages.setVisibility(View.VISIBLE);
+                        ArrayList<ImageUrlBean> urls = new ArrayList<>();
+                        for (int j = 0; j < arrs.size(); j++) {
+                            if (arrs.get(j).getImg() == null || arrs.get(j).getImg().equals("")) {
+
+                            } else {
+                                ImageUrlBean bean = new ImageUrlBean();
+                                bean.setName(arrs.get(j).getFileName());
+                                LogUtil.w("传入的文件名："+arrs.get(j).getFileName());
+                                bean.setShowUrl(ZddcUtil.getUrlFirstAnd(ECApplication.getInstance().getAddress() + arrs.get(j).getImg(), ECApplication.getInstance().getLoginUrlMap()));
+                                bean.setDownLoadUrl(ZddcUtil.getUrlFirstAnd(ECApplication.getInstance().getAddress() + arrs.get(j).getDownUrl(), ECApplication.getInstance().getLoginUrlMap()));
+                                urls.add(bean);
+                            }
+                        }
+                        if (urls.size() > 0) {
+                            ImageGirdAdapter adapter = new ImageGirdAdapter((Activity) context, urls, fragment);
+                            vh.muchImages.setAdapter(adapter);
+                            Tools.setGridViewHeightBasedOnChildren(vh.muchImages);
+                        }
                     }
                 }
             }
         }
-
         addOnClick(vh,i);
         return view;
     }
@@ -289,28 +334,14 @@ public class TreadsListViewAdapter extends BaseAdapter {
         vh.l.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (list.get(position).getAttachment().getIconList() != null&&list.get(position).getAttachment().getIconList().size()>0){
-
+                String lastName = list.get(position).getAttachment().getIconList().get(0).getFileName();
+                //视频播放
+                if (lastName.contains(Constant.ATTACHMENT_3GP)||lastName.contains(Constant.ATTACHMENT_AVI)||lastName.contains(Constant.ATTACHMENT_MP4)||lastName.contains(Constant.ATTACHMENT_FLV)){
                     String downUrl = list.get(position).getAttachment().getIconList().get(0).getDownUrl();
                     String videoUrl = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+downUrl,ECApplication.getInstance().getLoginUrlMap());
-//                    File file = new File(videoUrl);
-                    String lastName = list.get(position).getAttachment().getIconList().get(0).getFileName();
-                    if(lastName.contains(Constant.ATTACHMENT_3GP)){
-
-                        fragment.getActivity().startActivity(IntentUtil.getVideoFileIntent(videoUrl));
-                    }
-                    else if(lastName.contains(Constant.ATTACHMENT_AVI)){
-
-                        fragment.getActivity().startActivity(IntentUtil.getVideoFileIntent(videoUrl));
-
-                    }else if(lastName.contains(Constant.ATTACHMENT_MP4)){
-
-                        fragment.getActivity().startActivity(IntentUtil.getVideoFileIntent(videoUrl));
-
-                    }
-                }else{
-                    return;
+                    fragment.getActivity().startActivity(IntentUtil.getVideoFileIntent(videoUrl));
                 }
+
             }
         });
         //回复点击事件
@@ -421,7 +452,35 @@ public class TreadsListViewAdapter extends BaseAdapter {
                 intent.putExtra("images", new String[]{ZddcUtil.getUrlAnd(ECApplication.getInstance().getAddress()+list.get(position).getAttachment().getIconList().get(0).getDownUrl(),ECApplication.getInstance().getLoginUrlMap())});
                 LogUtil.e("单张："+ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(position).getAttachment().getIconList().get(0).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()));
                 intent.putExtra("image_index",0);
+                intent.putExtra("imgNames",new String[]{list.get(position).getAttachment().getIconList().get(0).getFileName()});
                 fragment.startActivity(intent);
+            }
+        });
+
+        vh.launchOrRetract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean tag = vh.launchOrRetract.getText().equals("展开");
+                int replyCounts = list.get(position).getChild().size();
+                if (tag){
+                    for (int j = 2; j < replyCounts; j++) {
+                        String name = list.get(position).getChild().get(j).getUserName()+":";
+                        String content = list.get(position).getChild().get(j).getContent();
+                        addReplyBody(vh,name,content);
+                    }
+//                    fragment.setListViewSelection(position);
+                    vh.launchOrRetract.setText("收起");
+                }else{
+                    vh.replyContent.removeAllViews();
+                    //TODO
+                    for (int j = 0; j < 2; j++) {
+                        String name = list.get(position).getChild().get(j).getUserName()+":";
+                        String content = list.get(position).getChild().get(j).getContent();
+                        addReplyBody(vh,name,content);
+                    }
+                    vh.launchOrRetract.setText("展开");
+                    fragment.setListViewSelection(position);
+                }
             }
         });
     }
@@ -430,7 +489,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
     HashMap<String,ParameterValue> hashMap = new HashMap<String, ParameterValue>();
     class ViewHolder{
         /*** 展示动态的用户头像*/
-        private SimpleDraweeView threadUserHead;
+        private RoundCornerImageView threadUserHead;
         /*** 展示动态的用户名称*/
         private TextView threadUserName;
         /*** 展示动态的用户类型（教师/学生）*/
@@ -470,6 +529,11 @@ public class TreadsListViewAdapter extends BaseAdapter {
         private RelativeLayout praiseRel;
         //当没有回复和点赞情况此时他被隐藏
         public LinearLayout linearwhat;
+
+        private TextView launchOrRetract;
+
+        private TextView address;
+
 
     }
 

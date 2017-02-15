@@ -181,7 +181,7 @@
             android:layout_marginTop="80dp"
             android:padding="10dp"
             android:text="搜  索"
-            android:textColor="@color/dark_gray"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:background="@drawable/bg_button_radius"
             android:layout_width="250dp"

@@ -34,12 +34,19 @@
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:background="@color/list_devider_color"/>
-    <com.zdhx.androidbase.ui.xlistview.XListView
-        android:layout_alignBottom="@+id/homework_scroll"
-        android:id="@+id/fragment_workspace_listview"
-        android:divider="@color/list_divider"
-        android:dividerHeight="1dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </com.zdhx.androidbase.ui.xlistview.XListView>
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/linear_work_lv">
+        <com.zdhx.androidbase.ui.xlistview.XListView
+            android:layout_alignBottom="@+id/homework_scroll"
+            android:id="@+id/fragment_workspace_listview"
+            android:divider="@color/list_divider"
+            android:dividerHeight="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.zdhx.androidbase.ui.xlistview.XListView>
+    </LinearLayout>
+
 </LinearLayout>

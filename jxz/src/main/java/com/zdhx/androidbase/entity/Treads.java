@@ -205,6 +205,15 @@ public class Treads implements Serializable {
                 private String fileName;
                 private String fileSize;
                 private String downUrl;
+                private String address;
+
+                public String getAddress() {
+                    return address;
+                }
+
+                public void setAddress(String address) {
+                    this.address = address;
+                }
 
                 public String getImg() {
                     return img;

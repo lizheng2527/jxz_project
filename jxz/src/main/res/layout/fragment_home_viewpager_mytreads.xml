@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
+    android:id="@+id/linear_my"
     tools:ignore="HardcodedText,DisableBaselineAlignment" >
     <com.zdhx.androidbase.ui.xlistview.XListView
         android:id="@+id/fragment_home_viewpager_myTreads_listview"

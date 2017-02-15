@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.util.LogUtil;
 
 public class XListViewFooter extends LinearLayout {
 	public final static int STATE_NORMAL = 0;
@@ -50,10 +51,12 @@ public class XListViewFooter extends LinearLayout {
 			mHintView.setVisibility(View.VISIBLE);
 			mHintView.setText(R.string.xlistview_footer_hint_normal);
 		}
+		LogUtil.w("状态设置完毕"+state);
 	}
 	
 	public void setBottomMargin(int height) {
-		if (height < 0) return ;
+		if (height < 0)
+			return ;
 		LayoutParams lp = (LayoutParams)mContentView.getLayoutParams();
 		lp.bottomMargin = height;
 		mContentView.setLayoutParams(lp);
@@ -96,12 +99,12 @@ public class XListViewFooter extends LinearLayout {
 		lp.height = LayoutParams.WRAP_CONTENT;
 		mContentView.setLayoutParams(lp);
 	}
+	private LinearLayout moreView;
 	private void initView(Context context) {
 		mContext = context;
-		LinearLayout moreView = (LinearLayout)LayoutInflater.from(mContext).inflate(R.layout.xlistview_footer, null);
+		moreView = (LinearLayout)LayoutInflater.from(mContext).inflate(R.layout.xlistview_footer, null);
 		addView(moreView);
-		moreView.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-		
+		moreView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		mContentView = moreView.findViewById(R.id.xlistview_footer_content);
 		mProgressBar = moreView.findViewById(R.id.xlistview_footer_progressbar);
 		mHintView = (TextView)moreView.findViewById(R.id.xlistview_footer_hint_textview);

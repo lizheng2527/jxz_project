@@ -382,6 +382,7 @@
     <string name="done_label">Done</string>
     <string name="hour_picker_description">Hours circular slider</string>
     <string name="item_is_selected"><ns1:g example="2013" id="item">%1$s</ns1:g> selected</string>
+    <string name="launch">展开</string>
     <string name="loading_press">请稍候，正在提交...</string>
     <string name="logout">确认要注销登录吗？</string>
     <string name="minute_picker_description">Minutes circular slider</string>
@@ -398,6 +399,7 @@
     <string name="register_input_pwd">输入密码</string>
     <string name="register_input_pwd_again">重复密码</string>
     <string name="register_phone">手  机  号</string>
+    <string name="retract">收起</string>
     <string name="sans_serif">sans-serif</string>
     <string name="select_day">Select month and day</string>
     <string name="select_hours">Select hours</string>
@@ -589,20 +591,20 @@ function login(form){
     </style>
     <style name="ActionSheetDialogStyle" parent="@android:style/Theme.Dialog">
 
-        <!-- 背景透明 -->
+        
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
-        <!-- 浮于Activity之上 -->
+        
         <item name="android:windowIsFloating">true</item>
-        <!-- 边框 -->
+        
         <item name="android:windowFrame">@null</item>
-        <!-- Dialog以外的区域模糊效果 -->
+        
         <item name="android:backgroundDimEnabled">true</item>
-        <!-- 无标题 -->
+        
         <item name="android:windowNoTitle">true</item>
-        <!-- 半透明 -->
+        
         <item name="android:windowIsTranslucent">false</item>
-        <!-- Dialog进入及退出动画 -->
+        
         <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
     </style>
     <style name="AlertDialogStyle" parent="@android:style/Theme.Dialog">
@@ -615,11 +617,7 @@ function login(form){
         <item name="android:windowIsTranslucent">true</item>
     </style>
     <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
+        
     </style>
     <style name="AppTheme" parent="@style/BaseAppTheme">
 
@@ -888,17 +886,17 @@ function login(form){
     <style name="day_of_week_label_condensed"/>
     <style name="dialog" parent="@android:style/Theme.Dialog">
 
-        <!-- 边框 -->
+        
         <item name="android:windowFrame">@null</item>
-        <!-- 是否浮现在activity之上 -->
+        
         <item name="android:windowIsFloating">true</item>
-        <!-- 半透明 -->
+        
         <item name="android:windowIsTranslucent">true</item>
-        <!-- 无标题 -->
+        
         <item name="android:windowNoTitle">true</item>
-        <!-- 背景透明 -->
+        
         <item name="android:windowBackground">@color/transparent</item>
-        <!-- 模糊 -->
+        
         <item name="android:backgroundDimEnabled">true</item>
     </style>
     <style name="dialogAnim">

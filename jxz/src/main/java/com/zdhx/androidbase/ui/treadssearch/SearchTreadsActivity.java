@@ -37,7 +37,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SearchTreadsActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
-
 	//回退按钮
 	private ImageView backImg;
 	private EditText searchName;
@@ -95,7 +94,6 @@ public class SearchTreadsActivity extends BaseActivity implements DatePickerDial
 				}else{
 					eclassId = spinnerDatas.get(position).getId();
 				}
-
 			}
 
 			@Override

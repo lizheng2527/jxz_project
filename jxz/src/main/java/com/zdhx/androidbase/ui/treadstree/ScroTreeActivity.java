@@ -103,10 +103,6 @@ public class ScroTreeActivity extends BaseActivity{
 			//积分查询班级树
 			title.setText("班级选择");
 			className = "SelectScroActivity";
-//			if (!MainActivity.ScroSearchTag){//选择的班级被清空
-//				positionMap.clear();
-//				positionMap.put("20130418090523475737274383301974","true");
-//			}
 		}
 		if (SearchWorkTreeCode != null && SearchWorkTreeCode.equals("SearchWorkTreeCode")){
 			LogUtil.w("教材选择");
