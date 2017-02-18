@@ -80,6 +80,25 @@ public class Treads implements Serializable {
         private List<DataListBean> child;
         private List<String> praiseNames;
 
+        private Boolean isLaunch = false;
+        private int allReplyCount;
+
+        public int getAllReplyCount() {
+            return allReplyCount;
+        }
+
+        public void setAllReplyCount(int allReplyCount) {
+            this.allReplyCount = allReplyCount;
+        }
+
+        public Boolean getLaunch() {
+            return isLaunch;
+        }
+
+        public void setLaunch(Boolean launch) {
+            isLaunch = launch;
+        }
+
         public String getId() {
             return id;
         }

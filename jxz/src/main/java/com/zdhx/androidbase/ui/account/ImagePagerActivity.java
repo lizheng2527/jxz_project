@@ -34,6 +34,7 @@ import android.widget.TextView;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.ui.downloadui.DownloadAsyncTask;
 import com.zdhx.androidbase.ui.photoview.PhotoView;
+import com.zdhx.androidbase.ui.photoview.PhotoViewAttacher;
 import com.zdhx.androidbase.ui.viewpagerindicator.CirclePageIndicator;
 import com.zdhx.androidbase.ui.viewpagerindicator.HackyViewPager;
 import com.zdhx.androidbase.ui.viewpagerindicator.PageIndicator;
@@ -94,7 +95,6 @@ public class ImagePagerActivity extends Activity {
 		if (savedInstanceState != null) {
 			pagerPosition = savedInstanceState.getInt(STATE_POSITION);
 		}
-		LogUtil.w("第"+pagerPosition+"张图片");
 		pager = (HackyViewPager) findViewById(R.id.pager);
 		pager.setAdapter(new ImagePagerAdapter(imageUrls,this,imgNames));
 		pager.setCurrentItem(pagerPosition);
@@ -104,12 +104,14 @@ public class ImagePagerActivity extends Activity {
 		}
 
 	}
-
-
-
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		outState.putInt(STATE_POSITION, pager.getCurrentItem());
+	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
 	}
 
 	private class ImagePagerAdapter extends PagerAdapter {
@@ -147,6 +149,12 @@ public class ImagePagerActivity extends Activity {
 			View imageLayout = inflater.inflate(R.layout.item_pager_image, view, false);
 
 			PhotoView imageView = (PhotoView) imageLayout.findViewById(R.id.image);
+			imageView.setOnViewTapListener(new PhotoViewAttacher.OnViewTapListener() {
+				@Override
+				public void onViewTap(View view, float x, float y) {
+					onBackPressed();
+				}
+			});
 			final ProgressBar spinner = (ProgressBar) imageLayout.findViewById(R.id.loading);
 			TextView count = (TextView) imageLayout.findViewById(R.id.count);
 			int selectCount = position;
@@ -211,7 +219,6 @@ public class ImagePagerActivity extends Activity {
 				imageView.setImageBitmap(bm);
 			}
 			((ViewPager) view).addView(imageLayout, 0);
-
 			return imageLayout;
 		}
 

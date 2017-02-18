@@ -169,8 +169,18 @@ public class ZddcUtil {
 		String content = "";
 		Set<String> keySet = map.keySet();
 		int i = 0;
+//		Iterator key1 = keySet.iterator();
+//		while (key1.hasNext()){
+//			String key = (String) key1.next();
+//			Iterator it = keySet.iterator();
+//			while (it.hasNext()){
+//				String val = (String) it.next();
+//				content += (i == 0 ? "" : "&") + key + "=" + URLEncoder.encode(val, "utf-8");
+//				i++;
+//			}
+//		}
 		for (String key : keySet) {
-			// String
+
 			for (String val : map.get(key).getValues()) {
 				content += (i == 0 ? "" : "&") + key + "=" + URLEncoder.encode(val, "utf-8");
 				i++;
@@ -554,6 +564,15 @@ public class ZddcUtil {
 		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!doQuantity.action", map);
 	}
 	/**
+	 * 工作平台资源审核
+	 *
+	 * @return
+	 * @throws IOException
+	 */
+	public static String doCheck(Map<String, ParameterValue> map) throws IOException {
+		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!doCheck.action", map);
+	}
+	/**
 	 * 删除一条工作平台资源
 	 *
 	 * @return
@@ -676,7 +695,7 @@ public class ZddcUtil {
 		return commitWithFiles(getUrl(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!saveCommucation.action", loginMap),files, map);
 	}
 	/**
-	 * 发布动态
+	 * 发布动态（不带附件）
 	 * subject 主题 content 内容 receiveUserId 接收人id 逗号分隔 attIds 原附件id 逗号分隔
 	 *            sourceId 原通知id
 	 */

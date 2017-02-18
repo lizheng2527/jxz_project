@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.zdhx.androidbase.ECApplication;
@@ -32,6 +33,9 @@ import com.zdhx.androidbase.util.RunnableWrap;
 import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.ZddcUtil;
 import com.zdhx.androidbase.view.dialog.ECProgressDialog;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -112,6 +116,8 @@ public class HomeFragment extends Fragment {
     private List<Treads.DataListBean> resDatas;
     private List<Treads.DataListBean> attDatas;
 
+    public static TextView replyTV;
+
 
     public static LinearLayout linear;
     private static EditText replyET;
@@ -123,6 +129,10 @@ public class HomeFragment extends Fragment {
 
     private ECProgressDialog dialog;
 
+    /**
+     * 展开或者收起时调用此方法
+     * @param position
+     */
     public void setListViewSelection(int position){
         switch (HomeGridAdapter.index){
             case 0:
@@ -179,25 +189,61 @@ public class HomeFragment extends Fragment {
         }
     }
     /**
-     * 设置是否有下一页标记
+     * 设置是否有下一页标记（如果没有下一页，隐藏加载更多）
      * @param count
      */
     private void setStatus(String count){
         switch (HomeGridAdapter.index){
             case 0:
                 status0 = count;
+                if (status0.equals("1")){
+                    allreadsListView.setPullLoadEnable(false);
+                    allreadsListView.setDividerHeight(0);
+                }else{
+                    allreadsListView.setPullLoadEnable(true);
+                    allreadsListView.setDividerHeight(1);
+                }
                 break;
             case 1:
+
                 status1 = count;
+                if (status1.equals("1")){
+                    interactreadsTtListView.setPullLoadEnable(false);
+                    interactreadsTtListView.setDividerHeight(0);
+                }else{
+                    interactreadsTtListView.setPullLoadEnable(true);
+                    interactreadsTtListView.setDividerHeight(1);
+                }
                 break;
             case 2:
                 status2 = count;
+                if (status2.equals("1")){
+                    myTreadsListView.setPullLoadEnable(false);
+                    myTreadsListView.setDividerHeight(0);
+                }else{
+                    myTreadsListView.setPullLoadEnable(true);
+                    myTreadsListView.setDividerHeight(1);
+                }
                 break;
             case 3:
                 status3 = count;
+                if (status3.equals("1")){
+                    resourcesTreadsListView.setPullLoadEnable(false);
+                    resourcesTreadsListView.setDividerHeight(0);
+                }else{
+                    resourcesTreadsListView.setPullLoadEnable(true);
+                    resourcesTreadsListView.setDividerHeight(1);
+                }
                 break;
             case 4:
                 status4 = count;
+                if (status4.equals("1")){
+                    attendsTreadsListView.setPullLoadEnable(false);
+                    attendsTreadsListView.setDividerHeight(0);
+                }else{
+                    attendsTreadsListView.setPullLoadEnable(true);
+                    attendsTreadsListView.setDividerHeight(1);
+                }
                 break;
         }
     }
@@ -263,14 +309,18 @@ public class HomeFragment extends Fragment {
         }
     }
 
-//    }
+    //    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-
+    private String replyName = null;
+    public void setReplyName(String replyName){
+        this.replyName = replyName;
+    }
+    private String newId = "11001100";
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -300,23 +350,30 @@ public class HomeFragment extends Fragment {
                             hm.put("uploadFileNames",new ParameterValue(""));
                             hm.putAll(ECApplication.getInstance().getLoginUrlMap());
                             try {
-                                ZddcUtil.doReply(hm);
+                                String json = ZddcUtil.doReply(hm);
+                                //TODO 遍历集合，修改数据
+                                try {
+                                    JSONObject j = new JSONObject(json);
+                                    newId = j.getString("id");
+                                    LogUtil.w("新ID:"+newId);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             } catch (IOException e) {
                                 e.printStackTrace();
+                                ProgressUtil.hide();
                                 ToastUtil.showMessage("发送失败！");
                             }
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+                                    resetTreadsDatas(communcationId,replyMes,position,newId);
+                                    setReplyName(null);
                                     if (dialog.isShowing()){
                                         dialog.dismiss();
                                     }
                                     ProgressUtil.hide();
                                     hideEdit();
-                                    Treads.DataListBean chi = new Treads.DataListBean();
-                                    chi.setContent(replyMes);
-                                    chi.setUserName(ECApplication.getInstance().getCurrentUser().getName());
-                                    viewPagerListTreadsDatas.get(position).getChild().add(chi);
                                     treadsListViewAdapter.notifyDataSetChanged();
                                 }
                             },5);
@@ -328,6 +385,65 @@ public class HomeFragment extends Fragment {
         initGridView();
         initViewPager();
     }
+
+    private void resetTreadsDatas(String id,String replyMes,int position,String newId) {
+        switch (HomeGridAdapter.index){
+            case 0:
+                toListDatas(allDatas,position,id,replyMes,newId);
+                break;
+            case 1:
+                toListDatas(interactDatas,position,id,replyMes,newId);
+                break;
+            case 2:
+                toListDatas(myDatas,position,id,replyMes,newId);
+                break;
+            case 3:
+                toListDatas(resDatas,position,id,replyMes,newId);
+                break;
+            case 4:
+                toListDatas(attDatas,position,id,replyMes,newId);
+                break;
+        }
+    }
+
+    private void toListDatas(List<Treads.DataListBean> beans, int position,String id,String replyMes,String newId){
+        if (beans.get(position).getId().equals(id)){
+            Treads.DataListBean bean = new Treads.DataListBean();
+            if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+                bean.setUserName(ECApplication.getInstance().getCurrentUser().getName()+"(教师)");
+            }
+            bean.setContent(replyMes);
+            bean.setId(newId);
+            bean.setChild(new ArrayList<Treads.DataListBean>());
+            bean.setCanDelete("yes");
+            beans.get(position).getChild().add(bean);
+        }else{
+            listDatas(beans.get(position).getChild(),position,id,replyMes,newId);
+        }
+    }
+
+    private void listDatas(List<Treads.DataListBean> beans, int position,String id,String replyMes,String newId){
+        for (int i = 0; i < beans.size(); i++) {
+            LogUtil.w(beans.get(i).getContent());
+            if (beans.get(i).getChild().size()>0){
+                listDatas(beans.get(i).getChild(),i,id,replyMes,newId);
+            }
+            if (beans.get(i).getId().equals(id)){
+                Treads.DataListBean bean = new Treads.DataListBean();
+                if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+                    bean.setUserName(ECApplication.getInstance().getCurrentUser().getName()+"(教师)");
+                }
+                bean.setContent(replyMes);
+                bean.setChild(new ArrayList<Treads.DataListBean>());
+                bean.setId(newId);
+                bean.setCanDelete("yes");
+                beans.get(i).getChild().add(bean);
+                return;
+            }
+        }
+    }
+
+
     /**
      * 初始化gridView
      * 每次点击事件即重新加载资源（原有的搜索条件清空）。
@@ -631,7 +747,7 @@ public class HomeFragment extends Fragment {
         this.eclassId = eclassId;
 
         if (!dialog.isShowing())
-        ProgressUtil.show(context,"正在刷新..");
+            ProgressUtil.show(context,"正在刷新..");
         hashMap.put("startDate",new ParameterValue(this.startDate));
         hashMap.put("endDate",new ParameterValue(this.endDate));
         switch (HomeGridAdapter.index){
@@ -682,10 +798,9 @@ public class HomeFragment extends Fragment {
                     hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
-//                           status = treads.getStatus();//记录当前是否有下一页
-                    setStatus(treads.getStatus());
                     handler.postDelayed(new Runnable() {
                         public void run() {
+                            setStatus(treads.getStatus());
                             viewPagerListTreadsDatas = treads.getDataList();
                             if (treads != null) {
                                 setDatasToNotNull(viewPagerListTreadsDatas);
@@ -904,15 +1019,16 @@ public class HomeFragment extends Fragment {
                 try {
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
-                    setStatus(treads.getStatus());
+
                     handler.postDelayed(new Runnable() {
                         public void run() {
+                            setStatus(treads.getStatus());
                             List<Treads.DataListBean> list = treads.getDataList();
                             switch (HomeGridAdapter.index){
                                 case 0:
                                     if (list != null&&list.size()>0){
                                         allDatas.addAll(list);
-                                        treadsListViewAdapter = new TreadsListViewAdapter(allDatas,context,HomeFragment.this);
+//                                        treadsListViewAdapter = new TreadsListViewAdapter(allDatas,context,HomeFragment.this);
                                         LinearLayout lin = (LinearLayout) allTreadsView.findViewById(R.id.linear_all);
                                         lin.removeAllViews();
                                         lin.addView(allreadsListView);
@@ -921,7 +1037,7 @@ public class HomeFragment extends Fragment {
                                 case 1:
                                     if (list != null&&list.size()>0){
                                         interactDatas.addAll(list);
-                                        treadsListViewAdapter = new TreadsListViewAdapter(interactDatas,context,HomeFragment.this);
+//                                        treadsListViewAdapter = new TreadsListViewAdapter(interactDatas,context,HomeFragment.this);
                                         LinearLayout lin = (LinearLayout) interacttreadsTreadsView.findViewById(R.id.linear_interact);
                                         lin.removeAllViews();
                                         lin.addView(interactreadsTtListView);
@@ -930,7 +1046,7 @@ public class HomeFragment extends Fragment {
                                 case 2:
                                     if (list != null&&list.size()>0){
                                         myDatas.addAll(list);
-                                        treadsListViewAdapter = new TreadsListViewAdapter(myDatas,context,HomeFragment.this);
+//                                        treadsListViewAdapter = new TreadsListViewAdapter(myDatas,context,HomeFragment.this);
                                         LinearLayout lin = (LinearLayout) myTreadsView.findViewById(R.id.linear_my);
                                         lin.removeAllViews();
                                         lin.addView(myTreadsListView);
@@ -939,7 +1055,7 @@ public class HomeFragment extends Fragment {
                                 case 3:
                                     if (list != null&&list.size()>0){
                                         resDatas.addAll(list);
-                                        treadsListViewAdapter = new TreadsListViewAdapter(resDatas,context,HomeFragment.this);
+//                                        treadsListViewAdapter = new TreadsListViewAdapter(resDatas,context,HomeFragment.this);
                                         LinearLayout lin = (LinearLayout) resourcesTreadsView.findViewById(R.id.linear_res);
                                         lin.removeAllViews();
                                         lin.addView(resourcesTreadsListView);
@@ -948,7 +1064,7 @@ public class HomeFragment extends Fragment {
                                 case 4:
                                     if (list != null&&list.size()>0){
                                         attDatas.addAll(list);
-                                        treadsListViewAdapter = new TreadsListViewAdapter(attDatas,context,HomeFragment.this);
+//                                        treadsListViewAdapter = new TreadsListViewAdapter(attDatas,context,HomeFragment.this);
                                         LinearLayout lin = (LinearLayout) attendsTreadsView.findViewById(R.id.linear_att);
                                         lin.removeAllViews();
                                         lin.addView(attendsTreadsListView);
@@ -971,13 +1087,13 @@ public class HomeFragment extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                     ToastUtil.showMessage("连接服务器失败");
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            onLoad(listView);
-                            isLoadMoring = false;
-                        }
-                    },2000);
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            onLoad(listView);
+//                            isLoadMoring = false;
+//                        }
+//                    },2000);
                 }
             }
         }).start();
@@ -1064,10 +1180,11 @@ public class HomeFragment extends Fragment {
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
 //                    status = treads.getStatus();
-                    setStatus(treads.getStatus());
-                    setDatasToNotNull(viewPagerListTreadsDatas);
+
                     handler.postDelayed(new Runnable() {
                         public void run() {
+                            setStatus(treads.getStatus());
+                            setDatasToNotNull(viewPagerListTreadsDatas);
                             if (treads != null) {
                                 ProgressUtil.hide();
                                 viewPagerListTreadsDatas = treads.getDataList();
@@ -1076,8 +1193,8 @@ public class HomeFragment extends Fragment {
                                 }
                                 switch (HomeGridAdapter.index){
                                     case 0:
-                                            allDatas = viewPagerListTreadsDatas;
-                                            treadsListViewAdapter = new TreadsListViewAdapter(allDatas,context,HomeFragment.this);
+                                        allDatas = viewPagerListTreadsDatas;
+                                        treadsListViewAdapter = new TreadsListViewAdapter(allDatas,context,HomeFragment.this);
                                         break;
                                     case 1:
                                         interactDatas = viewPagerListTreadsDatas;

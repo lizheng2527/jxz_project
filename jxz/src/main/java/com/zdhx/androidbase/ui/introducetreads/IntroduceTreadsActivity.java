@@ -861,7 +861,6 @@ public class IntroduceTreadsActivity extends BaseActivity{
 							newBean.setUserName(ECApplication.getInstance().getCurrentUser().getName());
 							newBean.setPath(oldPath);
 							newBean.setAbsolutePath(newFile.getAbsolutePath());
-//							vh.img.setTag(newBean.getPath());
 							upFileBeens.remove(position);
 							upFileBeens.add(newBean);
 							dealwithMediaScanIntentData(newFile.getAbsolutePath());
@@ -876,14 +875,13 @@ public class IntroduceTreadsActivity extends BaseActivity{
 						return;
 					}
 					LogUtil.w("选中文件的后缀："+lastStr);
-//					lv.setAdapter(listAdapter);
 				}
 			}
 		});
 		buildAlert.setTitle("修改标题");
 		buildAlert.setCanceledOnTouchOutside(false);
 		buildAlert.setContentView(R.layout.config_dcaddress_dialog);
-		String server = "";
+		String server = upFileBeens.get(position).getTitle();
 		final EditText editText = (EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText));
 		TextView delectTV = (TextView) buildAlert.getWindow().findViewById(R.id.delectTV);
 		delectTV.setOnClickListener(new View.OnClickListener() {

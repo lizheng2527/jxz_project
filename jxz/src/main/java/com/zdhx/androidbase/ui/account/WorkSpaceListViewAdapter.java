@@ -10,12 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.zdhx.androidbase.Constant;
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ParameterValue;
@@ -23,7 +23,7 @@ import com.zdhx.androidbase.entity.WorkSpaceDatasBean;
 import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.downloadui.DownloadAsyncTask;
 import com.zdhx.androidbase.ui.downloadui.NumberProgressBar;
-import com.zdhx.androidbase.ui.plugin.FileUtils;
+import com.zdhx.androidbase.ui.quantity.PrePassActivity;
 import com.zdhx.androidbase.ui.xlistview.XListView;
 import com.zdhx.androidbase.util.IntentUtil;
 import com.zdhx.androidbase.util.LogUtil;
@@ -103,11 +103,19 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         }else{
             vh = (ViewHolder) view.getTag();
         }
+
+        vh.prePass = (ImageView) view.findViewById(R.id.pre_pass);
+        vh.btnPreview = (ImageView) view.findViewById(R.id.btn_pre);
+        vh.batchSelectBox = (CheckBox) view.findViewById(R.id.batchselectbox);
+        vh.deleteImg = (ImageView) view.findViewById(R.id.delete_nor);
+        vh.downloadImg = (ImageView) view.findViewById(R.id.download);
+        vh.highQuantityImgS = (ImageView) view.findViewById(R.id.good_nor);
+        vh.highQuantityImgB = (ImageView) view.findViewById(R.id.quality_nor);
 //        头像-----------------------------------------------
         vh.fileHeadImg = (SimpleDraweeView) view.findViewById(R.id.fileHeadImg);
         String resourceStyle = list.get(i).getResourceStyle();
         //        预览------------------------------------------------------
-        vh.btnPreview = (ImageView) view.findViewById(R.id.btn_pre);
+
         if (resourceStyle != null){//有时候服务器会返回null（非正常数据）
             switch (resourceStyle){
                 case "1":
@@ -126,7 +134,6 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                     vh.btnPreview.setVisibility(View.VISIBLE);
                     String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+ list.get(i).getIconUrl(),ECApplication.getInstance().getLoginUrlMap());
                     Uri uri = Uri.parse(url);
-                    LogUtil.w("工作平台文件头像地址:"+url);
                     vh.fileHeadImg.setImageURI(uri);
                     break;
                 case "5":
@@ -185,7 +192,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
             vh.downText.setVisibility(View.VISIBLE);
         }
 //        删除-----------------------------------------------
-        vh.deleteImg = (ImageView) view.findViewById(R.id.delete_nor);
+
         if (list.get(i).getCanDelete().equals("0")){
             vh.deleteImg.setVisibility(View.GONE);
         }else{
@@ -207,7 +214,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
 //        }
 
 //        下载-----------------------------------------------
-        vh.downloadImg = (ImageView) view.findViewById(R.id.download);
+
         String name = list.get(i).getName();
         //如果是自己上传的，隐藏下载按钮
         if (list.get(i).getUserName().equals(ECApplication.getInstance().getCurrentUser().getName())){
@@ -227,7 +234,6 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
             dir.mkdir();
         }
         File file = new File(dir,name);
-        //TODO
         if (file.exists()){
             if (!list.get(i).getResourceStyle().equals("7")&&!list.get(i).getResourceStyle().equals("8")){
                 vh.btnPreview.setVisibility(View.GONE);
@@ -255,8 +261,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
             vh.progressBar.setVisibility(View.INVISIBLE);
         }
 
-        vh.highQuantityImgS = (ImageView) view.findViewById(R.id.good_nor);
-        vh.highQuantityImgB = (ImageView) view.findViewById(R.id.quality_nor);
+
 //        无预评权限也无终评权限-----------------------------------------------
         if (list.get(i).getTeacherpreselection().equals("0")&&list.get(i).getTeacherfinalselection().equals("0")){
             vh.highQuantityImgS.setVisibility(View.GONE);
@@ -322,6 +327,29 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         }
         vh.downClick = (LinearLayout) view.findViewById(R.id.downClick);
         vh.browseClick = (LinearLayout) view.findViewById(R.id.browseClick);
+
+        //如果是审核通过的，不显示点击审核图片，
+        if (list.get(i).getCheckStatus().equals("审核通过")){
+            vh.prePass.setVisibility(View.GONE);
+        }else{
+            vh.highQuantityImgS.setVisibility(View.GONE);
+            vh.highQuantityImgB.setVisibility(View.GONE);
+            //待审核或审核失败的需要判断，如果是批量选择，隐藏审核图片点击事件
+            if (WorkSpaceFragment.isBatchSelect){
+                vh.prePass.setVisibility(View.GONE);
+            }else{
+                vh.prePass.setVisibility(View.VISIBLE);
+            }
+        }
+        //判断当前是否是批量选择，如果是批量选择，显示checkBox。
+        if (WorkSpaceFragment.isBatchSelect&&!list.get(i).getCheckStatus().equals("审核通过")&&MainActivity.selectBatchLinearIsShowing){
+            vh.batchSelectBox.setVisibility(View.VISIBLE);
+            vh.prePass.setVisibility(View.GONE);
+        }else{
+            vh.batchSelectBox.setVisibility(View.GONE);
+        }
+        vh.batchSelectBox.setChecked(list.get(i).isSelect());
+
         addClick(vh,i);
         return view;
     }
@@ -329,60 +357,73 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
     public boolean downTag = false;
 
     private void addClick(final ViewHolder vh, final int i) {
+        //批量审核checkBox点击事件
+        vh.batchSelectBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (list.get(i).isSelect()){
+                    list.get(i).setSelect(false);
+                    frag.getBatchSelectMap().remove(list.get(i));
+                }else{
+                    list.get(i).setSelect(true);
+                    frag.getBatchSelectMap().put(list.get(i),list.get(i).getId());
+                }
+                MainActivity.setAllSelectText(frag.isSelectAll());
+            }
+        });
+        //审核
+        vh.prePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,PrePassActivity.class);
+                MainActivity.map.put("ids",list.get(i).getId());
+                MainActivity.map.put("WorkSpaceFragment",frag);
+                frag.startActivity(intent);
+            }
+        });
+        //预览按钮
         vh.btnPreview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String getName = list.get(i).getName().toLowerCase();
-                File file = new File(list.get(i).getDownUrl());
-                String lastName = FileUtils.getExtensionName(file.getName());
-                LogUtil.w("lastName:"+lastName);
-//                视频**********************************************************************
-                if (list.get(i).getResourceStyle().equals("6")||list.get(i).getResourceStyle().equals("5")){
-
-                    String downUrl = list.get(i).getDownUrl();
-                    String videoUrl = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+downUrl,ECApplication.getInstance().getLoginUrlMap());
-                    frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(videoUrl));
+                String resourceStyle = list.get(i).getResourceStyle();
+                String showUrl = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap());
+//                音频、视频**********************************************************************
+                if (resourceStyle.equals("6")||resourceStyle.equals("5")){
+                    frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(showUrl));
                 }
 //                外部链接**********************************************************************
-                else if(list.get(i).getResourceStyle().equals("100")){
+                else if(resourceStyle.equals("100")){
                     Uri uri = Uri.parse(list.get(i).getDownUrl());
                     Intent it = new Intent(Intent.ACTION_VIEW,uri);
                     frag.startActivity(it);
                 }
 //                WORD**********************************************************************
-                else if(list.get(i).getResourceStyle().equals("1")){
-                    String wordUrl = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap());
-                    frag.getActivity().startActivity(IntentUtil.getWordFileIntent(wordUrl));
+                else if(resourceStyle.equals("1")){
+//                    frag.getActivity().startActivity(IntentUtil.getWordFileIntent(showUrl));
+                    return;
                 }
 //                ppt**********************************************************************
-                else if(list.get(i).getResourceStyle().equals("2")){
-                    String pptUrl = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap());
-                    frag.getActivity().startActivity(IntentUtil.getPptFileIntent(pptUrl));
+                else if(resourceStyle.equals("2")){
+//                    frag.getActivity().startActivity(IntentUtil.getPptFileIntent(showUrl));
+                    return;
 
 //                excel**********************************************************************
-                }else if(list.get(i).getResourceStyle().equals("3")){
-                    String excelUrl = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap());
-                    frag.getActivity().startActivity(IntentUtil.getExcelFileIntent(excelUrl));
+                }else if(resourceStyle.equals("3")){
+//                    frag.getActivity().startActivity(IntentUtil.getExcelFileIntent(showUrl));
+                    return;
                 }
                 //图片
-                else if (list.get(i).getResourceStyle().equals("4")){
+                else if (resourceStyle.equals("4")){
                     Intent intent = new Intent(context, ImagePagerActivity.class);
-                    intent.putExtra("images", new String[]{ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap())});
+                    intent.putExtra("images", new String[]{showUrl});
                     intent.putExtra("image_index",0);
                     frag.startActivity(intent);
                 }
-//                //音乐
-//                else if (list.get(i).getResourceStyle().equals("5")){
-//                    File audioFile = new File(ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()));
-//                    Uri uri = Uri.parse(audioFile.getAbsolutePath());
-//                    Intent intent = new Intent(Intent.ACTION_MAIN);
-//                    intent.setAction(Intent.ACTION_DEFAULT);
-////        intent.addCategory(Intent.CATEGORY_APP_MUSIC);
-//                    intent.setDataAndType(uri, "audio/*");
-//                    frag.startActivity(intent);
-//                }
+                //不确定格式
                 else{
-                    frag.getActivity().startActivity(IntentUtil.getAllFileIntent(file.getPath()));
+                    ToastUtil.showMessage("不可预览");
+                    return;
+//                    frag.getActivity().startActivity(IntentUtil.getAllFileIntent(showUrl));
                 }
                 new ProgressThreadWrap(context, new RunnableWrap() {
                     @Override
@@ -418,13 +459,15 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         vh.downClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frag.startAct(list.get(i).getId(),"2","1");
+                if (list.get(i).getDown() != 0)
+                    frag.startAct(list.get(i).getId(),"2","1");
             }
         });
         vh.browseClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frag.startAct(list.get(i).getId(),"1","1");
+                if (list.get(i).getBrowse() != 0)
+                    frag.startAct(list.get(i).getId(),"1","1");
             }
         });
 
@@ -489,7 +532,6 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                 final ECProgressDialog dialog = new ECProgressDialog(context);
                 dialog.setPressText("正在加载资源..");
                 dialog.show();
-                LogUtil.w("该展示dialog了");
                 //TODO判断当前下载附件是否存在
                 String name = list.get(i).getName();
                 File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
@@ -499,88 +541,52 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                 }
                 File file = new File(dir,name);
                 if (file.exists()){
-                    String lastName = FileUtils.getExtensionName(file.getName());
+                    String resourceStyle = list.get(i).getResourceStyle();
+                    dialog.dismiss();
                     try {
-                        if(Constant.ATTACHMENT_DOC.equals(lastName)){
-                            dialog.dismiss();
-                            frag.getActivity().startActivity(IntentUtil.getWordFileIntent(file.getPath()));
+                        switch (resourceStyle){
 
-                        }else if(Constant.ATTACHMENT_DOCX.equals(lastName)){
-                            dialog.dismiss();
-                            frag.getActivity().startActivity(IntentUtil.getWordFileIntent(file.getPath()));
-
-                        }else if(Constant.ATTACHMENT_PPT.equals(lastName)){
-                            dialog.dismiss();
-                            frag.getActivity().startActivity(IntentUtil.getPptFileIntent(file.getPath()));
-
-                        }else if(Constant.ATTACHMENT_PPTX.equals(lastName)){
-                            dialog.dismiss();
-                            frag.getActivity().startActivity(IntentUtil.getPptFileIntent(file.getPath()));
-
-                        }else if(Constant.ATTACHMENT_XLS.equals(lastName)){
-                            dialog.dismiss();
-                            frag.getActivity().startActivity(IntentUtil.getExcelFileIntent(file.getPath()));
-
-                        }else if(Constant.ATTACHMENT_XLSX.equals(lastName)){
-                            dialog.dismiss();
-                            frag.getActivity().startActivity(IntentUtil.getExcelFileIntent(file.getPath()));
-
-                        }else if(Constant.ATTACHMENT_PDF.equals(lastName)){
-                            dialog.dismiss();
-                            frag.getActivity().startActivity(IntentUtil.getPdfFileIntent(file.getPath()));
-
-                        }else if(Constant.ATTACHMENT_TXT.equals(lastName)){
-                            dialog.dismiss();
-                            frag.getActivity().startActivity(IntentUtil.getTextFileIntent(file.getPath(), false));
-
-                            //展示所有已经下载过的图片
-                        }else if(Constant.ATTACHMENT_JPG.equals(lastName)|Constant.ATTACHMENT_PNG.equals(lastName)){
-                            File[] files = dir.listFiles();
-                            ArrayList<String> paths = new ArrayList<String>();
-                            int selectCount = 0;
-                            for (int i = 0; i < files.length; i++) {
-                                if (files[i].getAbsolutePath().contains(".jpg")||files[i].getAbsolutePath().contains(".png")||files[i].getAbsolutePath().contains(".jpeg")||files[i].getAbsolutePath().contains(".JPG")){
-                                    paths.add(files[i].getAbsolutePath());
+                            case "1":
+                                frag.getActivity().startActivity(IntentUtil.getWordFileIntent(file.getAbsolutePath()));
+                                break;
+                            case "2":
+                                frag.getActivity().startActivity(IntentUtil.getPptFileIntent(file.getAbsolutePath()));
+                                break;
+                            case "3":
+                                frag.getActivity().startActivity(IntentUtil.getExcelFileIntent(file.getAbsolutePath()));
+                                break;
+                            case "4":
+                                File[] files = dir.listFiles();
+                                ArrayList<String> paths = new ArrayList<String>();
+                                int selectCount = 0;
+                                for (int i = 0; i < files.length; i++) {
+                                    String path = files[i].getAbsolutePath().toLowerCase();
+                                    if (path.contains(".jpg")||path.contains(".png")||path.contains(".jpeg")){
+                                        paths.add(files[i].getAbsolutePath());
+                                    }
                                 }
-                            }
-                            String[] urls = new String[paths.size()];
-                            for (int i1 = 0; i1 < paths.size(); i1++) {
-                                urls[i1] = paths.get(i1);
-                                if (paths.get(i1).equals(file.getAbsolutePath())||paths.get(i1).equals(file.getPath())){
-                                    selectCount = i1;
+                                String[] urls = new String[paths.size()];
+                                for (int i1 = 0; i1 < paths.size(); i1++) {
+                                    urls[i1] = paths.get(i1);
+                                    if (paths.get(i1).equals(file.getAbsolutePath())||paths.get(i1).equals(file.getPath())){
+                                        selectCount = i1;
+                                    }
                                 }
-                                LogUtil.e("第"+i1+"张图片！，名字为："+name);
-                            }
-                            Intent intent = new Intent(context, ImagePagerActivity.class);
-                            intent.putExtra("images", urls);
-                            for (int i1 = 0; i1 < urls.length; i1++) {
-                                LogUtil.e("获取到的图片路径："+urls[i1]);
-                            }
-                            intent.putExtra("image_index",selectCount);
-                            MainActivity.map.put("selectCountForPager",name);
-                            dialog.dismiss();
-                            frag.startActivity(intent);
+                                Intent intent = new Intent(context, ImagePagerActivity.class);
+                                intent.putExtra("images", urls);
+                                intent.putExtra("image_index",selectCount);
+                                MainActivity.map.put("selectCountForPager",name);
+                                dialog.dismiss();
+                                frag.startActivity(intent);
+                                break;
+                            case "5":
+                                frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getAbsolutePath()));
+                                break;
+                            case "6":
+                                frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getAbsolutePath()));
+                                break;
                         }
-                        else if(Constant.ATTACHMENT_GIF.equals(lastName)){
-                            dialog.dismiss();
-                            frag.getActivity().startActivity(IntentUtil.getImageFileIntent(file.getPath()));
 
-                        }else if(Constant.ATTACHMENT_3GP.equals(lastName)){
-                            dialog.dismiss();
-                            frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getPath()));
-                        }
-                        else if(Constant.ATTACHMENT_AVI.equals(lastName)){
-                            dialog.dismiss();
-                            frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getPath()));
-
-                        }else if(Constant.ATTACHMENT_MP4.equals(lastName)){
-                            dialog.dismiss();
-                            frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getPath()));
-
-                        }else{
-                            dialog.dismiss();
-                            frag.getActivity().startActivity(IntentUtil.getAllFileIntent(file.getPath()));
-                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                         ToastUtil.showMessage("设备中未安装相应的查看程序");
@@ -595,6 +601,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
 
                 if (downTag){
                     ToastUtil.showMessage("正在执行下载任务...");
+                    dialog.dismiss();
                     return;
                 }
                 // 下载处理
@@ -674,5 +681,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         private LinearLayout browseClick;
         private NumberProgressBar progressBar;
         private TextView downText;
+        private ImageView prePass;
+        private CheckBox batchSelectBox;
     }
 }

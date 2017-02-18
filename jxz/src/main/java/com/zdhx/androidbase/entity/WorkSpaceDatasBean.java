@@ -93,6 +93,16 @@ public class WorkSpaceDatasBean implements Serializable {
         private String userName;
         private String checkStatusName;
 
+        public boolean isSelect() {
+            return isSelect;
+        }
+
+        public void setSelect(boolean select) {
+            isSelect = select;
+        }
+
+        private boolean isSelect;
+
         public String getResourceStyle() {
             return resourceStyle;
         }

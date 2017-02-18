@@ -111,8 +111,9 @@ public class SelectScroActivity extends BaseActivity implements DatePickerDialog
 	}
 
 	private void searchScro(){
-
-		if (startDate == null&&endDate == null&&bean == null){
+		startDate = dateFrom.getText().toString();
+		endDate = dateTo.getText().toString();
+		if (startDate.equals("")&&endDate.equals("")&&bean == null){
 			doToast("请选择搜索条件");
 			return;
 		}

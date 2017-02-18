@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zdhx.androidbase.R;
-import com.zdhx.androidbase.util.LogUtil;
 
 public class XListViewFooter extends LinearLayout {
 	public final static int STATE_NORMAL = 0;
@@ -51,7 +50,6 @@ public class XListViewFooter extends LinearLayout {
 			mHintView.setVisibility(View.VISIBLE);
 			mHintView.setText(R.string.xlistview_footer_hint_normal);
 		}
-		LogUtil.w("状态设置完毕"+state);
 	}
 	
 	public void setBottomMargin(int height) {

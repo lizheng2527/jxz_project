@@ -37,6 +37,7 @@ public class ScroTreeBean implements Serializable {
         this.gradeList = gradeList;
     }
 
+
     public static class ListBean {
         /**
          * id : 20160902121018933533331941260144

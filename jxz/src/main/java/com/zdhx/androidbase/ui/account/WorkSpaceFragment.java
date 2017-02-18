@@ -22,6 +22,7 @@ import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.entity.WorkSpaceDatasBean;
 import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.quantity.CheckActivity;
+import com.zdhx.androidbase.ui.treadssearch.SearchWorkActivity;
 import com.zdhx.androidbase.ui.xlistview.XListView;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.RunnableWrap;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.zdhx.androidbase.ui.MainActivity.showSelectBatchLinear;
 import static com.zdhx.androidbase.ui.xlistview.XListViewUtils.onLoad;
 
 /**
@@ -60,13 +62,65 @@ public class WorkSpaceFragment extends Fragment {
 
     private XListView lv;
 
-    private ArrayList<WorkSpaceDatasBean.DataListBean> list = new ArrayList<>();
+
+    private ArrayList<WorkSpaceDatasBean.DataListBean> list;
 
     public ECProgressDialog dialog;
 
     private WorkSpaceListViewAdapter workSpaceListViewAdapter;
 
     private static int loadMorePager = 1;
+
+    private static HashMap<WorkSpaceDatasBean.DataListBean,String> batchSelectMap = new HashMap<>();
+
+    /**
+     * 当前是否是全选
+     * @return
+     */
+    public boolean isSelectAll(){
+        if (list != null && batchSelectMap.size()>0){
+            return list.size() == batchSelectMap.size();
+        }
+        return false;
+    }
+
+    /**
+     * 全选点击事件
+     * @param isSelectAll
+     */
+    public void selectAll(boolean isSelectAll){
+        if (isSelectAll){//全选
+            if (list != null){
+                batchSelectMap.clear();
+                for (int i1 = 0; i1 < list.size(); i1++) {
+                    list.get(i1).setSelect(true);
+                    batchSelectMap.put(list.get(i1),list.get(i1).getId());
+                }
+            }
+        }else{//取消全选
+            if (batchSelectMap != null){
+                for (WorkSpaceDatasBean.DataListBean in : batchSelectMap.keySet()) {
+                    in.setSelect(false);
+                }
+                batchSelectMap.clear();
+            }
+        }
+        workSpaceListViewAdapter.notifyDataSetChanged();
+    }
+
+    public HashMap<WorkSpaceDatasBean.DataListBean,String> getBatchSelectMap(){
+        return batchSelectMap;
+    }
+
+    /**
+     * 点击取消批量的刷新
+     */
+    public void notifyForSelect(){
+        if (workSpaceListViewAdapter != null&&list != null){
+            workSpaceListViewAdapter.notifyDataSetChanged();
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,13 +138,42 @@ public class WorkSpaceFragment extends Fragment {
     /**
      * 初始化listView数据源及展示
      */
+    public static boolean isBatchSelect = false;
     private void initListView(){
         lv = (XListView) getView().findViewById(R.id.fragment_workspace_listview);
         //初次加载
         if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
-            ListViewDatas(0,null,"","9",null,null,null,null,"","","0","1");
+            ListViewDatas(0,null,"","9",null,null,null,null,"2","","0","1");
         }
         initXListView(lv,workSpaceListViewAdapter);
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if (!SearchWorkActivity.status.equals("2")&&!WorkSpaceFragment.isBatchSelect){
+                    WorkSpaceFragment.isBatchSelect = true;
+                    showSelectBatchLinear(true);
+                    list.get(position-1).setSelect(true);
+                    batchSelectMap.clear();
+                    batchSelectMap.put(list.get(position-1),list.get(position-1).getId());
+                    workSpaceListViewAdapter.notifyDataSetChanged();
+                }
+                return true;
+            }
+        });
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (list.get(position-1).isSelect()){
+                    list.get(position-1).setSelect(false);
+                    batchSelectMap.remove(list.get(position-1));
+                }else{
+                    list.get(position-1).setSelect(true);
+                    batchSelectMap.put(list.get(position-1),list.get(position-1).getId());
+                }
+                MainActivity.setAllSelectText(isSelectAll());
+                workSpaceListViewAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     /**
@@ -119,10 +202,21 @@ public class WorkSpaceFragment extends Fragment {
                     dialog.show();
                 }
                 clickOrRefrush = false;
+                //当前正在批量审核选择中，点击后取消显示，并清理存储的数据
+                if (isBatchSelect){
+                    MainActivity.showSelectBatchLinear(false);
+                    isBatchSelect = false;
+                    for (WorkSpaceDatasBean.DataListBean in : batchSelectMap.keySet()) {
+                        in.setSelect(false);
+                    }
+                    getBatchSelectMap().clear();
+                }
+
                 workSpaceReFreshDatas(i,1);
                 WorkSpaceGridAdapter.index = i;
                 workSpaceGridAdapter.notifyDataSetChanged();
                 gridSelectionIndex = i;
+                loadMorePager = 1;
             }
         });
     }
@@ -132,6 +226,7 @@ public class WorkSpaceFragment extends Fragment {
      * @param i
      */
     public void workSpaceReFreshDatas(int i,int refreshOrSelect){
+
         if (refreshOrSelect == 1){//gridView点击时执行，此时同步当前的选择时间
             switch (i){
                 case 0:
@@ -165,38 +260,48 @@ public class WorkSpaceFragment extends Fragment {
                     ListViewDatas(selectIndexTag,name,highqualityValue,"8",clickId,type,studentName,eclassIds,status,studentUploadType,radioValue,"1");
                     break;
             }
-        }else if (refreshOrSelect == 0){//点击刷新默认参数配置
+        }else if (refreshOrSelect == 0){//下拉刷新默认参数配置
             clickOrRefrush = true;
+            //下拉刷新时如果此时是在进行批量审核，则修改回正常显示
+            if (WorkSpaceFragment.isBatchSelect){
+                showSelectBatchLinear(false);
+                WorkSpaceFragment.isBatchSelect = false;
+            }
+            //刷新之后将搜索条件的对象清空
+            SearchWorkActivity.setTreeBeanToNull();
+            SearchWorkActivity.setTreeBeanForEclassToNull();
+
+
             switch (i){
                 case 0:
-                    ListViewDatas(selectIndexTag,null,"","9",null,null,null,null,"","","0","1");
+                    ListViewDatas(selectIndexTag,null,"","9",null,null,null,null,"2","","0","1");
                     break;
                 case 1:
-                    ListViewDatas(selectIndexTag,null,"","4",null,null,null,null,"","","0","1");
+                    ListViewDatas(selectIndexTag,null,"","4",null,null,null,null,"2","","0","1");
                     break;
                 case 2:
-                    ListViewDatas(selectIndexTag,null,"","6",null,null,null,null,"","","0","1");
+                    ListViewDatas(selectIndexTag,null,"","6",null,null,null,null,"2","","0","1");
                     break;
                 case 3:
-                    ListViewDatas(selectIndexTag,null,"","2",null,null,null,null,"","","0","1");
+                    ListViewDatas(selectIndexTag,null,"","2",null,null,null,null,"2","","0","1");
                     break;
                 case 4:
-                    ListViewDatas(selectIndexTag,null,"","1",null,null,null,null,"","","0","1");
+                    ListViewDatas(selectIndexTag,null,"","1",null,null,null,null,"2","","0","1");
                     break;
                 case 5:
-                    ListViewDatas(selectIndexTag,null,"","5",null,null,null,null,"","","0","1");
+                    ListViewDatas(selectIndexTag,null,"","5",null,null,null,null,"2","","0","1");
                     break;
                 case 6:
-                    ListViewDatas(selectIndexTag,null,"","3",null,null,null,null,"","","0","1");
+                    ListViewDatas(selectIndexTag,null,"","3",null,null,null,null,"2","","0","1");
                     break;
 //                case 7:
 //                    ListViewDatas(selectIndexTag,null,"0","3","20130424113427190508721241586190",null,null,null,"","","0","1");
 //                    break;
                 case 7:
-                    ListViewDatas(selectIndexTag,null,"","7",null,null,null,null,"","","0","1");
+                    ListViewDatas(selectIndexTag,null,"","7",null,null,null,null,"2","","0","1");
                     break;
                 case 8:
-                    ListViewDatas(selectIndexTag,null,"","8",null,null,null,null,"","","0","1");
+                    ListViewDatas(selectIndexTag,null,"","8",null,null,null,null,"2","","0","1");
                     break;
             }
             workSpaceGridAdapter.index = i;
@@ -205,13 +310,14 @@ public class WorkSpaceFragment extends Fragment {
 
     }
 
-    public void onActReFresh(String name,String clickId,String type,String eclassIds){
+    public void onActReFresh(String name,String clickId,String type,String eclassIds,String status){
         if (dialog != null){
             dialog.show();
         }
         this.name = name;
         this.clickId = clickId;
         this.type = type;
+        this.status = status;
         this.eclassIds = eclassIds;
         switch(workSpaceGridAdapter.index){
             case 0:
@@ -245,7 +351,7 @@ public class WorkSpaceFragment extends Fragment {
                 resourceStyle = "8";
                 break;
         }
-        ListViewDatas(selectIndexTag,name,"",resourceStyle,clickId,type,null,eclassIds,"","","0","1");
+        ListViewDatas(selectIndexTag,name,"",resourceStyle,clickId,type,null,eclassIds,status,"","0","1");
     }
 
     private HashMap<String,ParameterValue> hashMap = new HashMap<>();
@@ -289,7 +395,9 @@ public class WorkSpaceFragment extends Fragment {
             this.type = null;
             this.studentUploadType = null;
             this.eclassIds = null;
-            this.status = null;
+            this.status = "2";
+            SearchWorkActivity.status = this.status;
+            SearchWorkActivity.oldStatus = this.status;
             this.studentUploadType = null;
             this.pageNo = "1";
         }
@@ -299,12 +407,13 @@ public class WorkSpaceFragment extends Fragment {
         this.studentName = studentName;
         this.eclassIds = eclassIds;
         this.status = status;
+        SearchWorkActivity.status = this.status;
+        SearchWorkActivity.oldStatus = this.status;
         this.studentUploadType = studentUploadType;
         this.radioValue = radioValue;
         if (selectIndexTag == 0){//教师备课资源
             hashMap.put("tabType",new ParameterValue("teacher"));
             hashMap.put("radioValue",new ParameterValue(radioValue));
-
         }
 
         if(selectIndexTag == 1){//学生生成资源
@@ -364,7 +473,6 @@ public class WorkSpaceFragment extends Fragment {
         this.name = name;
 
         hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
-        //TODO
         new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
             public void run() {
@@ -372,9 +480,17 @@ public class WorkSpaceFragment extends Fragment {
                     String json = ZddcUtil.getResourceList(hashMap);
                     final WorkSpaceDatasBean bean = new Gson().fromJson(json,WorkSpaceDatasBean.class);
                     statusForLoadMore = bean.getStatus();
+
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
+                            if (statusForLoadMore.equals("1")){
+                                lv.setPullLoadEnable(false);
+                                lv.setDividerHeight(0);
+                            }else{
+                                lv.setPullLoadEnable(true);
+                                lv.setDividerHeight(1);
+                            }
                             list = (ArrayList<WorkSpaceDatasBean.DataListBean>) bean.getDataList();
                             workSpaceListViewAdapter = new WorkSpaceListViewAdapter(list,context,WorkSpaceFragment.this,lv);
                             lv.setAdapter(workSpaceListViewAdapter);
@@ -437,6 +553,7 @@ public class WorkSpaceFragment extends Fragment {
     private boolean isLoadMoring = false;
     public void initXListView(final XListView listView, final BaseAdapter adapter){
         listView.setPullLoadEnable(true);
+        listView.setDividerHeight(1);
         final Handler mHandler = new Handler();
         listView.setXListViewListener(new XListView.IXListViewListener() {
             @Override
@@ -452,6 +569,11 @@ public class WorkSpaceFragment extends Fragment {
 
             @Override
             public void onLoadMore() {
+                if (statusForLoadMore.equals("1")){
+                    ToastUtil.showMessage("已无更多.");
+                    onLoad(listView);
+                    return;
+                }
                 if (isLoadMoring){
                     return;
                 }
@@ -491,11 +613,6 @@ public class WorkSpaceFragment extends Fragment {
                                 resourceStyle = "8";
                                 break;
                         }
-                        if (statusForLoadMore.equals("1")){
-                            ToastUtil.showMessage("已无更多.");
-                            onLoad(listView);
-                            return;
-                        }
                         ListViewDatasForOnLoadMore(workSpaceGridAdapter.index,name,highqualityValue,resourceStyle,clickId,type,studentName,eclassIds,status,studentUploadType,radioValue,loadMorePager+1+"");
                     }
                 }, 5);
@@ -512,12 +629,13 @@ public class WorkSpaceFragment extends Fragment {
         this.studentName = studentName;
         this.eclassIds = eclassIds;
         this.status = status;
+        SearchWorkActivity.status = this.status;
+        SearchWorkActivity.oldStatus = this.status;
         this.studentUploadType = studentUploadType;
         this.radioValue = radioValue;
         if (selectIndexTag == 0){//教师备课资源
             hashMap.put("tabType",new ParameterValue("teacher"));
             hashMap.put("radioValue",new ParameterValue(radioValue));
-
         }
 
         if(selectIndexTag == 1){//学生生成资源
@@ -533,6 +651,8 @@ public class WorkSpaceFragment extends Fragment {
 
             if (status !=null){//审核状态
                 hashMap.put("status",new ParameterValue(status));
+            }else{
+                hashMap.put("status",new ParameterValue("2"));
             }
 
             if (studentUploadType !=null){//学生上传的类型
@@ -594,10 +714,16 @@ public class WorkSpaceFragment extends Fragment {
                             if (l != null || l.size() != 0){
                                 loadMorePager++;
                             }
-                            workSpaceListViewAdapter = new WorkSpaceListViewAdapter(list,context,WorkSpaceFragment.this,lv);
                             LinearLayout lin = (LinearLayout) getView().findViewById(R.id.linear_work_lv);
                             lin.removeAllViews();
                             lin.addView(lv);
+                            if (statusForLoadMore.equals("1")){
+                                lv.setPullLoadEnable(false);
+                                lv.setDividerHeight(0);
+                            }else{
+                                lv.setPullLoadEnable(true);
+                                lv.setDividerHeight(1);
+                            }
                             workSpaceListViewAdapter.notifyDataSetChanged();
                             isLoadMoring = false;
                             onLoad(lv);
@@ -637,9 +763,6 @@ public class WorkSpaceFragment extends Fragment {
                 list.get(position).setHighQuantity("1");
             }
         }
-        workSpaceListViewAdapter = new WorkSpaceListViewAdapter(list,context,WorkSpaceFragment.this,lv);
-        lv.setAdapter(workSpaceListViewAdapter);
-        lv.setSelection(position);
-//        workSpaceListViewAdapter.notifyDataSetChanged();
+        workSpaceListViewAdapter.notifyDataSetChanged();
     }
 }

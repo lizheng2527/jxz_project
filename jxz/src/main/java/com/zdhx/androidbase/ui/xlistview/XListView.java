@@ -23,7 +23,6 @@ import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.zdhx.androidbase.R;
-import com.zdhx.androidbase.util.LogUtil;
 
 public class XListView extends ListView implements OnScrollListener {
 
@@ -283,7 +282,6 @@ public class XListView extends ListView implements OnScrollListener {
 				updateHeaderHeight(deltaY / OFFSET_RADIO);
 				invokeOnScrolling();
 			} else if (getLastVisiblePosition() == mTotalItemCount - 1 && (mFooterView.getBottomMargin() > 0 || deltaY < 0)) {
-				LogUtil.w("判断时候的item数量："+mTotalItemCount);
 				// last item, already pulled up or want to pull up.
 				updateFooterHeight(-deltaY / OFFSET_RADIO);
 //				startLoadMore();
@@ -309,10 +307,6 @@ public class XListView extends ListView implements OnScrollListener {
 				}
 				resetFooterHeight();
 			}
-
-			LogUtil.w("总item数量："+mTotalItemCount);
-			boolean f = getLastVisiblePosition() == mTotalItemCount - 1;
-			LogUtil.w("重新设置高度："+f);
 			break;
 		}
 		return super.onTouchEvent(ev);

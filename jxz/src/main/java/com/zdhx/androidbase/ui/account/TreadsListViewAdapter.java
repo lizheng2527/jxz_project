@@ -28,6 +28,7 @@ import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ImageUrlBean;
 import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.entity.Treads;
+import com.zdhx.androidbase.util.DensityUtil;
 import com.zdhx.androidbase.util.IntentUtil;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
@@ -152,25 +153,52 @@ public class TreadsListViewAdapter extends BaseAdapter {
         vh.replyCount = (TextView) view.findViewById(R.id.replyCount);
         vh.replyContent = (LinearLayout) view.findViewById(R.id.fragment_home_viewpager_listview_item_context);
         vh.launchOrRetract = (TextView) view.findViewById(R.id.launchorretract);
-        vh.launchOrRetract.setText("展开");
+        if (!list.get(i).getLaunch()){
+            vh.launchOrRetract.setText("展开");
+        }else{
+            vh.launchOrRetract.setText("收起");
+        }
         int replyCounts = list.get(i).getChild().size();
         vh.replyContent.removeAllViews();
-        if (replyCounts>0){
-            if (replyCounts <2){
+        if (replyCounts>2){
+            if (list.get(i).getLaunch()){
                 for (int j = 0; j < replyCounts; j++) {
                     String name = list.get(i).getChild().get(j).getUserName()+":";
                     String content = list.get(i).getChild().get(j).getContent();
-                    addReplyBody(vh,name,content);
+                    addReplyBody(vh,name,content,j,null,list.get(i).getChild(),i);
+                    if (list.get(i).getChild().get(j).getChild() != null){
+                        if (list.get(i).getChild().get(j).getChild().size()>0){
+                            getChildList(vh,list.get(i).getChild().get(j).getChild(),name,i);
+                        }
+                    }
                 }
             }else{
                 for (int j = 0; j < 2; j++) {
                     String name = list.get(i).getChild().get(j).getUserName()+":";
                     String content = list.get(i).getChild().get(j).getContent();
-                    addReplyBody(vh,name,content);
+                    addReplyBody(vh,name,content,j,null,list.get(i).getChild(),i);
+                    if (list.get(i).getChild().get(j).getChild() != null){
+                        if (list.get(i).getChild().get(j).getChild().size()>0){
+                            getChildList(vh,list.get(i).getChild().get(j).getChild(),name,i);
+                        }
+                    }
+                }
+            }
+        }else{//小于两条，遍历所有
+            for (int j = 0; j < replyCounts; j++) {
+                String name = list.get(i).getChild().get(j).getUserName()+":";
+                String content = list.get(i).getChild().get(j).getContent();
+                addReplyBody(vh,name,content,j,null,list.get(i).getChild(),i);
+                if (list.get(i).getChild().get(j).getChild() != null){
+                    if (list.get(i).getChild().get(j).getChild().size()>0){
+                        getChildList(vh,list.get(i).getChild().get(j).getChild(),name,i);
+                    }
                 }
             }
         }
-        vh.replyCount.setText(replyCounts+"");
+
+
+        vh.replyCount.setText(list.get(i).getAllReplyCount()+"");
 
 
 //      点赞*********************************************************************
@@ -183,7 +211,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
         List<String> praiseNames = list.get(i).getPraiseNames();
         int praiseCounts = praiseNames.size();
         if (praiseNames!= null&&praiseCounts>0){
-//            if (praiseNames.contains(ECApplication.getInstance().getCurrentUser().getName())){
             vh.praiseImage.setImageResource(R.drawable.button_praise_click);
             vh.linearLayout11.setVisibility(View.VISIBLE);
             vh.thumbIV.setVisibility(View.VISIBLE);
@@ -197,7 +224,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
                 }
             }
             vh.thumbsupTV.setText(sb.toString());
-//            }
         }else{
             vh.praiseImage.setImageResource(R.drawable.button_praise_nor);
             vh.thumbIV.setVisibility(View.GONE);
@@ -265,7 +291,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
                     vh.fileName.setText(list.get(i).getAttachment().getIconList().get(0).getFileName());
                     vh.fileSize.setText(list.get(i).getAttachment().getIconList().get(0).getFileSize());
                     String threadFileHeadUrl = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getAttachment().getIconList().get(0).getImg(),ECApplication.getInstance().getLoginUrlMap());
-                    LogUtil.e("threadFileHeadUrl:"+threadFileHeadUrl);
                     Uri uri = Uri.parse(threadFileHeadUrl);
                     vh.threadFileHead.setImageURI(uri);
                     String lastName = list.get(i).getAttachment().getIconList().get(0).getFileName();
@@ -329,6 +354,19 @@ public class TreadsListViewAdapter extends BaseAdapter {
         addOnClick(vh,i);
         return view;
     }
+
+    private void getChildList(ViewHolder vh, List<Treads.DataListBean> beans,String parentName,int index){
+        for (int i1 = 0; i1 < beans.size(); i1++) {
+            String name = beans.get(i1).getUserName();
+            String content = beans.get(i1).getContent();
+            addReplyBody(vh,name,content,i1,parentName,beans,index);
+            if (beans.get(i1).getChild() != null){
+                if (beans.get(i1).getChild().size()>0){
+                    getChildList(vh,beans.get(i1).getChild(),name,index);
+                }
+            }
+        }
+    }
     HashMap<Integer,ImageGirdAdapter> adapterMap = new HashMap<>();
     private void addOnClick(final ViewHolder vh, final int position){
         vh.l.setOnClickListener(new View.OnClickListener() {
@@ -348,6 +386,9 @@ public class TreadsListViewAdapter extends BaseAdapter {
         vh.replyRel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (list.get(position).getReplyCount()>1){
+                    list.get(position).setLaunch(true);
+                }
                 HomeFragment.showEdit(list.get(position).getId(),position);
             }
         });
@@ -460,15 +501,19 @@ public class TreadsListViewAdapter extends BaseAdapter {
         vh.launchOrRetract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean tag = vh.launchOrRetract.getText().equals("展开");
                 int replyCounts = list.get(position).getChild().size();
-                if (tag){
+                if (!list.get(position).getLaunch()){
                     for (int j = 2; j < replyCounts; j++) {
                         String name = list.get(position).getChild().get(j).getUserName()+":";
                         String content = list.get(position).getChild().get(j).getContent();
-                        addReplyBody(vh,name,content);
+                        addReplyBody(vh,name,content,j,null,list.get(position).getChild(),position);
+                        if (list.get(position).getChild()!=null && list.get(position).getChild().get(j).getChild() !=null){
+                            if (list.get(position).getChild().get(j).getChild().size()>0){
+                                getChildList(vh,list.get(position).getChild().get(j).getChild(),name,position);
+                            }
+                        }
                     }
-//                    fragment.setListViewSelection(position);
+                    list.get(position).setLaunch(true);
                     vh.launchOrRetract.setText("收起");
                 }else{
                     vh.replyContent.removeAllViews();
@@ -476,8 +521,14 @@ public class TreadsListViewAdapter extends BaseAdapter {
                     for (int j = 0; j < 2; j++) {
                         String name = list.get(position).getChild().get(j).getUserName()+":";
                         String content = list.get(position).getChild().get(j).getContent();
-                        addReplyBody(vh,name,content);
+                        addReplyBody(vh,name,content,j,null,list.get(position).getChild(),position);
+                        if (list.get(position).getChild()!=null && list.get(position).getChild().get(j).getChild() !=null) {
+                            if (list.get(position).getChild().get(j).getChild().size() > 0) {
+                                getChildList(vh, list.get(position).getChild().get(j).getChild(), name, position);
+                            }
+                        }
                     }
+                    list.get(position).setLaunch(false);
                     vh.launchOrRetract.setText("展开");
                     fragment.setListViewSelection(position);
                 }
@@ -543,16 +594,22 @@ public class TreadsListViewAdapter extends BaseAdapter {
      * @param name
      * @param content
      */
-    public void addReplyBody(ViewHolder vh,String name,String content){
+    public void addReplyBody(ViewHolder vh, String name, String content, final int position, final String parentName, final List<Treads.DataListBean> beans,final int index){
         vh.replyContent.setVisibility(View.VISIBLE);
         TextView textView = new TextView(context);
-        //这里的Textview的父layout是ListView，所以要用ListView.LayoutParams
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(0,DensityUtil.dip2px(5),0,0);
         textView.setLayoutParams(layoutParams);
         textView.setPadding(0, 5, 0, 0);
-        String allStringOfComment = name + content;
+        String allStringOfComment = "";
+        if (parentName== null){
+            allStringOfComment = name + content;
+        }else{
+            allStringOfComment = name + "@"+parentName+content;
+            name = name + "@"+parentName;
+        }
         textView.setTextColor(Color.parseColor("#555555"));
-        textView.setTextSize(12);
+        textView.setTextSize(14);
         vh.replyContent.addView(textView);
         SpannableStringBuilder builder = new SpannableStringBuilder(allStringOfComment);
         ForegroundColorSpan redSpan = new ForegroundColorSpan(context.getResources().getColor(R.color.name_blue));
@@ -560,6 +617,65 @@ public class TreadsListViewAdapter extends BaseAdapter {
         int end = start + name.length();
         builder.setSpan(redSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.setText(builder);
+        textView.setTag(beans.get(position).getChild());
         textView.setMovementMethod(LinkMovementMethod.getInstance());
+        textView.setClickable(true);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (beans.get(position).getCanDelete().equals("yes")){
+                    ECAlertDialog.buildAlert(context, "是否删除本条回复内容？", "确定", "取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ProgressUtil.show(context,"正在删除!");
+                            hashMap.clear();
+                            hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
+                            String communcationId = beans.get(position).getId();
+                            hashMap.put("communcationId",new ParameterValue(communcationId));
+                            new ProgressThreadWrap(context, new RunnableWrap() {
+                                @Override
+                                public void run() {
+
+                                    try {
+                                        ZddcUtil.delete(hashMap);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            ProgressUtil.hide();
+                                            resetAllReplyCount(beans.get(position).getChild());
+                                            beans.get(position).setAllReplyCount(beans.get(position).getAllReplyCount()-deleteCount);
+                                            deleteCount = 1;
+                                            beans.remove(position);
+                                            notifyDataSetChanged();
+                                        }
+                                    },6);
+                                }
+                            }).start();
+                        }
+                    }, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).show();
+
+                }else{
+                    fragment.setReplyName("指定回复");
+                    HomeFragment.showEdit(beans.get(position).getId(),index);
+                }
+            }
+        });
     }
+    private int deleteCount = 1;
+    private void resetAllReplyCount(List<Treads.DataListBean> beans) {
+        deleteCount += beans.size();
+        for (int i = 0; i < beans.size(); i++) {
+            resetAllReplyCount(beans.get(i).getChild());
+
+        }
+    }
+
 }

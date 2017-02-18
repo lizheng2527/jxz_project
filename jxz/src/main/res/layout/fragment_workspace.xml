@@ -1,52 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:orientation="vertical"
-    tools:ignore="HardcodedText,DisableBaselineAlignment" >
+    tools:ignore="HardcodedText,DisableBaselineAlignment">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        tools:ignore="HardcodedText,DisableBaselineAlignment" >
 
-    <HorizontalScrollView
-        android:id="@+id/homework_scroll"
-        android:background="@color/list_devider_color"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:scrollbars="none"
-        >
-        <LinearLayout
+        <HorizontalScrollView
+            android:id="@+id/homework_scroll"
+            android:background="@color/list_devider_color"
             android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:scrollbars="none"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <GridView
+                    android:id="@+id/fragment_workspace_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:numColumns="9"
+                    >
+                </GridView>
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/list_devider_color"/>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            >
-
-            <GridView
-                android:id="@+id/fragment_workspace_grid"
+            android:id="@+id/linear_work_lv">
+            <com.zdhx.androidbase.ui.xlistview.XListView
+                android:layout_alignBottom="@+id/homework_scroll"
+                android:id="@+id/fragment_workspace_listview"
+                android:divider="@color/list_divider"
+                android:dividerHeight="1dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:numColumns="9"
-                >
-            </GridView>
+                android:layout_height="match_parent">
+            </com.zdhx.androidbase.ui.xlistview.XListView>
         </LinearLayout>
-    </HorizontalScrollView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@color/list_devider_color"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:id="@+id/linear_work_lv">
-        <com.zdhx.androidbase.ui.xlistview.XListView
-            android:layout_alignBottom="@+id/homework_scroll"
-            android:id="@+id/fragment_workspace_listview"
-            android:divider="@color/list_divider"
-            android:dividerHeight="1dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </com.zdhx.androidbase.ui.xlistview.XListView>
+
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

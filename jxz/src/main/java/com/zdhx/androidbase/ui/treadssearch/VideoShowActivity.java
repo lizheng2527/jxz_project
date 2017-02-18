@@ -90,8 +90,9 @@ public class VideoShowActivity extends BaseActivity {
 					@Override
 					public void run() {
 						adapter = new MyAdapter();
-						if (fileList.size()>0)
+						if (fileList != null&&fileList.size()>0){
 							lv.setAdapter(adapter);
+						}
 						ProgressUtil.hide();
 					}
 				},100);

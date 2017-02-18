@@ -4,6 +4,12 @@ android {
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
 
+    signingConfigs {
+        debug {
+            storeFile file('D:/01_work/jxz.keystore')
+        }
+    }
+
     defaultConfig {
         applicationId "com.zdhx.em.jxz"
         minSdkVersion 11

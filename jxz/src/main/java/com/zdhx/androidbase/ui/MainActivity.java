@@ -60,6 +60,7 @@ import com.pgyersdk.update.PgyUpdateManager;
 import com.pgyersdk.update.UpdateManagerListener;
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.entity.WorkSpaceDatasBean;
 import com.zdhx.androidbase.ui.account.HomeFragment;
 import com.zdhx.androidbase.ui.account.LoginActivity;
 import com.zdhx.androidbase.ui.account.MeFragment;
@@ -69,6 +70,7 @@ import com.zdhx.androidbase.ui.account.WorkSpaceFragment;
 import com.zdhx.androidbase.ui.account.WorkSpaceGridAdapter;
 import com.zdhx.androidbase.ui.base.BaseActivity;
 import com.zdhx.androidbase.ui.introducetreads.IntroduceTreadsActivity;
+import com.zdhx.androidbase.ui.quantity.PrePassActivity;
 import com.zdhx.androidbase.ui.scrosearch.SelectScroActivity;
 import com.zdhx.androidbase.ui.treadssearch.SearchTreadsActivity;
 import com.zdhx.androidbase.ui.treadssearch.SearchWorkActivity;
@@ -84,16 +86,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends BaseActivity implements OnClickListener {
-    //全局调用的集合
+	//全局调用的集合
 	public static HashMap<String,Object> map = new HashMap<String, Object>();
 	private Activity context;
-    //动态主页
+	//动态主页
 	private HomeFragment homeFragment;
-    //工作平台
+	//工作平台
 	private WorkSpaceFragment workSpaceFragment;
-    //我的
+	//我的
 	private MeFragment meFragment;
-    //积分
+	//积分
 	private ScroFragment scroFragment;
 
 	private Fragment[] fragments;
@@ -106,7 +108,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
 	private RelativeLayout[] mTabContainers;
 
-	private static LinearLayout typeMenu;
+	public static LinearLayout typeMenu;
 	private static String menuTitleForFirst = "班级";
 	private static String menuTitleForSecond = "教师备课资源";
 	//主页显示的菜单选项
@@ -135,18 +137,111 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	//跳转到发布活动页面的请求码
 	private final  int INTRODUCETREADSCODE = 1;
 	//跳转到搜索动态请求码
-    private final int SEARCHTREADSCODE = 2;
-    //跳转到搜索工作平台资源请求码
-    private final int SEARCHWORKCODE = 3;
-    //跳转到搜索工作平台资源请求码
-    private final int UPFILEACTIVITYCODE = 4;
+	private final int SEARCHTREADSCODE = 2;
+	//跳转到搜索工作平台资源请求码
+	private final int SEARCHWORKCODE = 3;
+	//跳转到搜索工作平台资源请求码
+	private final int UPFILEACTIVITYCODE = 4;
 
 	//用来承接互动交流和工作平台菜单显示的过度变量
 	private int indexForMenu;
+
+	private static TextView allSelect;
+
+	private static LinearLayout selectBatchLinear;
+	private TextView selectTure,selectCancel;
+
+
+
 	/**
 	 * 缓存三个TabView
 	 */
 	private final HashMap<Integer, Fragment> mTabViewCache = new HashMap<Integer, Fragment>();
+
+	/**
+	 * 取消批量审核，清空选择内容
+	 * @param view
+	 */
+	public void onSelectCancelClick(View view){
+		onSelectCancel();
+	}
+
+	public void onSelectCancel(){
+		showSelectBatchLinear(false);
+		allSelect.setText("全  选");
+		WorkSpaceFragment.isBatchSelect = false;
+		HashMap<WorkSpaceDatasBean.DataListBean, String> batchSelectMap = workSpaceFragment.getBatchSelectMap();
+		for (WorkSpaceDatasBean.DataListBean in : batchSelectMap.keySet()) {
+			in.setSelect(false);
+		}
+		workSpaceFragment.getBatchSelectMap().clear();
+		workSpaceFragment.notifyForSelect();
+	}
+
+	public static void setAllSelectText(boolean b){
+		if (b){
+			allSelect.setText("取消全选");
+		}else{
+			allSelect.setText("全  选");
+		}
+	}
+
+	/**
+	 * 全选
+	 * @param view
+	 */
+	public void onAllSelectClick(View view){
+		if (!allSelect.getText().toString().contains("取消")){
+			allSelect.setText("取消全选");
+			workSpaceFragment.selectAll(true);
+		}else{
+			allSelect.setText("全  选");
+			workSpaceFragment.selectAll(false);
+		}
+	}
+
+	/**
+	 * 进行审核
+	 * @param view
+	 */
+	private final int PREPASSCODE = 111;
+	public void onSelectTureClick(View view){
+		//TODO 执行批量审核
+		allSelect.setText("全  选");
+		HashMap<WorkSpaceDatasBean.DataListBean, String> batchSelectMap = workSpaceFragment.getBatchSelectMap();
+		int count = 0;
+		if (batchSelectMap.size() == 0){
+			doToast("请选择审批的数据");
+			return;
+		}
+		StringBuffer sb = new StringBuffer();
+		for (WorkSpaceDatasBean.DataListBean in : batchSelectMap.keySet()) {
+			count = count +1;
+			if (count == batchSelectMap.size()){
+				sb.append(batchSelectMap.get(in));
+			}else{
+				sb.append(batchSelectMap.get(in)+",");
+
+			}
+		}
+		startActivityForResult(new Intent(context, PrePassActivity.class),PREPASSCODE);
+		MainActivity.map.put("ids",sb.toString());
+		MainActivity.map.put("WorkSpaceFragment",workSpaceFragment);
+	}
+
+	/**
+	 * 显示确定和取消批量选择
+	 * @param isShow
+	 */
+	public static boolean selectBatchLinearIsShowing;
+	public static void showSelectBatchLinear(boolean isShow){
+		selectBatchLinearIsShowing = isShow;
+		if (isShow){
+			selectBatchLinear.setVisibility(View.VISIBLE);
+		}else{
+			selectBatchLinear.setVisibility(View.GONE);
+		}
+	}
 
 	@Override
 	protected int getLayoutId() {return R.layout.activity_main;}
@@ -183,6 +278,10 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	 * 初始化主界面UI视图
 	 */
 	private void initLauncherUIView() {
+		selectBatchLinear = (LinearLayout) findViewById(R.id.fragment_selectbatch);
+		selectTure = (TextView) findViewById(R.id.selectTure);
+		selectCancel = (TextView) findViewById(R.id.selectCancel);
+		allSelect = (TextView) findViewById(R.id.allselect);
 		homeFragment =  new HomeFragment();
 		workSpaceFragment = new WorkSpaceFragment();
 		meFragment = new MeFragment();
@@ -257,17 +356,17 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 							if (position == 0){
 								workSpaceFragment.dialog.show();
 								workSpaceFragment. workSpaceReFreshDatas(WorkSpaceGridAdapter.index,1);
+								onSelectCancel();
 							}
 							if (position == 1){
 								workSpaceFragment.dialog.show();
+								selectBatchLinearIsShowing = true;
 								workSpaceFragment. workSpaceReFreshDatas(WorkSpaceGridAdapter.index,1);
 							}
 
 							menuSelectedTV.setText(homeMenuDatas.get(position));
 							menuTitleForSecond = homeMenuDatas.get(position);
-//							doToast(homeMenuDatas.get(position));
 						}
-						//TODO
 					}
 				});
 				d.show();
@@ -294,16 +393,19 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		});
 	}
 
+	/**
+	 * 跳转到搜索条件的Activity
+	 */
 	private void onImgSecondClick(){
-        switch(SELECTMENUINDEX){
-            case 0:
-                startActivityForResult(new Intent(context,SearchTreadsActivity.class),SEARCHTREADSCODE);
-                break;
-            case 1:
+		switch(SELECTMENUINDEX){
+			case 0:
+				startActivityForResult(new Intent(context,SearchTreadsActivity.class),SEARCHTREADSCODE);
+				break;
+			case 1:
 				startActivityForResult(new Intent(context,SearchWorkActivity.class),SEARCHWORKCODE);
-                break;
-        }
-    }
+				break;
+		}
+	}
 
 	private void onImgThirdClick() {
 		switch (SELECTMENUINDEX){
@@ -506,6 +608,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+		//工作平台资源审核返回时执行
+		if (requestCode == PREPASSCODE){
+			setAllSelectText(workSpaceFragment.isSelectAll());
+		}
+
 		if (requestCode == SELECTSCROACTIVITYCODE){//搜索积分
 			if (map !=null){
 				if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
@@ -516,7 +623,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 					if (startDate == null&&endDate == null&&bean == null){
 						return;
 					}
-						ProgressUtil.show(context,"正在刷新");
+					ProgressUtil.show(context,"正在刷新");
 					if (bean != null){
 						clickId = bean.getId();
 						scroFragment.initMap(ScroGridAdapter.index,startDate,endDate,clickId);
@@ -525,7 +632,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 						scroFragment.initMap(ScroGridAdapter.index,startDate,endDate,clickId);
 						scroFragment.refrushAdapter(0);
 					}
-						ScroSearchTag = true;
+					ScroSearchTag = true;
 				}else{
 					String startDate = (String) map.get("startDate");
 					String endDate = (String) map.get("endDate");
@@ -566,15 +673,17 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			String clickId = (String) map.get("clickId");
 			String type = (String) map.get("type");
 			String eclassIds = (String) map.get("eclassIds");
+			String status = (String) map.get("status");
 			if (clickId != null|eclassIds != null){
-				workSpaceFragment.onActReFresh(name,clickId,type,eclassIds);
+				workSpaceFragment.onActReFresh(name,clickId,type,eclassIds,status);
 				map.clear();
 			}else{
 				if (name != null){
-					workSpaceFragment.onActReFresh(name,clickId,type,eclassIds);
+					workSpaceFragment.onActReFresh(name,clickId,type,eclassIds,status);
 					map.clear();
 				}
 			}
+			onSelectCancel();
 		}
 		if (requestCode == UPFILEACTIVITYCODE){
 			String tag = (String) MainActivity.map.get("UpFileActivityTag");
@@ -583,6 +692,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 				MainActivity.map.remove("UpFileActivityTag");
 				workSpaceFragment.workSpaceReFreshDatas(WorkSpaceGridAdapter.index,1);
 			}
+			onSelectCancel();
 		}
 
 	}

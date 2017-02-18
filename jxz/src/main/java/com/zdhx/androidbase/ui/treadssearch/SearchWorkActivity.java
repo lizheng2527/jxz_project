@@ -3,11 +3,14 @@ package com.zdhx.androidbase.ui.treadssearch;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.android.datetimepicker.date.DatePickerDialog;
@@ -57,6 +60,8 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 
 	private TextView eClassTreeBtn;
 
+	private RadioGroup passReview;
+
 	private HashMap<String,ParameterValue> hashMap = new HashMap<>();
 	@Override
 	protected int getLayoutId() {
@@ -85,6 +90,31 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 		selectTree = (TextView) findViewById(R.id.search_treads_tree);
 		eclassLinear = (LinearLayout) findViewById(R.id.search_eclass_linear);
 		eClassTreeBtn = (TextView) findViewById(R.id.search_eclass_tree);
+		passReview = (RadioGroup) findViewById(R.id.reviewpass);
+		RadioButton passed = (RadioButton) findViewById(R.id.passed);
+		RadioButton prepassed = (RadioButton) findViewById(R.id.prepassed);
+		RadioButton passfail = (RadioButton) findViewById(R.id.passfail);
+		switch (status){
+			case "2"://通过
+				status = "2";
+				passed.setChecked(true);
+				prepassed.setChecked(false);
+				passfail.setChecked(false);
+				break;
+			case "0"://待审核
+				status = "0";
+				passed.setChecked(false);
+				prepassed.setChecked(true);
+				passfail.setChecked(false);
+				break;
+			case "1"://审核失败
+				status = "1";
+				passed.setChecked(false);
+				prepassed.setChecked(true);
+				passfail.setChecked(true);
+				break;
+		}
+
 		if (lableForBooks != null&&eclassOrBooks != null){
 			selectTree.setText(lableForBooks);
 		}
@@ -106,13 +136,32 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 		});
 
 
-		if (WorkSpaceFragment.selectIndexTag == 1){
-			eclassLinear.setVisibility(View.VISIBLE);
-			belowLine.setVisibility(View.VISIBLE);
-		}else{
+		if (WorkSpaceFragment.selectIndexTag == 0){//教师备课资源
 			eclassLinear.setVisibility(View.GONE);
 			belowLine.setVisibility(View.GONE);
+			passReview.setVisibility(View.GONE);
+		}else{//学生生成资源
+			eclassLinear.setVisibility(View.VISIBLE);
+			belowLine.setVisibility(View.VISIBLE);
+			passReview.setVisibility(View.VISIBLE);
 		}
+
+		passReview.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+				switch (checkedId){
+					case R.id.passed://通过
+						nowStatus = "2";
+						break;
+					case R.id.prepassed://待审核
+						nowStatus = "0";
+						break;
+					case R.id.passfail://审核失败
+						nowStatus = "1";
+						break;
+				}
+			}
+		});
 		eClassTreeBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -120,6 +169,7 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 			}
 		});
 	}
+	private String nowStatus;
 	//点击事件分项处理
 	public void onClick(View view){
 		switch (view.getId()){
@@ -149,14 +199,49 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 	private String clickId;
 	private String type;
 	private String eclassIds;
+	public static String status;
+	public static String oldStatus = "2";
 	private static TreeBean treeBean;
 	private static TreeBean treeBeanForEclass;
+
+	public static void setTreeBeanToNull (){
+		if (treeBean != null){
+			treeBean = null;
+		}
+		if (lableForBooks != null){
+			lableForBooks = null;
+		}
+		if (eclassOrBooks != null){
+			eclassOrBooks = null;
+		}
+	}
+
+	public static void setTreeBeanForEclassToNull(){
+		if (treeBeanForEclass != null){
+			treeBeanForEclass = null;
+		}
+		if (lableForEclass != null){
+			lableForEclass = null;
+		}
+	}
 	/**
 	 * 点击搜索资源
 	 */
 	private void searchTreads(){
 		name = searchName.getText().toString();
+		if (name == null||name.equals("")){
+			if (treeBean == null||treeBean.getId() == null||treeBean.getType() == null){
+				if (treeBeanForEclass == null||treeBeanForEclass.getId() == null){
+					if (nowStatus.equals(oldStatus)){
+						doToast("请选择搜索条件..");
+						return;
+					}
+				}
+			}
+		}
 		MainActivity.map.put("name",name);
+		status = nowStatus;
+		MainActivity.map.put("status",status);
 		if (treeBean != null){
 			clickId = treeBean.getId();
 			type = treeBean.getType();
@@ -166,16 +251,8 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 		if (treeBeanForEclass != null){
 			eclassIds = treeBeanForEclass.getId();
 			MainActivity.map.put("eclassIds",eclassIds);
-		//TODO
 		}
-		if (name == null||name.equals("")){
-			if (treeBean == null||treeBean.getId() == null||treeBean.getType() == null){
-				if (treeBeanForEclass == null||treeBeanForEclass.getId() == null){
-					doToast("请选择搜索条件..");
-					return;
-				}
-			}
-		}
+		oldStatus = status;
 		this.finish();
 	}
 

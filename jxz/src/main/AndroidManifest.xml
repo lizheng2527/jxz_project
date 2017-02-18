@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zdhx.androidbase"
-    android:versionCode="102"
-    android:versionName="1.0.2" >
+    android:versionCode="103"
+    android:versionName="1.0.3" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -87,6 +87,8 @@
         <activity android:name=".ui.treadstree.ScroTreeActivity" />
         <!--推优 -->
         <activity android:name=".ui.quantity.CheckActivity" />
+        <!--资源审核 -->
+        <activity android:name=".ui.quantity.PrePassActivity" />
         <!-- 分享相关 -->
         <activity
             android:name="com.mob.tools.MobUIShell"

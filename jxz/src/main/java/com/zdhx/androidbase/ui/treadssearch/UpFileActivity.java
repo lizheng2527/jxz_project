@@ -273,7 +273,6 @@ public class UpFileActivity extends BaseActivity {
 					}
 					File file = new File(selectUrl);
 					LogUtil.w("选中文件路径："+file.getAbsolutePath());
-					LogUtil.w("选中文件名称："+file.getName());
 					String oldPath = file.getPath();
 					String lastStr = FileUtils.getExtensionName(file.getName());
 					if (name != null){
@@ -305,14 +304,13 @@ public class UpFileActivity extends BaseActivity {
 						return;
 					}
 					LogUtil.w("选中文件的后缀："+lastStr);
-//					lv.setAdapter(listAdapter);
 				}
 			}
 		});
 		buildAlert.setTitle("修改标题");
 		buildAlert.setCanceledOnTouchOutside(false);
 		buildAlert.setContentView(R.layout.config_dcaddress_dialog);
-		String server = "";
+		String server = upFileBeens.get(position).getTitle();
 		final EditText editText = (EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText));
 		TextView delectTV = (TextView) buildAlert.getWindow().findViewById(R.id.delectTV);
 		delectTV.setOnClickListener(new View.OnClickListener() {
