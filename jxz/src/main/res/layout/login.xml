@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
 
     <ScrollView
@@ -10,28 +9,52 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:background="@drawable/login_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="vertical"
             android:paddingLeft="30dp"
             android:paddingRight="30dp">
 
-            <ImageView
-                android:id="@+id/ip"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="140dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/jxz"
-                android:visibility="visible" />
+                android:layout_height="200dp"
+                android:layout_marginTop="80dp">
+
+                <ImageView
+                    android:id="@+id/ip"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/jxz_back"
+                    android:scaleType="fitCenter"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginRight="28dp"
+                    android:layout_marginTop="58dp"
+                    android:background="@drawable/jxz"
+                    android:scaleType="fitCenter"
+                    android:visibility="visible"
+                    android:layout_alignTop="@+id/ip"
+                    android:layout_alignRight="@+id/ip"
+                    android:layout_alignEnd="@+id/ip" />
+
+            </RelativeLayout>
+
+
             <!-- 账号 -->
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="40dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingBottom="2dp"
@@ -40,8 +63,8 @@
                 android:paddingTop="10dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:background="@drawable/user"
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_big" />
@@ -55,8 +78,8 @@
                     android:gravity="center_vertical"
                     android:hint="请输入用户名"
                     android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColor="@color/gray"
+                    android:textColorHint="@color/gray"
                     android:textSize="@dimen/font_normal" />
             </LinearLayout>
 
@@ -65,14 +88,14 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:background="#ffffff" />
+                android:background="@color/gray" />
 
             <!-- 密码 -->
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingBottom="2dp"
@@ -81,8 +104,8 @@
                 android:paddingTop="10dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:background="@drawable/sys_password"
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_big" />
@@ -97,8 +120,8 @@
                     android:hint="请输入密码"
                     android:inputType="textPassword"
                     android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColor="@color/gray"
+                    android:textColorHint="@color/gray"
                     android:textSize="@dimen/font_normal" />
             </LinearLayout>
 
@@ -107,20 +130,20 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:background="#ffffff" />
+                android:background="@color/gray" />
             <!-- 登录 -->
 
             <Button
                 android:id="@+id/btn_login"
-                android:background="@drawable/bg_button_blue_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="60dp"
+                android:background="@drawable/bg_button_blue_login"
                 android:padding="15dp"
-                android:textColor="@color/white"
                 android:text="登    录"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_normal" />
 
             <LinearLayout

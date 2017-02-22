@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -17,6 +18,7 @@ import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.base.BaseActivity;
 import com.zdhx.androidbase.ui.plugin.FileUtils;
+import com.zdhx.androidbase.util.IntentUtil;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.ProgressUtil;
@@ -92,6 +94,12 @@ public class VideoShowActivity extends BaseActivity {
 						adapter = new MyAdapter();
 						if (fileList != null&&fileList.size()>0){
 							lv.setAdapter(adapter);
+							lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+								@Override
+								public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+									startActivity(IntentUtil.getVideoFileIntent(fileList.get(position).getAbsolutePath()));
+								}
+							});
 						}
 						ProgressUtil.hide();
 					}

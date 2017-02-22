@@ -39,8 +39,9 @@ import com.zdhx.androidbase.ui.plugin.FileUtils;
 import com.zdhx.androidbase.ui.plugin.SendFile;
 import com.zdhx.androidbase.ui.treadssearch.MyVideoThumbLoader;
 import com.zdhx.androidbase.ui.treadssearch.UpFileBean;
-import com.zdhx.androidbase.ui.treadssearch.VideoShowActivity;
+import com.zdhx.androidbase.ui.treadssearch.VideoShowSimpleActivity;
 import com.zdhx.androidbase.util.InputTools;
+import com.zdhx.androidbase.util.IntentUtil;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.ProgressUtil;
@@ -350,7 +351,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 			@Override
 			public void onClick(View arg0) {
-				startActivityForResult(new Intent(context,VideoShowActivity.class), VIDEOCODE);//遍历内存空间
+				startActivityForResult(new Intent(context, VideoShowSimpleActivity.class), VIDEOCODE);//遍历内存空间
 			}
 		});
 	}
@@ -362,6 +363,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+
 //		********从视频管理器回来**********************************************************************************************
 
 		if(VIDEOCODE == requestCode) {
@@ -375,6 +377,8 @@ public class IntroduceTreadsActivity extends BaseActivity{
 			if (mVideoThumbLoader == null){
 				return;
 			}
+			//发送互动交流只能发送一个视频
+			upFileBeens.clear();
 			upFileBeens.addAll(list);
 			if (upFileBeens.size()>0){
 				videoCountTV.setVisibility(View.VISIBLE);
@@ -773,13 +777,18 @@ public class IntroduceTreadsActivity extends BaseActivity{
 				vh.delete = (ImageView) convertView.findViewById(R.id.upfile_list_delete);
 				vh.fileSize = (TextView) convertView.findViewById(R.id.upfile_list_size);
 				vh.rename = (ImageView) convertView.findViewById(R.id.upfile_list_rename);
+				vh.preview = (ImageView) convertView.findViewById(R.id.upfile_list_preview);
 				convertView.setTag(vh);
 			}else{
 				vh = (ViewHolder) convertView.getTag();
 			}
 			if (mVideoThumbLoader !=null){
 				Bitmap b = mVideoThumbLoader.getVideoThumbToCache(upFileBeens.get(position).getPath());
-				vh.img.setImageBitmap(b);
+				if (b == null){
+					mVideoThumbLoader.showThumbByAsynctack(upFileBeens.get(position).getAbsolutePath(), vh.img);
+				}else{
+					vh.img.setImageBitmap(b);
+				}
 			}
 			vh.title.setText(upFileBeens.get(position).getTitle());
 			vh.delete.setImageResource(R.drawable.icon_delete_address);
@@ -793,19 +802,21 @@ public class IntroduceTreadsActivity extends BaseActivity{
 			vh.delete.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					ECAlertDialog.buildAlert(context, "是否删除本条信息？", "确定", "取消", new DialogInterface.OnClickListener() {
+					ECAlertDialog.buildAlert(context, "是否删除本条信息？", "取消", "确定", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+
+						}
+					}, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							upFileBeens.remove(position);
 							listViewAdapter.notifyDataSetChanged();
 							if (upFileBeens.size() == 0){
 								videoCountTV.setVisibility(View.GONE);
+								gridList.add(null);
+								adapter.notifyDataSetChanged();
 							}
-						}
-					}, new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-
 						}
 					}).show();
 				}
@@ -817,6 +828,13 @@ public class IntroduceTreadsActivity extends BaseActivity{
 				}
 			});
 
+			vh.preview.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					startActivity(IntentUtil.getVideoFileIntent(upFileBeens.get(position).getAbsolutePath()));
+				}
+			});
+
 		}
 		class ViewHolder{
 			private RoundCornerImageView img;
@@ -825,6 +843,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 			private ImageView delete;
 			private TextView fileSize;
 			private ImageView rename;
+			private ImageView preview;
 		}
 	}
 	private ECAlertDialog buildAlert = null;

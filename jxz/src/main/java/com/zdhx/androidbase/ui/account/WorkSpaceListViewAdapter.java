@@ -199,20 +199,6 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
             vh.deleteImg.setVisibility(View.VISIBLE);
         }
 
-//        String getName = list.get(i).getName().toLowerCase();
-        //图片显示预览
-//        if (getName.contains(".jpg")||getName.contains(".jpeg")||getName.contains(".png")||getName.contains(".mp4")||getName.contains("avi")||getName.contains(".3gp")||getName.contains(".flv")){
-//            vh.btnPreview.setVisibility(View.VISIBLE);
-//        }else{
-//            vh.btnPreview.setVisibility(View.GONE);
-//        }
-        //外部链接显示预览
-//        if (list.get(i).getResourceStyle().equals("100")){
-//            vh.btnPreview.setVisibility(View.VISIBLE);
-//        }else{
-//            vh.btnPreview.setVisibility(View.GONE);
-//        }
-
 //        下载-----------------------------------------------
 
         String name = list.get(i).getName();
@@ -328,28 +314,33 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         vh.downClick = (LinearLayout) view.findViewById(R.id.downClick);
         vh.browseClick = (LinearLayout) view.findViewById(R.id.browseClick);
 
-        //如果是审核通过的，不显示点击审核图片，
-        if (list.get(i).getCheckStatus().equals("审核通过")){
-            vh.prePass.setVisibility(View.GONE);
-        }else{
-            vh.highQuantityImgS.setVisibility(View.GONE);
-            vh.highQuantityImgB.setVisibility(View.GONE);
-            //待审核或审核失败的需要判断，如果是批量选择，隐藏审核图片点击事件
-            if (WorkSpaceFragment.isBatchSelect){
+        //如果是审核通过的，不显示点击审核图片(教师登录独有)
+        if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+            if (list.get(i).getCheckStatus().equals("审核通过")){
                 vh.prePass.setVisibility(View.GONE);
             }else{
-                vh.prePass.setVisibility(View.VISIBLE);
+                vh.highQuantityImgS.setVisibility(View.GONE);
+                vh.highQuantityImgB.setVisibility(View.GONE);
+                //待审核或审核失败的需要判断，如果是批量选择，隐藏审核图片点击事件
+                if (WorkSpaceFragment.isBatchSelect){
+                    vh.prePass.setVisibility(View.GONE);
+                }else{
+                    vh.prePass.setVisibility(View.VISIBLE);
+                }
             }
-        }
-        //判断当前是否是批量选择，如果是批量选择，显示checkBox。
-        if (WorkSpaceFragment.isBatchSelect&&!list.get(i).getCheckStatus().equals("审核通过")&&MainActivity.selectBatchLinearIsShowing){
-            vh.batchSelectBox.setVisibility(View.VISIBLE);
-            vh.prePass.setVisibility(View.GONE);
+            //判断当前是否是批量选择，如果是批量选择，显示checkBox。
+            if (WorkSpaceFragment.isBatchSelect&&!list.get(i).getCheckStatus().equals("审核通过")&&MainActivity.selectBatchLinearIsShowing){
+                vh.batchSelectBox.setVisibility(View.VISIBLE);
+                vh.prePass.setVisibility(View.GONE);
+            }else{
+                vh.batchSelectBox.setVisibility(View.GONE);
+            }
+            vh.batchSelectBox.setChecked(list.get(i).isSelect());
         }else{
-            vh.batchSelectBox.setVisibility(View.GONE);
+            vh.prePass.setVisibility(View.GONE);
+            vh.highQuantityImgS.setVisibility(View.GONE);
+            vh.highQuantityImgB.setVisibility(View.GONE);
         }
-        vh.batchSelectBox.setChecked(list.get(i).isSelect());
-
         addClick(vh,i);
         return view;
     }

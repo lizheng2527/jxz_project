@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.android.datetimepicker.date.DatePickerDialog;
 import com.android.datetimepicker.time.RadialPickerLayout;
 import com.android.datetimepicker.time.TimePickerDialog;
+import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.ui.MainActivity;
@@ -94,25 +95,29 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 		RadioButton passed = (RadioButton) findViewById(R.id.passed);
 		RadioButton prepassed = (RadioButton) findViewById(R.id.prepassed);
 		RadioButton passfail = (RadioButton) findViewById(R.id.passfail);
-		switch (status){
-			case "2"://通过
-				status = "2";
-				passed.setChecked(true);
-				prepassed.setChecked(false);
-				passfail.setChecked(false);
-				break;
-			case "0"://待审核
-				status = "0";
-				passed.setChecked(false);
-				prepassed.setChecked(true);
-				passfail.setChecked(false);
-				break;
-			case "1"://审核失败
-				status = "1";
-				passed.setChecked(false);
-				prepassed.setChecked(true);
-				passfail.setChecked(true);
-				break;
+		if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+			if (status != null){
+				switch (status){
+					case "2"://通过
+						status = "2";
+						passed.setChecked(true);
+						prepassed.setChecked(false);
+						passfail.setChecked(false);
+						break;
+					case "0"://待审核
+						status = "0";
+						passed.setChecked(false);
+						prepassed.setChecked(true);
+						passfail.setChecked(false);
+						break;
+					case "1"://审核失败
+						status = "1";
+						passed.setChecked(false);
+						prepassed.setChecked(true);
+						passfail.setChecked(true);
+						break;
+				}
+			}
 		}
 
 		if (lableForBooks != null&&eclassOrBooks != null){
@@ -135,15 +140,21 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 			}
 		});
 
+		if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+			if (WorkSpaceFragment.selectIndexTag == 0){//教师备课资源
+				eclassLinear.setVisibility(View.GONE);
+				belowLine.setVisibility(View.GONE);
+				passReview.setVisibility(View.GONE);
+			}else{//学生生成资源
+				eclassLinear.setVisibility(View.VISIBLE);
+				belowLine.setVisibility(View.VISIBLE);
+				passReview.setVisibility(View.VISIBLE);
+			}
 
-		if (WorkSpaceFragment.selectIndexTag == 0){//教师备课资源
+		}else{
 			eclassLinear.setVisibility(View.GONE);
 			belowLine.setVisibility(View.GONE);
 			passReview.setVisibility(View.GONE);
-		}else{//学生生成资源
-			eclassLinear.setVisibility(View.VISIBLE);
-			belowLine.setVisibility(View.VISIBLE);
-			passReview.setVisibility(View.VISIBLE);
 		}
 
 		passReview.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

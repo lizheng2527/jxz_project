@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ScroListBean;
 
@@ -68,6 +69,17 @@ public class ScroListViewAdapter extends BaseAdapter {
         vh.scro.setText(list.get(i).getScore()+"");
         vh.upNumbers.setText(list.get(i).getUpload()+"");
         vh.downNumbers.setText(list.get(i).getDown()+"");
+        if (list.get(i).getName().equals(ECApplication.getInstance().getCurrentUser().getName())){
+            vh.name.setTextColor(Color.parseColor("#4cbbda"));
+            vh.scro.setTextColor(Color.parseColor("#4cbbda"));
+            vh.upNumbers.setTextColor(Color.parseColor("#4cbbda"));
+            vh.downNumbers.setTextColor(Color.parseColor("#4cbbda"));
+        }else{
+            vh.name.setTextColor(Color.parseColor("#222222"));
+            vh.scro.setTextColor(Color.parseColor("#222222"));
+            vh.upNumbers.setTextColor(Color.parseColor("#222222"));
+            vh.downNumbers.setTextColor(Color.parseColor("#222222"));
+        }
 
         switch (i){
             case 0:

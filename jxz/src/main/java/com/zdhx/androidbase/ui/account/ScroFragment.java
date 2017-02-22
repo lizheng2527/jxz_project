@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -21,6 +22,7 @@ import com.zdhx.androidbase.entity.ScroListBean;
 import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.treelistview.bean.TreeBean;
 import com.zdhx.androidbase.util.DateUtil;
+import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.ProgressUtil;
 import com.zdhx.androidbase.util.RunnableWrap;
@@ -68,6 +70,8 @@ public class ScroFragment extends Fragment {
     private Handler handler = new Handler();
     //标记点击gridView时用来阻止重复访问
     private boolean currentTag = true;
+
+    private LinearLayout gridLinear;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -188,6 +192,7 @@ public class ScroFragment extends Fragment {
                     initScroDatas(ScroGridAdapter.index);
                 }else{
                     initScroDatas(1);
+                    LogUtil.w("刷新学生积分");
                 }
             }
         }
@@ -199,6 +204,7 @@ public class ScroFragment extends Fragment {
      * @param position
      */
     private void initScroDatas(int position){
+//        ProgressUtil.show(context,"正在加载..");
         switch (position){
             case 0:
                 new ProgressThreadWrap(context, new RunnableWrap() {
@@ -233,11 +239,11 @@ public class ScroFragment extends Fragment {
                             map.putAll(ECApplication.getInstance().getLoginUrlMap());
                             String json = ZddcUtil.getRankList(map);
                             final List<ScroListBean> beans = new Gson().fromJson(json, new TypeToken<List<ScroListBean>>(){}.getType());
-                            studentListDatas = beans;
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    scroListViewAdapter = new ScroListViewAdapter(beans,context);
+                                    studentListDatas = beans;
+                                    scroListViewAdapter = new ScroListViewAdapter(studentListDatas,context);
                                     ProgressUtil.hide();
                                     studentLv.setAdapter(scroListViewAdapter);
                                 }
@@ -254,6 +260,7 @@ public class ScroFragment extends Fragment {
      * 初始化GridView（教师、学生）
      */
     private void initGridView (){
+        gridLinear = (LinearLayout) getView().findViewById(R.id.gridLinear);
         grid = (GridView) getView().findViewById(R.id.fragment_scro_grid);
         gridListDatas = new ArrayList<String>();
         if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
@@ -263,6 +270,7 @@ public class ScroFragment extends Fragment {
         }else{
             grid.setNumColumns(1);
             gridListDatas.add("学生");
+            gridLinear.setVisibility(View.GONE);
             initMap(1,"2012-01-01",DateUtil.getCurrDateString(),null);
         }
         gridAdapter = new ScroGridAdapter(gridListDatas,context,false);
@@ -274,11 +282,10 @@ public class ScroFragment extends Fragment {
                 grid.setAdapter(gridAdapter);
                 ProgressUtil.show(context,"正在加载..");
                 MainActivity.ScroSearchTag = false;
+                initMap(i,"2012-01-01",DateUtil.getCurrDateString(),null);
                 if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
-                    initMap(i,"2012-01-01",DateUtil.getCurrDateString(),null);
                     initScroDatas(i);
                 }else{
-                    initMap(1,"2012-01-01",DateUtil.getCurrDateString(),null);
                     initScroDatas(1);
                 }
                 vp.setCurrentItem(i);

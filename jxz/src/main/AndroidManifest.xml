@@ -89,6 +89,10 @@
         <activity android:name=".ui.quantity.CheckActivity" />
         <!--资源审核 -->
         <activity android:name=".ui.quantity.PrePassActivity" />
+        <!--教师登录动态查询班级树 -->
+        <activity android:name=".ui.treadstree.TreadsTreeActivity" />
+        <!--教师登录动态查询班级树 -->
+        <activity android:name=".ui.treadssearch.VideoShowSimpleActivity" />
         <!-- 分享相关 -->
         <activity
             android:name="com.mob.tools.MobUIShell"

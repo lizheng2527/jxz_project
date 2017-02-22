@@ -98,6 +98,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	//积分
 	private ScroFragment scroFragment;
 
+
 	private Fragment[] fragments;
 
 	private int index;
@@ -278,6 +279,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	 * 初始化主界面UI视图
 	 */
 	private void initLauncherUIView() {
+		if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+			menuTitleForSecond = "教师备课资源";
+		}else{
+			menuTitleForSecond = "教师引导";
+		}
 		selectBatchLinear = (LinearLayout) findViewById(R.id.fragment_selectbatch);
 		selectTure = (TextView) findViewById(R.id.selectTure);
 		selectCancel = (TextView) findViewById(R.id.selectCancel);
@@ -295,6 +301,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		mTabs = new Button[4];
 		mTabs[0] = (Button) findViewById(R.id.btn_conversation);
 		mTabs[1] = (Button) findViewById(R.id.btn_address_list);
+		if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+			mTabs[1].setText("工作平台");
+		}else{
+			mTabs[1].setText("自主学习");
+		}
 		mTabs[2] = (Button) findViewById(R.id.btn_circle);
 		mTabs[3] = (Button) findViewById(R.id.btn_app);
 		mTabContainers = new RelativeLayout[4];
@@ -356,14 +367,28 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 							if (position == 0){
 								workSpaceFragment.dialog.show();
 								workSpaceFragment. workSpaceReFreshDatas(WorkSpaceGridAdapter.index,1);
+								if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
+									titleImgThirdLinear.setVisibility(View.GONE);
+								}
 								onSelectCancel();
 							}
 							if (position == 1){
 								workSpaceFragment.dialog.show();
 								selectBatchLinearIsShowing = true;
 								workSpaceFragment. workSpaceReFreshDatas(WorkSpaceGridAdapter.index,1);
+								if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
+									titleImgThirdLinear.setVisibility(View.GONE);
+								}
 							}
-
+							if (position == 2){
+								workSpaceFragment.dialog.show();
+								selectBatchLinearIsShowing = true;
+								workSpaceFragment. workSpaceReFreshDatas(WorkSpaceGridAdapter.index,1);
+								if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
+									titleImgThirdLinear.setVisibility(View.VISIBLE);
+									titleImgThird.setImageResource(R.drawable.upload);
+								}
+							}
 							menuSelectedTV.setText(homeMenuDatas.get(position));
 							menuTitleForSecond = homeMenuDatas.get(position);
 						}
@@ -407,6 +432,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		}
 	}
 
+	/**
+	 * 上传资源及动态
+	 */
 	private void onImgThirdClick() {
 		switch (SELECTMENUINDEX){
 			case 0:
@@ -434,6 +462,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 				titleImgSecond.setVisibility(View.VISIBLE);
 				titleImgThird.setVisibility(View.VISIBLE);
 				titleImgSecond.setImageResource(R.drawable.nav_search);
+				titleImgThirdLinear.setVisibility(View.VISIBLE);
 				titleImgThird.setImageResource(R.drawable.nav_edit);
 				fragTitle.setText("互动交流");
 				menuSelectedTV.setText(menuTitleForFirst);
@@ -459,11 +488,27 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			case R.id.btn_address_list:
 				titleImgSecond.setVisibility(View.VISIBLE);
 				typeMenu.setVisibility(View.VISIBLE);
-				titleImgThird.setVisibility(View.VISIBLE);
 				titleImgSecond.setImageResource(R.drawable.nav_search);
-				titleImgThird.setImageResource(R.drawable.upload);
-				fragTitle.setText("工作平台");
+				if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+					titleImgThirdLinear.setVisibility(View.VISIBLE);
+					titleImgThird.setImageResource(R.drawable.upload);
+				}else{
+					titleImgThirdLinear.setVisibility(View.GONE);
+				}
+				if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+					fragTitle.setText("工作平台");
+				}else{
+					fragTitle.setText("自主学习");
+				}
 				menuSelectedTV.setText(menuTitleForSecond);
+				if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
+					if (menuTitleForSecond.equals("学习成果")){
+						titleImgThirdLinear.setVisibility(View.VISIBLE);
+						titleImgThird.setImageResource(R.drawable.upload);
+					}else{
+						titleImgThirdLinear.setVisibility(View.GONE);
+					}
+				}
 				if (homeMenuDatas != null){
 					homeMenuDatas.clear();
 				}else{
@@ -483,6 +528,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 				break;
 			case R.id.btn_circle:
 				fragTitle.setText("积分排名");
+				titleImgThirdLinear.setVisibility(View.VISIBLE);
 				titleImgSecond.setVisibility(View.INVISIBLE);
 				titleImgThird.setVisibility(View.VISIBLE);
 				titleImgThird.setImageResource(R.drawable.time);
@@ -651,10 +697,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 				String startDate = (String) map.get("startDate");
 				String endDate = (String) map.get("endDate");
 				String eclassId = (String) map.get("eclassId");
-				if (name != null||startDate != null||endDate != null||eclassId != null){
+				map.clear();
+				if (name != null&&!name.equals("")||startDate != null||endDate != null||eclassId != null){
 					ProgressUtil.show(this,"正在查询..");
 					homeFragment.setDatasToNull();
-					homeFragment.setGridCurrent(0);
+//					homeFragment.setGridCurrent(0);
 					homeFragment.initDatas(startDate,endDate,name,eclassId);
 					homeFragment.initXListViewDatas(null);
 				}
@@ -723,6 +770,31 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			//如果当前版本大于上次版本，该版本属于第一次启动
 			//将当前版本写入preference中，则下次启动的时候，据此判断，不再为首次启动
 			prefs.edit().putInt("VERSION_KEY",currentVersion).commit();
+		}
+	}
+
+
+	/**
+	 * listView 无数据是的点击事件
+	 * @param view
+	 */
+	public void onEmptyClick(View view){
+		switch (view.getId()){
+			case R.id.emptyall:
+				homeFragment.onEmptyClick(0);
+				break;
+			case R.id.emptyinter:
+				homeFragment.onEmptyClick(1);
+				break;
+			case R.id.emptymy:
+				homeFragment.onEmptyClick(2);
+				break;
+			case R.id.emptyres:
+				homeFragment.onEmptyClick(3);
+				break;
+			case R.id.emptyatt:
+				homeFragment.onEmptyClick(4);
+				break;
 		}
 	}
 }

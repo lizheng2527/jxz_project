@@ -301,37 +301,42 @@
                     android:text="互动交流"/>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/main_img_left_second_linear"
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="10dp"
                 android:layout_alignParentRight="true"
-                android:layout_width="40dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingRight="5dp"
-                android:gravity="center|right"
-                >
-                <ImageView
-                    android:id="@+id/main_img_left_second"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_search"
-                    />
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/main_img_left_second_linear"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingRight="5dp"
+                    android:gravity="center|right"
+                    >
+                    <ImageView
+                        android:id="@+id/main_img_left_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/nav_search"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/main_img_left_third_linear"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+                    <ImageView
+                        android:id="@+id/main_img_left_third"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/nav_edit"
+                        />
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:id="@+id/main_img_left_third_linear"
-                android:layout_alignParentRight="true"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center"
-                >
-                <ImageView
-                    android:id="@+id/main_img_left_third"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_edit"
-                    />
-            </LinearLayout>
+
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>

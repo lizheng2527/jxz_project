@@ -169,18 +169,7 @@ public class ZddcUtil {
 		String content = "";
 		Set<String> keySet = map.keySet();
 		int i = 0;
-//		Iterator key1 = keySet.iterator();
-//		while (key1.hasNext()){
-//			String key = (String) key1.next();
-//			Iterator it = keySet.iterator();
-//			while (it.hasNext()){
-//				String val = (String) it.next();
-//				content += (i == 0 ? "" : "&") + key + "=" + URLEncoder.encode(val, "utf-8");
-//				i++;
-//			}
-//		}
 		for (String key : keySet) {
-
 			for (String val : map.get(key).getValues()) {
 				content += (i == 0 ? "" : "&") + key + "=" + URLEncoder.encode(val, "utf-8");
 				i++;

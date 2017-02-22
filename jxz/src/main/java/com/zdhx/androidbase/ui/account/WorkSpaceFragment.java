@@ -143,6 +143,10 @@ public class WorkSpaceFragment extends Fragment {
         lv = (XListView) getView().findViewById(R.id.fragment_workspace_listview);
         //初次加载
         if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+            //教师端加载
+            ListViewDatas(0,null,"","9",null,null,null,null,"2","","0","1");
+        }else{
+            //TODO 学生端加载
             ListViewDatas(0,null,"","9",null,null,null,null,"2","","0","1");
         }
         initXListView(lv,workSpaceListViewAdapter);
@@ -411,31 +415,47 @@ public class WorkSpaceFragment extends Fragment {
         SearchWorkActivity.oldStatus = this.status;
         this.studentUploadType = studentUploadType;
         this.radioValue = radioValue;
-        if (selectIndexTag == 0){//教师备课资源
-            hashMap.put("tabType",new ParameterValue("teacher"));
-            hashMap.put("radioValue",new ParameterValue(radioValue));
+        //教师登录
+        if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+            if (selectIndexTag == 0){//教师备课资源
+                hashMap.put("tabType",new ParameterValue("teacher"));
+                hashMap.put("radioValue",new ParameterValue(radioValue));
+            }
+            if(selectIndexTag == 1){//学生生成资源
+                hashMap.put("tabType",new ParameterValue("student"));
+
+                if (studentName !=null){//学生生成需要（学生姓名）
+                    hashMap.put("studentName",new ParameterValue(studentName));
+                }
+
+                if (eclassIds !=null){
+                    hashMap.put("eclassIds",new ParameterValue(eclassIds));
+                }
+
+                if (status !=null){//审核状态
+                    hashMap.put("status",new ParameterValue(status));
+                }
+
+                if (studentUploadType !=null){//学生上传的类型
+                    hashMap.put("studentUploadType",new ParameterValue(studentUploadType));
+                }
+            }
         }
-
-        if(selectIndexTag == 1){//学生生成资源
-            hashMap.put("tabType",new ParameterValue("student"));
-
-            if (studentName !=null){//学生生成需要（学生姓名）
-                hashMap.put("studentName",new ParameterValue(studentName));
+        //学生登录
+        if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
+            if (selectIndexTag == 0){//教师引导
+                hashMap.put("tabType",new ParameterValue("teacherGuid"));
+                hashMap.put("radioValue",new ParameterValue(radioValue));
             }
-
-            if (eclassIds !=null){
-                hashMap.put("eclassIds",new ParameterValue(eclassIds));
+            if (selectIndexTag == 1){//同伴互助
+                hashMap.put("tabType",new ParameterValue("studentGuid"));
+                hashMap.put("radioValue",new ParameterValue(radioValue));
             }
-
-            if (status !=null){//审核状态
-                hashMap.put("status",new ParameterValue(status));
-            }
-
-            if (studentUploadType !=null){//学生上传的类型
-                hashMap.put("studentUploadType",new ParameterValue(studentUploadType));
+            if (selectIndexTag == 2){//学习成果
+                hashMap.put("tabType",new ParameterValue("studyResult"));
+                hashMap.put("radioValue",new ParameterValue(radioValue));
             }
         }
-
 
         if (highqualityValue == null){//每个选择都需要（提名/优质）
             hashMap.put("highqualityValue",new ParameterValue(""));
@@ -456,6 +476,7 @@ public class WorkSpaceFragment extends Fragment {
         }
         //点击的树的节点类型  学科/教材/单元/次级单元    subject/teachingMaterial/unit/chapterSubject-chapterUnit
         if (type == null){
+
         }else{
             hashMap.put("type",new ParameterValue(type));
             this.type = type;

@@ -1,40 +1,35 @@
 package com.zdhx.androidbase.ui.treadssearch;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.datetimepicker.date.DatePickerDialog;
 import com.android.datetimepicker.time.RadialPickerLayout;
 import com.android.datetimepicker.time.TimePickerDialog;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ParameterValue;
-import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.base.BaseActivity;
+import com.zdhx.androidbase.ui.treadstree.TreadsTreeActivity;
 import com.zdhx.androidbase.util.DateUtil;
-import com.zdhx.androidbase.util.ProgressThreadWrap;
-import com.zdhx.androidbase.util.ProgressUtil;
-import com.zdhx.androidbase.util.RunnableWrap;
-import com.zdhx.androidbase.util.ZddcUtil;
+import com.zdhx.androidbase.util.LogUtil;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.zdhx.androidbase.ui.MainActivity.map;
 
 public class SearchTreadsActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
 	//回退按钮
@@ -49,7 +44,7 @@ public class SearchTreadsActivity extends BaseActivity implements DatePickerDial
 
 	private Activity context;
 
-	private Spinner spinner;
+//	private Spinner spinner;
 
 	private Handler handler = new Handler();
 
@@ -60,6 +55,13 @@ public class SearchTreadsActivity extends BaseActivity implements DatePickerDial
 	private HashMap<String,ParameterValue> sendMap;
 
 	private String eclassId = null;
+
+	private TextView treeBtn;
+	private LinearLayout treeLinear;
+
+	private final int TREADSTREECODE = 1;
+
+	private StringBuffer clickIds;
 
 	@Override
 	protected int getLayoutId() {
@@ -80,53 +82,66 @@ public class SearchTreadsActivity extends BaseActivity implements DatePickerDial
 		dateTo.setText(DateUtil.getCurrDateString());
 		selectTree = (TextView) findViewById(R.id.search_treads_tree);
 		commitBtn = (Button) findViewById(R.id.search_treads_commitBtn);
-		spinner = (Spinner) findViewById(R.id.search_treads_spinner);
-		if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
-			spinner.setVisibility(View.GONE);
+//		spinner = (Spinner) findViewById(R.id.search_treads_spinner);
+		treeBtn = (TextView) findViewById(R.id.search_treads_class);
+		treeLinear = (LinearLayout) findViewById(R.id.search_treads_linear);
+		if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+			treeLinear.setVisibility(View.VISIBLE);
 		}else{
-			ProgressUtil.show(this,"正在加载班级数据");
+			treeLinear.setVisibility(View.GONE);
 		}
-		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+		treeBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				if (position == 0){
-
-				}else{
-					eclassId = spinnerDatas.get(position).getId();
-				}
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> parent) {
-
+			public void onClick(View v) {
+				showTree();
 			}
 		});
+//		if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
+//			spinner.setVisibility(View.GONE);
+//		}else{
+//			ProgressUtil.show(this,"正在加载班级数据");
+//		}
+//		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//			@Override
+//			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//				if (position == 0){
+//
+//				}else{
+//					eclassId = spinnerDatas.get(position).getId();
+//				}
+//			}
+//
+//			@Override
+//			public void onNothingSelected(AdapterView<?> parent) {
+//
+//			}
+//		});
 
-		new ProgressThreadWrap(this, new RunnableWrap() {
-			@Override
-			public void run() {
-				try {
-					String json = ZddcUtil.teacherEclassTree(ECApplication.getInstance().getLoginUrlMap());
-					if (json.contains("ok")){
-						List<SpinnerBean> bean = new Gson().fromJson(json, new TypeToken<List<SpinnerBean>>(){}.getType());
-						spinnerDatas = new ArrayList<SpinnerBean.DataListBean>();
-						SpinnerBean.DataListBean d = new SpinnerBean.DataListBean();
-						d.setName("请选择班级");
-						spinnerDatas.add(d);
-						spinnerDatas.addAll(bean.get(0).getDataList());
-					}
-					handler.postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							spinner.setAdapter(new SpinnerAdapter());
-							ProgressUtil.hide();
-						}
-					},5);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}).start();
+//		new ProgressThreadWrap(this, new RunnableWrap() {
+//			@Override
+//			public void run() {
+//				try {
+//					String json = ZddcUtil.teacherEclassTree(ECApplication.getInstance().getLoginUrlMap());
+//					if (json.contains("ok")){
+//						List<SpinnerBean> bean = new Gson().fromJson(json, new TypeToken<List<SpinnerBean>>(){}.getType());
+//						spinnerDatas = new ArrayList<SpinnerBean.DataListBean>();
+//						SpinnerBean.DataListBean d = new SpinnerBean.DataListBean();
+//						d.setName("请选择班级");
+//						spinnerDatas.add(d);
+//						spinnerDatas.addAll(bean.get(0).getDataList());
+//					}
+//					handler.postDelayed(new Runnable() {
+//						@Override
+//						public void run() {
+//							spinner.setAdapter(new SpinnerAdapter());
+//							ProgressUtil.hide();
+//						}
+//					},5);
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}).start();
 		backImg.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -134,6 +149,60 @@ public class SearchTreadsActivity extends BaseActivity implements DatePickerDial
 			}
 		});
 
+	}
+
+	private void showTree() {
+		startActivityForResult(new Intent(context,TreadsTreeActivity.class),TREADSTREECODE);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (requestCode == TREADSTREECODE){
+			if (TreadsTreeActivity.parentPositionMap.size() >0){
+				boolean isAll = false;
+				StringBuffer sb1 = new StringBuffer();
+				int i = 0;
+				for (String key : TreadsTreeActivity.parentPositionMap.keySet()) {
+					if (i != TreadsTreeActivity.parentPositionMap.size()-1 ){
+						sb1.append(TreadsTreeActivity.parentPositionMap.get(key)+",");
+					}else{
+						sb1.append(TreadsTreeActivity.parentPositionMap.get(key));
+					}
+					i++;
+					if (TreadsTreeActivity.parentPositionMap.get(key).equals("昌平区二毛学校")){
+						treeBtn.setText("昌平区二毛学校");
+						isAll = true;
+					}
+				}
+				if (!isAll){
+					treeBtn.setText(sb1.toString());
+				}
+				LogUtil.w(sb1.toString());
+			}
+			if (TreadsTreeActivity.positionMap.size() >0){
+				StringBuffer sb2 = new StringBuffer();
+				clickIds = new StringBuffer();
+				int j = 0;
+				for (String key : TreadsTreeActivity.positionMap.keySet()) {
+					if (j != TreadsTreeActivity.positionMap.size()-1 ){
+						sb2.append(TreadsTreeActivity.positionMap.get(key)+",");
+						clickIds.append(key+",");
+					}else{
+						sb2.append(TreadsTreeActivity.positionMap.get(key));
+						clickIds.append(key);
+					}
+					j++;
+				}
+				if (TreadsTreeActivity.parentPositionMap.size() == 0){
+					treeBtn.setText(sb2.toString());
+				}
+				LogUtil.w(sb2.toString());
+			}else{
+				treeBtn.setText("无");
+			}
+		}
 	}
 
 	//点击事件分项处理
@@ -166,16 +235,20 @@ public class SearchTreadsActivity extends BaseActivity implements DatePickerDial
 	 * @param
 	 */
 	private void searchTreads(){
-		String name = null;
+		String name;
 		name = getStringByUI(searchName);
-		String startDate = null;
-		startDate = getStringByUI(dateFrom);
-		String endDate = null;
-		endDate = getStringByUI(dateTo);
-		MainActivity.map.put("name",name);
-		MainActivity.map.put("startDate",startDataStr);
-		MainActivity.map.put("endDate",endDataStr);
-		MainActivity.map.put("eclassId",eclassId);
+		if (name.equals("")&&startDataStr == null&&endDataStr == null&&clickIds == null) {
+			doToast("请选择搜索条件");
+			return ;
+		}
+		map.put("name",name);
+		map.put("startDate",startDataStr);
+		map.put("endDate",endDataStr);
+		if (clickIds != null){
+			map.put("eclassId",clickIds.toString());
+		}
+		TreadsTreeActivity.parentPositionMap.clear();
+		TreadsTreeActivity.positionMap.clear();
 		this.finish();
 	}
 

@@ -15,12 +15,12 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.7"
             android:layout_height="match_parent"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/fragment_scro_viewpager_listview_item_ranking"
@@ -42,6 +42,7 @@
             android:padding="5dp"
             android:text="姓名"
             android:textSize="16sp"
+            android:lines="1"
             android:textColor="#222222"/>
         <TextView
             android:id="@+id/fragment_scro_viewpager_listview_item_scro"

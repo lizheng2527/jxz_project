@@ -10,7 +10,12 @@
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/activity_scrotree_commit">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"

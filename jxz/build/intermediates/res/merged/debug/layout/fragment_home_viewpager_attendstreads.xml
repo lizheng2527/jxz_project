@@ -5,14 +5,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    android:id="@+id/linear_att"
     tools:ignore="HardcodedText,DisableBaselineAlignment" >
-    <com.zdhx.androidbase.ui.xlistview.XListView
-        android:id="@+id/fragment_home_viewpager_attendsTreads_listview"
+    <RelativeLayout
+        android:id="@+id/linear_att"
         android:layout_width="match_parent"
-        android:divider="@color/list_devider_color"
-        android:dividerHeight="2dp"
         android:layout_height="match_parent">
-    </com.zdhx.androidbase.ui.xlistview.XListView>
+        <com.zdhx.androidbase.ui.xlistview.XListView
+            android:id="@+id/fragment_home_viewpager_attendsTreads_listview"
+            android:layout_width="match_parent"
+            android:divider="@color/list_devider_color"
+            android:dividerHeight="2dp"
+            android:layout_height="match_parent">
+        </com.zdhx.androidbase.ui.xlistview.XListView>
+        <TextView
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:onClick="onEmptyClick"
+            android:id="@+id/emptyatt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击试试"
+            android:gravity="center"
+            android:textColor="@color/title_color"
+            android:textSize="16sp"
+            />
+    </RelativeLayout>
+
 
 </LinearLayout>

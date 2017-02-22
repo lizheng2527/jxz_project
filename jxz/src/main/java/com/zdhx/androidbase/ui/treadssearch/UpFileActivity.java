@@ -35,6 +35,7 @@ import com.zdhx.androidbase.ui.plugin.FileExplorerActivity;
 import com.zdhx.androidbase.ui.plugin.FileUtils;
 import com.zdhx.androidbase.ui.treadstree.ScroTreeActivity;
 import com.zdhx.androidbase.ui.treelistview.bean.TreeBean;
+import com.zdhx.androidbase.util.IntentUtil;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.RoundCornerImageView;
@@ -357,7 +358,7 @@ public class UpFileActivity extends BaseActivity {
 			File file = new File(path);
 			if (paths !=null||paths.size()>0){
 				bean = new UpFileBean();
-				bean.setFileSize(FileUtils.formatFileLength(file.length()));
+				bean.setFileSize("("+FileUtils.formatFileLength(file.length())+")");
 				bean.setIndex(FILEBTNCODE);
 				bean.setTitle(file.getName());
 				bean.setUserName(ECApplication.getInstance().getCurrentUser().getName());
@@ -371,6 +372,7 @@ public class UpFileActivity extends BaseActivity {
 
 			ArrayList<UpFileBean> list = (ArrayList<UpFileBean>) MainActivity.map.get("celectList");
 			mVideoThumbLoader = (MyVideoThumbLoader) MainActivity.map.get("mVideoThumbLoader");
+			MainActivity.map.clear();
 			if (list == null){
 				return;
 			}
@@ -381,14 +383,12 @@ public class UpFileActivity extends BaseActivity {
 			listAdapter.notifyDataSetChanged();
 		}
 
-		if (requestCode == SCROTREECODE){
-			if (requestCode == SCROTREECODE){
-				treeBean = (TreeBean) MainActivity.map.get("ScroTreeBean");
-				if (treeBean != null){
-					MainActivity.map.remove("ScroTreeBean");
-					String lable = treeBean.getLabel();
-					upFileTree.setText(lable);
-				}
+		if (requestCode == SCROTREECODE&&resultCode == RESULT_OK){
+			treeBean = (TreeBean) MainActivity.map.get("ScroTreeBean");
+			if (treeBean != null){
+				MainActivity.map.remove("ScroTreeBean");
+				String lable = treeBean.getLabel();
+				upFileTree.setText(lable);
 			}
 		}
 
@@ -411,7 +411,7 @@ public class UpFileActivity extends BaseActivity {
 						bm.compress(Bitmap.CompressFormat.JPEG, 90, fos);
 						bean = new UpFileBean();
 						bean.setBitmap(bm);
-						bean.setFileSize(FileUtils.formatFileLength(fs.length()));
+						bean.setFileSize("("+FileUtils.formatFileLength(fs.length())+")");
 						bean.setIndex(IMAGEBTNCODE);
 						bean.setTitle(fs.getName());
 						bean.setUserName(ECApplication.getInstance().getCurrentUser().getName());
@@ -461,22 +461,24 @@ public class UpFileActivity extends BaseActivity {
 				vh.delete = (ImageView) convertView.findViewById(R.id.upfile_list_delete);
 				vh.fileSize = (TextView) convertView.findViewById(R.id.upfile_list_size);
 				vh.rename = (ImageView) convertView.findViewById(R.id.upfile_list_rename);
+				vh.preview = (ImageView) convertView.findViewById(R.id.upfile_list_preview);
 				convertView.setTag(vh);
 			}else{
 				vh = (ViewHolder) convertView.getTag();
 			}
 			switch(upFileBeens.get(position).getIndex()){
 				case IMAGEBTNCODE:
-//					vh.img.setImageBitmap(getImageThumbnail(upFileBeens.get(position).getAbsolutePath(), 40, 40));
 					vh.img.setImageBitmap(upFileBeens.get(position).getBitmap());
 					vh.img.setOnClickListener(new View.OnClickListener() {
 						@Override
 						public void onClick(View v) {
-							doToast("点击预览");
-							Intent intent = new Intent(context, ImagePagerActivity.class);
-							intent.putExtra("images", new String[]{upFileBeens.get(position).getAbsolutePath()});
-							intent.putExtra("image_index",0);
-							startActivity(intent);
+							//点击头像查看图片
+							if (upFileBeens.get(position).getIndex() == IMAGEBTNCODE){
+								Intent intent = new Intent(context, ImagePagerActivity.class);
+								intent.putExtra("images", new String[]{upFileBeens.get(position).getAbsolutePath()});
+								intent.putExtra("image_index",0);
+								startActivity(intent);
+							}
 						}
 					});
 					break;
@@ -492,8 +494,16 @@ public class UpFileActivity extends BaseActivity {
 							vh.img.setImageBitmap(b);
 						}
 					}
+					vh.img.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							//点击查看视频
+							startActivity(IntentUtil.getVideoFileIntent(upFileBeens.get(position).getAbsolutePath()));
+						}
+					});
 					break;
 			}
+			vh.preview.setVisibility(View.GONE);
 			vh.title.setText(upFileBeens.get(position).getTitle());
 			vh.delete.setImageResource(R.drawable.icon_delete_address);
 			vh.userName.setText(upFileBeens.get(position).getUserName());
@@ -506,16 +516,16 @@ public class UpFileActivity extends BaseActivity {
 			vh.delete.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					ECAlertDialog.buildAlert(context, "是否删除本条信息？", "确定", "取消", new DialogInterface.OnClickListener() {
+					ECAlertDialog.buildAlert(context, "是否删除本条信息？", "取消", "确定", new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							upFileBeens.remove(position);
-							listAdapter.notifyDataSetChanged();
+
 						}
 					}, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-
+							upFileBeens.remove(position);
+							listAdapter.notifyDataSetChanged();
 						}
 					}).show();
 
@@ -536,6 +546,7 @@ public class UpFileActivity extends BaseActivity {
 			private ImageView delete;
 			private TextView fileSize;
 			private ImageView rename;
+			private ImageView preview;
 		}
 	}
 

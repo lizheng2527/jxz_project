@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.android.datetimepicker.date.DatePickerDialog;
 import com.android.datetimepicker.time.RadialPickerLayout;
 import com.android.datetimepicker.time.TimePickerDialog;
+import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.account.ScroGridAdapter;
@@ -67,13 +68,19 @@ public class SelectScroActivity extends BaseActivity implements DatePickerDialog
 		}
 		studentLine = (TextView) findViewById(R.id.studentLine);
 		studentSelectTree = (LinearLayout) findViewById(R.id.studentselecttree);
-		if (ScroGridAdapter.index == 0){
+		if(ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+			if (ScroGridAdapter.index == 0){
+				studentSelectTree.setVisibility(View.GONE);
+				studentLine.setVisibility(View.GONE);
+			}else{
+				studentSelectTree.setVisibility(View.VISIBLE);
+				studentLine.setVisibility(View.VISIBLE);
+			}
+		}else{
 			studentSelectTree.setVisibility(View.GONE);
 			studentLine.setVisibility(View.GONE);
-		}else{
-			studentSelectTree.setVisibility(View.VISIBLE);
-			studentLine.setVisibility(View.VISIBLE);
 		}
+
 		commit = (Button) findViewById(R.id.activity_selectscro_but);
 		backImg.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -111,9 +118,9 @@ public class SelectScroActivity extends BaseActivity implements DatePickerDialog
 	}
 
 	private void searchScro(){
-		startDate = dateFrom.getText().toString();
+//		startDate = dateFrom.getText().toString();
 		endDate = dateTo.getText().toString();
-		if (startDate.equals("")&&endDate.equals("")&&bean == null){
+		if (startDate == null&&bean == null){
 			doToast("请选择搜索条件");
 			return;
 		}

@@ -37,7 +37,7 @@
                 android:padding="2dp"
                 android:textSize="15sp"
                 android:text="名称"
-                android:textColor="#000000" />
+                android:textColor="@color/name_blue" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -55,8 +55,8 @@
 
             <ImageView
                 android:id="@+id/fragment_home_viewpager_listview_item_delete"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/icon_delete_address" />
@@ -70,7 +70,7 @@
             android:layout_marginLeft="55dp"
             android:padding="2dp"
             android:text="文字内容"
-            android:textColor="#000000"
+            android:textColor="@color/dark_gray"
             android:textSize="15sp" />
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -130,7 +130,7 @@
                     android:singleLine="true"
                     android:layout_height="wrap_content"
                     android:text="文件标题"
-                    android:textColor="#000000"
+                    android:textColor="@color/dark_gray"
                     android:textSize="14sp" />
 
                 <TextView

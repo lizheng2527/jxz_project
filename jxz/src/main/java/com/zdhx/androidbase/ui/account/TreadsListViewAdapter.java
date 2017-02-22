@@ -294,7 +294,10 @@ public class TreadsListViewAdapter extends BaseAdapter {
                     Uri uri = Uri.parse(threadFileHeadUrl);
                     vh.threadFileHead.setImageURI(uri);
                     String lastName = list.get(i).getAttachment().getIconList().get(0).getFileName();
-                    if (lastName.contains(Constant.ATTACHMENT_3GP)||lastName.contains(Constant.ATTACHMENT_AVI)||lastName.contains(Constant.ATTACHMENT_MP4)||lastName.contains(Constant.ATTACHMENT_FLV)){
+                    if (lastName.contains(Constant.ATTACHMENT_3GP)
+                            ||lastName.contains(Constant.ATTACHMENT_AVI)
+                            ||lastName.contains(Constant.ATTACHMENT_MP4)
+                            ||lastName.contains(Constant.ATTACHMENT_FLV)){
                         vh.fileName.setTextColor(Color.parseColor("#4cbbda"));
                     }else{
                         vh.fileName.setTextColor(Color.parseColor("#000000"));
@@ -447,7 +450,12 @@ public class TreadsListViewAdapter extends BaseAdapter {
         vh.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ECAlertDialog.buildAlert(context, "是否删除本条信息？", "确定", "取消", new DialogInterface.OnClickListener() {
+                ECAlertDialog.buildAlert(context, "是否删除本条信息？", "取消", "确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ProgressUtil.show(context,"正在删除!");
@@ -474,11 +482,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                 },6);
                             }
                         }).start();
-                    }
-                }, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
                     }
                 }).show();
 
@@ -624,7 +627,12 @@ public class TreadsListViewAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (beans.get(position).getCanDelete().equals("yes")){
-                    ECAlertDialog.buildAlert(context, "是否删除本条回复内容？", "确定", "取消", new DialogInterface.OnClickListener() {
+                    ECAlertDialog.buildAlert(context, "是否删除本条回复内容？", "取消", "确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ProgressUtil.show(context,"正在删除!");
@@ -638,27 +646,22 @@ public class TreadsListViewAdapter extends BaseAdapter {
 
                                     try {
                                         ZddcUtil.delete(hashMap);
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                ProgressUtil.hide();
+                                                resetAllReplyCount(beans.get(position).getChild());
+                                                list.get(index).setAllReplyCount(list.get(index).getAllReplyCount()-deleteCount);
+                                                deleteCount = 1;
+                                                beans.remove(position);
+                                                notifyDataSetChanged();
+                                            }
+                                        },6);
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            ProgressUtil.hide();
-                                            resetAllReplyCount(beans.get(position).getChild());
-                                            beans.get(position).setAllReplyCount(beans.get(position).getAllReplyCount()-deleteCount);
-                                            deleteCount = 1;
-                                            beans.remove(position);
-                                            notifyDataSetChanged();
-                                        }
-                                    },6);
                                 }
                             }).start();
-                        }
-                    }, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
                         }
                     }).show();
 

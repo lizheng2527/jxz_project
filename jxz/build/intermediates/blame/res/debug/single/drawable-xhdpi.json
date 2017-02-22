@@ -208,10 +208,6 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xhdpi\\password.png"
     },
     {
-        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\sys_password.png",
-        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xhdpi\\sys_password.png"
-    },
-    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\good_nor.png",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xhdpi\\good_nor.png"
     },
@@ -334,6 +330,10 @@
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\tab_my_nor.png",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xhdpi\\tab_my_nor.png"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\jxz_back.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xhdpi\\jxz_back.png"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\jxz.png",
