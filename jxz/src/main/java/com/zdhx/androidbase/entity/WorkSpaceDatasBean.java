@@ -92,6 +92,24 @@ public class WorkSpaceDatasBean implements Serializable {
         private String highQuantityName;
         private String userName;
         private String checkStatusName;
+        private int downCount;
+        private boolean isLoading;
+
+        public boolean isLoading() {
+            return isLoading;
+        }
+
+        public void setLoading(boolean loading) {
+            isLoading = loading;
+        }
+
+        public int getDownCount() {
+            return downCount;
+        }
+
+        public void setDownCount(int downCount) {
+            this.downCount = downCount;
+        }
 
         public boolean isSelect() {
             return isSelect;

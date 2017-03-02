@@ -19,26 +19,27 @@ public final class R {
         public static int circle_background=0x7f070005;
         public static int dark_gray=0x7f070006;
         public static int darker_blue=0x7f070007;
-        public static int date_picker_selector=0x7f070018;
+        public static int date_picker_selector=0x7f070019;
         public static int date_picker_text_normal=0x7f070008;
         public static int date_picker_view_animator=0x7f070009;
-        public static int date_picker_year_selector=0x7f070019;
+        public static int date_picker_year_selector=0x7f07001a;
         public static int done_disabled_dark=0x7f07000a;
-        public static int done_text_color=0x7f07001a;
-        public static int done_text_color_dark=0x7f07001b;
+        public static int done_text_color=0x7f07001b;
+        public static int done_text_color_dark=0x7f07001c;
         public static int done_text_color_dark_disabled=0x7f07000b;
         public static int done_text_color_dark_normal=0x7f07000c;
         public static int done_text_color_disabled=0x7f07000d;
         public static int done_text_color_normal=0x7f07000e;
         public static int light_gray=0x7f07000f;
-        public static int line_background=0x7f070010;
-        public static int line_dark=0x7f070011;
-        public static int neutral_pressed=0x7f070012;
-        public static int numbers_text_color=0x7f070013;
-        public static int red=0x7f070014;
-        public static int red_focused=0x7f070015;
-        public static int transparent_black=0x7f070016;
-        public static int white=0x7f070017;
+        public static int lightmax_gray=0x7f070010;
+        public static int line_background=0x7f070011;
+        public static int line_dark=0x7f070012;
+        public static int neutral_pressed=0x7f070013;
+        public static int numbers_text_color=0x7f070014;
+        public static int red=0x7f070015;
+        public static int red_focused=0x7f070016;
+        public static int transparent_black=0x7f070017;
+        public static int white=0x7f070018;
     }
     public static final class dimen {
         public static int ampm_label_size=0x7f050005;
@@ -146,15 +147,8 @@ public final class R {
     public static final class style {
         /**  API 11 theme customizations can go here. 
  API 14 theme customizations can go here. 
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
          */
         public static int AppBaseTheme=0x7f060000;
-        /**  All customizations that are NOT specific to a particular API-level can go here. 
-         */
         public static int AppTheme=0x7f060004;
         public static int ampm_label=0x7f060005;
         public static int day_of_week_label_condensed=0x7f060001;

@@ -186,6 +186,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <TextView
+                android:background="@drawable/bg_button_top_title_selector"
                 android:clickable="true"
                 android:onClick="onSelectTureClick"
                 android:id="@+id/selectTure"
@@ -201,6 +202,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/white"/>
             <TextView
+                android:background="@drawable/bg_button_top_title_selector"
                 android:clickable="true"
                 android:onClick="onAllSelectClick"
                 android:id="@+id/allselect"
@@ -216,6 +218,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/white"/>
             <TextView
+                android:background="@drawable/bg_button_top_title_selector"
                 android:onClick="onSelectCancelClick"
                 android:clickable="true"
                 android:id="@+id/selectCancel"
@@ -258,6 +261,7 @@
                 >
 
                 <LinearLayout
+                    android:background="@drawable/bg_button_top_title_selector"
                     android:clickable="true"
                     android:id="@+id/home_menu"
                     android:layout_width="wrap_content"
@@ -273,6 +277,7 @@
                         android:src="@drawable/nav_menu"
                         />
                     <TextView
+                        android:layout_marginRight="15dp"
                         android:gravity="center_vertical"
                         android:id="@+id/menuSelectedTV"
                         android:layout_marginLeft="5dp"
@@ -301,18 +306,18 @@
                     android:text="互动交流"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_marginRight="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
                 <LinearLayout
+                    android:background="@drawable/bg_button_top_title_selector"
                     android:id="@+id/main_img_left_second_linear"
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:paddingRight="5dp"
-                    android:gravity="center|right"
+                    android:gravity="center"
                     >
                     <ImageView
                         android:id="@+id/main_img_left_second"
@@ -322,6 +327,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
+                    android:background="@drawable/bg_button_top_title_selector"
                     android:id="@+id/main_img_left_third_linear"
                     android:layout_width="40dp"
                     android:layout_height="match_parent"

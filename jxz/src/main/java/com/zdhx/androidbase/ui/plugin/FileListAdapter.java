@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.util.CnToCharUtil;
 import com.zdhx.androidbase.util.LogUtil;
 
@@ -62,7 +63,17 @@ public class FileListAdapter extends BaseAdapter {
 	 * @param sub
 	 */
 	public void setFiles(File parent ,File sub) {
-		mParentFile = parent;
+		if (MainActivity.map.get("parentFile")!= null){
+			mParentFile = (File) MainActivity.map.get("parentFile");
+			MainActivity.map.remove("parentFile");
+		}else{
+			mParentFile = parent;
+		}
+
+		if (MainActivity.map.get("subFile") != null){
+			sub = (File) MainActivity.map.get("subFile");
+			MainActivity.map.remove("subFile");
+		}
 		if(sub.getAbsolutePath().equalsIgnoreCase(mRootDirectory)){
 			// 如果是根目录，则不显示返回上一级按钮
 			mParentFile = null;

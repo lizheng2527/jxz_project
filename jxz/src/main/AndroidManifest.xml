@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zdhx.androidbase"
-    android:versionCode="103"
-    android:versionName="1.0.3" >
+    android:versionCode="105"
+    android:versionName="1.0.5" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -62,37 +62,67 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden" >
         </activity>
         <!--查询积分时使用的    选择时间及班级 -->
-        <activity android:name=".ui.scrosearch.SelectScroActivity" />
+        <activity android:name=".ui.scrosearch.SelectScroActivity"
+            android:screenOrientation="portrait"/>
         <!--发布动态 -->
-        <activity android:name=".ui.introducetreads.IntroduceTreadsActivity" />
+        <activity android:name=".ui.introducetreads.IntroduceTreadsActivity"
+            android:icon="@drawable/logo"
+            android:screenOrientation="portrait"
+            android:label="分享到互动交流" >
+            <intent-filter>
+                <!-- 调用共享时，过滤共享文件，此处默认全部 -->
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <!-- 允许类型文件 -->
+                <data android:mimeType="image/*" />
+                <data android:mimeType="video/*" />
+                <data android:mimeType="application/x-shockwave-flash" />
+            </intent-filter>
+        </activity>
         <!--查询动态 -->
-        <activity android:name=".ui.treadssearch.SearchTreadsActivity" />
+        <activity android:name=".ui.treadssearch.SearchTreadsActivity"
+            android:screenOrientation="portrait"/>
         <!--查询工作平台资源 -->
-        <activity android:name=".ui.treadssearch.SearchWorkActivity" />
+        <activity android:name=".ui.treadssearch.SearchWorkActivity"
+            android:screenOrientation="portrait"/>
         <!--遍历内存卡 -->
-        <activity android:name=".ui.plugin.FileExplorerActivity" />
+        <activity android:name=".ui.plugin.FileExplorerActivity"
+            android:screenOrientation="portrait"/>
         <!--动态树 -->
-        <activity android:name=".ui.treadstree.TreeActivity" />
+        <activity android:name=".ui.treadstree.TreeActivity"
+            android:screenOrientation="portrait"/>
         <!--资源树 -->
-        <activity android:name=".ui.treadstree.WorkTreeActivity" />
+        <activity android:name=".ui.treadstree.WorkTreeActivity"
+            android:screenOrientation="portrait"/>
         <!--上传文件 -->
-        <activity android:name=".ui.treadssearch.UpFileActivity" />
+        <activity android:name=".ui.treadssearch.UpFileActivity"
+            android:screenOrientation="portrait"/>
         <!--展示视频文件 -->
-        <activity android:name=".ui.treadssearch.VideoShowActivity" />
+        <activity android:name=".ui.treadssearch.VideoShowActivity"
+            android:screenOrientation="portrait"/>
         <!--展示图片文件 -->
-        <activity android:name=".ui.account.ImagePagerActivity" />
+        <activity android:name=".ui.account.ImagePagerActivity"
+            android:screenOrientation="portrait"/>
         <!--操作记录 -->
-        <activity android:name=".ui.account.OperateRecordActicity" />
+        <activity android:name=".ui.account.OperateRecordActicity"
+            android:screenOrientation="portrait"/>
         <!--积分搜索树 -->
-        <activity android:name=".ui.treadstree.ScroTreeActivity" />
+        <activity android:name=".ui.treadstree.ScroTreeActivity"
+            android:screenOrientation="portrait"/>
         <!--推优 -->
-        <activity android:name=".ui.quantity.CheckActivity" />
+        <activity android:name=".ui.quantity.CheckActivity"
+            android:screenOrientation="portrait"/>
         <!--资源审核 -->
-        <activity android:name=".ui.quantity.PrePassActivity" />
+        <activity android:name=".ui.quantity.PrePassActivity"
+            android:screenOrientation="portrait"/>
         <!--教师登录动态查询班级树 -->
-        <activity android:name=".ui.treadstree.TreadsTreeActivity" />
+        <activity android:name=".ui.treadstree.TreadsTreeActivity"
+            android:screenOrientation="portrait"/>
         <!--教师登录动态查询班级树 -->
-        <activity android:name=".ui.treadssearch.VideoShowSimpleActivity" />
+        <activity android:name=".ui.treadssearch.VideoShowSimpleActivity"
+            android:screenOrientation="portrait"/>
         <!-- 分享相关 -->
         <activity
             android:name="com.mob.tools.MobUIShell"
@@ -116,6 +146,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
 
         <!-- 微信分享回调 -->
         <activity

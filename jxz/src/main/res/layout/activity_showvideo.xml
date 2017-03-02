@@ -65,6 +65,7 @@
                     android:background="@drawable/topbar_back_bt"
                     android:layout_height="50dp" />
                 <TextView
+                    android:background="@drawable/bg_button_top_title_selector"
                     android:id="@+id/video_commit"
                     android:layout_width="50dp"
                     android:padding="5dp"

@@ -346,13 +346,13 @@ public class UpFileActivity extends BaseActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
-		if (requestCode == IMAGEBTNCODE&&data !=null&&resultCode == RESULT_OK){
+		if (requestCode == IMAGEBTNCODE&&data !=null){
 			paths = PhotoSelectorActivity.selected;
 			if (paths != null&&paths.size()>0)
 				Compress(paths);
 
 		}
-		if (requestCode == FILEBTNCODE&&data !=null&&resultCode == RESULT_OK){
+		if (requestCode == FILEBTNCODE&&data !=null){
 
 			String path = data.getStringExtra("choosed_file_path");
 			File file = new File(path);
@@ -383,7 +383,7 @@ public class UpFileActivity extends BaseActivity {
 			listAdapter.notifyDataSetChanged();
 		}
 
-		if (requestCode == SCROTREECODE&&resultCode == RESULT_OK){
+		if (requestCode == SCROTREECODE){
 			treeBean = (TreeBean) MainActivity.map.get("ScroTreeBean");
 			if (treeBean != null){
 				MainActivity.map.remove("ScroTreeBean");

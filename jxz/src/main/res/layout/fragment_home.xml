@@ -9,17 +9,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <GridView
-                android:id="@+id/fragment_home_grid"
+            android:layout_height="@dimen/c_header_height"
+            >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="全部动态"
+                android:textColor="@color/dark_gray"
+                android:textSize="25sp"
+                android:background="#0072C6"
+                />
+
+            <com.zdhx.androidbase.view.pagerslidingtab.PagerSlidingTabStrip
+                android:id="@+id/tabs"
                 android:layout_width="match_parent"
-                android:numColumns="5"
-                android:layout_height="match_parent">
-            </GridView>
-        </LinearLayout>
+                android:layout_height="48dip"
+                android:layout_gravity="bottom"
+                android:background="@color/white"
+                android:fillViewport="false" />
+        </FrameLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -58,7 +72,6 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/textCountTV"
                 android:textColor="@color/dark_gray"
-                android:maxLength="40"
                 android:minHeight="40dp"
                 android:paddingBottom="3dp"
                 android:paddingLeft="1dp"

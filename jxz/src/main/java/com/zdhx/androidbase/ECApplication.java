@@ -16,6 +16,7 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -28,6 +29,7 @@ import com.zdhx.androidbase.entity.User;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.PreferenceUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,6 +50,13 @@ public class ECApplication extends Application {
 
     public HashMap<String, ParameterValue> loginUrlMap = new HashMap<>();
 
+    private static ArrayList<File> jxzFiles = new ArrayList<>();
+    private static ArrayList<String> jxzFileNames = new ArrayList<>();
+
+    private static String userAuth = "no";
+
+
+
     /**
      * 单例，返回一个实例
      * @return
@@ -57,6 +66,20 @@ public class ECApplication extends Application {
             LogUtil.w("[ECApplication] instance is null.");
         }
         return instance;
+    }
+
+
+    /**
+     * 返回是否有发布重要活动的权限
+     * @return
+     */
+    public String getUserAuth() {
+
+        return userAuth;
+    }
+
+    public void setUserAuth(String userAutl){
+        ECApplication.userAuth = userAutl;
     }
     private ImageLoader loader;
     @Override
@@ -80,7 +103,62 @@ public class ECApplication extends Application {
         loader = ImageLoader.getInstance();
         loader.init(config);
         Fresco.initialize(this);
+        getFileFromJxz();
+        initEmjoy();
     }
+
+    private void initEmjoy() {
+    }
+
+
+    /**
+     * 初始化时遍历jxz文件夹，将所有文件放入集合中用来以后比较
+     */
+    private void getFileFromJxz() {
+        File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File dir = new File(idr+"/jxz");
+        if (!dir.exists()){
+            dir.mkdir();
+        }
+        File[] files = dir.listFiles();
+        if (files != null&&files.length>0){
+            for (int i = 0; i < files.length; i++) {
+                jxzFiles.add(files[i]);
+                jxzFileNames.add(files[i].getName());
+                LogUtil.w(jxzFileNames.toString());
+            }
+        }
+    }
+
+    public String getDownloadJxzDir(){
+        File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File dir = new File(idr+"/jxz");
+        if (!dir.exists()){
+            dir.mkdir();
+        }
+        LogUtil.w(dir.getAbsolutePath());
+        return dir.getAbsolutePath();
+    }
+
+    /**
+     * 获取jxz文件夹内的文件集合
+     * @return
+     */
+    public List<File> getJxzFile (){
+
+        return jxzFiles;
+    }
+
+    public void addJxzFiles(String fileName,File file){
+        jxzFileNames.add(fileName);
+        jxzFiles.add(file);
+    }
+
+    public boolean isExistFile(String fileName){
+
+        return jxzFileNames.contains(fileName);
+    }
+
 
     public String getAddress(){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(instance);
@@ -144,12 +222,37 @@ public class ECApplication extends Application {
         PreferenceUtil.save(user, "user");
     }
     /**
+     * 存储当前用户
+     * @param user
+     */
+    public void saveUsers(User user) {
+        PreferenceUtil.save(user, user.getLoginName());
+    }
+
+    /**
      * 获取当前用户实体
      * @return
      */
     public User getCurrentUser(){
 
         return PreferenceUtil.find("user", User.class);
+    }
+    /**
+     * 获取当前用户实体
+     * @return
+     */
+    public User getUserValue(String key){
+
+        return PreferenceUtil.find(key, User.class);
+    }
+
+    /**
+     * 获取当前用户实体
+     * @return
+     */
+    public List<User> getAllUser(){
+
+        return PreferenceUtil.findAll(User.class);
     }
 
     public HashMap<String,ParameterValue> getLoginUrlMap(){
@@ -225,6 +328,5 @@ public class ECApplication extends Application {
         }
         return url;
     }
-
 
 }

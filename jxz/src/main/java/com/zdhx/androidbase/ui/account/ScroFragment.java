@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -30,6 +31,8 @@ import com.zdhx.androidbase.util.ZddcUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -72,19 +75,129 @@ public class ScroFragment extends Fragment {
     private boolean currentTag = true;
 
     private LinearLayout gridLinear;
+
+    private TextView downTV;
+    private TextView upTV;
+    private TextView scroTV;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_scro, container, false);
     }
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         context = getActivity();
+        downTV = (TextView) getView().findViewById(R.id.ondownsort);
+        upTV = (TextView) getView().findViewById(R.id.onupsort);
+        scroTV = (TextView) getView().findViewById(R.id.onscrosort);
+        //下载量降序排列
+        downTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+                    switch (ScroGridAdapter.index){
+                        case 0:
+                            if (teacherListDatas != null){
+                                Collections.sort(teacherListDatas, new DownComparator());
+                                scroListViewAdapter.notifyDataSetChanged();
+                            }
+                            break;
+                        case 1:
+                            if (studentListDatas != null){
+                                Collections.sort(studentListDatas, new DownComparator());
+                                scroListViewAdapter.notifyDataSetChanged();
+                            }
+                            break;
+                    }
+                }else{
+                    if (studentListDatas != null){
+                        Collections.sort(studentListDatas, new DownComparator());
+                        scroListViewAdapter.notifyDataSetChanged();
+                    }
+                }
+
+            }
+        });
+        upTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+                    switch (ScroGridAdapter.index){
+                        case 0:
+                            if (teacherListDatas != null){
+                                Collections.sort(teacherListDatas, new UpComparator());
+                                scroListViewAdapter.notifyDataSetChanged();
+                            }
+                            break;
+                        case 1:
+                            if (studentListDatas != null){
+                                Collections.sort(studentListDatas, new UpComparator());
+                                scroListViewAdapter.notifyDataSetChanged();
+                            }
+                            break;
+                    }
+                }else{
+                    if (studentListDatas != null){
+                        Collections.sort(studentListDatas, new UpComparator());
+                        scroListViewAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        });
+        scroTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+                    switch (ScroGridAdapter.index){
+                        case 0:
+                            if (teacherListDatas != null){
+                                Collections.sort(teacherListDatas, new ScroComparator());
+                                scroListViewAdapter.notifyDataSetChanged();
+                            }
+                            break;
+                        case 1:
+                            if (studentListDatas != null){
+                                Collections.sort(studentListDatas, new ScroComparator());
+                                scroListViewAdapter.notifyDataSetChanged();
+                            }
+                            break;
+                    }
+                }else{
+                    if (studentListDatas != null){
+                        Collections.sort(studentListDatas, new ScroComparator());
+                        scroListViewAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        });
         initGridView ();
         initScroViewPager();
+    }
 
+    // 自定义比较器：下载量降序排序
+    private class DownComparator implements Comparator {
+        public int compare(Object object1, Object object2) {// 实现接口中的方法
+            ScroListBean p1 = (ScroListBean) object1; // 强制转换
+            ScroListBean p2 = (ScroListBean) object2;
+            return Double.valueOf(p2.getDown()).compareTo(Double.valueOf(p1.getDown()));
+        }
+    }
+    // 自定义比较器：上传量降序排序
+    private class UpComparator implements Comparator {
+        public int compare(Object object1, Object object2) {// 实现接口中的方法
+            ScroListBean p1 = (ScroListBean) object1; // 强制转换
+            ScroListBean p2 = (ScroListBean) object2;
+            return Double.valueOf(p2.getUpload()).compareTo(Double.valueOf(p1.getUpload()));
+        }
+    }
+    // 自定义比较器：上传量降序排序
+    private class ScroComparator implements Comparator {
+        public int compare(Object object1, Object object2) {// 实现接口中的方法
+            ScroListBean p1 = (ScroListBean) object1; // 强制转换
+            ScroListBean p2 = (ScroListBean) object2;
+            return Double.valueOf(p2.getScore()).compareTo(Double.valueOf(p1.getScore()));
+        }
     }
 
     private String startDate;
@@ -108,7 +221,7 @@ public class ScroFragment extends Fragment {
         }else{
             viewPagerListDatas.add(studentScro);
         }
-        scroViewPagerAdapter = new HomeViewPagerAdapter(viewPagerListDatas);
+        scroViewPagerAdapter = new HomeViewPagerAdapter(viewPagerListDatas,null);
         vp.setAdapter(scroViewPagerAdapter);
         vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -121,20 +234,65 @@ public class ScroFragment extends Fragment {
                 ScroGridAdapter.index = position;
                 grid.setAdapter(gridAdapter);
 //                if (currentTag){
-                    if (MainActivity.ScroSearchTag){
-                        if (MainActivity.map.size()>0){
-                            startDate = (String) MainActivity.map.get("startDate");
-                            endDate = (String) MainActivity.map.get("endDate");
-                            bean = (TreeBean)MainActivity.map.get("ScroTreeBean");
-                            if (bean != null){
-                                clickId = bean.getId();
-                            }
+                if (MainActivity.ScroSearchTag){
+                    if (MainActivity.map.size()>0){
+                        startDate = (String) MainActivity.map.get("startDate");
+                        endDate = (String) MainActivity.map.get("endDate");
+                        bean = (TreeBean)MainActivity.map.get("ScroTreeBean");
+                        if (bean != null){
+                            clickId = bean.getId();
                         }
-                        initMap(position,startDate,endDate,clickId);
-                    }else{
-                        initMap(position,"2012-01-01", DateUtil.getCurrDateString(),null);
                     }
+                    ProgressUtil.show(context,"正在加载..");
+                    initMap(position,startDate,endDate,clickId);
                     initScroDatas(position);
+                }else{
+                    initMap(position,"2012-01-01", DateUtil.getCurrDateString(),null);
+//                    initScroDatas(position);
+                    switch (position){
+                        case 0:
+                            if (teacherListDatas == null||teacherListDatas.size()<1){
+                                ProgressUtil.show(context,"正在加载..");
+                                initScroDatas(position);
+                            }else{
+                                ProgressUtil.hide();
+                                scroListViewAdapter = new ScroListViewAdapter(teacherListDatas,context);
+                                teacherLv.setAdapter(scroListViewAdapter);
+                            }
+                            break;
+                        case 1:
+                            if (studentListDatas == null||studentListDatas.size()<1){
+                                ProgressUtil.show(context,"正在加载..");
+                                initScroDatas(position);
+                            }else{
+                                ProgressUtil.hide();
+                                scroListViewAdapter = new ScroListViewAdapter(studentListDatas,context);
+                                studentLv.setAdapter(scroListViewAdapter);
+                            }
+                            break;
+                    }
+                }
+//                switch (position){
+//                    case 0:
+//                        if (teacherListDatas == null||teacherListDatas.size()<1){
+//                            ProgressUtil.show(context,"正在加载..");
+//                            initScroDatas(position);
+//                        }else{
+//                            scroListViewAdapter = new ScroListViewAdapter(teacherListDatas,context);
+//                            teacherLv.setAdapter(scroListViewAdapter);
+//                        }
+//                        break;
+//                    case 1:
+//                        if (studentListDatas == null||studentListDatas.size()<1){
+//                            ProgressUtil.show(context,"正在加载..");
+//                            initScroDatas(position);
+//                        }else{
+//                            scroListViewAdapter = new ScroListViewAdapter(studentListDatas,context);
+//                            scroListViewAdapter.notifyDataSetChanged();
+//                            studentLv.setAdapter(scroListViewAdapter);
+//                        }
+//                        break;
+//                }
                 MainActivity.map.clear();
 //                }
             }
@@ -204,7 +362,6 @@ public class ScroFragment extends Fragment {
      * @param position
      */
     private void initScroDatas(int position){
-//        ProgressUtil.show(context,"正在加载..");
         switch (position){
             case 0:
                 new ProgressThreadWrap(context, new RunnableWrap() {
@@ -212,14 +369,15 @@ public class ScroFragment extends Fragment {
                     public void run() {
                         try {
                             map.putAll(ECApplication.getInstance().getLoginUrlMap());
-                            String json = ZddcUtil.getRankList(map);
-                            final List<ScroListBean> beans = new Gson().fromJson(json, new TypeToken<List<ScroListBean>>(){}.getType());
-                            teacherListDatas = beans;
+                            final String json = ZddcUtil.getRankList(map);
+
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+                                    final List<ScroListBean> beans = new Gson().fromJson(json, new TypeToken<List<ScroListBean>>(){}.getType());
+                                    teacherListDatas = beans;
                                     if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
-                                        scroListViewAdapter = new ScroListViewAdapter(beans,context);
+                                        scroListViewAdapter = new ScroListViewAdapter(teacherListDatas,context);
                                         teacherLv.setAdapter(scroListViewAdapter);
                                         ProgressUtil.hide();
                                     }
@@ -237,11 +395,11 @@ public class ScroFragment extends Fragment {
                     public void run() {
                         try {
                             map.putAll(ECApplication.getInstance().getLoginUrlMap());
-                            String json = ZddcUtil.getRankList(map);
-                            final List<ScroListBean> beans = new Gson().fromJson(json, new TypeToken<List<ScroListBean>>(){}.getType());
+                            final String json = ZddcUtil.getRankList(map);
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+                                    final List<ScroListBean> beans = new Gson().fromJson(json, new TypeToken<List<ScroListBean>>(){}.getType());
                                     studentListDatas = beans;
                                     scroListViewAdapter = new ScroListViewAdapter(studentListDatas,context);
                                     ProgressUtil.hide();
@@ -278,18 +436,22 @@ public class ScroFragment extends Fragment {
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ScroGridAdapter.index = i;
                 grid.setAdapter(gridAdapter);
                 ProgressUtil.show(context,"正在加载..");
                 MainActivity.ScroSearchTag = false;
                 initMap(i,"2012-01-01",DateUtil.getCurrDateString(),null);
                 if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
-                    initScroDatas(i);
+                    if (ScroGridAdapter.index == i){
+                        initScroDatas(i);
+                    }else{
+                        vp.setCurrentItem(i);
+                    }
                 }else{
                     initScroDatas(1);
                 }
-                vp.setCurrentItem(i);
                 currentTag = false;
+                ScroGridAdapter.index = i;
+
             }
         });
     }

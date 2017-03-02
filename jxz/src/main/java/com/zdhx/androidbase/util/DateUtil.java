@@ -293,6 +293,14 @@ public class DateUtil {
 	public static String getCurrDateSecondString() {
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 	}
+	/**
+	 * 得到当前精确到秒的日期字符串，格式为 yyyy-MM-dd HH:mm:ss
+	 *
+	 * @return 当前日期的字符串
+	 */
+	public static String getCurrTimeSecondString() {
+		return new SimpleDateFormat("HH:mm:ss").format(new Date());
+	}
 
 	/**
 	 * 按日期得到精确到秒的日期字符串，格式为 yyyy-MM-dd HH:mm:ss
@@ -462,7 +470,7 @@ public class DateUtil {
 	/**
 	 * 根据指定的年、月、日返回当前是星期几。
 	 * 
-	 * @param date
+	 * @param dateStr
 	 *            (yyyy-mm-dd)
 	 * @return 返回一个代表当期日期是星期几的数字。0表示星期天、1表示星期一、6表示星期六。
 	 */
@@ -516,10 +524,6 @@ public class DateUtil {
 	 * @param amount
 	 * 
 	 *            需要添加的天数，如果是向前的天数，使用负数就可以.
-	 * 
-	 * @param format
-	 * 
-	 *            输出格式.
 	 * 
 	 * @return Date 加上一定天数以后的Date对象.
 	 * 

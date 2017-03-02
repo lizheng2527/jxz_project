@@ -13,11 +13,21 @@ import java.util.List;
 public class HomeViewPagerAdapter extends PagerAdapter {
 
     private List<View> list;
+    private List<String> listStr;
 
-    public HomeViewPagerAdapter(List<View> list) {
+    public HomeViewPagerAdapter(List<View> list,List<String> listStr) {
         this.list = list;
+        this.listStr = listStr;
     }
 
+    @Override
+    public CharSequence getPageTitle(int position) {
+        if (listStr != null){
+            return listStr.get(position);
+        }else{
+            return null;
+        }
+    }
     @Override
     public int getCount() {
         if (list != null && list.size() > 0) {

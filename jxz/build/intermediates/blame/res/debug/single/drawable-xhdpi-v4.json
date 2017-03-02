@@ -20,11 +20,23 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\drawable-xhdpi-v4\\ic_camera_normal.png"
     },
     {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\bg_button_radius_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xhdpi\\bg_button_radius_selector.xml"
+    },
+    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\bg_me.jpg",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xhdpi\\bg_me.jpg"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\sys_password.jpg",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xhdpi\\sys_password.jpg"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\bg_button_light_gray_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xhdpi\\bg_button_light_gray_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\bg_button_white_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xhdpi\\bg_button_white_selector.xml"
     }
 ]

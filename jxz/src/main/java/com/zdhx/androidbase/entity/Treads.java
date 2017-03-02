@@ -83,6 +83,45 @@ public class Treads implements Serializable {
         private Boolean isLaunch = false;
         private int allReplyCount;
 
+        private Boolean isLoading = false;
+
+        private String downId;
+
+        private String down;
+        private String browse;
+
+        public String getDown() {
+            return down;
+        }
+
+        public void setDown(String down) {
+            this.down = down;
+        }
+
+        public String getBrowse() {
+            return browse;
+        }
+
+        public void setBrowse(String browse) {
+            this.browse = browse;
+        }
+
+        public String getDownId() {
+            return downId;
+        }
+
+        public void setDownId(String downId) {
+            this.downId = downId;
+        }
+
+        public Boolean getLoading() {
+            return isLoading;
+        }
+
+        public void setLoading(Boolean loading) {
+            isLoading = loading;
+        }
+
         public int getAllReplyCount() {
             return allReplyCount;
         }

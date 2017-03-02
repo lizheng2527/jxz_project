@@ -167,15 +167,18 @@ public class WorkSpaceFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (list.get(position-1).isSelect()){
-                    list.get(position-1).setSelect(false);
-                    batchSelectMap.remove(list.get(position-1));
-                }else{
-                    list.get(position-1).setSelect(true);
-                    batchSelectMap.put(list.get(position-1),list.get(position-1).getId());
+                if (WorkSpaceFragment.isBatchSelect){
+                    // TODO: 2017/2/24  
+                    if (list.get(position-1).isSelect()){
+                        list.get(position-1).setSelect(false);
+                        batchSelectMap.remove(list.get(position-1));
+                    }else{
+                        list.get(position-1).setSelect(true);
+                        batchSelectMap.put(list.get(position-1),list.get(position-1).getId());
+                    }
+                    MainActivity.setAllSelectText(isSelectAll());
+                    workSpaceListViewAdapter.notifyDataSetChanged();
                 }
-                MainActivity.setAllSelectText(isSelectAll());
-                workSpaceListViewAdapter.notifyDataSetChanged();
             }
         });
     }

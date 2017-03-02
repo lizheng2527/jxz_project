@@ -180,7 +180,7 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 			}
 		});
 	}
-	private String nowStatus;
+	private String nowStatus = "2";
 	//点击事件分项处理
 	public void onClick(View view){
 		switch (view.getId()){

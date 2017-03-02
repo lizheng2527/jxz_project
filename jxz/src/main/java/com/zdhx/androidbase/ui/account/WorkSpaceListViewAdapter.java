@@ -23,6 +23,7 @@ import com.zdhx.androidbase.entity.WorkSpaceDatasBean;
 import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.downloadui.DownloadAsyncTask;
 import com.zdhx.androidbase.ui.downloadui.NumberProgressBar;
+import com.zdhx.androidbase.ui.plugin.FileExplorerActivity;
 import com.zdhx.androidbase.ui.quantity.PrePassActivity;
 import com.zdhx.androidbase.ui.xlistview.XListView;
 import com.zdhx.androidbase.util.IntentUtil;
@@ -221,28 +222,24 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         }
         File file = new File(dir,name);
         if (file.exists()){
-            if (!list.get(i).getResourceStyle().equals("7")&&!list.get(i).getResourceStyle().equals("8")){
-                vh.btnPreview.setVisibility(View.GONE);
-                if (!list.get(i).getResourceStyle().equals("7")&&!list.get(i).getResourceStyle().equals("8")&&!list.get(i).getResourceStyle().equals("100")){
-                    vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
-                }else{
-                    vh.downloadImg.setVisibility(View.GONE);
-                    vh.btnPreview.setVisibility(View.VISIBLE);
-                }
-            }else{
-                vh.downloadImg.setVisibility(View.GONE);
-            }
+//            if (!list.get(i).getResourceStyle().equals("7")&&!list.get(i).getResourceStyle().equals("8")){
+            vh.btnPreview.setVisibility(View.GONE);
+//                if (!list.get(i).getResourceStyle().equals("7")&&!list.get(i).getResourceStyle().equals("8")&&!list.get(i).getResourceStyle().equals("100")){
+            vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
+//                }else{
+//                    vh.downloadImg.setVisibility(View.GONE);
+//                    vh.btnPreview.setVisibility(View.VISIBLE);
+//                }
+//            }else{
+//                vh.downloadImg.setVisibility(View.GONE);
+//            }
         }else{
             vh.downloadImg.setImageResource(R.drawable.download);
         }
 
         //判断当前是否正在下载任务，如果下载任务，进行标记，将其他的progressBar设置为隐藏
-        if (downTag){
-            if (i == showProBarPosition){
-                vh.progressBar.setVisibility(View.VISIBLE);
-            }else{
-                vh.progressBar.setVisibility(View.INVISIBLE);
-            }
+        if (list.get(i).isLoading()){
+            vh.progressBar.setVisibility(View.VISIBLE);
         }else{
             vh.progressBar.setVisibility(View.INVISIBLE);
         }
@@ -345,8 +342,6 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         return view;
     }
 
-    public boolean downTag = false;
-
     private void addClick(final ViewHolder vh, final int i) {
         //批量审核checkBox点击事件
         vh.batchSelectBox.setOnClickListener(new View.OnClickListener() {
@@ -380,7 +375,13 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                 String showUrl = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap());
 //                音频、视频**********************************************************************
                 if (resourceStyle.equals("6")||resourceStyle.equals("5")){
-                    frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(showUrl));
+
+//                    frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(showUrl));
+                    if (IntentUtil.isIntentAvailable(context,IntentUtil.getVideoFileIntent(showUrl))){
+                        frag.startActivity(IntentUtil.getVideoFileIntent(showUrl));
+                    }else{
+                        ToastUtil.showMessage("当前手机不支持打开该文件");
+                    }
                 }
 //                外部链接**********************************************************************
                 else if(resourceStyle.equals("100")){
@@ -465,7 +466,12 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         vh.deleteImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ECAlertDialog.buildAlert(context, "是否删除本条信息？", "确定", "取消", new DialogInterface.OnClickListener() {
+                ECAlertDialog.buildAlert(context, "是否删除本条信息？", "取消", "确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ProgressUtil.show(context,"正在删除");
@@ -493,11 +499,6 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                             }
                         }).start();
                     }
-                }, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
                 }).show();
 
 
@@ -521,6 +522,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 final ECProgressDialog dialog = new ECProgressDialog(context);
+                dialog.setCanceledOnTouchOutside(false);
                 dialog.setPressText("正在加载资源..");
                 dialog.show();
                 //TODO判断当前下载附件是否存在
@@ -536,15 +538,28 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                     dialog.dismiss();
                     try {
                         switch (resourceStyle){
-
                             case "1":
-                                frag.getActivity().startActivity(IntentUtil.getWordFileIntent(file.getAbsolutePath()));
+                                if (IntentUtil.isIntentAvailable(context,IntentUtil.getWordFileIntent(file.getAbsolutePath()))){
+                                    frag.getActivity().startActivity(IntentUtil.getWordFileIntent(file.getAbsolutePath()));
+                                }else{
+                                    ToastUtil.showMessage("当前手机不支持打开该文件");
+                                }
                                 break;
                             case "2":
-                                frag.getActivity().startActivity(IntentUtil.getPptFileIntent(file.getAbsolutePath()));
+
+                                if (IntentUtil.isIntentAvailable(context,IntentUtil.getPptFileIntent(file.getAbsolutePath()))){
+                                    frag.getActivity().startActivity(IntentUtil.getPptFileIntent(file.getAbsolutePath()));
+                                }else{
+                                    ToastUtil.showMessage("当前手机不支持打开该文件");
+                                }
                                 break;
                             case "3":
-                                frag.getActivity().startActivity(IntentUtil.getExcelFileIntent(file.getAbsolutePath()));
+
+                                if (IntentUtil.isIntentAvailable(context,IntentUtil.getExcelFileIntent(file.getAbsolutePath()))){
+                                    frag.getActivity().startActivity(IntentUtil.getExcelFileIntent(file.getAbsolutePath()));
+                                }else{
+                                    ToastUtil.showMessage("当前手机不支持打开该文件");
+                                }
                                 break;
                             case "4":
                                 File[] files = dir.listFiles();
@@ -571,10 +586,35 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                 frag.startActivity(intent);
                                 break;
                             case "5":
-                                frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getAbsolutePath()));
+
+                                if (IntentUtil.isIntentAvailable(context,IntentUtil.getVideoFileIntent(file.getAbsolutePath()))){
+                                    frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getAbsolutePath()));
+                                }else{
+                                    ToastUtil.showMessage("当前手机不支持打开该文件");
+                                }
                                 break;
                             case "6":
-                                frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getAbsolutePath()));
+                                if (IntentUtil.isIntentAvailable(context,IntentUtil.getVideoFileIntent(file.getAbsolutePath()))){
+                                    frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getAbsolutePath()));
+                                }else{
+                                    ToastUtil.showMessage("当前手机不支持打开该文件");
+                                }
+                                break;
+                            case "7":
+                                //跳转到指定位置目录
+                                MainActivity.map.put("parentFile",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
+                                MainActivity.map.put("subFile",new File(ECApplication.getInstance().getDownloadJxzDir()));
+                                Intent intent1 = new Intent(context,FileExplorerActivity.class);
+                                intent1.putExtra("key_title","查看附件");
+                                context.startActivity(intent1);
+                                break;
+                            case "8":
+                                //跳转到指定位置目录
+                                MainActivity.map.put("parentFile",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
+                                MainActivity.map.put("subFile",new File(ECApplication.getInstance().getDownloadJxzDir()));
+                                Intent intent2 = new Intent(context,FileExplorerActivity.class);
+                                intent2.putExtra("key_title","查看附件");
+                                context.startActivity(intent2);
                                 break;
                         }
 
@@ -590,74 +630,93 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                     return;
                 }
 
-                if (downTag){
-                    ToastUtil.showMessage("正在执行下载任务...");
-                    dialog.dismiss();
-                    return;
-                }
-                // 下载处理
-                vh.progressBar.setVisibility(View.VISIBLE);
-                final DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(new DownloadAsyncTask.DownloadResponser() {
+//                if (downTag){
+//                    ToastUtil.showMessage("正在执行下载任务...");
+//                    dialog.dismiss();
+//                    return;
+//                }
+                ECAlertDialog.buildAlert(context, "是否下载本条信息？", "取消", "确定", new DialogInterface.OnClickListener() {
                     @Override
-                    public void predownload() {
-                        showProBarPosition = i;
-                        downTag = true;
-                    }
-
-                    @Override
-                    public void downloading(int progress, int position) {
+                    public void onClick(DialogInterface dialog1, int which) {
                         dialog.dismiss();
-                        vh.progressBar.setProgress(progress);
-                        vh.downloadImg.setClickable(false);
                     }
-
+                }, new DialogInterface.OnClickListener() {
                     @Override
-                    public void downloaded(File file, int position) {
-                        vh.progressBar.setVisibility(View.INVISIBLE);
-                        new ProgressThreadWrap(context, new RunnableWrap() {
+                    public void onClick(DialogInterface dialog1, int which) {
+                        vh.progressBar.setVisibility(View.VISIBLE);
+                        final DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(new DownloadAsyncTask.DownloadResponser() {
                             @Override
-                            public void run() {
-                                String resouceId = list.get(i).getId();
-                                String userId = ECApplication.getInstance().getCurrentUser().getId();
-                                String type = "2";
-                                HashMap<String,ParameterValue> map = new HashMap<String, ParameterValue>();
-                                map.put("resouceId",new ParameterValue(resouceId));
-                                map.put("userId",new ParameterValue(userId));
-                                map.put("type",new ParameterValue(type));
-                                map.putAll(ECApplication.getInstance().getLoginUrlMap());
-                                try {
-                                    ZddcUtil.doPreviewOrDown(map);
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            if (!list.get(i).getResourceStyle().equals("7")&&!list.get(i).getResourceStyle().equals("8")){
-                                                vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
-                                            }else{
-                                                vh.downloadImg.setVisibility(View.GONE);
-                                            }
-                                            list.get(i).setDown(list.get(i).getDown()+1);
-                                            notifyDataSetChanged();
-                                            downTag = false;
-                                        }
-                                    },5);
-
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                            public void predownload() {
+                                showProBarPosition = i;
+                                if (downCounts>3){
+                                    ToastUtil.showMessage("当前下载队列过多..");
+                                    return;
                                 }
+                                list.get(i).setLoading(true);
+                                downCounts = downCounts +1;
                             }
-                        }).start();
-                    }
 
-                    @Override
-                    public void canceled(int position) {
-                        vh.progressBar.setVisibility(View.INVISIBLE);
+                            @Override
+                            public void downloading(int progress, int position) {
+                                dialog.dismiss();
+                                vh.progressBar.setProgress(progress);
+                                vh.downloadImg.setClickable(false);
+                            }
+
+                            @Override
+                            public void downloaded(File file, int position) {
+                                vh.progressBar.setVisibility(View.GONE);
+                                downCounts = downCounts -1;
+                                list.get(i).setLoading(false);
+                                new ProgressThreadWrap(context, new RunnableWrap() {
+                                    @Override
+                                    public void run() {
+                                        String resouceId = list.get(i).getId();
+                                        String userId = ECApplication.getInstance().getCurrentUser().getId();
+                                        String type = "2";
+                                        HashMap<String,ParameterValue> map = new HashMap<String, ParameterValue>();
+                                        map.put("resouceId",new ParameterValue(resouceId));
+                                        map.put("userId",new ParameterValue(userId));
+                                        map.put("type",new ParameterValue(type));
+                                        map.putAll(ECApplication.getInstance().getLoginUrlMap());
+                                        try {
+                                            ZddcUtil.doPreviewOrDown(map);
+                                            handler.postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+//                                            if (!list.get(i).getResourceStyle().equals("7")&&!list.get(i).getResourceStyle().equals("8")){
+                                                    vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
+//                                            }else{
+//                                                vh.downloadImg.setVisibility(View.GONE);
+//                                            }
+                                                    list.get(i).setDown(list.get(i).getDown()+1);
+                                                    notifyDataSetChanged();
+                                                }
+                                            },5);
+
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }).start();
+                            }
+
+                            @Override
+                            public void canceled(int position) {
+                                vh.progressBar.setVisibility(View.INVISIBLE);
+                            }
+                        }, context);
+                        downloadAsyncTask.execute(ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()), "aaa", i + "", list.get(i).getName());
+                        LogUtil.e("下载资源地址"+ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()));
                     }
-                }, context);
-                downloadAsyncTask.execute(ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()), "aaa", i + "", list.get(i).getName());
-                LogUtil.e("下载资源地址"+ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()));
+                }).show();
+                // 下载处理
+
             }
         });
     }
+
+    private static int downCounts;
 
     class ViewHolder{
         private SimpleDraweeView fileHeadImg;//文件头像

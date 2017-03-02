@@ -39,6 +39,7 @@
     <color name="red">#ff3333</color>
     <color name="red_focused">#853333</color>
     <color name="light_gray">#404040</color>
+    <color name="lightmax_gray">#77f0f0f0</color>
     <color name="dark_gray">#363636</color>
     <color name="line_dark">#808080</color>
     <color name="done_text_color_dark_normal">#ffffff</color>

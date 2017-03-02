@@ -1,9 +1,13 @@
 package com.zdhx.androidbase.util;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 
 import java.io.File;
+import java.util.List;
 
 
 //自定义android Intent类，
@@ -172,12 +176,24 @@ public class IntentUtil {
 
 	}
 
+	/**
+	 * 判断Intent 是否存在 防止崩溃
+	 *
+	 * @param context
+	 * @param intent
+	 * @return
+	 */
+	public static boolean isIntentAvailable(Context context, Intent intent) {
+		final PackageManager packageManager = context.getPackageManager();
+		List<ResolveInfo> list = packageManager.queryIntentActivities(intent,PackageManager.MATCH_DEFAULT_ONLY);
+		return list.size() > 0;
+	}
+
 	// android获取一个用于打开Word文件的intent
 
 	public static Intent getWordFileIntent(String param)
 
 	{
-
 		Intent intent = new Intent("android.intent.action.VIEW");
 
 		intent.addCategory("android.intent.category.DEFAULT");

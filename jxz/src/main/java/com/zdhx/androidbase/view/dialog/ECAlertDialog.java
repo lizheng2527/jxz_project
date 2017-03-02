@@ -12,10 +12,6 @@
  */
 package com.zdhx.androidbase.view.dialog;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -30,6 +26,10 @@ import android.widget.TextView;
 
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.util.LogUtil;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 
 /**

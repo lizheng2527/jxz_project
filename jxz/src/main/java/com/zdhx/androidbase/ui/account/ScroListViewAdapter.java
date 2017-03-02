@@ -64,7 +64,7 @@ public class ScroListViewAdapter extends BaseAdapter {
         vh.upNumbers = (TextView) view.findViewById(R.id.fragment_scro_viewpager_listview_item_upnumbers);
         vh.downNumbers = (TextView) view.findViewById(R.id.fragment_scro_viewpager_listview_item_downnumbers);
 
-        vh.ranking.setText(list.get(i).getRank()+"");
+        vh.ranking.setText(i+1+"");
         vh.name.setText(list.get(i).getName());
         vh.scro.setText(list.get(i).getScore()+"");
         vh.upNumbers.setText(list.get(i).getUpload()+"");

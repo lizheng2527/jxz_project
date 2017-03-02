@@ -1,6 +1,7 @@
 package com.zdhx.androidbase.ui.account;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -60,7 +61,7 @@ public class OperateRecordActicity extends BaseActivity{
         });
         operatetitle = (TextView) findViewById(R.id.operatetitle);
         context = this;
-        ProgressUtil.show(context,"正在加载数据");
+        ProgressUtil.show(context,"正在获取数据");
         String resouceId = (String) MainActivity.map.get("resouceId");
         MainActivity.map.remove("resouceId");
         String type = (String) MainActivity.map.get("type");
@@ -136,6 +137,11 @@ public class OperateRecordActicity extends BaseActivity{
             }
             vh.count.setText(position+1+"");
             vh.name.setText(beans.get(position).getUserName());
+            if (beans.get(position).getUserName().equals(ECApplication.getInstance().getCurrentUser().getName())){
+                vh.name.setTextColor(Color.parseColor("#4cbbda"));
+            }else{
+                vh.name.setTextColor(Color.parseColor("#363636"));
+            }
             vh.time.setText(beans.get(position).getCreateTime());
             return convertView;
         }

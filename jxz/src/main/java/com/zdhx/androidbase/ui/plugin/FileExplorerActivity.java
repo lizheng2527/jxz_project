@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.ui.base.BaseActivity;
+import com.zdhx.androidbase.util.LogUtil;
 
 import java.io.File;
 
@@ -32,8 +33,7 @@ import java.io.File;
  * @date 2014-12-29
  * @version 4.0
  */
-public class FileExplorerActivity extends BaseActivity implements
-		View.OnClickListener {
+public class FileExplorerActivity extends BaseActivity implements View.OnClickListener {
 
 	/**设备内置目录*/
 	private static final int DIR_ROOT = 0;
@@ -58,8 +58,7 @@ public class FileExplorerActivity extends BaseActivity implements
 	/**浏览文件目录类型*/
 	private int mType = DIR_ROOT;
 	
-	final private AdapterView.OnItemClickListener mItemClickListener
-		= new AdapterView.OnItemClickListener() {
+	final private AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -202,6 +201,7 @@ public class FileExplorerActivity extends BaseActivity implements
 			mParentFile = (this.type == DIR_SDCARD) ? mSdcardFile : mRootFile;
 			setCurrentTabSelector(this.type);
 			mAdapter.setPath(mRootPath.getPath());
+			LogUtil.w(mRootPath.getPath());
 			mAdapter.setFiles(mParentFile.getParentFile(), mParentFile);
 			mAdapter.notifyDataSetInvalidated();
 			mAdapter.notifyDataSetChanged();

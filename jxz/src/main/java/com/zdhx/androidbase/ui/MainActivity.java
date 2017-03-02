@@ -36,12 +36,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
@@ -62,6 +58,7 @@ import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.WorkSpaceDatasBean;
 import com.zdhx.androidbase.ui.account.HomeFragment;
+import com.zdhx.androidbase.ui.account.HomeGridAdapter;
 import com.zdhx.androidbase.ui.account.LoginActivity;
 import com.zdhx.androidbase.ui.account.MeFragment;
 import com.zdhx.androidbase.ui.account.ScroFragment;
@@ -252,10 +249,10 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		context = this;
 		requestBasicPermission();
-		checkVerson();
+//		checkVerson();
 		getTopBarView().setVisibility(View.GONE);
 		initLauncherUIView();
-		updata();
+//		updata();
 	}
 
 	/**
@@ -702,8 +699,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 					ProgressUtil.show(this,"正在查询..");
 					homeFragment.setDatasToNull();
 //					homeFragment.setGridCurrent(0);
-					homeFragment.initDatas(startDate,endDate,name,eclassId);
-					homeFragment.initXListViewDatas(null);
+					homeFragment.initDatas(startDate,endDate,name,eclassId, HomeGridAdapter.index);
+					homeFragment.initXListViewDatas(null,HomeGridAdapter.index);
 				}
 			}
 		}
@@ -741,6 +738,22 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			}
 			onSelectCancel();
 		}
+		//单张网络图片查看，判断是否下载了图片
+		if (requestCode == 111){
+			LogUtil.w("mainActivity回来");
+//			String b = (String) MainActivity.map.get("isLoaded");
+//			List<Treads.DataListBean> list = (List<Treads.DataListBean>) MainActivity.map.get("treadsList");
+//			int position = (int) MainActivity.map.get("position");
+//			list.get(position).setDown(Integer.parseInt(list.get(position).getDown())+1+"");
+//			list.get(position).setBrowse(Integer.parseInt(list.get(position).getBrowse())+1+"");
+//			MainActivity.map.remove("treadsList");
+//			MainActivity.map.remove("treadsListPosition");
+//			if ("true".equals(b)){
+//				doToast("下载了图片");
+//				MainActivity.map.remove("isLoaded");
+//			}
+//			homeFragment.adapterNotify();
+		}
 
 	}
 
@@ -755,27 +768,27 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		}
 	}
 
-	public void checkVerson() {
-		PackageInfo info = null;
-		try {
-			info = getPackageManager().getPackageInfo(getPackageName(), 0);
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
-		}
-		int currentVersion = info.versionCode;
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		int lastVersion = prefs.getInt("VERSION_KEY", 0);
-		LogUtil.e("lastVersion:"+lastVersion+"---currentVersion:"+currentVersion);
-		if (currentVersion > lastVersion) {
-			//如果当前版本大于上次版本，该版本属于第一次启动
-			//将当前版本写入preference中，则下次启动的时候，据此判断，不再为首次启动
-			prefs.edit().putInt("VERSION_KEY",currentVersion).commit();
-		}
-	}
+//	public void checkVerson() {
+//		PackageInfo info = null;
+//		try {
+//			info = getPackageManager().getPackageInfo(getPackageName(), 0);
+//		} catch (NameNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		int currentVersion = info.versionCode;
+//		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+//		int lastVersion = prefs.getInt("VERSION_KEY", 0);
+//		LogUtil.e("lastVersion:"+lastVersion+"---currentVersion:"+currentVersion);
+//		if (currentVersion > lastVersion) {
+//			//如果当前版本大于上次版本，该版本属于第一次启动
+//			//将当前版本写入preference中，则下次启动的时候，据此判断，不再为首次启动
+//			prefs.edit().putInt("VERSION_KEY",currentVersion).commit();
+//		}
+//	}
 
 
 	/**
-	 * listView 无数据是的点击事件
+	 * listView 无数据时的点击事件
 	 * @param view
 	 */
 	public void onEmptyClick(View view){
@@ -794,6 +807,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 				break;
 			case R.id.emptyatt:
 				homeFragment.onEmptyClick(4);
+				break;
+			case R.id.emptyimp:
+				homeFragment.onEmptyClick(5);
 				break;
 		}
 	}

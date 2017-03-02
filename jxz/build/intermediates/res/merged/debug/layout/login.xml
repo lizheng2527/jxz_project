@@ -69,7 +69,8 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_big" />
 
-                <EditText
+                <AutoCompleteTextView
+                    android:completionThreshold="1"
                     android:id="@+id/etxt_username"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"

@@ -72,12 +72,14 @@
                 android:gravity="center|left|bottom"
                 />
             <TextView
+                android:background="@drawable/bg_button_white_selector"
                 android:clickable="true"
                 android:onClick="onClick"
                 android:id="@+id/search_treads_from"
                 android:layout_marginLeft="20dp"
+                android:paddingTop="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="2015-12-01"
                 android:textColor="#666666"
                 android:textSize="16sp"
@@ -100,11 +102,13 @@
                 android:gravity="center|bottom"
                 />
             <TextView
+                android:background="@drawable/bg_button_white_selector"
+                android:paddingTop="10dp"
                 android:clickable="true"
                 android:onClick="onClick"
                 android:id="@+id/search_treads_to"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="2015-12-01"
                 android:textColor="#666666"
                 android:textSize="16sp"
@@ -126,6 +130,7 @@
             android:layout_marginRight="40dp"
             android:background="#555555"/>
         <LinearLayout
+            android:gravity="bottom"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -141,16 +146,18 @@
                 android:gravity="center|left|bottom"
                 />
             <TextView
+                android:paddingTop="10dp"
                 android:singleLine="true"
                 android:clickable="true"
                 android:id="@+id/search_treads_tree"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textColor="#555555"
                 android:text="无"
                 android:gravity="center|bottom"
+                android:background="@drawable/bg_button_white_selector"
                 />
             <ImageView
                 android:layout_marginTop="25dp"
@@ -170,6 +177,7 @@
             android:id="@+id/search_eclass_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="bottom"
             android:orientation="horizontal">
             <TextView
                 android:layout_marginLeft="30dp"
@@ -186,11 +194,13 @@
                 android:id="@+id/search_eclass_tree"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:textSize="16sp"
                 android:textColor="#555555"
                 android:text="无"
                 android:gravity="center|bottom"
+                android:background="@drawable/bg_button_white_selector"
                 />
             <ImageView
                 android:layout_marginTop="25dp"
@@ -293,9 +303,10 @@
             android:layout_marginTop="80dp"
             android:text="搜    索"
             android:textSize="18sp"
-            android:background="@drawable/bg_button_radius"
+            android:background="@drawable/bg_button_radius_selector"
             android:layout_width="250dp"
             android:textColor="@color/white"
+            android:padding="10dp"
             android:layout_height="wrap_content" />
     </LinearLayout>
 

@@ -32,6 +32,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.downloadui.DownloadAsyncTask;
 import com.zdhx.androidbase.ui.photoview.PhotoView;
 import com.zdhx.androidbase.ui.photoview.PhotoViewAttacher;
@@ -119,6 +120,7 @@ public class ImagePagerActivity extends Activity {
 		private String[] images;
 		private String[] imgNames;
 		private LayoutInflater inflater;
+
 		private Context mContext;
 
 
@@ -178,10 +180,18 @@ public class ImagePagerActivity extends Activity {
 									final DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(new DownloadAsyncTask.DownloadResponser() {
 										@Override
 										public void predownload() {
+											TreadsListViewAdapter adapter = (TreadsListViewAdapter) MainActivity.map.get("adapter");
+											if (adapter != null){
+												int position1 = (int) MainActivity.map.get("11");
+												adapter.doDown(position1);
+												MainActivity.map.remove("treadsListPosition");
+												MainActivity.map.remove("adapter");
+											}
 										}
 
 										@Override
 										public void downloading(int progress, int position) {
+
 										}
 
 										@Override

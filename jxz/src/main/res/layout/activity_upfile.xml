@@ -53,11 +53,13 @@
                 android:gravity="center|left|bottom"
                 />
             <TextView
+                android:background="@drawable/bg_button_white_selector"
                 android:clickable="true"
                 android:id="@+id/upfiletree"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textColor="#555555"
                 android:text="无"
@@ -151,6 +153,7 @@
                     android:background="@drawable/topbar_back_bt"
                     android:layout_height="50dp" />
                 <TextView
+                    android:background="@drawable/bg_button_top_title_selector"
                     android:gravity="center"
                     android:id="@+id/commit"
                     android:layout_width="50dp"

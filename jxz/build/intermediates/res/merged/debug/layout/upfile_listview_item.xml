@@ -82,14 +82,16 @@
                 android:padding="10dp"
                 android:layout_gravity="center_vertical"
                 android:layout_width="40dp"
-                android:layout_height="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_button_white_selector"
                 android:src="@drawable/btn_preview"/>
             <ImageView
                 android:id="@+id/upfile_list_rename"
                 android:padding="10dp"
                 android:layout_gravity="center_vertical"
                 android:layout_width="40dp"
-                android:layout_height="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_button_white_selector"
                 android:src="@drawable/btn_rename"/>
             <ImageView
                 android:id="@+id/upfile_list_delete"
@@ -97,7 +99,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
                 android:layout_width="40dp"
-                android:layout_height="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_button_white_selector"
                 android:src="@drawable/icon_delete_address"/>
         </LinearLayout>
 

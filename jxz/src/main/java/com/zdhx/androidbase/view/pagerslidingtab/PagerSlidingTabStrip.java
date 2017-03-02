@@ -16,11 +16,6 @@
 
 package com.zdhx.androidbase.view.pagerslidingtab;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -47,7 +42,21 @@ import android.widget.TextView;
 
 import com.zdhx.androidbase.R;
 
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+
 public class PagerSlidingTabStrip extends HorizontalScrollView {
+
+
+	private OnTabClickListener tabClickListener;
+	public interface OnTabClickListener {
+		public void onTabClick(View tab,int position);
+	}
+	public void setOnTabClickListener(OnTabClickListener listener) {
+		this.tabClickListener = listener;
+	}
 
 	public interface IconTabProvider {
 		public int getPageIconResId(int position);
@@ -79,7 +88,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 	private int indicatorColor = 0xEEFFFFFF;
 	private int underlineColor = 0xFFFFFFFF;
-	private int dividerColor = 0xAA6174cb;
+	private int dividerColor = Color.parseColor("#f0f0f0");
 
 	private boolean shouldExpand = false;
 	private boolean textAllCaps = true;
@@ -87,14 +96,14 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 	private int scrollOffset = 52;
 	private int indicatorHeight = 3;
 	private int underlineHeight = 0;
-	private int dividerPadding = 12;
-	private int tabPadding = 24;
-	private int dividerWidth = 1;
+	private int dividerPadding = 16;
+	private int tabPadding = 18;
+	private int dividerWidth = 2;
 
-	private int tabTextSize = 12;
-	private int tabTextColor = 0xAA000000;
+	private int tabTextSize = 15;
+	private int tabTextColor = Color.parseColor("#363636");
 	private Typeface tabTypeface = null;
-	private int tabTypefaceStyle = Typeface.BOLD;
+	private int tabTypefaceStyle = Typeface.NORMAL;
 
 	private int lastScrollX = 0;
 
@@ -249,11 +258,12 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 	
 	private Map<Integer, TextView> viewMap = new HashMap<Integer, TextView>();
 	
-	private void addTab(final int position, View tab) {
+	private void addTab(final int position, final View tab) {
 		tab.setFocusable(true);
 		tab.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				tabClickListener.onTabClick(tab,position);
 				pager.setCurrentItem(position);
 			}
 		});
@@ -276,7 +286,6 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 				TextView tab = (TextView) v;
 				tab.setTextSize(TypedValue.COMPLEX_UNIT_PX, tabTextSize);
 				tab.setTypeface(tabTypeface, tabTypefaceStyle);
-				tab.setTextColor(tabTextColor);
 
 				// setAllCaps() is only available from API 14, so the upper case is made manually if we are on a
 				// pre-ICS-build
@@ -296,9 +305,9 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		//改变当前textView 颜色
 		for (Entry<Integer, TextView> entry : viewMap.entrySet()) {
 			   if (entry.getKey() == position) {
-				   entry.getValue().setTextColor(Color.parseColor("#6174cb"));
+				   entry.getValue().setTextColor(Color.parseColor("#4cbbda"));
 			   } else {
-				   entry.getValue().setTextColor(Color.parseColor("#AA000000"));
+				   entry.getValue().setTextColor(Color.parseColor("#363636"));
 			   }
 		
 		}

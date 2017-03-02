@@ -23,7 +23,9 @@ public class ImageGirdAdapter extends BaseAdapter {
 	private HomeFragment frag;
 	private String[] urls;
 	private String[] names;
-	public ImageGirdAdapter(Activity context, ArrayList<ImageUrlBean> list, HomeFragment frag) {
+	private int listPosition;
+	private TreadsListViewAdapter adapter;
+	public ImageGirdAdapter(Activity context, ArrayList<ImageUrlBean> list, HomeFragment frag,int position,TreadsListViewAdapter adapter) {
 		super();
 		this.context = context;
 		this.list = list;
@@ -31,6 +33,8 @@ public class ImageGirdAdapter extends BaseAdapter {
 		this.frag = frag;
 		urls = new String[list.size()];
 		names = new String[list.size()];
+		this.listPosition = position;
+		this.adapter = adapter;
 	}
 	@Override
 	public int getCount() {
@@ -73,6 +77,14 @@ public class ImageGirdAdapter extends BaseAdapter {
 				intent.putExtra("images", urls);
 				intent.putExtra("image_index",position);
 				intent.putExtra("imgNames",names);
+
+//				adapter.isMyself(listPosition);
+//				if (!adapter.isMyself(listPosition)){
+//					MainActivity.map.put("11",listPosition);
+//					MainActivity.map.put("adapter",adapter);
+//					//预览+1
+//					adapter.doPreview(position);
+//				}
 				frag.startActivity(intent);
 			}
 		});

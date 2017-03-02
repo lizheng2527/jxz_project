@@ -49,6 +49,8 @@
                 android:textSize="14sp"
                 android:textColor="#777777"/>
             <TextView
+                android:clickable="true"
+                android:id="@+id/onscrosort"
                 android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -56,8 +58,12 @@
                 android:padding="5dp"
                 android:text="积分"
                 android:textSize="14sp"
-                android:textColor="#777777"/>
+                android:background="@drawable/bg_button_white_selector"
+                android:textColor="@color/name_blue"/>
             <TextView
+                android:background="@drawable/bg_button_white_selector"
+                android:clickable="true"
+                android:id="@+id/onupsort"
                 android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -65,8 +71,11 @@
                 android:padding="5dp"
                 android:text="上传量"
                 android:textSize="14sp"
-                android:textColor="#777777"/>
+                android:textColor="@color/name_blue"/>
             <TextView
+                android:background="@drawable/bg_button_white_selector"
+                android:clickable="true"
+                android:id="@+id/ondownsort"
                 android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -74,7 +83,7 @@
                 android:padding="5dp"
                 android:text="下载量"
                 android:textSize="14sp"
-                android:textColor="#777777"/>
+                android:textColor="@color/name_blue"/>
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"

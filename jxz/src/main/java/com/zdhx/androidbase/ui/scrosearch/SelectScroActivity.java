@@ -40,7 +40,7 @@ public class SelectScroActivity extends BaseActivity implements DatePickerDialog
 
 	private final int SCROTREECODE = 1;
 
-	private TreeBean bean;
+	private static TreeBean bean;
 
 
 	@Override
@@ -161,6 +161,7 @@ public class SelectScroActivity extends BaseActivity implements DatePickerDialog
 			oldMonth = monthOfYear;
 			oldDay = dayOfMonth;
 			dateFrom.setText(year+"-"+month+"-"+day);
+			startDate = dateFrom.getText().toString().trim();
 		}
 		if (DATAPAGERTAG.equals("DATEPICKERTAGTO")){
 			if (oldYear-year>0){
@@ -178,7 +179,6 @@ public class SelectScroActivity extends BaseActivity implements DatePickerDialog
 				}
 			}
 			dateTo.setText(year+"-"+month+"-"+day);
-			startDate = dateFrom.getText().toString().trim();
 			endDate = dateTo.getText().toString().trim();
 		}
 	}

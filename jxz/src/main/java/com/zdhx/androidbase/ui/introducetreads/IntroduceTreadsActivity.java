@@ -15,12 +15,15 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -32,6 +35,7 @@ import com.zdhx.androidbase.Constant;
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ParameterValue;
+import com.zdhx.androidbase.entity.User;
 import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.base.BaseActivity;
 import com.zdhx.androidbase.ui.introducetreads.compressImg.PictureUtil;
@@ -61,6 +65,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public class IntroduceTreadsActivity extends BaseActivity{
+
+	private RadioGroup impNoticeGroup;
+
+	private int isImportant = 0;
+
+	private RadioButton impNoticeRadioBtn1;
+	private RadioButton impNoticeRadioBtn2;
 	//显示“附件”文字对象
 	private TextView fujianTitle;
 	//显示“图片”文字对象
@@ -120,6 +131,38 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		return R.layout.activity_sendnewcircle;
 	}
 
+	/**
+	 * 其他应用调用本分享功能
+	 */
+	private String shareFormOtherProg() {
+		/* 比如通过Gallery方式来调用本分享功能 */
+		Intent intent = getIntent();
+		Bundle extras = intent.getExtras();
+		String action = intent.getAction();
+		if (Intent.ACTION_SEND.equals(action)) {
+			if (extras.containsKey(Intent.EXTRA_STREAM)) {
+				try {
+					// Get resource path from intent
+					Uri uri = (Uri) extras.getParcelable(Intent.EXTRA_STREAM);
+
+					// 返回路径
+					String path = FileUtils.getPathByUri4kitkat(context, uri);
+					System.out.println("path-->" + path);
+
+					return path;
+				} catch (Exception e) {
+					e.printStackTrace();
+					return null;
+				}
+			} else if (extras.containsKey(Intent.EXTRA_TEXT)) {
+				return null;
+			}
+		}
+		return null;
+	}
+
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -136,15 +179,79 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		fujianTitle = (TextView) findViewById(R.id.file_tv);
 		backBtn = (Button) findViewById(R.id.button1);
 		circleLV = (ListView) findViewById(R.id.circleLV);
+		impNoticeGroup = (RadioGroup) findViewById(R.id.impNoticeGroup);
+		videoCountTV = (TextView) findViewById(R.id.videocount_tv);
+		if (ECApplication.getInstance().getUserAuth().equals("no")){
+			impNoticeGroup.setVisibility(View.GONE);
+		}else{
+			impNoticeGroup.setVisibility(View.VISIBLE);
+		}
+		impNoticeRadioBtn1 = (RadioButton) findViewById(R.id.impNoticeRadioBtn1);
+		impNoticeRadioBtn2 = (RadioButton) findViewById(R.id.impNoticeRadioBtn2);
+		impNoticeRadioBtn1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked){
+					isImportant = 0;
+				}
+			}
+		});
+		impNoticeRadioBtn2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked){
+					isImportant = 1;
+				}
+			}
+		});
 		fileGv.setAdapter(adapterGV);
 		gridList = new ArrayList<PhotoModel>();
 		gridList.add(null);//动态集合中“null"代表是“加号”图片
+		String path = shareFormOtherProg();
+		if (path != null&&!path.equals("")){
+			String lastName = FileUtils.getStringEndWith(path);
+			if (lastName != null){
+				lastName = lastName.toLowerCase();
+			}
+			impNoticeGroup.setVisibility(View.GONE);
+			User user = ECApplication.getInstance().getCurrentUser();
+			if (user != null){
+				ECApplication.getInstance().setLoginUrlMap("sys_auto_authenticate", new ParameterValue("true"));
+				ECApplication.getInstance().setLoginUrlMap("sys_username", new ParameterValue(user.getLoginName()));
+				ECApplication.getInstance().setLoginUrlMap("sys_password", new ParameterValue(user.getPassWord()));
+				if (lastName != null){
+					if (lastName.equals("jpg")||lastName.equals("jpeg")||lastName.equals("png")||lastName.equals("bmp")){
+						gridList.clear();
+						gridList.add(new PhotoModel(path,true));
+						gridList.add(null);
+						Compress();
+						videoCountTV.setVisibility(View.GONE);
+					}else{
+						File file = new File(path);
+						UpFileBean newBean = new UpFileBean();
+						upFileBeens.clear();
+						newBean.setFileSize(FileUtils.formatFileLength(file.length()));
+						newBean.setIndex(6);
+						newBean.setTitle(file.getName());
+						newBean.setUserName(ECApplication.getInstance().getCurrentUser().getName());
+						newBean.setPath(file.getAbsolutePath());
+						newBean.setAbsolutePath(file.getAbsolutePath());
+						upFileBeens.add(newBean);
+						gridList.clear();
+						nowBmp.clear();
+						sendFiles.clear();
+						videoCountTV.setVisibility(View.VISIBLE);
+					}
+				}
+			}
+		}
 		adapter = new ImageGVAdapter();
 		circleGV.setAdapter(adapter);
-		videoCountTV = (TextView) findViewById(R.id.videocount_tv);
+
 		videoCountTV.setVisibility(View.GONE);
 		listViewAdapter = new ListViewAdapter();
 		circleLV.setAdapter(listViewAdapter);
+
 		initPopMenu();
 		//添加附件
 		fujianBT.setOnClickListener(new OnClickListener() {
@@ -244,6 +351,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 			@Override
 			public void run() {
 				map.put("type",new ParameterValue(type+""));
+				map.put("status",new ParameterValue(isImportant+""));
 				map.put("userId",new ParameterValue(ECApplication.getInstance().getCurrentUser().getId()));
 				switch (type){
 					case 0:
@@ -267,6 +375,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 						break;
 					case 1:
 						try {
+
 							ZddcUtil.saveCommucation(videoList,ECApplication.getInstance().getLoginUrlMap(),map);
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -457,8 +566,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 	 * 根据发动态时，是否选择了图片来判断显示“图片”文字及点击状态
 	 */
 	public void checkSend() {
-		if (gridList.size() > 1
-				|| circleET.getEditableText().toString().trim().length() != 0) {
+		if (gridList.size() > 1 || circleET.getEditableText().toString().trim().length() != 0) {
 //			sendNoticeBT.setClickable(true);
 			imgTitle.setVisibility(View.VISIBLE);
 //			sendNoticeBT.setSelected(false);
@@ -789,6 +897,9 @@ public class IntroduceTreadsActivity extends BaseActivity{
 				}else{
 					vh.img.setImageBitmap(b);
 				}
+			}else{
+				MyVideoThumbLoader mVideoThumbLoader = MyVideoThumbLoader.getMyVideoThumbLoader();
+				mVideoThumbLoader.showThumbByAsynctack(upFileBeens.get(position).getAbsolutePath(), vh.img);
 			}
 			vh.title.setText(upFileBeens.get(position).getTitle());
 			vh.delete.setImageResource(R.drawable.icon_delete_address);

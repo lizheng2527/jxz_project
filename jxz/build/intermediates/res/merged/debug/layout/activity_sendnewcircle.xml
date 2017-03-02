@@ -30,6 +30,7 @@
                 android:textSize="20sp" />
 
             <Button
+
                 android:id="@+id/sendNoticeBT"
                 android:padding="10dp"
                 android:gravity="center"
@@ -37,7 +38,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:background="@null"
+                android:background="@drawable/bg_button_top_title_selector"
                 android:clickable="false"
                 android:text="发送"
                 android:textColor="@color/sendcircle_text_color"
@@ -77,6 +78,27 @@
                 android:hint="这一刻的想法…"
                 android:lines="4" >
             </EditText>
+            <RadioGroup
+                android:id="@+id/impNoticeGroup"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/impNoticeRadioBtn1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="非重要通知"
+                    android:checked="true"
+                    android:textColor="@color/gray"/>
+                <RadioButton
+                    android:id="@+id/impNoticeRadioBtn2"
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="重要通知"
+                    android:textColor="@color/gray"/>
+            </RadioGroup>
             <TextView
                 android:id="@+id/img_tv"
                 android:visibility="gone"

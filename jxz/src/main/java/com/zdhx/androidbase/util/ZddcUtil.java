@@ -20,6 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -169,17 +170,22 @@ public class ZddcUtil {
 		String content = "";
 		Set<String> keySet = map.keySet();
 		int i = 0;
-		for (String key : keySet) {
-			for (String val : map.get(key).getValues()) {
-				content += (i == 0 ? "" : "&") + key + "=" + URLEncoder.encode(val, "utf-8");
-				i++;
+		try {
+			for (String key : keySet) {
+				for (String val : map.get(key).getValues()) {
+					content += (i == 0 ? "" : "&") + key + "=" + URLEncoder.encode(val, "utf-8");
+					i++;
+				}
 			}
+		}catch (ConcurrentModificationException ex){
+			ex.printStackTrace();
 		}
+
 		DataOutputStream out = new DataOutputStream(conn.getOutputStream());
 		out.writeBytes(content);
-		Log.e("url", conn.getURL()+"?"+content);
 		out.flush();
 		out.close();
+		Log.e("url", conn.getURL()+"?"+content);
 	}
 
 	public static String getUrl(String url, Map<String, ParameterValue> map) {
@@ -201,7 +207,6 @@ public class ZddcUtil {
 				i++;
 			}
 		}
-		LogUtil.e(url);
 		return url;
 	}
 	public static String getUrlAnd(String url, Map<String, ParameterValue> map) {
@@ -542,6 +547,16 @@ public class ZddcUtil {
 	 */
 	public static String doPreviewOrDown(Map<String, ParameterValue> map) throws IOException {
 		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!doPreviewOrDown.action", map);
+	}
+	/**
+	 * 是否有发布重要通知的权限
+	 * （yes/no）
+	 *
+	 * @return
+	 * @throws IOException
+	 */
+	public static String getUserAuth(Map<String, ParameterValue> map) throws IOException {
+		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!getUserAuth.action", map);
 	}
 	/**
 	 * 推优

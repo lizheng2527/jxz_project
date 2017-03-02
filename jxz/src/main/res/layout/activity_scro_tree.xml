@@ -53,12 +53,13 @@
             android:background="@color/list_divider"/>
     </LinearLayout>
     <TextView
+
         android:id="@+id/activity_scrotree_commit"
         android:clickable="true"
         android:layout_alignParentBottom="true"
         android:padding="5dp"
         android:gravity="center"
-        android:background="@color/title_color"
+        android:background="@drawable/bg_button_top_title_selector"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textSize="18sp"

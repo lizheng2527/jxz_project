@@ -44,16 +44,16 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\layout\\view_alertdialog.xml"
     },
     {
-        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\layout\\view_photopreview.xml",
-        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\layout\\view_photopreview.xml"
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\layout\\gv_item_file.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\layout\\gv_item_file.xml"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\layout\\date_picker_done_button.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\layout\\date_picker_done_button.xml"
     },
     {
-        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\layout\\gv_item_file.xml",
-        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\layout\\gv_item_file.xml"
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\layout\\view_photopreview.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\layout\\view_photopreview.xml"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\layout\\upfile_listview_item.xml",
@@ -314,6 +314,10 @@
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_me.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\layout\\fragment_me.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\layout\\item_username.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\layout\\item_username.xml"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_workspace_grid_item.xml",
