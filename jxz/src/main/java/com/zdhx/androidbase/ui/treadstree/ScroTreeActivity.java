@@ -126,13 +126,8 @@ public class ScroTreeActivity extends BaseActivity{
 		}
 
 		try {
-			if (adapter == null){
-				adapter = new SimpleTreeListViewAdapterForScro<TreeBean>(lv,context,list,0,className);
-				lv.setAdapter(adapter);
-			}else{
-
-			}
-
+			adapter = new SimpleTreeListViewAdapterForScro<TreeBean>(lv,context,list,0,className);
+			lv.setAdapter(adapter);
 			adapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener() {
 				@Override
 				public void onClick(Node node, int arg0) {

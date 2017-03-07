@@ -24,11 +24,11 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\layout\\date_picker_selected_date.xml"
     },
     {
-        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\res\\merged\\debug\\layout\\year_label_text_view.xml",
-        "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\layout\\year_label_text_view.xml"
-    },
-    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\res\\merged\\debug\\layout\\date_picker_header_view.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\layout\\date_picker_header_view.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\res\\merged\\debug\\layout\\year_label_text_view.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\layout\\year_label_text_view.xml"
     }
 ]

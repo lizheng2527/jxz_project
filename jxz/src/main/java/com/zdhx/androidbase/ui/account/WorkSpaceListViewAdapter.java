@@ -203,12 +203,13 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
 //        下载-----------------------------------------------
 
         String name = list.get(i).getName();
-        //如果是自己上传的，隐藏下载按钮
-        if (list.get(i).getUserName().equals(ECApplication.getInstance().getCurrentUser().getName())){
-            vh.downloadImg.setVisibility(View.GONE);
-        }
-        //外部链接隐藏下载按钮
-        else if (list.get(i).getResourceStyle().equals("100")){
+//        //如果是自己上传的，隐藏下载按钮
+//        if (list.get(i).getUserName().equals(ECApplication.getInstance().getCurrentUser().getName())){
+////            vh.downloadImg.setVisibility(View.GONE);
+//        }
+//        //外部链接隐藏下载按钮
+//        else
+        if (list.get(i).getResourceStyle().equals("100")){
             vh.downloadImg.setVisibility(View.GONE);
         }
         else{
@@ -624,11 +625,11 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                     }
                     return;
                 }
-                if (list.get(i).getUserId().equals(ECApplication.getInstance().getCurrentUser().getId())){
-                    ToastUtil.showMessage("下载失败.");
-                    dialog.dismiss();
-                    return;
-                }
+//                if (list.get(i).getUserId().equals(ECApplication.getInstance().getCurrentUser().getId())){
+//                    ToastUtil.showMessage("下载失败.");
+//                    dialog.dismiss();
+//                    return;
+//                }
 
 //                if (downTag){
 //                    ToastUtil.showMessage("正在执行下载任务...");

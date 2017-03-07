@@ -121,7 +121,7 @@ public class SimpleTreeListViewAdapterForScro<T> extends TreeListViewAdapter<T> 
 		}
 		holder.headimgIV.setVisibility(View.GONE);
 		addListener(holder, node,view);
-		Log.e("initTreeDatas",node.getName());
+		Log.e("adapter.getView",node.getName());
 		return view;
 	}
 
