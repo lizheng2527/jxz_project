@@ -718,12 +718,13 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			String type = (String) map.get("type");
 			String eclassIds = (String) map.get("eclassIds");
 			String status = (String) map.get("status");
+			String highQuality = (String) map.get("highQuality");
 			if (clickId != null|eclassIds != null){
-				workSpaceFragment.onActReFresh(name,clickId,type,eclassIds,status);
+				workSpaceFragment.onActReFresh(name,clickId,type,eclassIds,status,highQuality);
 				map.clear();
 			}else{
 				if (name != null){
-					workSpaceFragment.onActReFresh(name,clickId,type,eclassIds,status);
+					workSpaceFragment.onActReFresh(name,clickId,type,eclassIds,status,highQuality);
 					map.clear();
 				}
 			}

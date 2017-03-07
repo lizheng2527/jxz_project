@@ -84,6 +84,11 @@ public class ScroFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_scro, container, false);
     }
+
+    public void setListDatasToNull(){
+        teacherListDatas.clear();
+        studentListDatas.clear();
+    }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -272,29 +277,7 @@ public class ScroFragment extends Fragment {
                             break;
                     }
                 }
-//                switch (position){
-//                    case 0:
-//                        if (teacherListDatas == null||teacherListDatas.size()<1){
-//                            ProgressUtil.show(context,"正在加载..");
-//                            initScroDatas(position);
-//                        }else{
-//                            scroListViewAdapter = new ScroListViewAdapter(teacherListDatas,context);
-//                            teacherLv.setAdapter(scroListViewAdapter);
-//                        }
-//                        break;
-//                    case 1:
-//                        if (studentListDatas == null||studentListDatas.size()<1){
-//                            ProgressUtil.show(context,"正在加载..");
-//                            initScroDatas(position);
-//                        }else{
-//                            scroListViewAdapter = new ScroListViewAdapter(studentListDatas,context);
-//                            scroListViewAdapter.notifyDataSetChanged();
-//                            studentLv.setAdapter(scroListViewAdapter);
-//                        }
-//                        break;
-//                }
                 MainActivity.map.clear();
-//                }
             }
 
             @Override

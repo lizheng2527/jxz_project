@@ -19,6 +19,8 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -27,14 +29,22 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.util.FileAccessor;
 import com.zdhx.androidbase.util.LogUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.RandomAccessFile;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -42,6 +52,75 @@ import java.util.ArrayList;
  * Created by 容联•云通讯 Modify By Li.Xin @ 立思辰合众 on 2015/3/18.
  */
 public class FileUtils {
+
+
+    public void savePicture(Bitmap bitmap) {
+        String path = ECApplication.getInstance().getDownloadJxzDir()+"/share";
+        String name = System.currentTimeMillis()+".jpg";
+        File file = new File(path,name);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+        FileOutputStream out;
+        try {
+            out = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();}
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Bitmap getInternetPicture(URL uri) {
+        Bitmap bm = null;
+        // 1、确定网址
+        // http://pic39.nipic.com/20140226/18071023_164300608000_2.jpg
+//		String urlpath = UrlPath;
+        // 2、获取Uri
+        try {
+//			URL uri = new URL(urlpath);
+
+            // 3、获取连接对象、此时还没有建立连接
+            HttpURLConnection connection = (HttpURLConnection) uri.openConnection();
+            // 4、初始化连接对象
+            // 设置请求的方法，注意大写
+            connection.setRequestMethod("GET");
+            // 读取超时
+            connection.setReadTimeout(5000);
+            // 设置连接超时
+            connection.setConnectTimeout(5000);
+            // 5、建立连接
+            connection.connect();
+
+            // 6、获取成功判断,获取响应码
+            if (connection.getResponseCode() == 200) {
+                // 7、拿到服务器返回的流，客户端请求的数据，就保存在流当中
+                InputStream is = connection.getInputStream();
+                FileInputStream fis = new FileInputStream(new File(""));
+                // 8、从流中读取数据，构造一个图片对象GoogleAPI
+                bm = BitmapFactory.decodeStream(is);
+                // 9、把图片设置到UI主线程
+                // ImageView中,获取网络资源是耗时操作需放在子线程中进行,通过创建消息发送消息给主线程刷新控件；
+
+                Log.i("", "网络请求成功");
+
+            } else {
+                Log.v("tag", "网络请求失败");
+                bm = null;
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        savePicture(bm);
+        return bm;
+
+    }
 
     /**
      * 通过Uri获取文件在本地存储的真实路径
@@ -99,16 +178,19 @@ public class FileUtils {
                 }
                 final String selection = "_id=?";
                 final String[] selectionArgs = new String[] { split[1] };
-                LogUtil.w(getDataColumn(context, contentUri, selection, selectionArgs));
+//                LogUtil.w(getDataColumn(context, contentUri, selection, selectionArgs));
+//                Log.e("PATH:",getDataColumn(context, contentUri, selection, selectionArgs));
                 return getDataColumn(context, contentUri, selection, selectionArgs);
             }
         } else if ("content".equalsIgnoreCase(uri.getScheme())) {// MediaStore
             // (and
             // general)
-            LogUtil.w(getDataColumn(context, uri, null, null));
+//            LogUtil.w(getDataColumn(context, uri, null, null));
+            Log.e("PATH:",getDataColumn(context, uri, null, null)+"FileUtils类189行");
             return getDataColumn(context, uri, null, null);
         } else if ("file".equalsIgnoreCase(uri.getScheme())) {// File
             LogUtil.w(uri.getPath());
+            Log.e("PATH:",uri.getPath()+"FileUtils类193行");
             return uri.getPath();
         }
         LogUtil.w("null");
@@ -130,19 +212,23 @@ public class FileUtils {
      */
     public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
         Cursor cursor = null;
+        String dataColumn = null;
         final String column = "_data";
         final String[] projection = { column };
         try {
             cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
             if (cursor != null && cursor.moveToFirst()) {
                 final int column_index = cursor.getColumnIndexOrThrow(column);
-                return cursor.getString(column_index);
+                dataColumn = cursor.getString(column_index);
+                LogUtil.w("dataColumu"+dataColumn);
+                if (cursor != null)
+                    cursor.close();
             }
-        } finally {
-            if (cursor != null)
-                cursor.close();
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return null;
+        LogUtil.w("dataColumu"+dataColumn);
+        return dataColumn;
     }
 
     /**

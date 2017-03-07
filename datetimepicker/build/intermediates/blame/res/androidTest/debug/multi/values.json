@@ -11,7 +11,14 @@
                     "endOffset": 150
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 105,
+                        "endColumn": 49,
+                        "endOffset": 150
+                    }
                 }
             },
             {
@@ -23,7 +30,14 @@
                     "endOffset": 189
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 155,
+                        "endColumn": 38,
+                        "endOffset": 189
+                    }
                 }
             },
             {
@@ -35,7 +49,14 @@
                     "endOffset": 236
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 194,
+                        "endColumn": 46,
+                        "endOffset": 236
+                    }
                 }
             },
             {
@@ -47,7 +68,14 @@
                     "endOffset": 286
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 241,
+                        "endColumn": 49,
+                        "endOffset": 286
+                    }
                 }
             },
             {
@@ -59,7 +87,14 @@
                     "endOffset": 350
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 291,
+                        "endColumn": 63,
+                        "endOffset": 350
+                    }
                 }
             },
             {
@@ -71,7 +106,14 @@
                     "endOffset": 402
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 355,
+                        "endColumn": 51,
+                        "endOffset": 402
+                    }
                 }
             },
             {
@@ -83,7 +125,14 @@
                     "endOffset": 446
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 407,
+                        "endColumn": 43,
+                        "endOffset": 446
+                    }
                 }
             },
             {
@@ -95,7 +144,14 @@
                     "endOffset": 492
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 451,
+                        "endColumn": 45,
+                        "endOffset": 492
+                    }
                 }
             },
             {
@@ -107,7 +163,14 @@
                     "endOffset": 552
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 497,
+                        "endColumn": 59,
+                        "endOffset": 552
+                    }
                 }
             },
             {
@@ -119,7 +182,14 @@
                     "endOffset": 612
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 557,
+                        "endColumn": 59,
+                        "endOffset": 612
+                    }
                 }
             },
             {
@@ -131,7 +201,14 @@
                     "endOffset": 665
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 617,
+                        "endColumn": 52,
+                        "endOffset": 665
+                    }
                 }
             },
             {
@@ -143,7 +220,14 @@
                     "endOffset": 729
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 670,
+                        "endColumn": 63,
+                        "endOffset": 729
+                    }
                 }
             },
             {
@@ -155,7 +239,14 @@
                     "endOffset": 791
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 734,
+                        "endColumn": 61,
+                        "endOffset": 791
+                    }
                 }
             },
             {
@@ -167,7 +258,14 @@
                     "endOffset": 850
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 796,
+                        "endColumn": 58,
+                        "endOffset": 850
+                    }
                 }
             },
             {
@@ -179,7 +277,14 @@
                     "endOffset": 907
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 855,
+                        "endColumn": 56,
+                        "endOffset": 907
+                    }
                 }
             },
             {
@@ -191,7 +296,14 @@
                     "endOffset": 952
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 912,
+                        "endColumn": 44,
+                        "endOffset": 952
+                    }
                 }
             },
             {
@@ -222,7 +334,14 @@
                     "endOffset": 1052
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 1007,
+                        "endColumn": 49,
+                        "endOffset": 1052
+                    }
                 }
             },
             {
@@ -234,7 +353,14 @@
                     "endOffset": 1096
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 1057,
+                        "endColumn": 43,
+                        "endOffset": 1096
+                    }
                 }
             },
             {
@@ -246,7 +372,14 @@
                     "endOffset": 1148
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 1101,
+                        "endColumn": 51,
+                        "endOffset": 1148
+                    }
                 }
             },
             {
@@ -258,7 +391,14 @@
                     "endOffset": 1201
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 1153,
+                        "endColumn": 52,
+                        "endOffset": 1201
+                    }
                 }
             },
             {
@@ -270,7 +410,14 @@
                     "endOffset": 1239
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 1206,
+                        "endColumn": 37,
+                        "endOffset": 1239
+                    }
                 }
             },
             {
@@ -282,7 +429,14 @@
                     "endOffset": 1285
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 1244,
+                        "endColumn": 45,
+                        "endOffset": 1285
+                    }
                 }
             },
             {
@@ -294,7 +448,14 @@
                     "endOffset": 1339
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 1290,
+                        "endColumn": 53,
+                        "endOffset": 1339
+                    }
                 }
             },
             {
@@ -306,7 +467,14 @@
                     "endOffset": 1379
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 1344,
+                        "endColumn": 39,
+                        "endOffset": 1379
+                    }
                 }
             },
             {
@@ -318,7 +486,14 @@
                     "endOffset": 1426
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 1384,
+                        "endColumn": 46,
+                        "endOffset": 1426
+                    }
                 }
             },
             {
@@ -330,7 +505,14 @@
                     "endOffset": 1475
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 4,
+                        "startOffset": 1431,
+                        "endColumn": 48,
+                        "endOffset": 1475
+                    }
                 }
             },
             {
@@ -342,7 +524,14 @@
                     "endOffset": 1535
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 29,
+                        "startColumn": 4,
+                        "startOffset": 1480,
+                        "endColumn": 59,
+                        "endOffset": 1535
+                    }
                 }
             },
             {
@@ -354,7 +543,14 @@
                     "endOffset": 1592
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 30,
+                        "startColumn": 4,
+                        "startOffset": 1540,
+                        "endColumn": 56,
+                        "endOffset": 1592
+                    }
                 }
             },
             {
@@ -366,7 +562,14 @@
                     "endOffset": 1652
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 31,
+                        "startColumn": 4,
+                        "startOffset": 1597,
+                        "endColumn": 59,
+                        "endOffset": 1652
+                    }
                 }
             },
             {
@@ -378,7 +581,14 @@
                     "endOffset": 1717
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 32,
+                        "startColumn": 4,
+                        "startOffset": 1657,
+                        "endColumn": 64,
+                        "endOffset": 1717
+                    }
                 }
             },
             {
@@ -390,7 +600,14 @@
                     "endOffset": 1780
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 33,
+                        "startColumn": 4,
+                        "startOffset": 1722,
+                        "endColumn": 62,
+                        "endOffset": 1780
+                    }
                 }
             },
             {
@@ -402,7 +619,14 @@
                     "endOffset": 1827
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 34,
+                        "startColumn": 4,
+                        "startOffset": 1785,
+                        "endColumn": 46,
+                        "endOffset": 1827
+                    }
                 }
             },
             {
@@ -414,7 +638,14 @@
                     "endOffset": 1877
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 35,
+                        "startColumn": 4,
+                        "startOffset": 1832,
+                        "endColumn": 49,
+                        "endOffset": 1877
+                    }
                 }
             },
             {
@@ -426,7 +657,14 @@
                     "endOffset": 1924
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 36,
+                        "startColumn": 4,
+                        "startOffset": 1882,
+                        "endColumn": 46,
+                        "endOffset": 1924
+                    }
                 }
             },
             {
@@ -438,7 +676,14 @@
                     "endOffset": 1980
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 37,
+                        "startColumn": 4,
+                        "startOffset": 1929,
+                        "endColumn": 55,
+                        "endOffset": 1980
+                    }
                 }
             },
             {
@@ -450,7 +695,14 @@
                     "endOffset": 2026
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 38,
+                        "startColumn": 4,
+                        "startOffset": 1985,
+                        "endColumn": 45,
+                        "endOffset": 2026
+                    }
                 }
             },
             {
@@ -462,7 +714,14 @@
                     "endOffset": 2072
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 39,
+                        "startColumn": 4,
+                        "startOffset": 2031,
+                        "endColumn": 45,
+                        "endOffset": 2072
+                    }
                 }
             },
             {
@@ -474,7 +733,14 @@
                     "endOffset": 2125
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 40,
+                        "startColumn": 4,
+                        "startOffset": 2077,
+                        "endColumn": 52,
+                        "endOffset": 2125
+                    }
                 }
             },
             {
@@ -486,7 +752,14 @@
                     "endOffset": 2183
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 41,
+                        "startColumn": 4,
+                        "startOffset": 2130,
+                        "endColumn": 57,
+                        "endOffset": 2183
+                    }
                 }
             },
             {
@@ -498,7 +771,14 @@
                     "endOffset": 2240
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 42,
+                        "startColumn": 4,
+                        "startOffset": 2188,
+                        "endColumn": 56,
+                        "endOffset": 2240
+                    }
                 }
             },
             {
@@ -510,7 +790,14 @@
                     "endOffset": 2288
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 43,
+                        "startColumn": 4,
+                        "startOffset": 2245,
+                        "endColumn": 47,
+                        "endOffset": 2288
+                    }
                 }
             },
             {
@@ -522,7 +809,14 @@
                     "endOffset": 2349
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 44,
+                        "startColumn": 4,
+                        "startOffset": 2293,
+                        "endColumn": 60,
+                        "endOffset": 2349
+                    }
                 }
             },
             {
@@ -534,7 +828,14 @@
                     "endOffset": 2407
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 45,
+                        "startColumn": 4,
+                        "startOffset": 2354,
+                        "endColumn": 57,
+                        "endOffset": 2407
+                    }
                 }
             },
             {
@@ -546,7 +847,14 @@
                     "endOffset": 2453
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 46,
+                        "startColumn": 4,
+                        "startOffset": 2412,
+                        "endColumn": 45,
+                        "endOffset": 2453
+                    }
                 }
             },
             {
@@ -558,7 +866,14 @@
                     "endOffset": 2517
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 47,
+                        "startColumn": 4,
+                        "startOffset": 2458,
+                        "endColumn": 63,
+                        "endOffset": 2517
+                    }
                 }
             },
             {
@@ -570,7 +885,14 @@
                     "endOffset": 2571
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 48,
+                        "startColumn": 4,
+                        "startOffset": 2522,
+                        "endColumn": 53,
+                        "endOffset": 2571
+                    }
                 }
             },
             {
@@ -582,7 +904,14 @@
                     "endOffset": 2627
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 49,
+                        "startColumn": 4,
+                        "startOffset": 2576,
+                        "endColumn": 55,
+                        "endOffset": 2627
+                    }
                 }
             },
             {
@@ -594,7 +923,14 @@
                     "endOffset": 2682
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 50,
+                        "startColumn": 4,
+                        "startOffset": 2632,
+                        "endColumn": 54,
+                        "endOffset": 2682
+                    }
                 }
             },
             {
@@ -606,7 +942,14 @@
                     "endOffset": 2731
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 51,
+                        "startColumn": 4,
+                        "startOffset": 2687,
+                        "endColumn": 48,
+                        "endOffset": 2731
+                    }
                 }
             },
             {
@@ -618,7 +961,14 @@
                     "endOffset": 2778
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 52,
+                        "startColumn": 4,
+                        "startOffset": 2736,
+                        "endColumn": 46,
+                        "endOffset": 2778
+                    }
                 }
             },
             {
@@ -630,7 +980,14 @@
                     "endOffset": 2827
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 53,
+                        "startColumn": 4,
+                        "startOffset": 2783,
+                        "endColumn": 48,
+                        "endOffset": 2827
+                    }
                 }
             },
             {
@@ -642,7 +999,14 @@
                     "endOffset": 2879
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 54,
+                        "startColumn": 4,
+                        "startOffset": 2832,
+                        "endColumn": 51,
+                        "endOffset": 2879
+                    }
                 }
             },
             {
@@ -654,7 +1018,14 @@
                     "endOffset": 2967
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 55,
+                        "startColumn": 4,
+                        "startOffset": 2884,
+                        "endColumn": 87,
+                        "endOffset": 2967
+                    }
                 }
             },
             {
@@ -666,7 +1037,14 @@
                     "endOffset": 3016
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\baselibrary\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\baselibrary\\build\\intermediates\\bundles\\default\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 48,
+                        "endOffset": 99
+                    }
                 }
             },
             {
@@ -678,7 +1056,14 @@
                     "endOffset": 3099
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 56,
+                        "startColumn": 4,
+                        "startOffset": 2972,
+                        "endColumn": 82,
+                        "endOffset": 3050
+                    }
                 }
             },
             {
@@ -690,7 +1075,14 @@
                     "endOffset": 3193
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 57,
+                        "startColumn": 4,
+                        "startOffset": 3055,
+                        "endColumn": 93,
+                        "endOffset": 3144
+                    }
                 }
             },
             {
@@ -702,7 +1094,14 @@
                     "endOffset": 3259
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 58,
+                        "startColumn": 4,
+                        "startOffset": 3149,
+                        "endColumn": 65,
+                        "endOffset": 3210
+                    }
                 }
             },
             {
@@ -714,7 +1113,14 @@
                     "endOffset": 3329
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 59,
+                        "startColumn": 4,
+                        "startOffset": 3215,
+                        "endColumn": 69,
+                        "endOffset": 3280
+                    }
                 }
             },
             {
@@ -726,7 +1132,14 @@
                     "endOffset": 3418
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 60,
+                        "startColumn": 4,
+                        "startOffset": 3285,
+                        "endColumn": 88,
+                        "endOffset": 3369
+                    }
                 }
             },
             {
@@ -738,7 +1151,14 @@
                     "endOffset": 3462
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 61,
+                        "startColumn": 4,
+                        "startOffset": 3374,
+                        "endColumn": 43,
+                        "endOffset": 3413
+                    }
                 }
             },
             {
@@ -750,7 +1170,14 @@
                     "endOffset": 3536
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 62,
+                        "startColumn": 4,
+                        "startOffset": 3418,
+                        "endColumn": 73,
+                        "endOffset": 3487
+                    }
                 }
             },
             {
@@ -762,7 +1189,14 @@
                     "endOffset": 3635
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 63,
+                        "startColumn": 4,
+                        "startOffset": 3492,
+                        "endColumn": 98,
+                        "endOffset": 3586
+                    }
                 }
             },
             {
@@ -774,7 +1208,14 @@
                     "endOffset": 3713
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 64,
+                        "startColumn": 4,
+                        "startOffset": 3591,
+                        "endColumn": 77,
+                        "endOffset": 3664
+                    }
                 }
             },
             {
@@ -786,7 +1227,14 @@
                     "endOffset": 3803
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 65,
+                        "startColumn": 4,
+                        "startOffset": 3669,
+                        "endColumn": 89,
+                        "endOffset": 3754
+                    }
                 }
             },
             {
@@ -798,7 +1246,14 @@
                     "endOffset": 3894
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 66,
+                        "startColumn": 4,
+                        "startOffset": 3759,
+                        "endColumn": 90,
+                        "endOffset": 3845
+                    }
                 }
             },
             {
@@ -810,7 +1265,14 @@
                     "endOffset": 3984
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 67,
+                        "startColumn": 4,
+                        "startOffset": 3850,
+                        "endColumn": 89,
+                        "endOffset": 3935
+                    }
                 }
             },
             {
@@ -822,7 +1284,14 @@
                     "endOffset": 4047
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 68,
+                        "startColumn": 4,
+                        "startOffset": 3940,
+                        "endColumn": 62,
+                        "endOffset": 3998
+                    }
                 }
             },
             {
@@ -834,7 +1303,14 @@
                     "endOffset": 4097
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 69,
+                        "startColumn": 4,
+                        "startOffset": 4003,
+                        "endColumn": 49,
+                        "endOffset": 4048
+                    }
                 }
             },
             {
@@ -846,7 +1322,14 @@
                     "endOffset": 4157
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 70,
+                        "startColumn": 4,
+                        "startOffset": 4053,
+                        "endColumn": 59,
+                        "endOffset": 4108
+                    }
                 }
             },
             {
@@ -858,7 +1341,14 @@
                     "endOffset": 4211
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 71,
+                        "startColumn": 4,
+                        "startOffset": 4113,
+                        "endColumn": 53,
+                        "endOffset": 4162
+                    }
                 }
             },
             {
@@ -870,7 +1360,14 @@
                     "endOffset": 4269
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 72,
+                        "startColumn": 4,
+                        "startOffset": 4167,
+                        "endColumn": 57,
+                        "endOffset": 4220
+                    }
                 }
             },
             {
@@ -882,7 +1379,14 @@
                     "endOffset": 4321
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 73,
+                        "startColumn": 4,
+                        "startOffset": 4225,
+                        "endColumn": 51,
+                        "endOffset": 4272
+                    }
                 }
             },
             {
@@ -894,7 +1398,14 @@
                     "endOffset": 4407
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 74,
+                        "startColumn": 4,
+                        "startOffset": 4277,
+                        "endColumn": 85,
+                        "endOffset": 4358
+                    }
                 }
             },
             {
@@ -906,7 +1417,14 @@
                     "endOffset": 4492
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 75,
+                        "startColumn": 4,
+                        "startOffset": 4363,
+                        "endColumn": 84,
+                        "endOffset": 4443
+                    }
                 }
             },
             {
@@ -918,7 +1436,14 @@
                     "endOffset": 4578
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 76,
+                        "startColumn": 4,
+                        "startOffset": 4448,
+                        "endColumn": 85,
+                        "endOffset": 4529
+                    }
                 }
             },
             {
@@ -930,7 +1455,14 @@
                     "endOffset": 4663
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 77,
+                        "startColumn": 4,
+                        "startOffset": 4534,
+                        "endColumn": 84,
+                        "endOffset": 4614
+                    }
                 }
             },
             {
@@ -942,7 +1474,14 @@
                     "endOffset": 4711
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 78,
+                        "startColumn": 4,
+                        "startOffset": 4619,
+                        "endColumn": 47,
+                        "endOffset": 4662
+                    }
                 }
             },
             {
@@ -954,7 +1493,14 @@
                     "endOffset": 4756
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 79,
+                        "startColumn": 4,
+                        "startOffset": 4667,
+                        "endColumn": 44,
+                        "endOffset": 4707
+                    }
                 }
             },
             {
@@ -966,7 +1512,14 @@
                     "endOffset": 4818
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 80,
+                        "startColumn": 4,
+                        "startOffset": 4712,
+                        "endColumn": 61,
+                        "endOffset": 4769
+                    }
                 }
             },
             {
@@ -974,63 +1527,102 @@
                     "startLine": 82,
                     "startColumn": 4,
                     "startOffset": 4823,
-                    "endLine": 84,
+                    "endLine": 88,
                     "endColumn": 12,
-                    "endOffset": 4901
+                    "endOffset": 5109
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 81,
+                        "startColumn": 4,
+                        "startOffset": 4774,
+                        "endLine": 87,
+                        "endColumn": 12,
+                        "endOffset": 5060
+                    }
                 }
             },
             {
                 "to": {
-                    "startLine": 85,
+                    "startLine": 89,
                     "startColumn": 4,
-                    "startOffset": 4906,
-                    "endLine": 87,
+                    "startOffset": 5114,
+                    "endLine": 91,
                     "endColumn": 12,
-                    "endOffset": 4973
+                    "endOffset": 5269
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 88,
+                        "startColumn": 4,
+                        "startOffset": 5065,
+                        "endLine": 90,
+                        "endColumn": 12,
+                        "endOffset": 5220
+                    }
                 }
             },
             {
                 "to": {
-                    "startLine": 88,
+                    "startLine": 92,
                     "startColumn": 4,
-                    "startOffset": 4978,
-                    "endLine": 93,
+                    "startOffset": 5274,
+                    "endLine": 97,
                     "endColumn": 12,
-                    "endOffset": 5257
+                    "endOffset": 5553
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 91,
+                        "startColumn": 4,
+                        "startOffset": 5225,
+                        "endLine": 96,
+                        "endColumn": 12,
+                        "endOffset": 5504
+                    }
                 }
             },
             {
                 "to": {
-                    "startLine": 94,
+                    "startLine": 98,
                     "startColumn": 4,
-                    "startOffset": 5262,
+                    "startOffset": 5558,
                     "endColumn": 47,
-                    "endOffset": 5305
+                    "endOffset": 5601
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 97,
+                        "startColumn": 4,
+                        "startOffset": 5509,
+                        "endColumn": 47,
+                        "endOffset": 5552
+                    }
                 }
             },
             {
                 "to": {
-                    "startLine": 95,
+                    "startLine": 99,
                     "startColumn": 4,
-                    "startOffset": 5310,
-                    "endLine": 98,
+                    "startOffset": 5606,
+                    "endLine": 102,
                     "endColumn": 12,
-                    "endOffset": 5488
+                    "endOffset": 5784
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 98,
+                        "startColumn": 4,
+                        "startOffset": 5557,
+                        "endLine": 101,
+                        "endColumn": 12,
+                        "endOffset": 5735
+                    }
                 }
             }
         ]

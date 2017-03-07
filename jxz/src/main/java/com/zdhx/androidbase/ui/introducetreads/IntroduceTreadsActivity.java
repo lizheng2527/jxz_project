@@ -64,6 +64,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static java.lang.System.out;
+
 public class IntroduceTreadsActivity extends BaseActivity{
 
 	private RadioGroup impNoticeGroup;
@@ -147,7 +149,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 					// 返回路径
 					String path = FileUtils.getPathByUri4kitkat(context, uri);
-					System.out.println("path-->" + path);
+					out.println("path-->" + path);
 
 					return path;
 				} catch (Exception e) {
@@ -160,6 +162,8 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		}
 		return null;
 	}
+
+
 
 
 
@@ -684,7 +688,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 					holder.imageLay.setVisibility(View.VISIBLE);
 					holder.imageGV.setImageBitmap(loadImageFromLocal(getItem(position).getFile().getAbsolutePath()));
 					holder.imageSizeTV.setText(FileUtils.formatFileLength(getItem(position).getFile().length()));
-					System.out.println(getItem(position).getFile().getAbsolutePath());
+					out.println(getItem(position).getFile().getAbsolutePath());
 				} else {
 					holder.fileLay.setVisibility(View.VISIBLE);
 					holder.imageLay.setVisibility(View.GONE);
@@ -1008,7 +1012,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 				}
 			}
 		});
-		buildAlert.setTitle("修改标题");
+		buildAlert.setTitle("修改文件名称");
 		buildAlert.setCanceledOnTouchOutside(false);
 		buildAlert.setContentView(R.layout.config_dcaddress_dialog);
 		String server = upFileBeens.get(position).getTitle();

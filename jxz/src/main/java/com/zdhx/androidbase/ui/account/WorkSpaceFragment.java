@@ -317,7 +317,7 @@ public class WorkSpaceFragment extends Fragment {
 
     }
 
-    public void onActReFresh(String name,String clickId,String type,String eclassIds,String status){
+    public void onActReFresh(String name,String clickId,String type,String eclassIds,String status,String highqualityValue){
         if (dialog != null){
             dialog.show();
         }
@@ -326,6 +326,7 @@ public class WorkSpaceFragment extends Fragment {
         this.type = type;
         this.status = status;
         this.eclassIds = eclassIds;
+        this.highqualityValue = highqualityValue;
         switch(workSpaceGridAdapter.index){
             case 0:
                 resourceStyle = "9";
@@ -358,7 +359,7 @@ public class WorkSpaceFragment extends Fragment {
                 resourceStyle = "8";
                 break;
         }
-        ListViewDatas(selectIndexTag,name,"",resourceStyle,clickId,type,null,eclassIds,status,"","0","1");
+        ListViewDatas(selectIndexTag,name,highqualityValue,resourceStyle,clickId,type,null,eclassIds,status,"","0","1");
     }
 
     private HashMap<String,ParameterValue> hashMap = new HashMap<>();
@@ -415,7 +416,8 @@ public class WorkSpaceFragment extends Fragment {
         this.eclassIds = eclassIds;
         this.status = status;
         SearchWorkActivity.status = this.status;
-        SearchWorkActivity.oldStatus = this.status;
+        SearchWorkActivity.highQuality = this.highqualityValue;
+        SearchWorkActivity.oldHighQuality = this.highqualityValue;
         this.studentUploadType = studentUploadType;
         this.radioValue = radioValue;
         //教师登录
@@ -460,7 +462,7 @@ public class WorkSpaceFragment extends Fragment {
             }
         }
 
-        if (highqualityValue == null){//每个选择都需要（提名/优质）
+        if (highqualityValue == null||highqualityValue.equals("")){//每个选择都需要（提名/优质）
             hashMap.put("highqualityValue",new ParameterValue(""));
             highqualityValue = "";
         }else{

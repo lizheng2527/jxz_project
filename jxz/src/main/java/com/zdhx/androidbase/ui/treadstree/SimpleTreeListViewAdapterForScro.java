@@ -2,6 +2,7 @@ package com.zdhx.androidbase.ui.treadstree;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -120,7 +121,7 @@ public class SimpleTreeListViewAdapterForScro<T> extends TreeListViewAdapter<T> 
 		}
 		holder.headimgIV.setVisibility(View.GONE);
 		addListener(holder, node,view);
-
+		Log.e("initTreeDatas",node.getName());
 		return view;
 	}
 

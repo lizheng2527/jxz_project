@@ -88,8 +88,7 @@
             android:layout_marginLeft="55dp"
             fresco:placeholderImage="@color/light_gray"
             android:layout_marginTop="5dp"
-            android:src="@color/gray" />
-
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -362,6 +361,7 @@
             </LinearLayout>
 
             <TextView
+                android:background="@drawable/bg_button_light_gray_selector"
                 android:clickable="true"
                 android:id="@+id/launchorretract"
                 android:layout_gravity="right"

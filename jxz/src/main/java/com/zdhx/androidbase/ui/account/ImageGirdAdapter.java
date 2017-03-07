@@ -77,14 +77,6 @@ public class ImageGirdAdapter extends BaseAdapter {
 				intent.putExtra("images", urls);
 				intent.putExtra("image_index",position);
 				intent.putExtra("imgNames",names);
-
-//				adapter.isMyself(listPosition);
-//				if (!adapter.isMyself(listPosition)){
-//					MainActivity.map.put("11",listPosition);
-//					MainActivity.map.put("adapter",adapter);
-//					//预览+1
-//					adapter.doPreview(position);
-//				}
 				frag.startActivity(intent);
 			}
 		});

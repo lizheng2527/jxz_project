@@ -71,21 +71,26 @@ public class CheckActivity extends BaseActivity {
 		String teacherFinalSelection = (String) MainActivity.map.get("quantity_teacherFinalSelection");
 		if (highQuality.equals("2")){//当前为最高级别，只能选择不通过
 			pass.setClickable(false);
+			unPass.setClickable(false);
 			unPass.setChecked(true);
 			passTag = false;
 			title.setText("终评审核");
 		}else if (highQuality.equals("0")){//当前为最低级别，只能选择通过
-			pass.setClickable(true);
+			pass.setClickable(false);
+			unPass.setClickable(false);
 			unPass.setChecked(false);
 			passTag = true;
 			title.setText("预评审核");
 		}else{
 			if (teacherFinalSelection.equals("0")){//当前为预评级别，没有终评权限，只能选择不通过，
 				pass.setClickable(false);
+				unPass.setChecked(false);
 				unPass.setChecked(true);
 				passTag = false;
 				title.setText("预评审核");
 			}else{//当前为预评级别，有终评权限，都可以选择，
+				pass.setClickable(true);
+				unPass.setClickable(true);
 				title.setText("预评审核");
 			}
 		}
@@ -109,12 +114,12 @@ public class CheckActivity extends BaseActivity {
 	private HashMap<String,ParameterValue> map = new HashMap<>();
 	public void onSend(View v){
 		final ECProgressDialog dialog = new ECProgressDialog(CheckActivity.this,"正在上传信息");
-		dialog.show();
 		final String content = noteET.getText().toString().trim();
 		if (content == null||content.length() == 0){
 			doToast("请说明原因");
 			return;
 		}else{
+			dialog.show();
 			new ProgressThreadWrap(CheckActivity.this, new RunnableWrap() {
 				@Override
 				public void run() {

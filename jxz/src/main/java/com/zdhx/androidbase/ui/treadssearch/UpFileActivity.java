@@ -308,7 +308,7 @@ public class UpFileActivity extends BaseActivity {
 				}
 			}
 		});
-		buildAlert.setTitle("修改标题");
+		buildAlert.setTitle("修改文件名称");
 		buildAlert.setCanceledOnTouchOutside(false);
 		buildAlert.setContentView(R.layout.config_dcaddress_dialog);
 		String server = upFileBeens.get(position).getTitle();

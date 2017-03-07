@@ -19,13 +19,15 @@
             >
 
             <com.facebook.drawee.view.SimpleDraweeView
+
                 android:id="@+id/imageGV"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:contentDescription="@null"
                 android:gravity="center"
+                android:background="@color/light_gray"
                 android:scaleType="centerCrop"
-                android:src="@color/gray" />
+                />
 
 
             <ImageView

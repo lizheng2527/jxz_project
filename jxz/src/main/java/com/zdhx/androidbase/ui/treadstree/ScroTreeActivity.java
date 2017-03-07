@@ -3,6 +3,7 @@ package com.zdhx.androidbase.ui.treadstree;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -125,8 +126,13 @@ public class ScroTreeActivity extends BaseActivity{
 		}
 
 		try {
-			adapter = new SimpleTreeListViewAdapterForScro<TreeBean>(lv,context,list,0,className);
-			lv.setAdapter(adapter);
+			if (adapter == null){
+				adapter = new SimpleTreeListViewAdapterForScro<TreeBean>(lv,context,list,0,className);
+				lv.setAdapter(adapter);
+			}else{
+
+			}
+
 			adapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener() {
 				@Override
 				public void onClick(Node node, int arg0) {
@@ -260,6 +266,7 @@ public class ScroTreeActivity extends BaseActivity{
 	 * @param json
 	 */
 	public void initTreeDatas(String json){
+		Log.e("initTreeDatas","开始构建树数据");
 		List<TreeBean1> beans = new ArrayList<>();
 		beans = new Gson().fromJson(json, new TypeToken<List<TreeBean1>>(){}.getType());
 		for (int i = 0; i < beans.size(); i++) {
@@ -286,6 +293,7 @@ public class ScroTreeActivity extends BaseActivity{
 				}
 			}
 		}
+		Log.e("initTreeDatas","构建树完毕");
 	}
 
 	/**
@@ -333,7 +341,9 @@ public class ScroTreeActivity extends BaseActivity{
 	public void setListView(){
 		try {
 			adapter = new SimpleTreeListViewAdapterForScro<TreeBean>(lv,context,list,0,className);
+			Log.e("initTreeDatas","setadapter");
 			lv.setAdapter(adapter);
+			Log.e("initTreeDatas","adapterSet结束");
 			ProgressUtil.hide();
 			adapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener() {
 				@Override
@@ -395,6 +405,7 @@ public class ScroTreeActivity extends BaseActivity{
 						if (response != null && !response.equals(RequestWithCacheGet.NOT_OUTOFDATE)) {
 							initTreeDatas(response);
 							setListView();
+							Log.e("onResponse:","下载的数据");
 						}
 					}
 				}, new Response.ErrorListener() {
@@ -406,6 +417,7 @@ public class ScroTreeActivity extends BaseActivity{
 				if ((json != null && !json.equals(RequestWithCacheGet.NO_DATA))) {
 					initTreeDatas(json);
 					setListView();
+					Log.e("onResponse:","缓存的数据");
 				}
 			}
 		},500);

@@ -538,6 +538,7 @@ public class HomeFragment extends Fragment {
         mPagerSlidingTabStrip.setOnTabClickListener(new PagerSlidingTabStrip.OnTabClickListener() {
             @Override
             public void onTabClick(View tab, int position) {
+                isClickSelect = true;
                 onEmptyClick(position);
 //                setOnLoad(position);
             }
@@ -896,10 +897,14 @@ public class HomeFragment extends Fragment {
             public void run() {
                 try {
                     hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
+                    LogUtil.e("开始访问网络");
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
+                    LogUtil.e("获取到网络数据");
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
+                    LogUtil.e("解析网络数据");
                     handler.postDelayed(new Runnable() {
                         public void run() {
+                            LogUtil.e("解析完成，开始展示");
                             if (treads != null) {
                                 setStatus(treads.getStatus(),index);
                                 viewPagerListTreadsDatas = treads.getDataList();
@@ -1166,24 +1171,18 @@ public class HomeFragment extends Fragment {
                 isLoadMoring5 = b;
                 break;
         }
-        LogUtil.w("index = "+index+":b = "+b);
     }
     private boolean getIsLoadMoring(int index){
         switch (index){
             case 0:
-                LogUtil.w("index = "+index+":isLoadMoring0 = "+isLoadMoring0);
                 return isLoadMoring0;
             case 1:
-                LogUtil.w("index = "+index+":isLoadMoring1 = "+isLoadMoring1);
                 return isLoadMoring1;
             case 2:
-                LogUtil.w("index = "+index+":isLoadMoring2 = "+isLoadMoring2);
                 return isLoadMoring2;
             case 3:
-                LogUtil.w("index = "+index+":isLoadMoring3 = "+isLoadMoring3);
                 return isLoadMoring3;
             case 4:
-                LogUtil.w("index = "+index+":isLoadMoring4 = "+isLoadMoring4);
                 return isLoadMoring4;
             case 5:
                 return isLoadMoring5;
@@ -1272,10 +1271,13 @@ public class HomeFragment extends Fragment {
             public void run() {
                 hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
                 try {
+                    LogUtil.e("开始访问网络");
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
+                    LogUtil.e("网络数据返回");
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
                     handler.postDelayed(new Runnable() {
                         public void run() {
+                            LogUtil.e("获取到数据");
                             setStatus(treads.getStatus(),loadIndex);
                             List<Treads.DataListBean> list = treads.getDataList();
                             if (list != null&&list.size()>0){
@@ -1438,7 +1440,6 @@ public class HomeFragment extends Fragment {
                 try {
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
-//                    status = treads.getStatus();
 
                     handler.postDelayed(new Runnable() {
                         public void run() {
@@ -1521,7 +1522,6 @@ public class HomeFragment extends Fragment {
                 }
             }
         }).start();
-
     }
 }
 

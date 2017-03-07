@@ -10119,12 +10119,12 @@
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml",
                     "position": {
-                        "startLine": 87,
+                        "startLine": 91,
                         "startColumn": 4,
-                        "startOffset": 4929,
-                        "endLine": 92,
+                        "startOffset": 5225,
+                        "endLine": 96,
                         "endColumn": 12,
-                        "endOffset": 5208
+                        "endOffset": 5504
                     }
                 }
             },
@@ -10139,11 +10139,11 @@
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml",
                     "position": {
-                        "startLine": 93,
+                        "startLine": 97,
                         "startColumn": 4,
-                        "startOffset": 5213,
+                        "startOffset": 5509,
                         "endColumn": 47,
-                        "endOffset": 5256
+                        "endOffset": 5552
                     }
                 }
             },
@@ -10222,12 +10222,12 @@
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml",
                     "position": {
-                        "startLine": 94,
+                        "startLine": 98,
                         "startColumn": 4,
-                        "startOffset": 5261,
-                        "endLine": 97,
+                        "startOffset": 5557,
+                        "endLine": 101,
                         "endColumn": 12,
-                        "endOffset": 5439
+                        "endOffset": 5735
                     }
                 }
             }

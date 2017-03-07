@@ -99,6 +99,7 @@
         <activity
             android:name="com.zdhx.androidbase.ui.treadstree.TreeActivity"
             android:screenOrientation="portrait" />
+
         <!-- 资源树 -->
         <activity
             android:name="com.zdhx.androidbase.ui.treadstree.WorkTreeActivity"
@@ -106,7 +107,9 @@
         <!-- 上传文件 -->
         <activity
             android:name="com.zdhx.androidbase.ui.treadssearch.UpFileActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        </activity>
+
         <!-- 展示视频文件 -->
         <activity
             android:name="com.zdhx.androidbase.ui.treadssearch.VideoShowActivity"

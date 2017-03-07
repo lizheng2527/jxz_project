@@ -11,7 +11,14 @@
                     "endOffset": 150
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 834,
+                        "endColumn": 49,
+                        "endOffset": 879
+                    }
                 }
             },
             {
@@ -23,7 +30,14 @@
                     "endOffset": 189
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 1108,
+                        "endColumn": 38,
+                        "endOffset": 1142
+                    }
                 }
             },
             {
@@ -35,7 +49,14 @@
                     "endOffset": 236
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 4,
+                        "startOffset": 1147,
+                        "endColumn": 46,
+                        "endOffset": 1189
+                    }
                 }
             },
             {
@@ -47,7 +68,14 @@
                     "endOffset": 286
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 33,
+                        "startColumn": 4,
+                        "startOffset": 1353,
+                        "endColumn": 49,
+                        "endOffset": 1398
+                    }
                 }
             },
             {
@@ -59,7 +87,14 @@
                     "endOffset": 350
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 35,
+                        "startColumn": 4,
+                        "startOffset": 1463,
+                        "endColumn": 63,
+                        "endOffset": 1522
+                    }
                 }
             },
             {
@@ -71,7 +106,14 @@
                     "endOffset": 402
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 732,
+                        "endColumn": 51,
+                        "endOffset": 779
+                    }
                 }
             },
             {
@@ -83,7 +125,14 @@
                     "endOffset": 446
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 42,
+                        "startColumn": 4,
+                        "startOffset": 1741,
+                        "endColumn": 43,
+                        "endOffset": 1780
+                    }
                 }
             },
             {
@@ -95,7 +144,14 @@
                     "endOffset": 492
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 30,
+                        "startColumn": 4,
+                        "startOffset": 1246,
+                        "endColumn": 45,
+                        "endOffset": 1287
+                    }
                 }
             },
             {
@@ -107,7 +163,14 @@
                     "endOffset": 552
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 31,
+                        "startColumn": 4,
+                        "startOffset": 1292,
+                        "endColumn": 59,
+                        "endOffset": 1347
+                    }
                 }
             },
             {
@@ -119,7 +182,14 @@
                     "endOffset": 612
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 34,
+                        "startColumn": 4,
+                        "startOffset": 1403,
+                        "endColumn": 59,
+                        "endOffset": 1458
+                    }
                 }
             },
             {
@@ -131,7 +201,14 @@
                     "endOffset": 665
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 46,
+                        "startColumn": 4,
+                        "startOffset": 1955,
+                        "endColumn": 52,
+                        "endOffset": 2003
+                    }
                 }
             },
             {
@@ -143,7 +220,14 @@
                     "endOffset": 729
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 45,
+                        "startColumn": 4,
+                        "startOffset": 1891,
+                        "endColumn": 63,
+                        "endOffset": 1950
+                    }
                 }
             },
             {
@@ -155,7 +239,14 @@
                     "endOffset": 791
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 44,
+                        "startColumn": 4,
+                        "startOffset": 1829,
+                        "endColumn": 61,
+                        "endOffset": 1886
+                    }
                 }
             },
             {
@@ -167,7 +258,14 @@
                     "endOffset": 850
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 941,
+                        "endColumn": 58,
+                        "endOffset": 995
+                    }
                 }
             },
             {
@@ -179,7 +277,14 @@
                     "endOffset": 907
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 884,
+                        "endColumn": 56,
+                        "endOffset": 936
+                    }
                 }
             },
             {
@@ -191,7 +296,14 @@
                     "endOffset": 952
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 40,
+                        "startColumn": 4,
+                        "startOffset": 1646,
+                        "endColumn": 44,
+                        "endOffset": 1686
+                    }
                 }
             },
             {
@@ -222,7 +334,14 @@
                     "endOffset": 1052
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 784,
+                        "endColumn": 49,
+                        "endOffset": 829
+                    }
                 }
             },
             {
@@ -234,7 +353,14 @@
                     "endOffset": 1096
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 43,
+                        "startColumn": 4,
+                        "startOffset": 1785,
+                        "endColumn": 43,
+                        "endOffset": 1824
+                    }
                 }
             },
             {
@@ -246,7 +372,14 @@
                     "endOffset": 1148
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 29,
+                        "startColumn": 4,
+                        "startOffset": 1194,
+                        "endColumn": 51,
+                        "endOffset": 1241
+                    }
                 }
             },
             {
@@ -258,7 +391,14 @@
                     "endOffset": 1201
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 1000,
+                        "endColumn": 52,
+                        "endOffset": 1048
+                    }
                 }
             },
             {
@@ -270,7 +410,14 @@
                     "endOffset": 1239
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 38,
+                        "startColumn": 4,
+                        "startOffset": 1562,
+                        "endColumn": 37,
+                        "endOffset": 1595
+                    }
                 }
             },
             {
@@ -282,7 +429,14 @@
                     "endOffset": 1285
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 39,
+                        "startColumn": 4,
+                        "startOffset": 1600,
+                        "endColumn": 45,
+                        "endOffset": 1641
+                    }
                 }
             },
             {
@@ -294,7 +448,14 @@
                     "endOffset": 1339
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 1054,
+                        "endColumn": 53,
+                        "endOffset": 1103
+                    }
                 }
             },
             {
@@ -306,7 +467,14 @@
                     "endOffset": 1379
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 692,
+                        "endColumn": 39,
+                        "endOffset": 727
+                    }
                 }
             },
             {
@@ -318,7 +486,14 @@
                     "endOffset": 1426
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 33,
+                        "startColumn": 4,
+                        "startOffset": 1791,
+                        "endColumn": 46,
+                        "endOffset": 1833
+                    }
                 }
             },
             {
@@ -330,7 +505,14 @@
                     "endOffset": 1475
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 35,
+                        "startColumn": 4,
+                        "startOffset": 1885,
+                        "endColumn": 48,
+                        "endOffset": 1929
+                    }
                 }
             },
             {
@@ -342,7 +524,14 @@
                     "endOffset": 1535
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 43,
+                        "startColumn": 4,
+                        "startOffset": 2233,
+                        "endColumn": 59,
+                        "endOffset": 2288
+                    }
                 }
             },
             {
@@ -354,7 +543,14 @@
                     "endOffset": 1592
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 44,
+                        "startColumn": 4,
+                        "startOffset": 2293,
+                        "endColumn": 56,
+                        "endOffset": 2345
+                    }
                 }
             },
             {
@@ -366,7 +562,14 @@
                     "endOffset": 1652
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 56,
+                        "startColumn": 4,
+                        "startOffset": 2934,
+                        "endColumn": 59,
+                        "endOffset": 2989
+                    }
                 }
             },
             {
@@ -378,7 +581,14 @@
                     "endOffset": 1717
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 46,
+                        "startColumn": 4,
+                        "startOffset": 2414,
+                        "endColumn": 64,
+                        "endOffset": 2474
+                    }
                 }
             },
             {
@@ -390,7 +600,14 @@
                     "endOffset": 1780
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 51,
+                        "startColumn": 4,
+                        "startOffset": 2648,
+                        "endColumn": 62,
+                        "endOffset": 2706
+                    }
                 }
             },
             {
@@ -402,7 +619,14 @@
                     "endOffset": 1827
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 58,
+                        "startColumn": 4,
+                        "startOffset": 3042,
+                        "endColumn": 46,
+                        "endOffset": 3084
+                    }
                 }
             },
             {
@@ -414,7 +638,14 @@
                     "endOffset": 1877
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 47,
+                        "startColumn": 4,
+                        "startOffset": 2479,
+                        "endColumn": 49,
+                        "endOffset": 2524
+                    }
                 }
             },
             {
@@ -426,7 +657,14 @@
                     "endOffset": 1924
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 34,
+                        "startColumn": 4,
+                        "startOffset": 1838,
+                        "endColumn": 46,
+                        "endOffset": 1880
+                    }
                 }
             },
             {
@@ -438,7 +676,14 @@
                     "endOffset": 1980
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 32,
+                        "startColumn": 4,
+                        "startOffset": 1735,
+                        "endColumn": 55,
+                        "endOffset": 1786
+                    }
                 }
             },
             {
@@ -450,7 +695,14 @@
                     "endOffset": 2026
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 38,
+                        "startColumn": 4,
+                        "startOffset": 2029,
+                        "endColumn": 45,
+                        "endOffset": 2070
+                    }
                 }
             },
             {
@@ -462,7 +714,14 @@
                     "endOffset": 2072
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 37,
+                        "startColumn": 4,
+                        "startOffset": 1983,
+                        "endColumn": 45,
+                        "endOffset": 2024
+                    }
                 }
             },
             {
@@ -474,7 +733,14 @@
                     "endOffset": 2125
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 39,
+                        "startColumn": 4,
+                        "startOffset": 2075,
+                        "endColumn": 52,
+                        "endOffset": 2123
+                    }
                 }
             },
             {
@@ -486,7 +752,14 @@
                     "endOffset": 2183
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 40,
+                        "startColumn": 4,
+                        "startOffset": 2128,
+                        "endColumn": 57,
+                        "endOffset": 2181
+                    }
                 }
             },
             {
@@ -498,7 +771,14 @@
                     "endOffset": 2240
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 50,
+                        "startColumn": 4,
+                        "startOffset": 2591,
+                        "endColumn": 56,
+                        "endOffset": 2643
+                    }
                 }
             },
             {
@@ -510,7 +790,14 @@
                     "endOffset": 2288
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 57,
+                        "startColumn": 4,
+                        "startOffset": 2994,
+                        "endColumn": 47,
+                        "endOffset": 3037
+                    }
                 }
             },
             {
@@ -522,7 +809,14 @@
                     "endOffset": 2349
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 49,
+                        "startColumn": 4,
+                        "startOffset": 2530,
+                        "endColumn": 60,
+                        "endOffset": 2586
+                    }
                 }
             },
             {
@@ -534,7 +828,14 @@
                     "endOffset": 2407
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 52,
+                        "startColumn": 4,
+                        "startOffset": 2711,
+                        "endColumn": 57,
+                        "endOffset": 2764
+                    }
                 }
             },
             {
@@ -546,7 +847,14 @@
                     "endOffset": 2453
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 41,
+                        "startColumn": 4,
+                        "startOffset": 2186,
+                        "endColumn": 45,
+                        "endOffset": 2227
+                    }
                 }
             },
             {
@@ -558,7 +866,14 @@
                     "endOffset": 2517
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 45,
+                        "startColumn": 4,
+                        "startOffset": 2350,
+                        "endColumn": 63,
+                        "endOffset": 2409
+                    }
                 }
             },
             {
@@ -570,7 +885,14 @@
                     "endOffset": 2571
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 54,
+                        "startColumn": 4,
+                        "startOffset": 2824,
+                        "endColumn": 53,
+                        "endOffset": 2873
+                    }
                 }
             },
             {
@@ -582,7 +904,14 @@
                     "endOffset": 2627
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 55,
+                        "startColumn": 4,
+                        "startOffset": 2878,
+                        "endColumn": 55,
+                        "endOffset": 2929
+                    }
                 }
             },
             {
@@ -594,7 +923,14 @@
                     "endOffset": 2682
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 53,
+                        "startColumn": 4,
+                        "startOffset": 2769,
+                        "endColumn": 54,
+                        "endOffset": 2819
+                    }
                 }
             },
             {
@@ -606,7 +942,14 @@
                     "endOffset": 2731
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 36,
+                        "startColumn": 4,
+                        "startOffset": 1934,
+                        "endColumn": 48,
+                        "endOffset": 1978
+                    }
                 }
             },
             {
@@ -618,7 +961,14 @@
                     "endOffset": 2778
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 31,
+                        "startColumn": 4,
+                        "startOffset": 1688,
+                        "endColumn": 46,
+                        "endOffset": 1730
+                    }
                 }
             },
             {
@@ -630,7 +980,14 @@
                     "endOffset": 2827
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 59,
+                        "startColumn": 4,
+                        "startOffset": 3089,
+                        "endColumn": 48,
+                        "endOffset": 3133
+                    }
                 }
             },
             {
@@ -642,7 +999,14 @@
                     "endOffset": 2879
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 60,
+                        "startColumn": 4,
+                        "startOffset": 3138,
+                        "endColumn": 51,
+                        "endOffset": 3185
+                    }
                 }
             },
             {
@@ -654,7 +1018,14 @@
                     "endOffset": 2967
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 1071,
+                        "endColumn": 87,
+                        "endOffset": 1154
+                    }
                 }
             },
             {
@@ -666,7 +1037,14 @@
                     "endOffset": 3016
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\baselibrary\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\baselibrary\\build\\intermediates\\bundles\\default\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 48,
+                        "endOffset": 99
+                    }
                 }
             },
             {
@@ -678,7 +1056,14 @@
                     "endOffset": 3099
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 808,
+                        "endColumn": 82,
+                        "endOffset": 886
+                    }
                 }
             },
             {
@@ -690,7 +1075,14 @@
                     "endOffset": 3193
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 891,
+                        "endColumn": 93,
+                        "endOffset": 980
+                    }
                 }
             },
             {
@@ -702,7 +1094,14 @@
                     "endOffset": 3259
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 69,
+                        "startColumn": 4,
+                        "startOffset": 3252,
+                        "endColumn": 65,
+                        "endOffset": 3313
+                    }
                 }
             },
             {
@@ -714,7 +1113,14 @@
                     "endOffset": 3329
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 42,
+                        "startColumn": 4,
+                        "startOffset": 1940,
+                        "endColumn": 69,
+                        "endOffset": 2005
+                    }
                 }
             },
             {
@@ -726,7 +1132,14 @@
                     "endOffset": 3418
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 56,
+                        "startColumn": 4,
+                        "startOffset": 2800,
+                        "endColumn": 92,
+                        "endOffset": 2888
+                    }
                 }
             },
             {
@@ -738,7 +1151,14 @@
                     "endOffset": 3462
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 821,
+                        "endColumn": 43,
+                        "endOffset": 860
+                    }
                 }
             },
             {
@@ -750,7 +1170,14 @@
                     "endOffset": 3536
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 1088,
+                        "endColumn": 73,
+                        "endOffset": 1157
+                    }
                 }
             },
             {
@@ -762,7 +1189,14 @@
                     "endOffset": 3635
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 54,
+                        "startColumn": 4,
+                        "startOffset": 2591,
+                        "endColumn": 102,
+                        "endOffset": 2689
+                    }
                 }
             },
             {
@@ -774,7 +1208,14 @@
                     "endOffset": 3713
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 31,
+                        "startColumn": 4,
+                        "startOffset": 1392,
+                        "endColumn": 77,
+                        "endOffset": 1465
+                    }
                 }
             },
             {
@@ -786,7 +1227,14 @@
                     "endOffset": 3803
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 1250,
+                        "endColumn": 89,
+                        "endOffset": 1335
+                    }
                 }
             },
             {
@@ -798,7 +1246,14 @@
                     "endOffset": 3894
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 1159,
+                        "endColumn": 90,
+                        "endOffset": 1245
+                    }
                 }
             },
             {
@@ -810,7 +1265,14 @@
                     "endOffset": 3984
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 1340,
+                        "endColumn": 89,
+                        "endOffset": 1425
+                    }
                 }
             },
             {
@@ -822,7 +1284,14 @@
                     "endOffset": 4047
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 64,
+                        "startColumn": 4,
+                        "startOffset": 3078,
+                        "endColumn": 62,
+                        "endOffset": 3136
+                    }
                 }
             },
             {
@@ -834,7 +1303,14 @@
                     "endOffset": 4097
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 66,
+                        "startColumn": 4,
+                        "startOffset": 3171,
+                        "endColumn": 49,
+                        "endOffset": 3216
+                    }
                 }
             },
             {
@@ -846,7 +1322,14 @@
                     "endOffset": 4157
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 50,
+                        "startColumn": 4,
+                        "startOffset": 2321,
+                        "endColumn": 59,
+                        "endOffset": 2376
+                    }
                 }
             },
             {
@@ -858,7 +1341,14 @@
                     "endOffset": 4211
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 33,
+                        "startColumn": 4,
+                        "startOffset": 1553,
+                        "endColumn": 53,
+                        "endOffset": 1602
+                    }
                 }
             },
             {
@@ -870,7 +1360,14 @@
                     "endOffset": 4269
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 35,
+                        "startColumn": 4,
+                        "startOffset": 1692,
+                        "endColumn": 57,
+                        "endOffset": 1745
+                    }
                 }
             },
             {
@@ -882,7 +1379,14 @@
                     "endOffset": 4321
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 52,
+                        "startColumn": 4,
+                        "startOffset": 2459,
+                        "endColumn": 51,
+                        "endOffset": 2506
+                    }
                 }
             },
             {
@@ -894,7 +1398,14 @@
                     "endOffset": 4407
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 985,
+                        "endColumn": 85,
+                        "endOffset": 1066
+                    }
                 }
             },
             {
@@ -906,7 +1417,14 @@
                     "endOffset": 4492
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 1516,
+                        "endColumn": 84,
+                        "endOffset": 1596
+                    }
                 }
             },
             {
@@ -918,7 +1436,14 @@
                     "endOffset": 4578
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 1430,
+                        "endColumn": 85,
+                        "endOffset": 1511
+                    }
                 }
             },
             {
@@ -930,7 +1455,14 @@
                     "endOffset": 4663
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 4,
+                        "startOffset": 1601,
+                        "endColumn": 84,
+                        "endOffset": 1681
+                    }
                 }
             },
             {
@@ -942,7 +1474,14 @@
                     "endOffset": 4711
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 59,
+                        "startColumn": 4,
+                        "startOffset": 2924,
+                        "endColumn": 47,
+                        "endOffset": 2967
+                    }
                 }
             },
             {
@@ -954,7 +1493,14 @@
                     "endOffset": 4756
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 61,
+                        "startColumn": 4,
+                        "startOffset": 3002,
+                        "endColumn": 44,
+                        "endOffset": 3042
+                    }
                 }
             },
             {
@@ -966,7 +1512,14 @@
                     "endOffset": 4818
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 48,
+                        "startColumn": 4,
+                        "startOffset": 2182,
+                        "endColumn": 61,
+                        "endOffset": 2239
+                    }
                 }
             },
             {
@@ -974,63 +1527,102 @@
                     "startLine": 82,
                     "startColumn": 4,
                     "startOffset": 4823,
-                    "endLine": 84,
+                    "endLine": 88,
                     "endColumn": 12,
-                    "endOffset": 4901
+                    "endOffset": 5109
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\styles.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 916,
+                        "endLine": 28,
+                        "endColumn": 12,
+                        "endOffset": 1202
+                    }
                 }
             },
             {
                 "to": {
-                    "startLine": 85,
+                    "startLine": 89,
                     "startColumn": 4,
-                    "startOffset": 4906,
-                    "endLine": 87,
+                    "startOffset": 5114,
+                    "endLine": 91,
                     "endColumn": 12,
-                    "endOffset": 4973
+                    "endOffset": 5269
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\styles.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 31,
+                        "startColumn": 4,
+                        "startOffset": 1240,
+                        "endLine": 33,
+                        "endColumn": 12,
+                        "endOffset": 1395
+                    }
                 }
             },
             {
                 "to": {
-                    "startLine": 88,
+                    "startLine": 92,
                     "startColumn": 4,
-                    "startOffset": 4978,
-                    "endLine": 93,
+                    "startOffset": 5274,
+                    "endLine": 97,
                     "endColumn": 12,
-                    "endOffset": 5257
+                    "endOffset": 5553
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\styles.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 40,
+                        "startColumn": 4,
+                        "startOffset": 1585,
+                        "endLine": 45,
+                        "endColumn": 12,
+                        "endOffset": 1864
+                    }
                 }
             },
             {
                 "to": {
-                    "startLine": 94,
+                    "startLine": 98,
                     "startColumn": 4,
-                    "startOffset": 5262,
+                    "startOffset": 5558,
                     "endColumn": 47,
-                    "endOffset": 5305
+                    "endOffset": 5601
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\styles.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 47,
+                        "startColumn": 4,
+                        "startOffset": 1870,
+                        "endColumn": 48,
+                        "endOffset": 1914
+                    }
                 }
             },
             {
                 "to": {
-                    "startLine": 95,
+                    "startLine": 99,
                     "startColumn": 4,
-                    "startOffset": 5310,
-                    "endLine": 98,
+                    "startOffset": 5606,
+                    "endLine": 102,
                     "endColumn": 12,
-                    "endOffset": 5488
+                    "endOffset": 5784
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\styles.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 35,
+                        "startColumn": 4,
+                        "startOffset": 1401,
+                        "endLine": 38,
+                        "endColumn": 12,
+                        "endOffset": 1579
+                    }
                 }
             }
         ]

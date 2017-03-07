@@ -38,38 +38,48 @@
                 android:background="@drawable/topbar_back_bt"
                 android:layout_height="50dp" />
         </RelativeLayout>
-
-        <EditText
-            android:id="@+id/search_treads_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+        <RelativeLayout
+            android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="40dp"
-            android:cursorVisible="true"
-            android:background="@drawable/button_normal_shape"
-            android:textCursorDrawable="@null"
-            android:textColor="#222222"
-            android:ems="10"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textSize="15sp"
-            android:hint="姓名、文件名"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/search_treads_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cursorVisible="true"
+                android:background="@drawable/button_normal_shape"
+                android:textCursorDrawable="@null"
+                android:textColor="@color/gray"
+                android:ems="10"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textSize="15sp"
+                android:hint="姓名、文件名"
+                />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/search_image"/>
+        </RelativeLayout>
+
+
         <LinearLayout
-            android:layout_marginLeft="20dp"
+            android:paddingLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal">
             <TextView
-
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
                 android:text="日期:"
-                android:textColor="#222222"
+                android:gravity="center_vertical"
+                android:textColor="@color/dark_gray"
                 android:textSize="16sp"
-                android:gravity="center|left|bottom"
                 />
             <TextView
                 android:clickable="true"
@@ -125,9 +135,9 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="40dp"
-            android:background="#555555"/>
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="50dp"
+            android:background="@color/gray"/>
         <LinearLayout
             android:visibility="gone"
             android:layout_width="match_parent"
@@ -179,18 +189,20 @@
             android:id="@+id/search_treads_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <TextView
-                android:layout_marginLeft="30dp"
+                android:paddingTop="10dp"
+                android:layout_marginLeft="20dp"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="班级:"
-                android:textColor="#222222"
+                android:textColor="@color/dark_gray"
                 android:textSize="16sp"
-                android:gravity="left|bottom"
+                android:gravity="center_vertical"
                 />
             <TextView
+                android:gravity="center"
                 android:paddingTop="10dp"
                 android:singleLine="true"
                 android:clickable="true"
@@ -199,13 +211,12 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="#555555"
-                android:text="无"
-                android:gravity="center|bottom"
+                android:textColor="@color/gray"
+                android:text="请选择班级范围"
                 android:background="@drawable/bg_button_white_selector"
                 />
             <ImageView
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="15dp"
                 android:layout_marginRight="50dp"
                 android:layout_height="15dp"
@@ -215,17 +226,9 @@
             android:id="@+id/belowLine"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="45dp"
-            android:background="#555555"/>
-        <TextView
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="40dp"
-            android:background="#555555"/>
-
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="50dp"
+            android:background="@color/gray"/>
         <Button
 
             android:onClick="onClick"

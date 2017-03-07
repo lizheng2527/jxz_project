@@ -177,7 +177,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
 
         vh.createTime = (TextView) view.findViewById(R.id.fragment_home_viewpager_listview_item_createtime);
         vh.createTime.setText(list.get(i).getCreateTime().trim());
-//         内容*****************************************************************************
+//         treads内容*****************************************************************************
         vh.content = (TextView) view.findViewById(R.id.content);
         String text = list.get(i).getContent();
         if (text == null || text.length()<1){
@@ -396,7 +396,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
                             vh.threadFileHead.setVisibility(View.GONE);
                             vh.l.setVisibility(View.GONE);
                         } else {
-                            vh.simpleImage.setImageResource(R.drawable.actionsheet_single_pressed);
                             String simpleImageUrl = ZddcUtil.getUrlFirstAnd(ECApplication.getInstance().getAddress() + arrs.get(0).getImg(), ECApplication.getInstance().getLoginUrlMap());
                             LogUtil.e("simpleImageUrl:" + simpleImageUrl);
                             Uri uri = Uri.parse(simpleImageUrl);
@@ -462,13 +461,13 @@ public class TreadsListViewAdapter extends BaseAdapter {
                 }
             }
 
-
+            //如果没有下载量，默认设置为0
             if (list.get(i).getDown() == null||list.get(i).getDown().equals("")){
                 vh.downCountTV.setText(0+"");
             }else{
                 vh.downCountTV.setText(list.get(i).getDown());
             }
-
+            //如果没有浏览量，默认为0
             if (list.get(i).getBrowse() == null||list.get(i).getBrowse().equals("")){
                 vh.browseCountTV.setText(0+"");
             }else{
@@ -494,7 +493,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
             }
         }
     }
-    HashMap<Integer,ImageGirdAdapter> adapterMap = new HashMap<>();
     private void addOnClick(final ViewHolder vh, final int position){
         //下载量查看
         vh.downCountRel.setOnClickListener(new View.OnClickListener() {
@@ -525,7 +523,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
             }
         });
 
-        //点击查看
+        //点击查看附件内容
         vh.l.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -617,9 +615,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                 }
                                 list.get(position).setLoading(true);
                                 downCount = downCount+1;
-                                if (!list.get(position).getUserName().contains(ECApplication.getInstance().getCurrentUser().getName())){
-
-                                }
                                 vh.progressBar.setVisibility(View.VISIBLE);
                             }
 
@@ -982,11 +977,35 @@ public class TreadsListViewAdapter extends BaseAdapter {
             allStringOfComment = name + "@"+parentName+content;
             name = name + "@"+parentName;
         }
-        SpannableStringBuilder builder = new SpannableStringBuilder(allStringOfComment);
+        CharSequence charSequence = allStringOfComment;
+        if (allStringOfComment.contains("[em_")){
+            String html = getEmojyStr(allStringOfComment);
+            LogUtil.w(html);
+            charSequence = Html.fromHtml(html,
+                    new Html.ImageGetter() {
+                        @Override
+                        public Drawable getDrawable(String source) {
+                            Drawable drawable = context.getResources().getDrawable(
+                                    Integer.parseInt(source));
+                            // 设置drawable的大小。设置为实际大小
+                            drawable.setBounds(0, 0,
+                                    drawable.getIntrinsicWidth(),
+                                    drawable.getIntrinsicHeight());
+                            return drawable;
+                        }
+                    }, null);
+        }
+        SpannableStringBuilder builder = new SpannableStringBuilder(charSequence);
         ForegroundColorSpan redSpan = new ForegroundColorSpan(context.getResources().getColor(R.color.name_blue));
         int start = allStringOfComment.indexOf(name);
         int end = start + name.length();
         builder.setSpan(redSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
+
+
+
+
         textView.setText(builder);
         textView.setTextColor(Color.parseColor("#555555"));
         textView.setTextSize(14);
@@ -1074,7 +1093,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
         deleteCount += beans.size();
         for (int i = 0; i < beans.size(); i++) {
             resetAllReplyCount(beans.get(i).getChild());
-
         }
     }
 }

@@ -93,12 +93,17 @@
         <!--动态树 -->
         <activity android:name=".ui.treadstree.TreeActivity"
             android:screenOrientation="portrait"/>
+
         <!--资源树 -->
         <activity android:name=".ui.treadstree.WorkTreeActivity"
             android:screenOrientation="portrait"/>
         <!--上传文件 -->
         <activity android:name=".ui.treadssearch.UpFileActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
+
         <!--展示视频文件 -->
         <activity android:name=".ui.treadssearch.VideoShowActivity"
             android:screenOrientation="portrait"/>

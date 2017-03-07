@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:ignore="HardcodedText,DisableBaselineAlignment" >
+    <RelativeLayout
+        android:id="@+id/linear_imp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.zdhx.androidbase.ui.xlistview.XListView
+            android:id="@+id/fragment_home_viewpager_important_listview"
+            android:layout_width="match_parent"
+            android:divider="@color/list_devider_color"
+            android:dividerHeight="2dp"
+            android:layout_height="match_parent">
+        </com.zdhx.androidbase.ui.xlistview.XListView>
+        <TextView
+            android:visibility="gone"
+            android:onClick="onEmptyClick"
+            android:layout_centerInParent="true"
+            android:id="@+id/emptyimp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="无重要通知"
+            android:gravity="center"
+            android:textColor="@color/title_color"
+            android:textSize="16sp"
+            />
+    </RelativeLayout>
+</RelativeLayout>
