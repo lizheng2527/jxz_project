@@ -625,6 +625,17 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                     }
                     return;
                 }
+//                if (list.get(i).getUserId().equals(ECApplication.getInstance().getCurrentUser().getId())){
+//                    ToastUtil.showMessage("下载失败.");
+//                    dialog.dismiss();
+//                    return;
+//                }
+
+//                if (downTag){
+//                    ToastUtil.showMessage("正在执行下载任务...");
+//                    dialog.dismiss();
+//                    return;
+//                }
                 ECAlertDialog.buildAlert(context, "是否下载本条信息？", "取消", "确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog1, int which) {
