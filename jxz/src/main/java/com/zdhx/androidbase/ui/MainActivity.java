@@ -96,6 +96,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	private ScroFragment scroFragment;
 
 
+
+
 	private Fragment[] fragments;
 
 	private int index;
@@ -148,8 +150,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
 	private static LinearLayout selectBatchLinear;
 	private TextView selectTure,selectCancel;
-
-
 
 	/**
 	 * 缓存三个TabView
@@ -254,7 +254,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		initLauncherUIView();
 //		updata();
 	}
-
 	/**
 	 * 基本权限管理
 	 */

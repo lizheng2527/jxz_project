@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -580,6 +581,24 @@ public class WorkSpaceFragment extends Fragment {
     public void initXListView(final XListView listView, final BaseAdapter adapter){
         listView.setPullLoadEnable(true);
         listView.setDividerHeight(1);
+        listView.setOnScrollListener(new XListView.OnXScrollListener() {
+            @Override
+            public void onXScrolling(View view) {
+
+            }
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (visibleItemCount+firstVisibleItem == totalItemCount){
+                    listView.startLoadMore();
+                }
+            }
+        });
         final Handler mHandler = new Handler();
         listView.setXListViewListener(new XListView.IXListViewListener() {
             @Override

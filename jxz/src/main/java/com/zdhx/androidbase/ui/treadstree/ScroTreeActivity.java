@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
@@ -237,44 +238,27 @@ public class ScroTreeActivity extends BaseActivity{
 	}
 
 	/**
-	 * 递归所用到的方法
-	 * @param bean
-	 */
-	private void getChildBeans(TreeBean1.ChildBean bean){
-		treeBean = new TreeBean();
-		treeBean.setId(bean.getId());
-		treeBean.setLabel(bean.getName());
-		treeBean.setpId(bean.getParentId());
-		treeBean.setContactId(bean.getId());
-		treeBean.setType(bean.getType());
-		treeBean.setLeafSize(bean.getChild().size()+"");
-		list.add(treeBean);
-		if(bean.getChild().size()!=0) {
-			for (int i = 0; i < bean.getChild().size(); i++) {
-				getChildBeans(bean.getChild().get(i));
-			}
-		}
-	}
-
-	/**
 	 * 初始化上传资源以及查询资源树的数据
 	 * @param json
 	 */
 	public void initTreeDatas(String json){
-		Log.e("initTreeDatas","开始构建树数据");
+		list.clear();
 		List<TreeBean1> beans = new ArrayList<>();
-		beans = new Gson().fromJson(json, new TypeToken<List<TreeBean1>>(){}.getType());
-		for (int i = 0; i < beans.size(); i++) {
-			treeBean = new TreeBean();
-			treeBean.setId(beans.get(i).getId());
-			treeBean.setLabel(beans.get(i).getName());
-			treeBean.setpId(beans.get(i).getParentId());
-			treeBean.setContactId(beans.get(i).getId());
-			treeBean.setLeafSize(beans.get(i).getChild().size()+"");
-			treeBean.setType(beans.get(i).getType());
-			list.add(treeBean);
-			for (int i1 = 0; i1 < beans.get(i).getChild().size(); i1++) {
-				getChildBeans(beans.get(i).getChild().get(i1));
+		try {
+			beans = new Gson().fromJson(json, new TypeToken<List<TreeBean1>>(){}.getType());
+		} catch (JsonSyntaxException e) {
+			LogUtil.w(json);
+			return;
+		}
+		if (beans.size()>0){
+			for (int i = 0; i < beans.size(); i++) {
+				treeBean = new TreeBean();
+				treeBean.setId(beans.get(i).getId());
+				treeBean.setLabel(beans.get(i).getName());
+				treeBean.setpId(beans.get(i).getParentId());
+				treeBean.setContactId(beans.get(i).getId());
+				treeBean.setType(beans.get(i).getType());
+				list.add(treeBean);
 			}
 		}
 		if (list != null){
@@ -290,7 +274,6 @@ public class ScroTreeActivity extends BaseActivity{
 		}
 		Log.e("initTreeDatas","构建树完毕");
 	}
-
 	/**
 	 * 初始化班级排名处树数据
 	 * @param json
@@ -336,9 +319,7 @@ public class ScroTreeActivity extends BaseActivity{
 	public void setListView(){
 		try {
 			adapter = new SimpleTreeListViewAdapterForScro<TreeBean>(lv,context,list,0,className);
-			Log.e("initTreeDatas","setadapter");
 			lv.setAdapter(adapter);
-			Log.e("initTreeDatas","adapterSet结束");
 			ProgressUtil.hide();
 			adapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener() {
 				@Override
@@ -396,13 +377,12 @@ public class ScroTreeActivity extends BaseActivity{
 				json = cacheGet.getRseponse(url, new RequestWithCacheGet.RequestListener() {
 					@Override
 					public void onResponse(String response) {
-						System.out.println(response + "response");
 						if (response != null && !response.equals(RequestWithCacheGet.NOT_OUTOFDATE)) {
 							initTreeDatas(response);
 							setListView();
-							Log.e("onResponse:","下载的数据");
 						}
 					}
+
 				}, new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
@@ -412,7 +392,6 @@ public class ScroTreeActivity extends BaseActivity{
 				if ((json != null && !json.equals(RequestWithCacheGet.NO_DATA))) {
 					initTreeDatas(json);
 					setListView();
-					Log.e("onResponse:","缓存的数据");
 				}
 			}
 		},500);
@@ -433,12 +412,12 @@ public class ScroTreeActivity extends BaseActivity{
 				json = cacheGet.getRseponse(url, new RequestWithCacheGet.RequestListener() {
 					@Override
 					public void onResponse(String response) {
-						System.out.println(response + "response");
 						if (response != null && !response.equals(RequestWithCacheGet.NOT_OUTOFDATE)) {
 							initEClassTreeDatas(response);
 							setListView();
 						}
 					}
+
 				}, new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {

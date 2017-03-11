@@ -28,6 +28,7 @@ public class Constant {
 	public static final String ATTACHMENT_3GP  = "3gp";
 	public static final String ATTACHMENT_AVI  = "avi";
 	public static final String ATTACHMENT_FLV  = "flv";
+	public static final String ATTACHMENT_APK  = "apk";
 	public static final String ATTACHMENT_BMP  = "bmp";
 	public static final String ATTACHMENT_RAR  = "rar";	
 	public static final String ATTACHMENT_ZIP  = "zip";	

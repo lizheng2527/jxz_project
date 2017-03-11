@@ -153,6 +153,10 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                     vh.fileHeadImg.setImageResource(R.drawable.other);
                     vh.btnPreview.setVisibility(View.GONE);
                     break;
+                case "0":
+                    vh.fileHeadImg.setImageResource(R.drawable.other);
+                    vh.btnPreview.setVisibility(View.GONE);
+                    break;
                 case "100":
                     vh.fileHeadImg.setImageResource(R.drawable.icon_outlink);
                     vh.btnPreview.setVisibility(View.VISIBLE);
@@ -605,17 +609,28 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                 //跳转到指定位置目录
                                 MainActivity.map.put("parentFile",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
                                 MainActivity.map.put("subFile",new File(ECApplication.getInstance().getDownloadJxzDir()));
+                                MainActivity.map.put("isIntentCode","openFile");
                                 Intent intent1 = new Intent(context,FileExplorerActivity.class);
-                                intent1.putExtra("key_title","查看附件");
+                                intent1.putExtra("key_title",context.getResources().getString(R.string.search_file_title));
                                 context.startActivity(intent1);
                                 break;
                             case "8":
                                 //跳转到指定位置目录
                                 MainActivity.map.put("parentFile",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
                                 MainActivity.map.put("subFile",new File(ECApplication.getInstance().getDownloadJxzDir()));
+                                MainActivity.map.put("isIntentCode","openFile");
                                 Intent intent2 = new Intent(context,FileExplorerActivity.class);
-                                intent2.putExtra("key_title","查看附件");
+                                intent2.putExtra("key_title",context.getResources().getString(R.string.search_file_title));
                                 context.startActivity(intent2);
+                                break;
+                            case "0":
+                                //跳转到指定位置目录
+                                MainActivity.map.put("parentFile",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
+                                MainActivity.map.put("subFile",new File(ECApplication.getInstance().getDownloadJxzDir()));
+                                MainActivity.map.put("isIntentCode","openFile");
+                                Intent intent3 = new Intent(context,FileExplorerActivity.class);
+                                intent3.putExtra("key_title",context.getResources().getString(R.string.search_file_title));
+                                context.startActivity(intent3);
                                 break;
                         }
 
@@ -689,11 +704,11 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                                     vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
 //                                            }else{
 //                                                vh.downloadImg.setVisibility(View.GONE);
-//                                            }
-                                                    list.get(i).setDown(list.get(i).getDown()+1);
-                                                    notifyDataSetChanged();
-                                                }
-                                            },5);
+//                                                                        }
+                                        list.get(i).setDown(list.get(i).getDown()+1);
+                                        notifyDataSetChanged();
+                                    }
+                                },5);
 
                                         } catch (IOException e) {
                                             e.printStackTrace();

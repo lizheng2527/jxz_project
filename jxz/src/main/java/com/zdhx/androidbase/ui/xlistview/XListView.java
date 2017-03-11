@@ -153,7 +153,7 @@ public class XListView extends ListView implements OnScrollListener {
 			mFooterView.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					startLoadMore();
+//					startLoadMore();
 				}
 			});
 		}
@@ -255,7 +255,7 @@ public class XListView extends ListView implements OnScrollListener {
 			invalidate();
 		}
 	}
-	private void startLoadMore() {
+	public void startLoadMore() {
 		mPullLoading = true;
 		mFooterView.setState(XListViewFooter.STATE_LOADING);
 		if (mListViewListener != null) {
@@ -302,8 +302,8 @@ public class XListView extends ListView implements OnScrollListener {
 				resetHeaderHeight();
 			} else if (getLastVisiblePosition() == mTotalItemCount - 1) {
 				// invoke load more.
-				if (mEnablePullLoad && mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
-					startLoadMore();
+				if (mEnablePullLoad && mFooterView.getBottomMargin() >=50) {
+//					startLoadMore();
 				}
 				resetFooterHeight();
 			}

@@ -133,7 +133,6 @@ public class ZddcUtil {
 	}
 
 	public static String getUrlResponse(String url, Map<String, ParameterValue> map) throws IOException {
-
 		HttpURLConnection conn = (HttpURLConnection) (new URL(checkUrl(url)).openConnection());
 		conn.setDoInput(true);
 		conn.setDoOutput(true);
@@ -549,6 +548,15 @@ public class ZddcUtil {
 		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!doPreviewOrDown.action", map);
 	}
 	/**
+	 * 获取所有回复内容
+	 *
+	 * @return
+	 * @throws IOException
+	 */
+	public static String initAllReply(Map<String, ParameterValue> map) throws IOException {
+		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!initAllReply.action", map);
+	}
+	/**
 	 * 是否有发布重要通知的权限
 	 * （yes/no）
 	 *
@@ -610,6 +618,7 @@ public class ZddcUtil {
 	 * @throws IOException
 	 */
 	public static String operateLog(Map<String, ParameterValue> map) throws IOException {
+
 		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!operateLog.action", map);
 	}
 	/**
@@ -647,6 +656,16 @@ public class ZddcUtil {
 	 */
 	public static String doReply(Map<String, ParameterValue> map) throws IOException {
 		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!doReply.action", map);
+	}
+
+	/**
+	 * 发布动态
+	 * subject 主题 content 内容 receiveUserId 接收人id 逗号分隔 attIds 原附件id 逗号分隔
+	 *            sourceId 原通知id
+	 */
+	public static String doReplyWithFiles(List<File> files,Map<String, ParameterValue> loginMap,
+										 Map<String, ParameterValue> map) throws IOException {
+		return commitWithFiles(getUrl(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!doReply.action", loginMap),files, map);
 	}
 	/**
 	 * 默认获取的互动数据信息
@@ -706,17 +725,6 @@ public class ZddcUtil {
 	public static String saveCommucationWithoutFile(Map<String, ParameterValue> map) throws IOException {
 		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!saveCommucation.action", map);
 	}
-
-
-
-
-
-
-
-
-
-
-
 
 
 	/**

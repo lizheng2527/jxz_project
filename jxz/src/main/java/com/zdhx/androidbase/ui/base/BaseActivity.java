@@ -1,8 +1,5 @@
 package com.zdhx.androidbase.ui.base;
 
-import java.io.Serializable;
-import java.util.List;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,6 +15,9 @@ import com.pgyersdk.crash.PgyCrashManager;
 import com.zdhx.androidbase.util.StringUtil;
 import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.view.TopBarView;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Title: BaseActivity.java
@@ -90,6 +90,7 @@ public abstract class BaseActivity extends FragmentActivity {
 	}
 
 	public void onBaseContentViewAttach(View contentView) {
+
 		setContentView(contentView);
 	}
 

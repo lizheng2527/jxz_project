@@ -18,14 +18,14 @@ import volley.toolbox.Volley;
  *         RequestWithCache(context); String string =
  *         qCache.getRseponse("http://www.baidu.com", new RequestListener() {
  * @Override public void onResponse(String response) { method stub
- * 
+ *
  *           System.out.println("second : " + response); } }, new
  *           ErrorListener() {
  * @Override public void onErrorResponse(VolleyError error) { Auto-generated
  *           method stub
- * 
+ *
  *           } });
- * 
+ *
  */
 public class RequestWithCacheGet {
 	private Context mContext;
@@ -94,7 +94,7 @@ public class RequestWithCacheGet {
 
 	/**
 	 * 清除缓存 只是简单删掉本地文件中的数据
-	 * 
+	 *
 	 */
 	public void cleraCache() {
 		// 清楚缓存FIX ME

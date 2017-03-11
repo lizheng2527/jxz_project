@@ -77,7 +77,7 @@ public class TopBarView extends LinearLayout {
         mLeftText = (TextView) findViewById(R.id.text_left);
         mRightText = (TextView) findViewById(R.id.text_right);
         
-        mMiddleButton.setTextColor(Color.parseColor("#363636"));
+        mMiddleButton.setTextColor(Color.parseColor("#ffffff"));
     }
 
     private void setMiddleSubTitle(int type , String title , String subTitle , View.OnClickListener onClickListener) {

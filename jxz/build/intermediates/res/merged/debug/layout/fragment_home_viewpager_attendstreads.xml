@@ -20,11 +20,12 @@
         <TextView
             android:layout_centerInParent="true"
             android:visibility="gone"
+            android:clickable="true"
             android:onClick="onEmptyClick"
             android:id="@+id/emptyatt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="点击试试"
+            android:text="已无更多"
             android:gravity="center"
             android:textColor="@color/title_color"
             android:textSize="16sp"

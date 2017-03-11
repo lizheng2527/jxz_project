@@ -19,12 +19,13 @@
         </com.zdhx.androidbase.ui.xlistview.XListView>
         <TextView
             android:onClick="onEmptyClick"
+            android:clickable="true"
             android:layout_centerInParent="true"
             android:id="@+id/emptyall"
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="点击试试"
+            android:text="已无更多"
             android:gravity="center"
             android:textColor="@color/title_color"
             android:textSize="16sp"

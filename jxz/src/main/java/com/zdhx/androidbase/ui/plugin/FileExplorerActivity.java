@@ -12,6 +12,7 @@
  */
 package com.zdhx.androidbase.ui.plugin;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -21,8 +22,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.zdhx.androidbase.Constant;
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.base.BaseActivity;
+import com.zdhx.androidbase.util.IntentUtil;
 import com.zdhx.androidbase.util.LogUtil;
 
 import java.io.File;
@@ -49,7 +53,7 @@ public class FileExplorerActivity extends BaseActivity implements View.OnClickLi
 	private TextView mSdcardTab;
 	/**存储卡导航线*/
 	private View mSdcardTabSelector;
-	
+
 	private String mFileExplorerRootTag;
 	private String mFileExplorerSdcardTag;
 	private FileListAdapter mAdapter;
@@ -57,41 +61,104 @@ public class FileExplorerActivity extends BaseActivity implements View.OnClickLi
 	private File mSdcardFile;
 	/**浏览文件目录类型*/
 	private int mType = DIR_ROOT;
-	
+
 	final private AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
 
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				File file = (File) mAdapter.getItem(position);
-				if(!file.isFile()) {
-					if(mType == DIR_ROOT) {
-						// 当前为内置存储浏览模式
-						mRootFile = file;
-					} else {
-						mSdcardFile = file;
-					}
-					
-					if(file != mAdapter.getParentFile()) {
-						mAdapter.setFiles(mAdapter.getCurrentFile(), file);
-					} else {
-						mAdapter.setFiles(mAdapter.getParentFile().getParentFile(), mAdapter.getParentFile());
-					}
-					
-					mAdapter.notifyDataSetChanged();
-					mFileListView.setSelection(0);
-					return ;
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			File file = (File) mAdapter.getItem(position);
+			if(!file.isFile()) {
+				if(mType == DIR_ROOT) {
+					// 当前为内置存储浏览模式
+					mRootFile = file;
+				} else {
+					mSdcardFile = file;
 				}
 
-			setResult(RESULT_OK, new Intent().putExtra("choosed_file_path", file.getAbsolutePath()));
-				finish();
+				if(file != mAdapter.getParentFile()) {
+					mAdapter.setFiles(mAdapter.getCurrentFile(), file);
+				} else {
+					mAdapter.setFiles(mAdapter.getParentFile().getParentFile(), mAdapter.getParentFile());
+				}
+
+				mAdapter.notifyDataSetChanged();
+				mFileListView.setSelection(0);
+				return ;
 			}
-		};
-		
+			String openFile = (String) MainActivity.map.get("isIntentCode");
+			if (openFile == null||"".equals(openFile)){
+				setResult(RESULT_OK, new Intent().putExtra("choosed_file_path", file.getAbsolutePath()));
+			}else{
+				//选择打开的文件
+				MainActivity.map.remove("isIntentCode");
+				String fileName = file.getName();
+				String lastName = FileUtils.getStringEndWith(fileName);
+				if (lastName == null||lastName.equals("")){
+					finish();
+					return;
+				}
+				//播放视频
+				if (lastName.equals(Constant.ATTACHMENT_3GP)
+						||lastName.equals(Constant.ATTACHMENT_AVI)
+						||lastName.equals(Constant.ATTACHMENT_MP3)
+						||lastName.equals(Constant.ATTACHMENT_MP4)
+						||lastName.equals(Constant.ATTACHMENT_SWF)
+						||lastName.equals(Constant.ATTACHMENT_FLV)){
+
+					if (IntentUtil.isIntentAvailable(context,IntentUtil.getVideoFileIntent(file.getAbsolutePath()))){
+						startActivity(IntentUtil.getVideoFileIntent(file.getAbsolutePath()));
+					}
+				}
+				//word浏览
+				else if(lastName.equals(Constant.ATTACHMENT_DOC)||lastName.equals(Constant.ATTACHMENT_DOCX)){
+					if (IntentUtil.isIntentAvailable(context,IntentUtil.getWordFileIntent(file.getAbsolutePath()))){
+						startActivity(IntentUtil.getWordFileIntent(file.getAbsolutePath()));
+					}
+				}
+
+				//ppt浏览
+				else if (lastName.equals(Constant.ATTACHMENT_PPT)||lastName.equals(Constant.ATTACHMENT_PPTX)){
+
+					if (IntentUtil.isIntentAvailable(context,IntentUtil.getPptFileIntent(file.getAbsolutePath()))){
+						startActivity(IntentUtil.getPptFileIntent(file.getAbsolutePath()));
+					}
+				}
+				//EXCEL浏览
+				else if (lastName.equals(Constant.ATTACHMENT_XLS)||lastName.equals(Constant.ATTACHMENT_XLSX)){
+
+					if (IntentUtil.isIntentAvailable(context,IntentUtil.getExcelFileIntent(file.getAbsolutePath()))){
+						startActivity(IntentUtil.getExcelFileIntent(file.getAbsolutePath()));
+					}
+				}
+				//PDF浏览
+				else if (lastName.equals(Constant.ATTACHMENT_PDF)){
+
+					if (IntentUtil.isIntentAvailable(context,IntentUtil.getPdfFileIntent(file.getAbsolutePath()))){
+						startActivity(IntentUtil.getPdfFileIntent(file.getAbsolutePath()));
+					}
+				}
+				//安装apk
+				else if (lastName.equals(Constant.ATTACHMENT_APK)){
+					if (IntentUtil.isIntentAvailable(context,IntentUtil.getApkFileIntent(file.getAbsolutePath()))){
+						startActivity(IntentUtil.getApkFileIntent(file.getAbsolutePath()));
+					}
+				}
+				//打开所有自己选吧
+				else {
+					startActivity(IntentUtil.getAllFileIntent(file.getAbsolutePath()));
+				}
+
+			}
+			finish();
+		}
+	};
+
 	@Override
 	protected int getLayoutId() {
 		return R.layout.file_explorer;
 	}
+
+	private Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -100,10 +167,11 @@ public class FileExplorerActivity extends BaseActivity implements View.OnClickLi
 		String title = getIntent().getStringExtra("key_title");
 		if(TextUtils.isEmpty(title)) {
 			getTopBarView().setTopBarToStatus(1, R.drawable.topbar_back_bt, -1, "添加附件", this);
+
 		} else {
 			getTopBarView().setTopBarToStatus(1, R.drawable.topbar_back_bt, -1, title, this);
 		}
-		
+		context = this;
 		initFileExplorer();
 	}
 
@@ -116,10 +184,10 @@ public class FileExplorerActivity extends BaseActivity implements View.OnClickLi
 		mRootTabSelector = findViewById(R.id.root_tab_selector);
 		mSdcardTab = (TextView) findViewById(R.id.sdcard_tab);
 		mSdcardTabSelector = findViewById(R.id.sdcard_tab_selector);
-		
+
 		mFileExplorerRootTag = getString(R.string.plugin_file_explorer_root_tag);
 		mFileExplorerSdcardTag = getString(R.string.plugin_file_explorer_sdcard_tag);
-		
+
 		File rootDirectory = Environment.getRootDirectory();
 		if(!rootDirectory.canRead()) {
 			File dataDirectory = Environment.getDataDirectory();
@@ -129,7 +197,7 @@ public class FileExplorerActivity extends BaseActivity implements View.OnClickLi
 			}
 		}
 		mRootFile = rootDirectory;
-		
+
 		File externalStorageFile = null;
 		if(!FileUtils.checkExternalStorageCanWrite()) {
 			File downloadCacheDirectory = Environment.getDownloadCacheDirectory();
@@ -139,7 +207,7 @@ public class FileExplorerActivity extends BaseActivity implements View.OnClickLi
 			}
 		} else {
 			externalStorageFile = Environment.getExternalStorageDirectory();
-			
+
 		}
 		mSdcardFile = externalStorageFile;
 
@@ -152,7 +220,7 @@ public class FileExplorerActivity extends BaseActivity implements View.OnClickLi
 		mRootTab.setOnClickListener(new FileTabClickListener(DIR_ROOT , mRootFile));
 		mSdcardTab.setOnClickListener(new FileTabClickListener(DIR_SDCARD , mSdcardFile));
 	}
-	
+
 	/**
 	 * 切换视图
 	 * @param type
@@ -175,11 +243,11 @@ public class FileExplorerActivity extends BaseActivity implements View.OnClickLi
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_left:
-			finish();
-			break;
-		default:
-			break;
+			case R.id.btn_left:
+				finish();
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -195,7 +263,7 @@ public class FileExplorerActivity extends BaseActivity implements View.OnClickLi
 			this.type = type;
 			this.mRootPath = f;
 		}
-		
+
 		@Override
 		public void onClick(View v) {
 			mParentFile = (this.type == DIR_SDCARD) ? mSdcardFile : mRootFile;
@@ -207,6 +275,6 @@ public class FileExplorerActivity extends BaseActivity implements View.OnClickLi
 			mAdapter.notifyDataSetChanged();
 			mFileListView.setSelection(0);
 		}
-		
+
 	}
 }

@@ -26,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.Gson;
 import com.zdhx.androidbase.Constant;
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.EmojiConstant;
@@ -36,7 +37,9 @@ import com.zdhx.androidbase.entity.Treads;
 import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.downloadui.DownloadAsyncTask;
 import com.zdhx.androidbase.ui.downloadui.NumberProgressBar;
+import com.zdhx.androidbase.ui.introducetreads.IntroduceTreadsActivity;
 import com.zdhx.androidbase.ui.plugin.FileExplorerActivity;
+import com.zdhx.androidbase.ui.plugin.FileUtils;
 import com.zdhx.androidbase.util.DensityUtil;
 import com.zdhx.androidbase.util.IntentUtil;
 import com.zdhx.androidbase.util.LogUtil;
@@ -48,6 +51,7 @@ import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.Tools;
 import com.zdhx.androidbase.util.ZddcUtil;
 import com.zdhx.androidbase.util.lazyImageLoader.cache.ImageLoader;
+import com.zdhx.androidbase.view.SimpleDraweeViewCompressed.FrescoUtil;
 import com.zdhx.androidbase.view.dialog.ECAlertDialog;
 
 import java.io.File;
@@ -132,7 +136,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
         }
         return cs;
     }
-
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder vh = null;
@@ -198,8 +201,8 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                         Integer.parseInt(source));
                                 // 设置drawable的大小。设置为实际大小
                                 drawable.setBounds(0, 0,
-                                        drawable.getIntrinsicWidth(),
-                                        drawable.getIntrinsicHeight());
+                                        DensityUtil.dip2px(20f),
+                                        DensityUtil.dip2px(20f));
                                 return drawable;
                             }
                         }, null);
@@ -216,37 +219,20 @@ public class TreadsListViewAdapter extends BaseAdapter {
         vh.replyContent = (LinearLayout) view.findViewById(R.id.fragment_home_viewpager_listview_item_context);
         vh.launchOrRetract = (TextView) view.findViewById(R.id.launchorretract);
         if (!list.get(i).getLaunch()){
-            vh.launchOrRetract.setText("展开");
+            vh.launchOrRetract.setText("查看回复");
         }else{
             vh.launchOrRetract.setText("收起");
         }
         int replyCounts = list.get(i).getChild().size();
         vh.replyContent.removeAllViews();
-        if (replyCounts>2){
-            if (list.get(i).getLaunch()){
-                for (int j = 0; j < replyCounts; j++) {
-                    String name = list.get(i).getChild().get(j).getUserName()+":";
-                    String content = list.get(i).getChild().get(j).getContent();
-                    addReplyBody(vh,name,content,j,null,list.get(i).getChild(),i);
-                    if (list.get(i).getChild().get(j).getChild() != null){
-                        if (list.get(i).getChild().get(j).getChild().size()>0){
-                            getChildList(vh,list.get(i).getChild().get(j).getChild(),name,i);
-                        }
-                    }
-                }
-            }else{
-                for (int j = 0; j < 2; j++) {
-                    String name = list.get(i).getChild().get(j).getUserName()+":";
-                    String content = list.get(i).getChild().get(j).getContent();
-                    addReplyBody(vh,name,content,j,null,list.get(i).getChild(),i);
-                    if (list.get(i).getChild().get(j).getChild() != null){
-                        if (list.get(i).getChild().get(j).getChild().size()>0){
-                            getChildList(vh,list.get(i).getChild().get(j).getChild(),name,i);
-                        }
-                    }
-                }
+        int allReplyCount = list.get(i).getAllReplyCount();
+        if (allReplyCount>0){
+//        if (replyCounts>2){
+//            if (list.get(i).getLaunch()){
+            if (replyCounts>1){
+                vh.launchOrRetract.setPressed(true);
+                vh.launchOrRetract.setClickable(false);
             }
-        }else{//小于两条，遍历所有
             for (int j = 0; j < replyCounts; j++) {
                 String name = list.get(i).getChild().get(j).getUserName()+":";
                 String content = list.get(i).getChild().get(j).getContent();
@@ -258,6 +244,30 @@ public class TreadsListViewAdapter extends BaseAdapter {
                 }
             }
         }
+//            }else{
+//                for (int j = 0; j < 2; j++) {
+//                    String name = list.get(i).getChild().get(j).getUserName()+":";
+//                    String content = list.get(i).getChild().get(j).getContent();
+//                    addReplyBody(vh,name,content,j,null,list.get(i).getChild(),i);
+//                    if (list.get(i).getChild().get(j).getChild() != null){
+//                        if (list.get(i).getChild().get(j).getChild().size()>0){
+//                            getChildList(vh,list.get(i).getChild().get(j).getChild(),name,i);
+//                        }
+//                    }
+//                }
+//            }
+//        }else{//小于两条，遍历所有
+//            for (int j = 0; j < replyCounts; j++) {
+//                String name = list.get(i).getChild().get(j).getUserName()+":";
+//                String content = list.get(i).getChild().get(j).getContent();
+//                addReplyBody(vh,name,content,j,null,list.get(i).getChild(),i);
+//                if (list.get(i).getChild().get(j).getChild() != null){
+//                    if (list.get(i).getChild().get(j).getChild().size()>0){
+//                        getChildList(vh,list.get(i).getChild().get(j).getChild(),name,i);
+//                    }
+//                }
+//            }
+//        }
 
 
         vh.replyCount.setText(list.get(i).getAllReplyCount()+"");
@@ -294,11 +304,11 @@ public class TreadsListViewAdapter extends BaseAdapter {
         vh.praiseQuantity.setText(praiseCounts+"");
 //        判断是否显示回复界面视图*******************************************************************************************************
         vh.linearwhat = (LinearLayout) view.findViewById(R.id.linearwhat);
-        if (praiseCounts==0&&replyCounts == 0){
+        if (praiseCounts==0&&allReplyCount == 0){
             vh.linearwhat.setVisibility(View.GONE);
         }else{
             vh.linearwhat.setVisibility(View.VISIBLE);
-            if (replyCounts >2){
+            if (allReplyCount >1&&!list.get(i).getLaunch()){
                 vh.launchOrRetract.setVisibility(View.VISIBLE);
             }else {
                 vh.launchOrRetract.setVisibility(View.GONE);
@@ -398,8 +408,9 @@ public class TreadsListViewAdapter extends BaseAdapter {
                         } else {
                             String simpleImageUrl = ZddcUtil.getUrlFirstAnd(ECApplication.getInstance().getAddress() + arrs.get(0).getImg(), ECApplication.getInstance().getLoginUrlMap());
                             LogUtil.e("simpleImageUrl:" + simpleImageUrl);
-                            Uri uri = Uri.parse(simpleImageUrl);
-                            vh.simpleImage.setImageURI(uri);
+                            FrescoUtil.load(Uri.parse(simpleImageUrl),vh.simpleImage,DensityUtil.dip2px(150),DensityUtil.dip2px(150));
+//                            Uri uri = Uri.parse(simpleImageUrl);
+//                            vh.simpleImage.setImageURI(uri);
                         }
                     } else {//Grid展示
                         vh.simpleImage.setVisibility(View.GONE);
@@ -527,22 +538,28 @@ public class TreadsListViewAdapter extends BaseAdapter {
         vh.l.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String lastName = list.get(position).getAttachment().getIconList().get(0).getFileName().toLowerCase();
+                String fileName = list.get(position).getAttachment().getIconList().get(0).getFileName().toLowerCase();
+                String lastName = FileUtils.getStringEndWith(fileName);
+                if (lastName == null ||lastName.equals("")){
+                    ToastUtil.showMessage("文件格式有误");
+                    return;
+                }
+                LogUtil.w(lastName);
                 String name = list.get(position).getAttachment().getIconList().get(0).getFileName();
                 String downUrl = list.get(position).getAttachment().getIconList().get(0).getDownUrl();
                 String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+downUrl,ECApplication.getInstance().getLoginUrlMap());
                 //视频播放
-                if (lastName.contains(Constant.ATTACHMENT_3GP)
-                        ||lastName.contains(Constant.ATTACHMENT_AVI)
-                        ||lastName.contains(Constant.ATTACHMENT_MP3)
-                        ||lastName.contains(Constant.ATTACHMENT_MP4)
-                        ||lastName.contains(Constant.ATTACHMENT_SWF)
-                        ||lastName.contains(Constant.ATTACHMENT_FLV)){
+                if (lastName.equals(Constant.ATTACHMENT_3GP)
+                        ||lastName.equals(Constant.ATTACHMENT_AVI)
+                        ||lastName.equals(Constant.ATTACHMENT_MP3)
+                        ||lastName.equals(Constant.ATTACHMENT_MP4)
+                        ||lastName.equals(Constant.ATTACHMENT_SWF)
+                        ||lastName.equals(Constant.ATTACHMENT_FLV)){
 
 
                     if (IntentUtil.isIntentAvailable(context,IntentUtil.getVideoFileIntent(url))){
-                        doPreview(position);
                         fragment.getActivity().startActivity(IntentUtil.getVideoFileIntent(url));
+                        doPreview(position);
                     }else{
                         ToastUtil.showMessage("当前手机不支持打开该文件");
                     }
@@ -553,7 +570,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
                     File file = new File(ECApplication.getInstance().getDownloadJxzDir(),name);
                     if (file.exists()){
                         //word浏览
-                        if(lastName.contains(Constant.ATTACHMENT_DOC)||lastName.contains(Constant.ATTACHMENT_DOCX)){
+                        if(lastName.equals(Constant.ATTACHMENT_DOC)||lastName.equals(Constant.ATTACHMENT_DOCX)){
                             if (IntentUtil.isIntentAvailable(context,IntentUtil.getWordFileIntent(file.getAbsolutePath()))){
                                 fragment.startActivity(IntentUtil.getWordFileIntent(file.getAbsolutePath()));
                             }else{
@@ -561,7 +578,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
                             }
                         }
                         //ppt浏览
-                        else if (lastName.contains(Constant.ATTACHMENT_PPT)||lastName.contains(Constant.ATTACHMENT_PPTX)){
+                        else if (lastName.equals(Constant.ATTACHMENT_PPT)||lastName.equals(Constant.ATTACHMENT_PPTX)){
 
                             if (IntentUtil.isIntentAvailable(context,IntentUtil.getPptFileIntent(file.getAbsolutePath()))){
                                 fragment.startActivity(IntentUtil.getPptFileIntent(file.getAbsolutePath()));
@@ -570,10 +587,18 @@ public class TreadsListViewAdapter extends BaseAdapter {
                             }
                         }
                         //EXCEL浏览
-                        else if (lastName.contains(Constant.ATTACHMENT_XLS)||lastName.contains(Constant.ATTACHMENT_XLSX)){
+                        else if (lastName.equals(Constant.ATTACHMENT_XLS)||lastName.equals(Constant.ATTACHMENT_XLSX)){
 
                             if (IntentUtil.isIntentAvailable(context,IntentUtil.getExcelFileIntent(file.getAbsolutePath()))){
                                 fragment.startActivity(IntentUtil.getExcelFileIntent(file.getAbsolutePath()));
+                            }else{
+                                ToastUtil.showMessage("当前手机不支持打开该文件");
+                            }
+                        }
+                        else if (lastName.equals(Constant.ATTACHMENT_PDF)){
+
+                            if (IntentUtil.isIntentAvailable(context,IntentUtil.getPdfFileIntent(file.getAbsolutePath()))){
+                                fragment.startActivity(IntentUtil.getPdfFileIntent(file.getAbsolutePath()));
                             }else{
                                 ToastUtil.showMessage("当前手机不支持打开该文件");
                             }
@@ -584,6 +609,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
                             MainActivity.map.put("subFile",new File(ECApplication.getInstance().getDownloadJxzDir()));
                             Intent intent = new Intent(context,FileExplorerActivity.class);
                             intent.putExtra("key_title","查看附件");
+                            MainActivity.map.put("isIntentCode","openFile");
                             context.startActivity(intent);
                         }
                     }else{
@@ -620,47 +646,50 @@ public class TreadsListViewAdapter extends BaseAdapter {
 
                             @Override
                             public void downloading(int progress, int position) {
+                                LogUtil.w("下载进度："+progress);
                                 vh.progressBar.setProgress(progress);
                             }
 
                             @Override
                             public void downloaded(File file, final int position) {
-                                ToastUtil.showMessage(file.getName()+"下载成功！");
-                                downCount = downCount-1;
-                                list.get(position).setLoading(false);
-                                vh.progressBar.setVisibility(View.GONE);
-                                vh.fileName.setTextColor(Color.parseColor("#4cbbda"));
-                                ECApplication.getInstance().addJxzFiles(file.getName(),file);
-                                if (!list.get(position).getUserName().contains(ECApplication.getInstance().getCurrentUser().getName())){
-                                    if (list.get(position).getDown().equals("")){
-                                        list.get(position).setDown(1+"");
-                                    }else{
-                                        list.get(position).setDown(Integer.parseInt(list.get(position).getDown())+1+"");
+                                if (file != null){
+                                    ToastUtil.showMessage(file.getName()+"下载成功！");
+                                    downCount = downCount-1;
+                                    list.get(position).setLoading(false);
+                                    vh.progressBar.setVisibility(View.GONE);
+                                    vh.fileName.setTextColor(Color.parseColor("#4cbbda"));
+                                    ECApplication.getInstance().addJxzFiles(file.getName(),file);
+                                    if (!list.get(position).getUserName().contains(ECApplication.getInstance().getCurrentUser().getName())){
+                                        if (list.get(position).getDown().equals("")){
+                                            list.get(position).setDown(1+"");
+                                        }else{
+                                            list.get(position).setDown(Integer.parseInt(list.get(position).getDown())+1+"");
+                                        }
                                     }
-                                }
-                                notifyDataSetChanged();
-                                if (!list.get(position).getUserName().contains(ECApplication.getInstance().getCurrentUser().getName())){
+                                    notifyDataSetChanged();
+                                    if (!list.get(position).getUserName().contains(ECApplication.getInstance().getCurrentUser().getName())){
 //                                //互动交流下载完附件，工作平台下载量加1（自己上传的不加下载量）
-                                    new ProgressThreadWrap(context, new RunnableWrap() {
-                                        @Override
-                                        public void run() {
-                                            String resouceId = list.get(position).getDownId();
-                                            if (resouceId != null&&resouceId.length()>0){
-                                                String userId = ECApplication.getInstance().getCurrentUser().getId();
-                                                String type = "2";
-                                                HashMap<String,ParameterValue> map = new HashMap<String, ParameterValue>();
-                                                map.put("resouceId",new ParameterValue(resouceId));
-                                                map.put("userId",new ParameterValue(userId));
-                                                map.put("type",new ParameterValue(type));
-                                                map.putAll(ECApplication.getInstance().getLoginUrlMap());
-                                                try {
-                                                    ZddcUtil.doPreviewOrDown(map);
-                                                } catch (IOException e) {
-                                                    e.printStackTrace();
+                                        new ProgressThreadWrap(context, new RunnableWrap() {
+                                            @Override
+                                            public void run() {
+                                                String resouceId = list.get(position).getDownId();
+                                                if (resouceId != null&&resouceId.length()>0){
+                                                    String userId = ECApplication.getInstance().getCurrentUser().getId();
+                                                    String type = "2";
+                                                    HashMap<String,ParameterValue> map = new HashMap<String, ParameterValue>();
+                                                    map.put("resouceId",new ParameterValue(resouceId));
+                                                    map.put("userId",new ParameterValue(userId));
+                                                    map.put("type",new ParameterValue(type));
+                                                    map.putAll(ECApplication.getInstance().getLoginUrlMap());
+                                                    try {
+                                                        ZddcUtil.doPreviewOrDown(map);
+                                                    } catch (IOException e) {
+                                                        e.printStackTrace();
+                                                    }
                                                 }
                                             }
-                                        }
-                                    }).start();
+                                        }).start();
+                                    }
                                 }
 
                             }
@@ -681,10 +710,15 @@ public class TreadsListViewAdapter extends BaseAdapter {
         vh.replyRel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (list.get(position).getReplyCount()>1){
-                    list.get(position).setLaunch(true);
-                }
-                HomeFragment.showEdit(list.get(position).getId(),position,null);
+//                if (list.get(position).getReplyCount()>1){
+//                    list.get(position).setLaunch(true);
+//                }
+                MainActivity.map.put("introduceReply","introduceReply");
+                MainActivity.map.put("introduceReplyFragment",fragment);
+                MainActivity.map.put("introduceReplyCommuncationId",list.get(position).getId());
+                HomeFragment.position = position;
+                fragment.startActivity(new Intent(context, IntroduceTreadsActivity.class));
+//                HomeFragment.showEdit(list.get(position).getId(),position,null);
             }
         });
         //点赞
@@ -802,43 +836,104 @@ public class TreadsListViewAdapter extends BaseAdapter {
                 }
             }
         });
-
+        final Handler handler = new Handler();
         vh.launchOrRetract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int replyCounts = list.get(position).getChild().size();
-                if (!list.get(position).getLaunch()){
-                    for (int j = 2; j < replyCounts; j++) {
-                        String name = list.get(position).getChild().get(j).getUserName()+":";
-                        String content = list.get(position).getChild().get(j).getContent();
-                        addReplyBody(vh,name,content,j,null,list.get(position).getChild(),position);
-                        if (list.get(position).getChild()!=null && list.get(position).getChild().get(j).getChild() !=null){
-                            if (list.get(position).getChild().get(j).getChild().size()>0){
-                                getChildList(vh,list.get(position).getChild().get(j).getChild(),name,position);
-                            }
-                        }
-                    }
-                    list.get(position).setLaunch(true);
-                    vh.launchOrRetract.setText("收起");
-                }else{
-                    vh.replyContent.removeAllViews();
-                    //TODO
-                    for (int j = 0; j < 2; j++) {
-                        String name = list.get(position).getChild().get(j).getUserName()+":";
-                        String content = list.get(position).getChild().get(j).getContent();
-                        addReplyBody(vh,name,content,j,null,list.get(position).getChild(),position);
-                        if (list.get(position).getChild()!=null && list.get(position).getChild().get(j).getChild() !=null) {
-                            if (list.get(position).getChild().get(j).getChild().size() > 0) {
-                                getChildList(vh, list.get(position).getChild().get(j).getChild(), name, position);
-                            }
-                        }
-                    }
-                    list.get(position).setLaunch(false);
-                    vh.launchOrRetract.setText("展开");
-                    fragment.setListViewSelection(position);
-                }
+                vh.launchOrRetract.setPressed(true);
+                vh.launchOrRetract.setClickable(false);
+                HashMap<String,ParameterValue> map = new HashMap<String, ParameterValue>();
+                map.put("commucationId",new ParameterValue(list.get(position).getId()));
+                map.putAll(ECApplication.getInstance().getLoginUrlMap());
+                initReplyDatas(map,position);
+
+//                new ProgressThreadWrap(context, new RunnableWrap() {
+//                    @Override
+//                    public void run() {
+//
+////                        initReplyDatas(map,position);
+//                        try {
+//                            String allReply = ZddcUtil.initAllReply(map);
+//                            final Treads treads = new Gson().fromJson(allReply,Treads.class);
+//                            if (treads != null){
+//                                handler.postDelayed(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        list.get(position).setChild(treads.getDataList());
+//                                        list.get(position).setLaunch(true);
+//                                        notifyDataSetChanged();
+//                                    }
+//                                },10);
+//                            }else{
+//                                ToastUtil.showMessage("网络异常");
+//                            }
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }).start();
+
+
+
+
+//                int replyCounts = list.get(position).getChild().size();
+//                if (!list.get(position).getLaunch()){
+//                    for (int j = 2; j < replyCounts; j++) {
+//                        String name = list.get(position).getChild().get(j).getUserName()+":";
+//                        String content = list.get(position).getChild().get(j).getContent();
+//                        addReplyBody(vh,name,content,j,null,list.get(position).getChild(),position);
+//                        if (list.get(position).getChild()!=null && list.get(position).getChild().get(j).getChild() !=null){
+//                            if (list.get(position).getChild().get(j).getChild().size()>0){
+//                                getChildList(vh,list.get(position).getChild().get(j).getChild(),name,position);
+//                            }
+//                        }
+//                    }
+//                    list.get(position).setLaunch(true);
+//                    vh.launchOrRetract.setText("收起");
+//                }else{
+//                    vh.replyContent.removeAllViews();
+//                    for (int j = 0; j < 2; j++) {
+//                        String name = list.get(position).getChild().get(j).getUserName()+":";
+//                        String content = list.get(position).getChild().get(j).getContent();
+//                        addReplyBody(vh,name,content,j,null,list.get(position).getChild(),position);
+//                        if (list.get(position).getChild()!=null && list.get(position).getChild().get(j).getChild() !=null) {
+//                            if (list.get(position).getChild().get(j).getChild().size() > 0) {
+//                                getChildList(vh, list.get(position).getChild().get(j).getChild(), name, position);
+//                            }
+//                        }
+//                    }
+//                    list.get(position).setLaunch(false);
+//                    vh.launchOrRetract.setText("展开");
+//                    fragment.setListViewSelection(position);
+//                }
             }
         });
+    }
+
+    public void initReplyDatas(final HashMap<String,ParameterValue> map,final int position){
+        new ProgressThreadWrap(context, new RunnableWrap() {
+            @Override
+            public void run() {
+                try {
+                    String allReply = ZddcUtil.initAllReply(map);
+                    final Treads treads = new Gson().fromJson(allReply,Treads.class);
+                    if (treads != null){
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                list.get(position).setChild(treads.getDataList());
+                                list.get(position).setLaunch(true);
+                                notifyDataSetChanged();
+                            }
+                        },10);
+                    }else{
+                        ToastUtil.showMessage("网络异常");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     public void doPreview(final int position) {
@@ -996,10 +1091,15 @@ public class TreadsListViewAdapter extends BaseAdapter {
                     }, null);
         }
         SpannableStringBuilder builder = new SpannableStringBuilder(charSequence);
-        ForegroundColorSpan redSpan = new ForegroundColorSpan(context.getResources().getColor(R.color.name_blue));
+        ForegroundColorSpan redSpanBlue = new ForegroundColorSpan(context.getResources().getColor(R.color.name_blue));
+        ForegroundColorSpan redSpanTitleColor = new ForegroundColorSpan(context.getResources().getColor(R.color.title_color));
         int start = allStringOfComment.indexOf(name);
         int end = start + name.length();
-        builder.setSpan(redSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if (name.contains(ECApplication.getInstance().getCurrentUser().getName())){
+            builder.setSpan(redSpanTitleColor, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }else{
+            builder.setSpan(redSpanBlue, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
 
 
 
@@ -1026,17 +1126,49 @@ public class TreadsListViewAdapter extends BaseAdapter {
 
 
 
+
+// ----------2017/3/8 加入回复图片----------------------------------------------------------------------------------- 2017/3/8 加入回复图片
+        LinearLayout.LayoutParams replyImageLinearOut = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout layoutOut = new LinearLayout(context);
+        layoutOut.setLayoutParams(replyImageLinearOut);
+        layoutOut.setGravity(Gravity.LEFT);
+        if (beans.get(position).getIconList() != null&&beans.get(position).getIconList().size()>0){
+            ArrayList<ImageUrlBean> urls = new ArrayList<>();
+            for (int i = 0; i < beans.get(position).getIconList().size(); i++) {
+                ImageUrlBean bean = new ImageUrlBean();
+                bean.setName(beans.get(position).getIconList().get(i).getFileName());
+                bean.setShowUrl(ZddcUtil.getUrl(ECApplication.getInstance().getAddress() + beans.get(position).getIconList().get(i).getImg(), ECApplication.getInstance().getLoginUrlMap()));
+                LogUtil.w(ZddcUtil.getUrl(ECApplication.getInstance().getAddress() + beans.get(position).getIconList().get(i).getImg(), ECApplication.getInstance().getLoginUrlMap()));
+                bean.setDownLoadUrl(ZddcUtil.getUrl(ECApplication.getInstance().getAddress() + beans.get(position).getIconList().get(i).getDownUrl(), ECApplication.getInstance().getLoginUrlMap()));
+                urls.add(bean);
+            }
+            LinearLayout.LayoutParams replyImageLinear = new LinearLayout.LayoutParams(context.getResources().getDimensionPixelSize(R.dimen.gridView_linear_width), LinearLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout layout = new LinearLayout(context);
+            layout.setLayoutParams(replyImageLinear);
+            layout.setGravity(Gravity.CENTER_HORIZONTAL);
+            GridView gridView = new GridView(context);
+            gridView.setNumColumns(3);
+            gridView.setVerticalSpacing(5);
+            gridView.setHorizontalSpacing(5);
+            layout.addView(gridView);
+            if (urls.size() > 0) {
+                ImageGirdAdapter adapter = new ImageGirdAdapter((Activity) context, urls, fragment,0,this.adapter);
+                gridView.setAdapter(adapter);
+                Tools.setGridViewHeightBasedOnChildren(gridView);
+            }
+            layoutOut.addView(layout);
+        }
+
         TextView textViewLine = new TextView(context);
         LinearLayout.LayoutParams layoutParamsLine = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 1);
         textViewLine.setLayoutParams(layoutParamsLine);
-        textViewLine.setBackgroundColor(Color.parseColor("#ffffff"));
-
-
-
+        textViewLine.setBackgroundColor(context.getResources().getColor(R.color.light_gray));
+// ----------2017/3/8 加入回复图片结束----------------------------------------------------------------------------------- 2017/3/8 加入回复图片
 
 
 
         vh.replyContent.addView(textView);
+        vh.replyContent.addView(layoutOut);
         vh.replyContent.addView(replyDate);
         vh.replyContent.addView(textViewLine);
         textView.setOnClickListener(new View.OnClickListener() {
@@ -1082,8 +1214,13 @@ public class TreadsListViewAdapter extends BaseAdapter {
                     }).show();
 
                 }else{
-                    fragment.setReplyName("指定回复");
-                    HomeFragment.showEdit(beans.get(position).getId(),index,beans.get(position).getUserName());
+                    MainActivity.map.put("introduceReply","introduceReply");
+                    MainActivity.map.put("introduceReplyFragment",fragment);
+                    MainActivity.map.put("introduceReplyCommuncationId",list.get(index).getId());
+                    MainActivity.map.put("introduceReplyToCommuncationId",beans.get(position).getId());
+                    MainActivity.map.put("introduceReplyToUserName",beans.get(position).getUserName());
+                    HomeFragment.position = index;
+                    fragment.startActivity(new Intent(context, IntroduceTreadsActivity.class));
                 }
             }
         });

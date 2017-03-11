@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,6 +36,7 @@ import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.entity.User;
 import com.zdhx.androidbase.ui.MainActivity;
+import com.zdhx.androidbase.ui.account.HomeFragment;
 import com.zdhx.androidbase.ui.base.BaseActivity;
 import com.zdhx.androidbase.ui.introducetreads.compressImg.PictureUtil;
 import com.zdhx.androidbase.ui.plugin.FileUtils;
@@ -55,6 +55,9 @@ import com.zdhx.androidbase.util.Tools;
 import com.zdhx.androidbase.util.ZddcUtil;
 import com.zdhx.androidbase.view.dialog.ECAlertDialog;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -64,6 +67,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.zdhx.androidbase.ui.account.HomeFragment.position;
 import static java.lang.System.out;
 
 public class IntroduceTreadsActivity extends BaseActivity{
@@ -127,6 +131,15 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 	private HashMap<String,ParameterValue> map;
 
+	private TextView titleTV;
+
+	private String introduceReply = null;
+
+	private HomeFragment fragment;
+	private String introduceReplyToCommuncationId;
+	private String introduceReplyToUserName;
+//	private int introduceReplyPosition;
+
 	public static ArrayList<String> fileNames = new ArrayList<>();
 	@Override
 	protected int getLayoutId() {
@@ -146,11 +159,9 @@ public class IntroduceTreadsActivity extends BaseActivity{
 				try {
 					// Get resource path from intent
 					Uri uri = (Uri) extras.getParcelable(Intent.EXTRA_STREAM);
-
 					// 返回路径
 					String path = FileUtils.getPathByUri4kitkat(context, uri);
 					out.println("path-->" + path);
-
 					return path;
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -164,7 +175,8 @@ public class IntroduceTreadsActivity extends BaseActivity{
 	}
 
 
-
+	private String shareContent = null;
+	private boolean isShare = false;
 
 
 	@Override
@@ -183,6 +195,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		fujianTitle = (TextView) findViewById(R.id.file_tv);
 		backBtn = (Button) findViewById(R.id.button1);
 		circleLV = (ListView) findViewById(R.id.circleLV);
+		titleTV = (TextView) findViewById(R.id.editTypeTV);
 		impNoticeGroup = (RadioGroup) findViewById(R.id.impNoticeGroup);
 		videoCountTV = (TextView) findViewById(R.id.videocount_tv);
 		if (ECApplication.getInstance().getUserAuth().equals("no")){
@@ -220,6 +233,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 			impNoticeGroup.setVisibility(View.GONE);
 			User user = ECApplication.getInstance().getCurrentUser();
 			if (user != null){
+				circleET.setText("来自于分享内容");
 				ECApplication.getInstance().setLoginUrlMap("sys_auto_authenticate", new ParameterValue("true"));
 				ECApplication.getInstance().setLoginUrlMap("sys_username", new ParameterValue(user.getLoginName()));
 				ECApplication.getInstance().setLoginUrlMap("sys_password", new ParameterValue(user.getPassWord()));
@@ -251,12 +265,36 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		}
 		adapter = new ImageGVAdapter();
 		circleGV.setAdapter(adapter);
-
 		videoCountTV.setVisibility(View.GONE);
 		listViewAdapter = new ListViewAdapter();
 		circleLV.setAdapter(listViewAdapter);
-
+		introduceReply = (String) MainActivity.map.get("introduceReply");
+		MainActivity.map.remove("introduceReply");
+		communcationId = (String) MainActivity.map.get("introduceReplyCommuncationId");
+		fragment = (HomeFragment) MainActivity.map.get("introduceReplyFragment");
+		introduceReplyToCommuncationId = (String)MainActivity.map.get("introduceReplyToCommuncationId");
+		introduceReplyToUserName = (String) MainActivity.map.get("introduceReplyToUserName");
+//		introduceReplyPosition = (int) MainActivity.map.get("introduceReplyPosition");
+		MainActivity.map.remove("introduceReplyCommuncationId");
+		MainActivity.map.remove("introduceReplyToCommuncationId");
+		MainActivity.map.remove("introduceReplyToUserName");
+		MainActivity.map.remove("introduceReplyPosition");
+		MainActivity.map.remove("introduceReplyFragment");
 		initPopMenu();
+		if (introduceReply == null){
+			fujianBT.setVisibility(View.VISIBLE);
+			titleTV.setText("新动态");
+			circleET.setHint("这一刻的想法...");
+		}else{
+			fujianBT.setVisibility(View.GONE);
+			impNoticeGroup.setVisibility(View.GONE);
+			titleTV.setText("交流回复");
+			if (introduceReplyToUserName != null){
+				circleET.setHint("想对"+introduceReplyToUserName+"说点...");
+			}else{
+				circleET.setHint("说点什么吧...");
+			}
+		}
 		//添加附件
 		fujianBT.setOnClickListener(new OnClickListener() {
 			@Override
@@ -296,7 +334,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 	public void commitTreads(){
 		ProgressUtil.show(context,"正在上传");
 		map.clear();
-		String content = circleET.getText().toString();//发表的内容
+		final String content = circleET.getText().toString();//发表的内容
 		if (gridList != null &&gridList.size()>1){
 			imgList = new ArrayList();
 			type = 2;
@@ -333,24 +371,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 				map.put("content",new ParameterValue(content));
 			}
 		}
-
-		sendNoticeBT.setTextColor(Color.parseColor("#a0a0a0"));
-		new Thread(){
-			@Override
-			public void run() {
-				try {
-					sleep(100);
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							sendNoticeBT.setTextColor(Color.parseColor("#ffffff"));
-						}
-					});
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		}.start();
+	if (introduceReply == null){
 		new ProgressThreadWrap(context, new RunnableWrap() {
 			@Override
 			public void run() {
@@ -379,7 +400,6 @@ public class IntroduceTreadsActivity extends BaseActivity{
 						break;
 					case 1:
 						try {
-
 							ZddcUtil.saveCommucation(videoList,ECApplication.getInstance().getLoginUrlMap(),map);
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -418,9 +438,83 @@ public class IntroduceTreadsActivity extends BaseActivity{
 			}
 
 		}).start();
+	}else{
 
+		new ProgressThreadWrap(context, new RunnableWrap() {
+			@Override
+			public void run() {
+				map.put("content",new ParameterValue(content));
+				if (introduceReplyToCommuncationId != null&&!"".equals(introduceReplyToCommuncationId)){
+					map.put("communcationId",new ParameterValue(introduceReplyToCommuncationId));
+				}else{
+					map.put("communcationId",new ParameterValue(communcationId));
+				}
+				switch (type){
+					//无附件回复
+					case 0:
+						map.put("uploadFiles",new ParameterValue(new ArrayList<File>()));
+						map.put("uploadFileNames",new ParameterValue(""));
+						map.putAll(ECApplication.getInstance().getLoginUrlMap());
+						try {
+							String json = ZddcUtil.doReply(map);
+							JSONObject j = new JSONObject(json);
+							final String newId = j.getString("id");
+							final String userName = j.getString("userName");
+
+							handler.postDelayed(new Runnable() {
+								@Override
+								public void run() {
+									if (introduceReplyToCommuncationId != null&&!"".equals(introduceReplyToCommuncationId)){
+										fragment.resetTreadsDatas(introduceReplyToCommuncationId,content, HomeFragment.position,newId,userName,null);
+									}else{
+										fragment.resetTreadsDatas(communcationId,content, HomeFragment.position,newId,userName,null);
+									}
+									fragment.setReplyName(null);
+									ProgressUtil.hide();
+									IntroduceTreadsActivity.this.finish();
+								}
+							},5);
+
+						} catch (IOException e) {
+							e.printStackTrace();
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+						break;
+					//有图片
+					case 2:
+//						map.put("uploadFiles",new ParameterValue(new ArrayList<File>()));
+//						map.put("uploadFileNames",new ParameterValue(""));
+						map.putAll(ECApplication.getInstance().getLoginUrlMap());
+						try {
+							String json = ZddcUtil.doReplyWithFiles(imgList,ECApplication.getInstance().getLoginUrlMap(),map);
+							JSONObject j = new JSONObject(json);
+							final String newId = j.getString("id");
+							final String userName = j.getString("userName");
+
+							handler.postDelayed(new Runnable() {
+								@Override
+								public void run() {
+									fragment.resetTreadsDatas(communcationId,content, position,newId,userName,imgList);
+//									fragment.setReplyName(null);
+									ProgressUtil.hide();
+									IntroduceTreadsActivity.this.finish();
+								}
+							},5);
+
+						} catch (IOException e) {
+							e.printStackTrace();
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+						break;
+				}
+			}
+		}).start();
 	}
 
+	}
+	private String communcationId = null;
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
@@ -824,8 +918,13 @@ public class IntroduceTreadsActivity extends BaseActivity{
 						if (gridList.get(gridList.size() - 1) == null) {
 							Intent intent = new Intent(context,
 									PhotoSelectorActivity.class);
-							intent.putExtra("canSelectCount", MAX_IMG_COUNT + 1
-									- gridList.size());
+							if (introduceReply == null){
+								intent.putExtra("canSelectCount", MAX_IMG_COUNT + 1
+										- gridList.size());
+							}else{
+								intent.putExtra("canSelectCount", 3 + 1
+										- gridList.size());
+							}
 							startActivityForResult(intent, 0);
 						} else {
 							remove(position);

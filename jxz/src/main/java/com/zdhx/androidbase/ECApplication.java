@@ -16,10 +16,12 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -38,6 +40,8 @@ import cn.sharesdk.framework.ShareSDK;
 import volley.Request;
 import volley.RequestQueue;
 import volley.toolbox.Volley;
+
+//import com.facebook.drawee.backends.pipeline.Fresco;
 
 public class ECApplication extends Application {
     private static ECApplication instance;
@@ -102,7 +106,11 @@ public class ECApplication extends Application {
                 .threadPoolSize(5).build();
         loader = ImageLoader.getInstance();
         loader.init(config);
-        Fresco.initialize(this);
+        ImagePipelineConfig frescoConfig = ImagePipelineConfig.newBuilder(this)
+                .setDownsampleEnabled(true)
+                .setBitmapsConfig(Bitmap.Config.RGB_565)
+                .build();
+        Fresco.initialize(this,frescoConfig);
         getFileFromJxz();
         initEmjoy();
     }

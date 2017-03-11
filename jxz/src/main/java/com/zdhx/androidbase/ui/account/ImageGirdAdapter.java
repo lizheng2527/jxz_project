@@ -10,8 +10,10 @@ import android.widget.BaseAdapter;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ImageUrlBean;
+import com.zdhx.androidbase.util.DensityUtil;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.lazyImageLoader.cache.ImageLoader;
+import com.zdhx.androidbase.view.SimpleDraweeViewCompressed.FrescoUtil;
 
 import java.util.ArrayList;
 
@@ -64,7 +66,8 @@ public class ImageGirdAdapter extends BaseAdapter {
 			holder = (Holder) convertView.getTag();
 		}
 		Uri uri = Uri.parse(list.get(position).getShowUrl());
-		holder.imageGV.setImageURI(uri);
+		FrescoUtil.load(uri,holder.imageGV, DensityUtil.dip2px(30f), DensityUtil.dip2px(30f));
+//		holder.imageGV.setImageURI(uri);
 		holder.imageGV.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

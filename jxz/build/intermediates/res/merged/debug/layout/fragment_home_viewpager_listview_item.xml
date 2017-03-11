@@ -27,17 +27,32 @@
                 android:layout_gravity="center_vertical"
 
                 />
-
-            <TextView
-                android:id="@+id/fragment_home_viewpager_listview_item_username"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                android:padding="2dp"
-                android:textSize="15sp"
-                android:text="名称"
-                android:textColor="@color/name_blue" />
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/fragment_home_viewpager_listview_item_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:padding="2dp"
+                    android:textSize="15sp"
+                    android:text="名称"
+                    android:textColor="@color/name_blue" />
+                <TextView
+                    android:textSize="12dp"
+                    android:padding="2dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="发送时间"
+                    android:id="@+id/fragment_home_viewpager_listview_item_createtime"
+                    android:textColor="@color/gray" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -47,7 +62,6 @@
                 android:text="(班级显示)"
                 android:visibility="gone"
                 android:textColor="#505050" />
-
             <View
                 android:layout_width="0dp"
                 android:layout_height="50dp"
@@ -99,7 +113,7 @@
                 android:visibility="gone"
                 android:id="@+id/fragment_home_viewpager_listview_item_grid"
                 android:layout_width="260dp"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:layout_marginTop="5dp"
                 android:numColumns="3"
                 >
@@ -142,17 +156,18 @@
                         android:singleLine="true"
                         android:layout_height="wrap_content"
                         android:text="文件标题"
-                        android:textColor="#555555"
+                        android:textColor="@color/dark_gray"
 
                         android:textSize="14sp" />
 
                     <TextView
+                        android:layout_marginTop="5dp"
                         android:id="@+id/filesize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
+                        android:layout_gravity="center_vertical"
                         android:text="文件大小"
-                        android:textColor="#888888"
+                        android:textColor="@color/gray"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -179,20 +194,8 @@
             android:visibility="gone"
             android:textColor="@color/title_color"
             android:textSize="14sp" />
-        <TextView
-            android:layout_marginRight="20dp"
-            android:gravity="right"
-            android:id="@+id/fragment_home_viewpager_listview_item_createtime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
-            android:layout_marginTop="5dp"
-            android:padding="2dp"
-            android:text="发送时间"
-            android:textColor="@color/gray" />
 
         <RelativeLayout
-            android:layout_marginRight="20dp"
             android:layout_marginLeft="55dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -272,14 +275,16 @@
                         android:background="@drawable/button_praise_nor" />
 
                     <TextView
-                        android:layout_alignParentRight="true"
+                        android:paddingLeft="5dp"
+                        android:gravity="center_vertical"
                         android:layout_width="30dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignRight="@id/thumbsupBT1"
-                        android:gravity="center"
-                        android:textColor="#555555"
+                        android:textColor="@color/gray"
                         android:id="@+id/praiseQuantity"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/thumbsupBT1"
+                        android:layout_toEndOf="@+id/thumbsupBT1" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -297,14 +302,16 @@
                         android:background="@drawable/button_review_nor" />
 
                     <TextView
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
                         android:id="@+id/replyCount"
                         android:layout_width="30dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignRight="@id/thumbsupBT"
-                        android:gravity="center"
-                        android:textColor="#555555"
-                        android:textSize="14sp" />
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/thumbsupBT"
+                        android:layout_toEndOf="@+id/thumbsupBT" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -366,6 +373,9 @@
                 android:id="@+id/launchorretract"
                 android:layout_gravity="right"
                 android:text="@string/launch"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"

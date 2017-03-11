@@ -227,6 +227,17 @@ public class IntentUtil {
 		return intent;
 
 	}
+	public static Intent getApkFileIntent(String param)
+
+	{
+
+		Intent intent = new Intent();
+		intent.setAction(Intent.ACTION_VIEW);
+		Uri uri = Uri.fromFile(new File(param));
+		intent.setDataAndType(uri, "application/vnd.android.package-archive");
+		return intent;
+
+	}
 
 	// android获取一个用于打开PPT文件的intent
 

@@ -19,6 +19,7 @@
         <TextView
             android:visibility="gone"
             android:onClick="onEmptyClick"
+            android:clickable="true"
             android:layout_centerInParent="true"
             android:id="@+id/emptyimp"
             android:layout_width="wrap_content"

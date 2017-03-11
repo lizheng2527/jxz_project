@@ -297,6 +297,8 @@
     <dimen name="font_big">16.0dip</dimen>
     <dimen name="font_normal">16.0dip</dimen>
     <dimen name="footer_height">48dip</dimen>
+    <dimen name="gridView_linear_width">260dp</dimen>
+    <dimen name="gridView_width">100dp</dimen>
     <dimen name="header_height">96dip</dimen>
     <dimen name="layout_title_content_heigh">30dp</dimen>
     <dimen name="layout_title_heigh">45dp</dimen>
@@ -383,7 +385,7 @@
     <string name="done_label">Done</string>
     <string name="hour_picker_description">Hours circular slider</string>
     <string name="item_is_selected"><ns1:g example="2013" id="item">%1$s</ns1:g> selected</string>
-    <string name="launch">展开</string>
+    <string name="launch">查看回复</string>
     <string name="loading_press">请稍候，正在提交...</string>
     <string name="logout">确认要注销登录吗？</string>
     <string name="minute_picker_description">Minutes circular slider</string>
@@ -402,6 +404,7 @@
     <string name="register_phone">手  机  号</string>
     <string name="retract">收起</string>
     <string name="sans_serif">sans-serif</string>
+    <string name="search_file_title">查看附件</string>
     <string name="select_day">Select month and day</string>
     <string name="select_hours">Select hours</string>
     <string name="select_minutes">Select minutes</string>
@@ -592,20 +595,20 @@ function login(form){
     </style>
     <style name="ActionSheetDialogStyle" parent="@android:style/Theme.Dialog">
 
-        <!-- 背景透明 -->
+        
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
-        <!-- 浮于Activity之上 -->
+        
         <item name="android:windowIsFloating">true</item>
-        <!-- 边框 -->
+        
         <item name="android:windowFrame">@null</item>
-        <!-- Dialog以外的区域模糊效果 -->
+        
         <item name="android:backgroundDimEnabled">true</item>
-        <!-- 无标题 -->
+        
         <item name="android:windowNoTitle">true</item>
-        <!-- 半透明 -->
+        
         <item name="android:windowIsTranslucent">false</item>
-        <!-- Dialog进入及退出动画 -->
+        
         <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
     </style>
     <style name="AlertDialogStyle" parent="@android:style/Theme.Dialog">
@@ -822,6 +825,9 @@ function login(form){
         <item name="android:activityOpenExitAnimation">@anim/common_slide_left_out</item>
         <item name="android:activityCloseEnterAnimation">@anim/common_slide_left_in</item>
         <item name="android:activityCloseExitAnimation">@anim/common_slide_right_out</item>
+    </style>
+    <style name="ImageTranslucentTheme" parent="AppTheme">
+        <!--在Android 4.4之前的版本上运行，直接跟随系统主题-->
     </style>
     <style name="NavPage">
         <item name="android:gravity">center_horizontal</item>

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -34,9 +35,6 @@ import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.ZddcUtil;
 import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 import com.zdhx.androidbase.view.pagerslidingtab.PagerSlidingTabStrip;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -358,6 +356,11 @@ public class HomeFragment extends Fragment {
     private String replyName = null;
     public void setReplyName(String replyName){
         this.replyName = replyName;
+//        if (dialog.isShowing()){
+//            dialog.dismiss();
+//        }
+//        ProgressUtil.hide();
+        treadsListViewAdapter.notifyDataSetChanged();
     }
     private String newId = "00000000000000";
     private String userName = ECApplication.getInstance().getCurrentUser().getName();
@@ -370,62 +373,64 @@ public class HomeFragment extends Fragment {
         linear = (LinearLayout) getView().findViewById(R.id.rl_bottom);
         replyET = (EditText) getView().findViewById(R.id.et_reply);
         sendBtn = (Button) getView().findViewById(R.id.btn_send);
-        sendBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String replyMes = replyET.getText().toString().trim();
-                ProgressUtil.show(context,"正在上传回复内容..");
-                final HashMap<String,ParameterValue > hm = new HashMap();
-                new ProgressThreadWrap(context, new RunnableWrap() {
-                    @Override
-                    public void run() {
-                        if (replyMes == null ||replyMes.equals("")){
-                            ToastUtil.showMessage("回复内容不能为空！");
-                            return ;
-                        }else{
-                            hm.put("communcationId",new ParameterValue(communcationId));
-                            hm.put("content",new ParameterValue(replyMes));
-                            hm.put("uploadFiles",new ParameterValue(new ArrayList<File>()));
-                            hm.put("uploadFileNames",new ParameterValue(""));
-                            hm.putAll(ECApplication.getInstance().getLoginUrlMap());
-                            try {
-                                String json = ZddcUtil.doReply(hm);
-                                try {
-                                    JSONObject j = new JSONObject(json);
-                                    newId = j.getString("id");
-                                    userName = j.getString("userName");
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            resetTreadsDatas(communcationId,replyMes,position,newId,userName);
-                                            setReplyName(null);
-                                            if (dialog.isShowing()){
-                                                dialog.dismiss();
-                                            }
-                                            ProgressUtil.hide();
-                                            hideEdit();
-                                            treadsListViewAdapter.notifyDataSetChanged();
-                                        }
-                                    },5);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                                ProgressUtil.hide();
-                                ToastUtil.showMessage("发送失败！");
-                            }
-
-                        }
-                    }
-                }).start();
-            }
-        });
+//        sendBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final String replyMes = replyET.getText().toString().trim();
+//                ProgressUtil.show(context,"正在上传回复内容..");
+//                final HashMap<String,ParameterValue > hm = new HashMap();
+//                new ProgressThreadWrap(context, new RunnableWrap() {
+//                    @Override
+//                    public void run() {
+//                        if (replyMes == null ||replyMes.equals("")){
+//                            ToastUtil.showMessage("回复内容不能为空！");
+//                            return ;
+//                        }else{
+//                            hm.put("communcationId",new ParameterValue(communcationId));
+//                            hm.put("content",new ParameterValue(replyMes));
+//                            hm.put("uploadFiles",new ParameterValue(new ArrayList<File>()));
+//                            hm.put("uploadFileNames",new ParameterValue(""));
+//                            hm.putAll(ECApplication.getInstance().getLoginUrlMap());
+//                            try {
+//                                String json = ZddcUtil.doReply(hm);
+//                                try {
+//                                    JSONObject j = new JSONObject(json);
+//                                    newId = j.getString("id");
+//                                    userName = j.getString("userName");
+//                                    handler.postDelayed(new Runnable() {
+//                                        @Override
+//                                        public void run() {
+//                                            resetTreadsDatas(communcationId,replyMes,position,newId,userName,null);
+//                                            setReplyName(null);
+//                                            if (dialog.isShowing()){
+//                                                dialog.dismiss();
+//                                            }
+//                                            ProgressUtil.hide();
+//                                            if (InputTools.KeyBoard(replyET)){
+//                                                hideEdit();
+//                                            }
+//                                            treadsListViewAdapter.notifyDataSetChanged();
+//                                        }
+//                                    },5);
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                                ProgressUtil.hide();
+//                                ToastUtil.showMessage("发送失败！");
+//                            }
+//
+//                        }
+//                    }
+//                }).start();
+//            }
+//        });
         initGridView();
         initViewPager();
     }
 
-    private void resetTreadsDatas(String id,String replyMes,int position,String newId,String userName) {
+    public void resetTreadsDatas(String id, String replyMes, final int position, String newId, String userName, List<File> files) {
         switch (HomeGridAdapter.index){
             case 0:
                 toListDatas(allDatas,position,id,replyMes,newId,userName);
@@ -446,7 +451,15 @@ public class HomeFragment extends Fragment {
                 toListDatas(impDatas,position,id,replyMes,newId,userName);
                 break;
         }
+
+        if (files != null){
+            replyMap = new HashMap<String, ParameterValue>();
+            replyMap.put("commucationId",new ParameterValue(id));
+            replyMap.putAll(ECApplication.getInstance().getLoginUrlMap());
+            treadsListViewAdapter.initReplyDatas(replyMap,position);
+        }
     }
+    HashMap<String,ParameterValue> replyMap;
 
     private void setAllReplyCount(){
         switch (HomeGridAdapter.index){
@@ -490,7 +503,7 @@ public class HomeFragment extends Fragment {
     private void listDatas(List<Treads.DataListBean> beans, int position,String id,String replyMes,String newId,String userName){
         for (int i = 0; i < beans.size(); i++) {
             LogUtil.w(beans.get(i).getContent());
-            if (beans.get(i).getChild().size()>0){
+            if (beans.get(i).getChild() != null && beans.get(i).getChild().size()>0){
                 listDatas(beans.get(i).getChild(),i,id,replyMes,newId,userName);
             }
             if (beans.get(i).getId().equals(id)){
@@ -997,6 +1010,7 @@ public class HomeFragment extends Fragment {
      * @param position
      */
     public static void showEdit(String communcationId,int position,String userName){
+
         replyET.setText("");
         if (userName == null||userName.equals("")){
             replyET.setHint("");
@@ -1004,7 +1018,7 @@ public class HomeFragment extends Fragment {
             replyET.setHint(ECApplication.getInstance().getCurrentUser().getName()+"@"+userName);
         }
         linear.setVisibility(View.VISIBLE);
-        InputTools.KeyBoard(replyET,"open");
+//        InputTools.KeyBoard(replyET,"open");
         HomeFragment.communcationId = communcationId;
         HomeFragment.position = position;
     }
@@ -1013,7 +1027,7 @@ public class HomeFragment extends Fragment {
      * 隐藏输入框
      */
     public static void hideEdit(){
-        InputTools.KeyBoard(replyET,"close");
+//        InputTools.KeyBoard(replyET,"close");
         linear.setVisibility(View.GONE);
     }
 
@@ -1025,7 +1039,9 @@ public class HomeFragment extends Fragment {
         lv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                hideEdit();
+                if (InputTools.KeyBoard(replyET)){
+                    hideEdit();
+                }
                 return false;
             }
         });
@@ -1082,6 +1098,26 @@ public class HomeFragment extends Fragment {
                         onDatasChanged(listView,loadIndex);
                     }
                 }, 1);
+            }
+        });
+
+        listView.setOnScrollListener(new XListView.OnXScrollListener() {
+            @Override
+            public void onXScrolling(View view) {
+                LogUtil.w("高度："+view.getY());
+            }
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (visibleItemCount+firstVisibleItem == totalItemCount){
+                    listView.startLoadMore();
+//                    onDatasChanged(listView,loadIndex);
+                }
             }
         });
     }
@@ -1149,7 +1185,7 @@ public class HomeFragment extends Fragment {
                 break;
         }
     }
-//
+    //
     private void setIsLoadMoring(int index,boolean b){
         switch (index){
             case 0:
@@ -1213,11 +1249,6 @@ public class HomeFragment extends Fragment {
      */
 
     private void onDatasChanged(final XListView listView,final int loadIndex){
-//        if (getStatus().equals("1")){
-//            ToastUtil.showMessage("已无更多..");
-//            onLoad(listView);
-//            return;
-//        }
         if (getIsLoadMoring(loadIndex)){
             return;
         }
