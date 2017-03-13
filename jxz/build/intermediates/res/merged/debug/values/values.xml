@@ -826,9 +826,6 @@ function login(form){
         <item name="android:activityCloseEnterAnimation">@anim/common_slide_left_in</item>
         <item name="android:activityCloseExitAnimation">@anim/common_slide_right_out</item>
     </style>
-    <style name="ImageTranslucentTheme" parent="AppTheme">
-        <!--在Android 4.4之前的版本上运行，直接跟随系统主题-->
-    </style>
     <style name="NavPage">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:orientation">vertical</item>

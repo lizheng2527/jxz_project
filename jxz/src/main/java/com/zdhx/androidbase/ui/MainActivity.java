@@ -76,6 +76,7 @@ import com.zdhx.androidbase.ui.treelistview.bean.TreeBean;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressUtil;
 import com.zdhx.androidbase.util.StringUtil;
+import com.zdhx.androidbase.util.ZddcUtil;
 import com.zdhx.androidbase.util.permissionUtil.MPermission;
 import com.zdhx.androidbase.view.dialog.ECListDialog;
 
@@ -251,9 +252,12 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		requestBasicPermission();
 //		checkVerson();
 		getTopBarView().setVisibility(View.GONE);
+		getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
 		initLauncherUIView();
 //		updata();
 	}
+
+
 	/**
 	 * 基本权限管理
 	 */
@@ -623,10 +627,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
 	public void onFeedBack (View v) {
 		startActivity(new Intent(context, LoginActivity.class));
-	}
-	@Override
-	protected void onResume() {
-		super.onResume();
 	}
 
 

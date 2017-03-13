@@ -6330,30 +6330,9 @@
                     "startLine": 828,
                     "startColumn": 4,
                     "startOffset": 51849,
-                    "endLine": 830,
+                    "endLine": 834,
                     "endColumn": 12,
-                    "endOffset": 51961
-                },
-                "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 551,
-                        "endLine": 16,
-                        "endColumn": 12,
-                        "endOffset": 665
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 831,
-                    "startColumn": 4,
-                    "startOffset": 51966,
-                    "endLine": 837,
-                    "endColumn": 12,
-                    "endOffset": 52305
+                    "endOffset": 52188
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6361,12 +6340,12 @@
             },
             {
                 "to": {
-                    "startLine": 838,
+                    "startLine": 835,
                     "startColumn": 4,
-                    "startOffset": 52310,
-                    "endLine": 849,
+                    "startOffset": 52193,
+                    "endLine": 846,
                     "endColumn": 12,
-                    "endOffset": 52935
+                    "endOffset": 52818
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6374,12 +6353,12 @@
             },
             {
                 "to": {
-                    "startLine": 850,
+                    "startLine": 847,
                     "startColumn": 4,
-                    "startOffset": 52940,
-                    "endLine": 854,
+                    "startOffset": 52823,
+                    "endLine": 851,
                     "endColumn": 12,
-                    "endOffset": 53132
+                    "endOffset": 53015
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6387,12 +6366,12 @@
             },
             {
                 "to": {
-                    "startLine": 855,
+                    "startLine": 852,
                     "startColumn": 4,
-                    "startOffset": 53137,
-                    "endLine": 860,
+                    "startOffset": 53020,
+                    "endLine": 857,
                     "endColumn": 12,
-                    "endOffset": 53408
+                    "endOffset": 53291
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6400,12 +6379,12 @@
             },
             {
                 "to": {
-                    "startLine": 861,
+                    "startLine": 858,
                     "startColumn": 4,
-                    "startOffset": 53413,
-                    "endLine": 871,
+                    "startOffset": 53296,
+                    "endLine": 868,
                     "endColumn": 12,
-                    "endOffset": 54074
+                    "endOffset": 53957
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6413,12 +6392,12 @@
             },
             {
                 "to": {
-                    "startLine": 872,
+                    "startLine": 869,
                     "startColumn": 4,
-                    "startOffset": 54079,
-                    "endLine": 879,
+                    "startOffset": 53962,
+                    "endLine": 876,
                     "endColumn": 12,
-                    "endOffset": 54528
+                    "endOffset": 54411
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6426,12 +6405,12 @@
             },
             {
                 "to": {
-                    "startLine": 880,
+                    "startLine": 877,
                     "startColumn": 4,
-                    "startOffset": 54533,
-                    "endLine": 889,
+                    "startOffset": 54416,
+                    "endLine": 886,
                     "endColumn": 12,
-                    "endOffset": 55164
+                    "endOffset": 55047
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6439,12 +6418,12 @@
             },
             {
                 "to": {
-                    "startLine": 890,
+                    "startLine": 887,
                     "startColumn": 4,
-                    "startOffset": 55169,
-                    "endLine": 895,
+                    "startOffset": 55052,
+                    "endLine": 892,
                     "endColumn": 12,
-                    "endOffset": 55448
+                    "endOffset": 55331
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
@@ -6452,11 +6431,11 @@
             },
             {
                 "to": {
-                    "startLine": 896,
+                    "startLine": 893,
                     "startColumn": 4,
-                    "startOffset": 55453,
+                    "startOffset": 55336,
                     "endColumn": 47,
-                    "endOffset": 55496
+                    "endOffset": 55379
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
@@ -6464,33 +6443,33 @@
             },
             {
                 "to": {
-                    "startLine": 897,
+                    "startLine": 894,
                     "startColumn": 4,
-                    "startOffset": 55501,
-                    "endLine": 911,
+                    "startOffset": 55384,
+                    "endLine": 908,
                     "endColumn": 12,
-                    "endOffset": 56072
+                    "endOffset": 55955
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml",
                     "position": {
-                        "startLine": 295,
+                        "startLine": 291,
                         "startColumn": 4,
-                        "startOffset": 14205,
-                        "endLine": 309,
+                        "startOffset": 14083,
+                        "endLine": 305,
                         "endColumn": 12,
-                        "endOffset": 14790
+                        "endOffset": 14668
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 912,
+                    "startLine": 909,
                     "startColumn": 4,
-                    "startOffset": 56077,
-                    "endLine": 915,
+                    "startOffset": 55960,
+                    "endLine": 912,
                     "endColumn": 12,
-                    "endOffset": 56263
+                    "endOffset": 56146
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6498,12 +6477,12 @@
             },
             {
                 "to": {
-                    "startLine": 916,
+                    "startLine": 913,
                     "startColumn": 4,
-                    "startOffset": 56268,
-                    "endLine": 919,
+                    "startOffset": 56151,
+                    "endLine": 916,
                     "endColumn": 12,
-                    "endOffset": 56468
+                    "endOffset": 56351
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6511,12 +6490,12 @@
             },
             {
                 "to": {
-                    "startLine": 920,
+                    "startLine": 917,
                     "startColumn": 4,
-                    "startOffset": 56473,
-                    "endLine": 923,
+                    "startOffset": 56356,
+                    "endLine": 920,
                     "endColumn": 12,
-                    "endOffset": 56651
+                    "endOffset": 56534
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"

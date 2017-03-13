@@ -145,7 +145,7 @@ public class ZddcUtil {
 		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 		// 连接
 		conn.connect();
-		
+
 		writeParameters(conn, map);
 		if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
 			Log.v("error", "错误的相应代码：" + conn.getResponseCode());
@@ -263,7 +263,7 @@ public class ZddcUtil {
 		System.out.println(url);
 		return url;
 	}
-	
+
 	public static String getUrlWithDownLoad(String url, Map<String, ParameterValue> map) {
 		url = url + "&";
 		Set<String> keySet = map.keySet();
@@ -371,7 +371,7 @@ public class ZddcUtil {
 
 	/**
 	 * 提交表单带文件
-	 * 
+	 *
 	 * @param url
 	 * @param files
 	 * @param map
@@ -473,7 +473,7 @@ public class ZddcUtil {
 		files.add(file);
 		return commitWithFiles(url, files, map);
 	}
-	
+
 
 	public static Intent openFile(String filePath) {
 		File file = new File(filePath);
@@ -487,7 +487,7 @@ public class ZddcUtil {
 			return null;
 		}
 	}
-	
+
 	// Android获取一个用于打开PPT文件的intent
 	public static Intent getPptFileIntent(String param) {
 
@@ -500,7 +500,7 @@ public class ZddcUtil {
 	}
 	/**
 	 * 在新增和修改的时候要进行拼参数 ,调用此方法
-	 * 
+	 *
 	 * @param map
 	 * @return
 	 */
@@ -533,7 +533,7 @@ public class ZddcUtil {
 	 *            sourceId 原通知id
 	 */
 	public static String saveChapterResource(List<File> files,Map<String, ParameterValue> loginMap,
-										 Map<String, ParameterValue> map) throws IOException {
+											 Map<String, ParameterValue> map) throws IOException {
 		return commitWithFiles(getUrl(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!saveChapterResource.action", loginMap),files, map);
 	}
 
@@ -664,7 +664,7 @@ public class ZddcUtil {
 	 *            sourceId 原通知id
 	 */
 	public static String doReplyWithFiles(List<File> files,Map<String, ParameterValue> loginMap,
-										 Map<String, ParameterValue> map) throws IOException {
+										  Map<String, ParameterValue> map) throws IOException {
 		return commitWithFiles(getUrl(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!doReply.action", loginMap),files, map);
 	}
 	/**
@@ -674,6 +674,7 @@ public class ZddcUtil {
 	 * @throws IOException
 	 */
 	public static String getAllTreads(Map<String, ParameterValue> map) throws IOException {
+//		doAccess(ECApplication.getInstance().getLoginUrlMap());
 		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!communcationList.action", map);
 	}
 	/**
@@ -714,7 +715,7 @@ public class ZddcUtil {
 	 *            sourceId 原通知id
 	 */
 	public static String saveCommucation(List<File> files,Map<String, ParameterValue> loginMap,
-										Map<String, ParameterValue> map) throws IOException {
+										 Map<String, ParameterValue> map) throws IOException {
 		return commitWithFiles(getUrl(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!saveCommucation.action", loginMap),files, map);
 	}
 	/**
@@ -724,6 +725,13 @@ public class ZddcUtil {
 	 */
 	public static String saveCommucationWithoutFile(Map<String, ParameterValue> map) throws IOException {
 		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!saveCommucation.action", map);
+	}
+	/**
+	 */
+	public static String doAccess(final Map<String, ParameterValue> map){
+
+		return getUrl(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!doAccess.action", map);
+
 	}
 
 
@@ -744,5 +752,5 @@ public class ZddcUtil {
 	public static String checkLogin(Map<String, ParameterValue> map) throws IOException {
 		return getUrlResponse(checkUrl(ECApplication.getInstance().getAddress()) + "/bd/welcome!ajaxValidationUser.action", map);
 	}
-	
+
 }

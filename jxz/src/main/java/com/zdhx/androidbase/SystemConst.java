@@ -14,7 +14,7 @@ public class SystemConst {
 	 */
     public static void setTextIp(String test){
 		if (test != null&&!test.equals("")&&test.equals("test")){
-			DEFAULT_SERVER = "http://192.168.1.115:9998/dc-independentlearning";  //测试
+			DEFAULT_SERVER = "http://192.168.1.115:9998/jxz";  //测试
 		}else{
 			DEFAULT_SERVER = "http://117.117.217.19/dc";//正式
 		}

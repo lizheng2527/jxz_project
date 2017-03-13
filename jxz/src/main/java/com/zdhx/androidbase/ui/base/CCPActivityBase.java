@@ -11,9 +11,6 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */package com.zdhx.androidbase.ui.base;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.os.IBinder;
@@ -24,13 +21,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.util.DensityUtil;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.view.CCPLayoutListenerView;
+import com.zdhx.androidbase.view.HideWebView;
 import com.zdhx.androidbase.view.TopBarView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 界面处理
@@ -70,6 +75,8 @@ public abstract class CCPActivityBase {
      * 标题
      */
     private View mTopBarView;
+    private View mHideWebView;
+    private WebView mHideWeb;
 
     public void init(Context context , FragmentActivity activity)  {
         mActionBarActivity = activity;
@@ -78,7 +85,33 @@ public abstract class CCPActivityBase {
         mLayoutInflater = LayoutInflater.from(mActionBarActivity);
         mBaseLayoutView = mLayoutInflater.inflate(R.layout.ccp_activity, null);
         mTransLayerView = mBaseLayoutView.findViewById(R.id.ccp_trans_layer);
+
+
+
+        mHideWebView = mLayoutInflater.inflate(R.layout.hide_webview,null);
+        mHideWeb = (WebView) mHideWebView.findViewById(R.id.hide_webView);
+
+        WebSettings settings = mHideWeb.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
+        settings.setUseWideViewPort(true);
+        settings.setDomStorageEnabled(true);
+        settings.setDatabaseEnabled(true);
+        settings.setLoadWithOverviewMode(true);
+        settings.setBuiltInZoomControls(true);
+        settings.setDisplayZoomControls(false);
+        settings.setAllowFileAccess(true);//启用或禁止WebView访问文件数据
+        settings.setBlockNetworkImage(false);//是否显示网络图像  false 为显示
+        mHideWeb.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+                return super.shouldOverrideUrlLoading(view, url);
+            }
+        });
+
         LinearLayout mRootView = (LinearLayout) mBaseLayoutView.findViewById(R.id.ccp_root_view);
+
         mContentFrameLayout = (FrameLayout) mBaseLayoutView.findViewById(R.id.ccp_content_fl);
 
         if(getTitleLayout() != -1) {
@@ -86,6 +119,9 @@ public abstract class CCPActivityBase {
             mRootView.addView(mTopBarView,
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
+//            mRootView.addView(mHideWebView,
+//                    LinearLayout.LayoutParams.MATCH_PARENT,
+//                    LinearLayout.LayoutParams.WRAP_CONTENT);
         }
 
         if (layoutId != -1) {
@@ -94,6 +130,8 @@ public abstract class CCPActivityBase {
             if(mContentView == null) {
                 mContentView = mLayoutInflater.inflate(getLayoutId(), null);
             }
+            mRootView.addView(mHideWebView,DensityUtil.dip2px(1),
+                    DensityUtil.dip2px(1));
             mRootView.addView(mContentView,LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.MATCH_PARENT);
         }
@@ -354,6 +392,12 @@ public abstract class CCPActivityBase {
             return (TopBarView) mTopBarView;
         }
         return null;
+    }
+    public WebView getHideWebView() {
+        if(mHideWebView instanceof HideWebView) {
+            return (HideWebView) mHideWebView;
+        }
+        return mHideWeb;
     }
 
     protected abstract void onInit();

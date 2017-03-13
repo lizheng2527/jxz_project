@@ -146,6 +146,12 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		return R.layout.activity_sendnewcircle;
 	}
 
+	@Override
+	protected void onResume() {
+		getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
+		super.onResume();
+	}
+
 	/**
 	 * 其他应用调用本分享功能
 	 */

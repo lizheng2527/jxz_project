@@ -912,6 +912,8 @@ public class HomeFragment extends Fragment {
                     hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
                     LogUtil.e("开始访问网络");
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
+                    String json = ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap());
+                    LogUtil.w(json);
                     LogUtil.e("获取到网络数据");
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
                     LogUtil.e("解析网络数据");

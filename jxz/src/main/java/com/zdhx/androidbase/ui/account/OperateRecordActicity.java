@@ -47,6 +47,7 @@ public class OperateRecordActicity extends BaseActivity{
         return R.layout.activity_operate;
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

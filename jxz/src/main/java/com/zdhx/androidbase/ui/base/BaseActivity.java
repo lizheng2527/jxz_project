@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -96,6 +97,9 @@ public abstract class BaseActivity extends FragmentActivity {
 
 	public TopBarView getTopBarView() {
 		return mBaseActivity.getTopBarView();
+	}
+	public WebView getHideWebView() {
+		return mBaseActivity.getHideWebView();
 	}
 
 	public static String getUnNullString(String s, String defalt) {

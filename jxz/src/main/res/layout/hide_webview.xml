@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/common_top_wrapper"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
+
+            <FrameLayout
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:minWidth="@dimen/btn_topbar_layout_minwidth" >
+
+                <ImageView
+                    android:id="@+id/btn_left"
+                    android:layout_width="@dimen/btn_topbar_minwidth"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/text_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/btn_topbar_marginHorizontal"
+                    android:gravity="center"
+                    android:minWidth="@dimen/btn_topbar_minwidth"
+                    android:shadowDy="2.0"
+                    android:textColor="@color/edit_save_btn_text_color"
+                    android:textSize="@dimen/size_small"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/topbar_update_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="34.0dip"
+                    android:layout_marginTop="11.0dip"
+                    android:src="@drawable/icon_update_point"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <WebView
+                        android:id="@+id/hide_webView"
+                        android:visibility="gone"
+                        android:layout_width="1px"
+                        android:layout_height="1px">
+                    </WebView>
+                </ScrollView>
+
+                <TextView
+                    android:id="@+id/btn_middle_sub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-3.0dip"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:padding="0.0dip"
+                    android:singleLine="true"
+                    android:textColor="#ff848484"
+                    android:textSize="@dimen/size_small"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:visibility="gone"
+                android:id="@+id/top_right"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:minWidth="@dimen/btn_topbar_layout_minwidth" >
+
+                <RelativeLayout
+                    android:id="@+id/top_progressbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="right|center"
+                    android:minWidth="@dimen/btn_topbar_minwidth"
+                    android:visibility="gone" >
+
+                    <ProgressBar
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="20.0dip"
+                        android:layout_height="20.0dip"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/btn_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="right|center"
+                    android:scaleType="center"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/right_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="58.0dip"
+                    android:layout_marginTop="11.0dip"
+                    android:src="@drawable/icon_update_point"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/text_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center"
+                    android:gravity="center"
+                    android:minHeight="@dimen/SmallButtonHeight"
+                    android:minWidth="@dimen/btn_topbar_minwidth"
+                    android:shadowDy="2.0"
+                    android:textColor="@color/common_top_bar_right_string_color"
+                    android:textSize="@dimen/size_small"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line" >
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

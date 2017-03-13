@@ -494,8 +494,6 @@ function login(form){
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:singleLine">true</item>
-    </style><style name="ImageTranslucentTheme" parent="AppTheme">
-        
     </style><style name="DialogButton.Right" parent="@style/DialogButton">
         <item name="android:background">@drawable/btn_dialog_right</item>
     </style><style name="ButtonFullBlue" parent="@style/ButtonLong">
@@ -547,7 +545,7 @@ function login(form){
         
     </style></file><file path="D:\01_work\jxz-project\AndroidBase\jxz\src\main\res\values-v14\styles.xml" qualifiers="v14"><style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         
-    </style></file><file path="D:\01_work\jxz-project\AndroidBase\jxz\src\main\res\values-xhdpi\dimens.xml" qualifiers="xhdpi-v4"><dimen name="size_top_title_size">18.0dip</dimen><dimen name="size_small">14.0dip</dimen><dimen name="size_big">18.0dip</dimen><dimen name="list_divider_height">1.0px</dimen><dimen name="size_large">20.0dip</dimen><dimen name="size_tiny">12.0dip</dimen><dimen name="size_medium">16.0dip</dimen></file></source><source path="D:\01_work\jxz-project\AndroidBase\jxz\build\generated\res\rs\debug"/><source path="D:\01_work\jxz-project\AndroidBase\jxz\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug" generated-set="debug$Generated"><source path="D:\01_work\jxz-project\AndroidBase\jxz\src\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="SimpleDraweeView"><attr format="string" name="actualImageUri"/></declare-styleable><declare-styleable name="PullToRefresh"><attr format="reference|color" name="ptrRefreshableViewBackground"/><attr format="reference|color" name="ptrHeaderBackground"/><attr format="reference|color" name="ptrHeaderTextColor"/><attr format="reference|color" name="ptrHeaderSubTextColor"/><attr name="ptrMode">
+    </style></file><file path="D:\01_work\jxz-project\AndroidBase\jxz\src\main\res\values-xhdpi\dimens.xml" qualifiers="xhdpi-v4"><dimen name="size_top_title_size">18.0dip</dimen><dimen name="size_small">14.0dip</dimen><dimen name="size_big">18.0dip</dimen><dimen name="list_divider_height">1.0px</dimen><dimen name="size_large">20.0dip</dimen><dimen name="size_tiny">12.0dip</dimen><dimen name="size_medium">16.0dip</dimen></file><file name="hide_webview" path="D:\01_work\jxz-project\AndroidBase\jxz\src\main\res\layout\hide_webview.xml" qualifiers="" type="layout"/></source><source path="D:\01_work\jxz-project\AndroidBase\jxz\build\generated\res\rs\debug"/><source path="D:\01_work\jxz-project\AndroidBase\jxz\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug" generated-set="debug$Generated"><source path="D:\01_work\jxz-project\AndroidBase\jxz\src\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="SimpleDraweeView"><attr format="string" name="actualImageUri"/></declare-styleable><declare-styleable name="PullToRefresh"><attr format="reference|color" name="ptrRefreshableViewBackground"/><attr format="reference|color" name="ptrHeaderBackground"/><attr format="reference|color" name="ptrHeaderTextColor"/><attr format="reference|color" name="ptrHeaderSubTextColor"/><attr name="ptrMode">
             <flag name="disabled" value="0x00000000"/>
             <flag name="both" value="0x00000003"/>
             
