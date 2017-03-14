@@ -282,8 +282,12 @@ public class TreadsListViewAdapter extends BaseAdapter {
         vh.praiseImage = (ImageView) view.findViewById(R.id.thumbsupBT1);
         List<String> praiseNames = list.get(i).getPraiseNames();
         int praiseCounts = praiseNames.size();
+
+        vh.praiseImage.setImageResource(R.drawable.button_praise_nor);
+        vh.praiseRel.setClickable(true);
+
+
         if (praiseNames!= null&&praiseCounts>0){
-            vh.praiseImage.setImageResource(R.drawable.button_praise_click);
             vh.linearLayout11.setVisibility(View.VISIBLE);
             vh.thumbIV.setVisibility(View.VISIBLE);
             vh.thumbsupTV.setVisibility(View.VISIBLE);
@@ -294,13 +298,17 @@ public class TreadsListViewAdapter extends BaseAdapter {
                 }else{
                     sb.append(praiseNames.get(j)+"、");
                 }
+                if (praiseNames.get(j).equals(ECApplication.getInstance().getCurrentUser().getName())){
+                    vh.praiseImage.setImageResource(R.drawable.button_praise_click);
+                    vh.praiseRel.setClickable(false);
+                }
             }
             vh.thumbsupTV.setText(sb.toString());
         }else{
-            vh.praiseImage.setImageResource(R.drawable.button_praise_nor);
             vh.thumbIV.setVisibility(View.GONE);
             vh.thumbsupTV.setVisibility(View.GONE);
         }
+
         vh.praiseQuantity.setText(praiseCounts+"");
 //        判断是否显示回复界面视图*******************************************************************************************************
         vh.linearwhat = (LinearLayout) view.findViewById(R.id.linearwhat);
@@ -439,11 +447,13 @@ public class TreadsListViewAdapter extends BaseAdapter {
         }
 
         vh.progressBar = (NumberProgressBar) view.findViewById(R.id.amd_progressBar);
+        vh.progressIndexLinear = (LinearLayout) view.findViewById(R.id.down_progress_linear);
+        vh.cancelDownLoad = (TextView) view.findViewById(R.id.cancelDownLoad);
         //如果当前正在下载，显示进度条
         if (list.get(i).getLoading()){
-            vh.progressBar.setVisibility(View.VISIBLE);
+            vh.progressIndexLinear.setVisibility(View.VISIBLE);
         }else{
-            vh.progressBar.setVisibility(View.GONE);
+            vh.progressIndexLinear.setVisibility(View.GONE);
         }
 
         //下载数量
@@ -551,11 +561,12 @@ public class TreadsListViewAdapter extends BaseAdapter {
                 //视频播放
                 if (lastName.equals(Constant.ATTACHMENT_3GP)
                         ||lastName.equals(Constant.ATTACHMENT_AVI)
+                        ||lastName.equals(Constant.ATTACHMENT_MPG)
+                        ||lastName.equals(Constant.ATTACHMENT_MOV)
                         ||lastName.equals(Constant.ATTACHMENT_MP3)
                         ||lastName.equals(Constant.ATTACHMENT_MP4)
                         ||lastName.equals(Constant.ATTACHMENT_SWF)
                         ||lastName.equals(Constant.ATTACHMENT_FLV)){
-
 
                     if (IntentUtil.isIntentAvailable(context,IntentUtil.getVideoFileIntent(url))){
                         fragment.getActivity().startActivity(IntentUtil.getVideoFileIntent(url));
@@ -619,6 +630,15 @@ public class TreadsListViewAdapter extends BaseAdapter {
 
             }
         });
+
+        vh.cancelDownLoad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DownloadAsyncTask d = (DownloadAsyncTask) MainActivity.map.get("downLoadFile"+position);
+                d.cancel(true);
+            }
+        });
+
         vh.l.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -627,6 +647,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
                     ToastUtil.showMessage("已存在该文件");
                     return true;
                 }
+
                 ECAlertDialog.buildAlert(context, "是否后台下载该附件？", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -641,7 +662,8 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                 }
                                 list.get(position).setLoading(true);
                                 downCount = downCount+1;
-                                vh.progressBar.setVisibility(View.VISIBLE);
+                                vh.progressIndexLinear.setVisibility(View.VISIBLE);
+
                             }
 
                             @Override
@@ -651,12 +673,14 @@ public class TreadsListViewAdapter extends BaseAdapter {
                             }
 
                             @Override
-                            public void downloaded(File file, final int position) {
-                                if (file != null){
+                            public void downloaded(File file1, final int position) {
+                                if (file1 != null){
+                                    File file = new File(file1.getParent(),name);
+                                    file1.renameTo(file);
                                     ToastUtil.showMessage(file.getName()+"下载成功！");
                                     downCount = downCount-1;
                                     list.get(position).setLoading(false);
-                                    vh.progressBar.setVisibility(View.GONE);
+                                    vh.progressIndexLinear.setVisibility(View.GONE);
                                     vh.fileName.setTextColor(Color.parseColor("#4cbbda"));
                                     ECApplication.getInstance().addJxzFiles(file.getName(),file);
                                     if (!list.get(position).getUserName().contains(ECApplication.getInstance().getCurrentUser().getName())){
@@ -668,7 +692,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                     }
                                     notifyDataSetChanged();
                                     if (!list.get(position).getUserName().contains(ECApplication.getInstance().getCurrentUser().getName())){
-//                                //互动交流下载完附件，工作平台下载量加1（自己上传的不加下载量）
+                                        //互动交流下载完附件，工作平台下载量加1（自己上传的不加下载量）
                                         new ProgressThreadWrap(context, new RunnableWrap() {
                                             @Override
                                             public void run() {
@@ -689,17 +713,23 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                                 }
                                             }
                                         }).start();
+
                                     }
                                 }
-
                             }
-
                             @Override
                             public void canceled(int position) {
-
+                                File file = new File(ECApplication.getInstance().getDownloadJxzDir(),"jxz_downFile");
+                                if (file.exists()){
+                                    file.delete();
+                                }
+                                list.get(position).setLoading(false);
+                                downCount = downCount-1;
+                                notifyDataSetChanged();
                             }
                         }, context);
-                        downloadAsyncTask.execute(url, "aaa", position + "",name);
+                        downloadAsyncTask.execute(url, "aaa", position+"","jxz_downFile");
+                        MainActivity.map.put("downLoadFile"+position,downloadAsyncTask);
                     }
                 }).show();
                 return true;
@@ -710,9 +740,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
         vh.replyRel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (list.get(position).getReplyCount()>1){
-//                    list.get(position).setLaunch(true);
-//                }
                 MainActivity.map.put("introduceReply","introduceReply");
                 MainActivity.map.put("introduceReplyFragment",fragment);
                 MainActivity.map.put("introduceReplyCommuncationId",list.get(position).getId());
@@ -842,70 +869,11 @@ public class TreadsListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 vh.launchOrRetract.setPressed(true);
                 vh.launchOrRetract.setClickable(false);
+                vh.replyContent.addView(inflater.inflate(R.layout.view_progress,null));
                 HashMap<String,ParameterValue> map = new HashMap<String, ParameterValue>();
                 map.put("commucationId",new ParameterValue(list.get(position).getId()));
                 map.putAll(ECApplication.getInstance().getLoginUrlMap());
                 initReplyDatas(map,position);
-
-//                new ProgressThreadWrap(context, new RunnableWrap() {
-//                    @Override
-//                    public void run() {
-//
-////                        initReplyDatas(map,position);
-//                        try {
-//                            String allReply = ZddcUtil.initAllReply(map);
-//                            final Treads treads = new Gson().fromJson(allReply,Treads.class);
-//                            if (treads != null){
-//                                handler.postDelayed(new Runnable() {
-//                                    @Override
-//                                    public void run() {
-//                                        list.get(position).setChild(treads.getDataList());
-//                                        list.get(position).setLaunch(true);
-//                                        notifyDataSetChanged();
-//                                    }
-//                                },10);
-//                            }else{
-//                                ToastUtil.showMessage("网络异常");
-//                            }
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }).start();
-
-
-
-
-//                int replyCounts = list.get(position).getChild().size();
-//                if (!list.get(position).getLaunch()){
-//                    for (int j = 2; j < replyCounts; j++) {
-//                        String name = list.get(position).getChild().get(j).getUserName()+":";
-//                        String content = list.get(position).getChild().get(j).getContent();
-//                        addReplyBody(vh,name,content,j,null,list.get(position).getChild(),position);
-//                        if (list.get(position).getChild()!=null && list.get(position).getChild().get(j).getChild() !=null){
-//                            if (list.get(position).getChild().get(j).getChild().size()>0){
-//                                getChildList(vh,list.get(position).getChild().get(j).getChild(),name,position);
-//                            }
-//                        }
-//                    }
-//                    list.get(position).setLaunch(true);
-//                    vh.launchOrRetract.setText("收起");
-//                }else{
-//                    vh.replyContent.removeAllViews();
-//                    for (int j = 0; j < 2; j++) {
-//                        String name = list.get(position).getChild().get(j).getUserName()+":";
-//                        String content = list.get(position).getChild().get(j).getContent();
-//                        addReplyBody(vh,name,content,j,null,list.get(position).getChild(),position);
-//                        if (list.get(position).getChild()!=null && list.get(position).getChild().get(j).getChild() !=null) {
-//                            if (list.get(position).getChild().get(j).getChild().size() > 0) {
-//                                getChildList(vh, list.get(position).getChild().get(j).getChild(), name, position);
-//                            }
-//                        }
-//                    }
-//                    list.get(position).setLaunch(false);
-//                    vh.launchOrRetract.setText("展开");
-//                    fragment.setListViewSelection(position);
-//                }
             }
         });
     }
@@ -915,23 +883,44 @@ public class TreadsListViewAdapter extends BaseAdapter {
             @Override
             public void run() {
                 try {
+//                    final int oldChildSize = list.get(position).getChild().size();
+//                    if (oldChildSize == 1) {
                     String allReply = ZddcUtil.initAllReply(map);
-                    final Treads treads = new Gson().fromJson(allReply,Treads.class);
-                    if (treads != null){
+                    final Treads treads = new Gson().fromJson(allReply, Treads.class);
+                    if (treads != null) {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
+//                                    if (treads.getDataList().size() <= 10) {
                                 list.get(position).setChild(treads.getDataList());
                                 list.get(position).setLaunch(true);
+//                                    } else {
+//                                        for (int i = 0; i < 10; i++) {
+//                                            list.get(position).getChild().add(treads.getDataList().get(i));
+//                                        }
+//                                        list.get(position).setLaunch(false);
+//                                    }
                                 notifyDataSetChanged();
                             }
-                        },10);
-                    }else{
+                        }, 10);
+                    } else {
                         ToastUtil.showMessage("网络异常");
                     }
-                } catch (IOException e) {
+//                    }else{
+//                        if (treads.getDataList().size() - oldChildSize < 10) {
+//                            list.get(position).setChild(treads.getDataList());
+//                            list.get(position).setLaunch(true);
+//                        } else {
+//                            for (int i = oldChildSize; i < oldChildSize + 10; i++) {
+//                                list.get(position).getChild().add(treads.getDataList().get(i));
+//                            }
+//                            list.get(position).setLaunch(false);
+//                        }
+//                    }
+                } catch(IOException e){
                     e.printStackTrace();
                 }
+
             }
         }).start();
     }
@@ -963,7 +952,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
         }).start();
     }
     public void doDown(final int position) {
-        LogUtil.w(list.get(position).getContent());
         if (list.get(position).getDown().equals("")){
             list.get(position).setDown(1+"");
         }else{
@@ -1048,6 +1036,10 @@ public class TreadsListViewAdapter extends BaseAdapter {
         private TextView downCountTV,browseCountTV;
 
         private RelativeLayout downCountRel,browseCountRel;
+        //下载进度条及按钮
+        private LinearLayout progressIndexLinear;
+
+        private TextView cancelDownLoad;
 
     }
 
@@ -1075,7 +1067,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
         CharSequence charSequence = allStringOfComment;
         if (allStringOfComment.contains("[em_")){
             String html = getEmojyStr(allStringOfComment);
-            LogUtil.w(html);
             charSequence = Html.fromHtml(html,
                     new Html.ImageGetter() {
                         @Override
@@ -1084,8 +1075,8 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                     Integer.parseInt(source));
                             // 设置drawable的大小。设置为实际大小
                             drawable.setBounds(0, 0,
-                                    drawable.getIntrinsicWidth(),
-                                    drawable.getIntrinsicHeight());
+                                    DensityUtil.dip2px(20f),
+                                    DensityUtil.dip2px(20f));
                             return drawable;
                         }
                     }, null);
@@ -1100,9 +1091,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
         }else{
             builder.setSpan(redSpanBlue, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
-
-
-
 
 
 
@@ -1226,6 +1214,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
         });
     }
     private int deleteCount = 1;
+//    DownloadAsyncTask.DownloadResponser responser;
     private void resetAllReplyCount(List<Treads.DataListBean> beans) {
         deleteCount += beans.size();
         for (int i = 0; i < beans.size(); i++) {

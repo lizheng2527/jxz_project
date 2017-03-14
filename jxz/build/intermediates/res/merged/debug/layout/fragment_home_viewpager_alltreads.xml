@@ -10,10 +10,12 @@
         android:id="@+id/linear_all"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <com.zdhx.androidbase.ui.xlistview.XListView
             android:id="@+id/fragment_home_viewpager_alltreads_listview"
             android:layout_width="match_parent"
             android:divider="@color/list_devider_color"
+            android:background="@null"
             android:dividerHeight="2dp"
             android:layout_height="match_parent">
         </com.zdhx.androidbase.ui.xlistview.XListView>

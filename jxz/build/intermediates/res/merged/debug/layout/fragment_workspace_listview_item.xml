@@ -22,11 +22,11 @@
             android:orientation="horizontal">
 
             <com.facebook.drawee.view.SimpleDraweeView
+                android:background="@color/light_gray"
                 fresco:roundedCornerRadius="5dp"
                 android:id="@+id/fileHeadImg"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="#aaaaaa"
                 />
 
             <LinearLayout

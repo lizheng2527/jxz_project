@@ -230,7 +230,7 @@ public class UpFileActivity extends BaseActivity {
 								public void run() {
 									dialog.dismiss();
 									MainActivity.map.put("UpFileActivityTag","true");
-									getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
+//									getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
 									UpFileActivity.this.finish();
 								}
 							},5);

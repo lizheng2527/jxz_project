@@ -124,9 +124,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         etxt_username.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String key = etxt_username.getText().toString();
-//                etxt_pwd.setText(ECApplication.getInstance().getUserValue(key).getPassWord());
-                etxt_pwd.setText("");
+                String key = etxt_username.getText().toString();
+                etxt_pwd.setText(ECApplication.getInstance().getUserValue(key).getPassWord());
+//                etxt_pwd.setText("");
             }
         });
 

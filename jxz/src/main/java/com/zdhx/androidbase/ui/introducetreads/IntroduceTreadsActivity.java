@@ -148,7 +148,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 	@Override
 	protected void onResume() {
-		getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
+//		getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
 		super.onResume();
 	}
 
@@ -1080,8 +1080,6 @@ public class IntroduceTreadsActivity extends BaseActivity{
 					//选中要修改的文件地址
 					String selectUrl = upFileBeens.get(position).getAbsolutePath();
 					File file = new File(selectUrl);
-					LogUtil.w("选中文件路径："+file.getAbsolutePath());
-					LogUtil.w("选中文件名称："+file.getName());
 					String oldPath = file.getPath();
 					String lastStr = FileUtils.getExtensionName(file.getName());
 					if (name != null&&!name.equals("")){

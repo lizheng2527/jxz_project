@@ -282,6 +282,8 @@
             android:orientation="vertical" >
 
             <RadioButton
+                android:drawableLeft="@drawable/btn_radio_selector"
+                android:button="@null"
                 android:layout_marginLeft="15dp"
                 android:padding="10dp"
                 android:id="@+id/passed"
@@ -301,9 +303,11 @@
                 android:orientation="horizontal" >
 
                 <RadioButton
+                    android:drawableLeft="@drawable/btn_radio_selector"
+                    android:button="@null"
+                    android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:id="@+id/allhighquality"
-                    android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/greytext"
@@ -311,18 +315,22 @@
                     android:text="全部" />
 
                 <RadioButton
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/btn_radio_selector"
+                    android:button="@null"
                     android:padding="10dp"
                     android:id="@+id/firsthighquality"
-                    android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/greytext"
                     android:textSize="16sp"
                     android:text="优秀" />
                 <RadioButton
+                    android:drawableLeft="@drawable/btn_radio_selector"
+                    android:button="@null"
+                    android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:id="@+id/secondhighquality"
-                    android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/greytext"
@@ -336,6 +344,8 @@
                 android:background="@color/light_gray"/>
 
             <RadioButton
+                android:drawableLeft="@drawable/btn_radio_selector"
+                android:button="@null"
                 android:padding="10dp"
                 android:layout_marginLeft="15dp"
                 android:id="@+id/prepassed"
@@ -351,6 +361,8 @@
                 android:layout_height="1dp"
                 android:background="@color/light_gray"/>
             <RadioButton
+                android:drawableLeft="@drawable/btn_radio_selector"
+                android:button="@null"
                 android:padding="10dp"
                 android:layout_marginLeft="15dp"
                 android:id="@+id/passfail"

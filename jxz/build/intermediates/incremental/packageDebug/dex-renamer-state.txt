@@ -1,4 +1,4 @@
-#Mon Mar 13 18:00:06 CST 2017
+#Tue Mar 14 18:16:16 CST 2017
 base.0=D\:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
 renamed.0=classes.dex
 file.0=D\:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex

@@ -85,6 +85,8 @@
                 android:orientation="horizontal" >
 
                 <RadioButton
+                    android:drawableLeft="@drawable/btn_radio_selector"
+                    android:button="@null"
                     android:id="@+id/passRB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -94,6 +96,8 @@
                     android:text="通过" />
 
                 <RadioButton
+                    android:drawableLeft="@drawable/btn_radio_selector"
+                    android:button="@null"
                     android:id="@+id/unpassRB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -141,6 +141,7 @@ public class HomeFragment extends Fragment {
 
     private ECProgressDialog dialog;
 
+
     /**
      * 展开或者收起时调用此方法
      * @param position
@@ -225,7 +226,6 @@ public class HomeFragment extends Fragment {
                 }
                 break;
             case 1:
-
                 status1 = count;
                 if (status1.equals("1")){
                     interactreadsTtListView.setPullLoadEnable(false);
@@ -280,8 +280,8 @@ public class HomeFragment extends Fragment {
     /**
      * 获取是否有下一页标记
      */
-    private String getStatus(){
-        switch (HomeGridAdapter.index){
+    private String getStatus(int index){
+        switch (index){
             case 0:
                 return status0 ;
             case 1:
@@ -295,7 +295,7 @@ public class HomeFragment extends Fragment {
             case 5:
                 return status5 ;
         }
-        return null;
+        return "1";
     }
     /**
      * 获取加载更多页码
@@ -910,16 +910,12 @@ public class HomeFragment extends Fragment {
             public void run() {
                 try {
                     hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
-                    LogUtil.e("开始访问网络");
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
                     String json = ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap());
                     LogUtil.w(json);
-                    LogUtil.e("获取到网络数据");
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
-                    LogUtil.e("解析网络数据");
                     handler.postDelayed(new Runnable() {
                         public void run() {
-                            LogUtil.e("解析完成，开始展示");
                             if (treads != null) {
                                 setStatus(treads.getStatus(),index);
                                 viewPagerListTreadsDatas = treads.getDataList();
@@ -1116,7 +1112,8 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if (visibleItemCount+firstVisibleItem == totalItemCount){
+
+                if (visibleItemCount+firstVisibleItem == totalItemCount&&getStatus(loadIndex).equals("0")&&totalItemCount>19){
                     listView.startLoadMore();
 //                    onDatasChanged(listView,loadIndex);
                 }
@@ -1298,19 +1295,19 @@ public class HomeFragment extends Fragment {
                 break;
         }
         hashMap.put("pageNo",new ParameterValue(getLoadMorePager()+1+""));
+        if (getStatus(loadIndex).equals("1")){
+            return;
+        }
         setLoadMorePager(getLoadMorePager()+1,loadIndex);
         new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
             public void run() {
                 hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
                 try {
-                    LogUtil.e("开始访问网络");
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
-                    LogUtil.e("网络数据返回");
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
                     handler.postDelayed(new Runnable() {
                         public void run() {
-                            LogUtil.e("获取到数据");
                             setStatus(treads.getStatus(),loadIndex);
                             List<Treads.DataListBean> list = treads.getDataList();
                             if (list != null&&list.size()>0){

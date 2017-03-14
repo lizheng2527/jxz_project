@@ -27,7 +27,6 @@ import com.zdhx.androidbase.ui.treadssearch.SearchWorkActivity;
 import com.zdhx.androidbase.ui.xlistview.XListView;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.RunnableWrap;
-import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.ZddcUtil;
 import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 
@@ -594,7 +593,7 @@ public class WorkSpaceFragment extends Fragment {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if (visibleItemCount+firstVisibleItem == totalItemCount){
+                if (visibleItemCount+firstVisibleItem == totalItemCount&&statusForLoadMore.equals("0")&&totalItemCount>19){
                     listView.startLoadMore();
                 }
             }
@@ -615,7 +614,6 @@ public class WorkSpaceFragment extends Fragment {
             @Override
             public void onLoadMore() {
                 if (statusForLoadMore.equals("1")){
-                    ToastUtil.showMessage("已无更多.");
                     onLoad(listView);
                     return;
                 }
