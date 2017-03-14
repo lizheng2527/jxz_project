@@ -178,6 +178,7 @@
                 android:layout_width="match_parent"
                 android:gravity="center_vertical"
                 android:id="@+id/down_progress_linear"
+                android:visibility="gone"
                 android:layout_height="wrap_content">
                 <com.zdhx.androidbase.ui.downloadui.NumberProgressBar
                     android:id="@+id/amd_progressBar"

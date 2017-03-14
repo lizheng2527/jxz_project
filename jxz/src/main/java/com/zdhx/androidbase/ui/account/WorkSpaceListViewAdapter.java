@@ -27,7 +27,6 @@ import com.zdhx.androidbase.ui.plugin.FileExplorerActivity;
 import com.zdhx.androidbase.ui.quantity.PrePassActivity;
 import com.zdhx.androidbase.ui.xlistview.XListView;
 import com.zdhx.androidbase.util.IntentUtil;
-import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.ProgressUtil;
 import com.zdhx.androidbase.util.RunnableWrap;
@@ -164,6 +163,8 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
             }
         }
         vh.progressBar = (NumberProgressBar) view.findViewById(R.id.amd_progressBar);
+        vh.progressIndexLinear = (LinearLayout) view.findViewById(R.id.down_progress_linear);
+        vh.cancelDownLoad = (TextView) view.findViewById(R.id.cancelDownLoad);
 //        标题-----------------------------------------------
         vh.name = (TextView) view.findViewById(R.id.fileTitle);
         vh.name.setText(list.get(i).getName());
@@ -244,9 +245,9 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
 
         //判断当前是否正在下载任务，如果下载任务，进行标记，将其他的progressBar设置为隐藏
         if (list.get(i).isLoading()){
-            vh.progressBar.setVisibility(View.VISIBLE);
+            vh.progressIndexLinear.setVisibility(View.VISIBLE);
         }else{
-            vh.progressBar.setVisibility(View.INVISIBLE);
+            vh.progressIndexLinear.setVisibility(View.GONE);
         }
 
 
@@ -659,7 +660,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                 }, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog1, int which) {
-                        vh.progressBar.setVisibility(View.VISIBLE);
+                        vh.progressIndexLinear.setVisibility(View.VISIBLE);
                         final DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(new DownloadAsyncTask.DownloadResponser() {
                             @Override
                             public void predownload() {
@@ -680,57 +681,83 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                             }
 
                             @Override
-                            public void downloaded(File file, int position) {
-                                vh.progressBar.setVisibility(View.GONE);
-                                downCounts = downCounts -1;
-                                list.get(i).setLoading(false);
-                                new ProgressThreadWrap(context, new RunnableWrap() {
-                                    @Override
-                                    public void run() {
-                                        String resouceId = list.get(i).getId();
-                                        String userId = ECApplication.getInstance().getCurrentUser().getId();
-                                        String type = "2";
-                                        HashMap<String,ParameterValue> map = new HashMap<String, ParameterValue>();
-                                        map.put("resouceId",new ParameterValue(resouceId));
-                                        map.put("userId",new ParameterValue(userId));
-                                        map.put("type",new ParameterValue(type));
-                                        map.putAll(ECApplication.getInstance().getLoginUrlMap());
-                                        try {
-                                            ZddcUtil.doPreviewOrDown(map);
-                                            handler.postDelayed(new Runnable() {
-                                                @Override
-                                                public void run() {
-//                                            if (!list.get(i).getResourceStyle().equals("7")&&!list.get(i).getResourceStyle().equals("8")){
-                                                    vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
-//                                            }else{
-//                                                vh.downloadImg.setVisibility(View.GONE);
-//                                                                        }
-                                        list.get(i).setDown(list.get(i).getDown()+1);
-                                        notifyDataSetChanged();
-                                    }
-                                },5);
+                            public void downloaded(File file1, int position) {
+                                vh.progressIndexLinear.setVisibility(View.GONE);
+                                if (file1 != null){
+                                    File file = new File(file1.getParent(),list.get(i).getName());
+                                    file1.renameTo(file);
+                                    downCounts = downCounts -1;
+                                    list.get(i).setLoading(false);
+                                    new ProgressThreadWrap(context, new RunnableWrap() {
+                                        @Override
+                                        public void run() {
+                                            String resouceId = list.get(i).getId();
+                                            String userId = ECApplication.getInstance().getCurrentUser().getId();
+                                            String type = "2";
+                                            HashMap<String,ParameterValue> map = new HashMap<String, ParameterValue>();
+                                            map.put("resouceId",new ParameterValue(resouceId));
+                                            map.put("userId",new ParameterValue(userId));
+                                            map.put("type",new ParameterValue(type));
+                                            map.putAll(ECApplication.getInstance().getLoginUrlMap());
+                                            try {
+                                                ZddcUtil.doPreviewOrDown(map);
+                                                handler.postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
+                                                        list.get(i).setDown(list.get(i).getDown()+1);
+                                                        notifyDataSetChanged();
+                                                    }
+                                                },5);
 
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
                                         }
-                                    }
-                                }).start();
+                                    }).start();
+                                }else{
+                                    ToastUtil.showMessage("文件存在未知错误");
+                                }
                             }
 
                             @Override
                             public void canceled(int position) {
-                                vh.progressBar.setVisibility(View.INVISIBLE);
+                                File file = new File(ECApplication.getInstance().getDownloadJxzDir(),"jxz_workSpace_downFile");
+                                if (file.exists()){
+                                    file.delete();
+                                }
+                                list.get(i).setLoading(false);
+                                notifyDataSetChanged();
                             }
                         }, context);
-                        downloadAsyncTask.execute(ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()), "aaa", i + "", list.get(i).getName());
-                        LogUtil.e("下载资源地址"+ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()));
+                        downloadAsyncTask.execute(ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()), "aaa", i + "","jxz_workSpace_downFile");
+                        MainActivity.map.put("jxz_workSpace_downFile"+i,downloadAsyncTask);
                     }
                 }).show();
                 // 下载处理
 
             }
         });
+        vh.cancelDownLoad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ECAlertDialog.buildAlert(context, "是否取消本条下载？", "取消", "确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog1, int which) {
+
+                    }
+                }, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog1, int which) {
+                        DownloadAsyncTask d = (DownloadAsyncTask) MainActivity.map.get("jxz_workSpace_downFile"+i);
+                        d.cancel(true);
+                    }
+                }).show();
+
+            }
+        });
     }
+
 
     private static int downCounts;
 
@@ -749,5 +776,8 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         private TextView downText;
         private ImageView prePass;
         private CheckBox batchSelectBox;
+        //下载进度条及按钮
+        private LinearLayout progressIndexLinear;
+        private TextView cancelDownLoad;
     }
 }

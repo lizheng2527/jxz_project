@@ -634,8 +634,19 @@ public class TreadsListViewAdapter extends BaseAdapter {
         vh.cancelDownLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DownloadAsyncTask d = (DownloadAsyncTask) MainActivity.map.get("downLoadFile"+position);
-                d.cancel(true);
+                ECAlertDialog.buildAlert(context, "是否取消本条下载？", "取消", "确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog1, int which) {
+
+                    }
+                }, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog1, int which) {
+                        DownloadAsyncTask d = (DownloadAsyncTask) MainActivity.map.get("downLoadFile"+position);
+                        d.cancel(true);
+                    }
+                }).show();
+
             }
         });
 
@@ -715,6 +726,8 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                         }).start();
 
                                     }
+                                }else{
+                                    ToastUtil.showMessage("文件存在未知错误");
                                 }
                             }
                             @Override

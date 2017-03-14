@@ -178,6 +178,7 @@
                 android:layout_width="match_parent"
                 android:gravity="center_vertical"
                 android:id="@+id/down_progress_linear"
+                android:visibility="gone"
                 android:layout_height="wrap_content">
                 <com.zdhx.androidbase.ui.downloadui.NumberProgressBar
                     android:id="@+id/amd_progressBar"
@@ -188,8 +189,8 @@
                     />
                 <TextView
                     android:id="@+id/cancelDownLoad"
-                    android:background="@drawable/bg_button_light_gray_selector"
-                    android:textColor="@color/dark_gray"
+                    android:background="@drawable/bg_button_white_selector"
+                    android:textColor="@color/name_blue"
                     android:text="取消"
                     android:textSize="14sp"
                     android:padding="5dp"
