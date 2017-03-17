@@ -10,14 +10,14 @@
     </item>
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="#42A3E8" />
+            <solid android:color="#94e8ff" />
 
             <corners android:radius="5dip" />
         </shape>
     </item>
     <item>
         <shape>
-            <solid android:color="#94e8ff" />
+            <solid android:color="#42A3E8" />
 
             <corners android:radius="5dip" />
         </shape>

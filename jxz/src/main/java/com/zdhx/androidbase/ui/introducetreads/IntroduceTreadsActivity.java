@@ -148,7 +148,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 	@Override
 	protected void onResume() {
-//		getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
+		getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
 		super.onResume();
 	}
 

@@ -1363,7 +1363,6 @@ public class HomeFragment extends Fragment {
 
                                 }
                                 treadsListViewAdapter.notifyDataSetChanged();
-//                                isLoadMoring0 = false;
                                 setIsLoadMoring(loadIndex,false);
                                 onLoad(listView);
                             }else{

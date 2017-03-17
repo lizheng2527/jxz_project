@@ -76,6 +76,7 @@ import com.zdhx.androidbase.ui.treelistview.bean.TreeBean;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressUtil;
 import com.zdhx.androidbase.util.StringUtil;
+import com.zdhx.androidbase.util.ZddcUtil;
 import com.zdhx.androidbase.util.permissionUtil.MPermission;
 import com.zdhx.androidbase.view.dialog.ECListDialog;
 
@@ -249,11 +250,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		context = this;
 		requestBasicPermission();
-//		checkVerson();
 		getTopBarView().setVisibility(View.GONE);
-//		getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
+		getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
 		initLauncherUIView();
-//		updata();
 	}
 
 
@@ -766,24 +765,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 				break;
 		}
 	}
-
-//	public void checkVerson() {
-//		PackageInfo info = null;
-//		try {
-//			info = getPackageManager().getPackageInfo(getPackageName(), 0);
-//		} catch (NameNotFoundException e) {
-//			e.printStackTrace();
-//		}
-//		int currentVersion = info.versionCode;
-//		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-//		int lastVersion = prefs.getInt("VERSION_KEY", 0);
-//		LogUtil.e("lastVersion:"+lastVersion+"---currentVersion:"+currentVersion);
-//		if (currentVersion > lastVersion) {
-//			//如果当前版本大于上次版本，该版本属于第一次启动
-//			//将当前版本写入preference中，则下次启动的时候，据此判断，不再为首次启动
-//			prefs.edit().putInt("VERSION_KEY",currentVersion).commit();
-//		}
-//	}
 
 
 	/**

@@ -293,7 +293,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
                     @Override
                     public void onUpdateAvailable(final String result) {
-
                         // 将新版本信息封装到AppBean中
                         final AppBean appBean = getAppBeanFromString(result);
 
@@ -336,38 +335,4 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                     }
                 });
     }
-
-//    class UserNameAdapter extends BaseAdapter implements Filterable {
-//
-//        public UserNameAdapter() {
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return userNameList.size();
-//        }
-//
-//        @Override
-//        public Object getItem(int position) {
-//            return userNameList.get(position);
-//        }
-//
-//        @Override
-//        public long getItemId(int position) {
-//            return position;
-//        }
-//
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            View view = View.inflate(context,R.layout.item_username,null);
-////            TextView tv = (TextView) view.findViewById(R.id.usernameTV);
-////            tv.setText(userNameList.get(position));
-//            return view;
-//        }
-//
-//        @Override
-//        public Filter getFilter() {
-//            return null;
-//        }
-//    }
 }
