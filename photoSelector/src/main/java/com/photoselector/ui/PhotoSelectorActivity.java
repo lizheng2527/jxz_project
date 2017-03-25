@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -84,11 +85,13 @@ public class PhotoSelectorActivity extends Activity implements onItemClickListen
 				.showImageOnLoading(R.drawable.ic_picture_loading) // 载入时图片设置为黑色
 				.showImageOnFail(R.drawable.ic_picture_loadfailed) // 加载失败时显示的图片
 				.delayBeforeLoading(0) // 载入之前的延迟时间
+				.bitmapConfig(Bitmap.Config.RGB_565)
 				.build(); //
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
 				.defaultDisplayImageOptions(defaultDisplayImageOptions).memoryCacheExtraOptions(200, 400)
 				.threadPoolSize(5).build();
 		ImageLoader loader = ImageLoader.getInstance();
+
 		loader.init(config);
 
 		photoSelectorDomain = new PhotoSelectorDomain(getApplicationContext());

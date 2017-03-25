@@ -47,7 +47,7 @@
             <Button
                 android:id="@+id/imageBT"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/list_item_selector"
                 android:drawableTop="@drawable/icon_image"
                 android:paddingBottom="3dp"
@@ -67,7 +67,7 @@
             <Button
                 android:id="@+id/fileBT"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/list_item_selector"
                 android:drawableTop="@drawable/icon_file"
                 android:paddingBottom="3dp"

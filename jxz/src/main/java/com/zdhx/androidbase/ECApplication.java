@@ -30,6 +30,8 @@ import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.entity.User;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.PreferenceUtil;
+import com.zdhx.androidbase.util.ProgressThreadWrap;
+import com.zdhx.androidbase.util.RunnableWrap;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -123,19 +125,24 @@ public class ECApplication extends Application {
      * 初始化时遍历jxz文件夹，将所有文件放入集合中用来以后比较
      */
     private void getFileFromJxz() {
-        File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-        File dir = new File(idr+"/jxz");
-        if (!dir.exists()){
-            dir.mkdir();
-        }
-        File[] files = dir.listFiles();
-        if (files != null&&files.length>0){
-            for (int i = 0; i < files.length; i++) {
-                jxzFiles.add(files[i]);
-                jxzFileNames.add(files[i].getName());
-                LogUtil.w(jxzFileNames.toString());
+        new ProgressThreadWrap(this, new RunnableWrap() {
+            @Override
+            public void run() {
+                File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                File dir = new File(idr+"/jxz");
+                if (!dir.exists()){
+                    dir.mkdir();
+                }
+                File[] files = dir.listFiles();
+                if (files != null&&files.length>0){
+                    for (int i = 0; i < files.length; i++) {
+                        jxzFiles.add(files[i]);
+                        jxzFileNames.add(files[i].getName());
+                        LogUtil.w(jxzFileNames.toString());
+                    }
+                }
             }
-        }
+        }).start();
     }
 
     public String getDownloadJxzDir(){

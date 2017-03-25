@@ -58,13 +58,11 @@ import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.WorkSpaceDatasBean;
 import com.zdhx.androidbase.ui.account.HomeFragment;
-import com.zdhx.androidbase.ui.account.HomeGridAdapter;
 import com.zdhx.androidbase.ui.account.LoginActivity;
 import com.zdhx.androidbase.ui.account.MeFragment;
 import com.zdhx.androidbase.ui.account.ScroFragment;
 import com.zdhx.androidbase.ui.account.ScroGridAdapter;
 import com.zdhx.androidbase.ui.account.WorkSpaceFragment;
-import com.zdhx.androidbase.ui.account.WorkSpaceGridAdapter;
 import com.zdhx.androidbase.ui.base.BaseActivity;
 import com.zdhx.androidbase.ui.introducetreads.IntroduceTreadsActivity;
 import com.zdhx.androidbase.ui.quantity.PrePassActivity;
@@ -73,6 +71,7 @@ import com.zdhx.androidbase.ui.treadssearch.SearchTreadsActivity;
 import com.zdhx.androidbase.ui.treadssearch.SearchWorkActivity;
 import com.zdhx.androidbase.ui.treadssearch.UpFileActivity;
 import com.zdhx.androidbase.ui.treelistview.bean.TreeBean;
+import com.zdhx.androidbase.ui.xlistview.XListView;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressUtil;
 import com.zdhx.androidbase.util.StringUtil;
@@ -82,6 +81,8 @@ import com.zdhx.androidbase.view.dialog.ECListDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static com.zdhx.androidbase.ui.account.WorkSpaceFragment.isSelectPosition;
 
 public class MainActivity extends BaseActivity implements OnClickListener {
 	//全局调用的集合
@@ -96,6 +97,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	//积分
 	private ScroFragment scroFragment;
 
+	public static MainActivity act;
 
 
 
@@ -249,6 +251,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context = this;
+		act = this;
 		requestBasicPermission();
 		getTopBarView().setVisibility(View.GONE);
 		getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
@@ -361,10 +364,19 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
 						if (SELECTMENUINDEX == 1){
 							menuPositionForWork = position;
+							if (workSpaceFragment.selectIndexTag != position){
+								for (int i = 0; i < 9; i++) {
+									if (i == WorkSpaceFragment.isSelectPosition){
+										workSpaceFragment.setDataChanged(i,false);
+									}else{
+										workSpaceFragment.setDataChanged(i,true);
+									}
+								}
+							}
 							workSpaceFragment.selectIndexTag = position;
 							if (position == 0){
 								workSpaceFragment.dialog.show();
-								workSpaceFragment. workSpaceReFreshDatas(WorkSpaceGridAdapter.index,1);
+								workSpaceFragment. workSpaceReFreshDatas(WorkSpaceFragment.isSelectPosition,1);
 								if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
 									titleImgThirdLinear.setVisibility(View.GONE);
 								}
@@ -373,7 +385,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 							if (position == 1){
 								workSpaceFragment.dialog.show();
 								selectBatchLinearIsShowing = true;
-								workSpaceFragment. workSpaceReFreshDatas(WorkSpaceGridAdapter.index,1);
+								workSpaceFragment. workSpaceReFreshDatas(isSelectPosition,1);
 								if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
 									titleImgThirdLinear.setVisibility(View.GONE);
 								}
@@ -381,7 +393,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 							if (position == 2){
 								workSpaceFragment.dialog.show();
 								selectBatchLinearIsShowing = true;
-								workSpaceFragment. workSpaceReFreshDatas(WorkSpaceGridAdapter.index,1);
+								workSpaceFragment. workSpaceReFreshDatas(isSelectPosition,1);
 								if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
 									titleImgThirdLinear.setVisibility(View.VISIBLE);
 									titleImgThird.setImageResource(R.drawable.upload);
@@ -696,8 +708,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 					ProgressUtil.show(this,"正在查询..");
 					homeFragment.setDatasToNull();
 //					homeFragment.setGridCurrent(0);
-					homeFragment.initDatas(startDate,endDate,name,eclassId, HomeGridAdapter.index);
-					homeFragment.initXListViewDatas(null,HomeGridAdapter.index);
+					homeFragment.initDatas(startDate,endDate,name,eclassId, HomeFragment.isSelectIndex);
+					homeFragment.initXListViewDatas(new XListView(this),HomeFragment.isSelectIndex);
 				}
 			}
 		}
@@ -706,6 +718,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			if (isSuccess != null&&isSuccess.equals("true")){
 				homeFragment.setDatasToNull();
 				homeFragment.refurseTreadsAdapter();
+				MainActivity.map.remove("IntroduceTreadsIsTrue");
 			}
 		}
 
@@ -719,12 +732,27 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			if (clickId != null|eclassIds != null){
 				workSpaceFragment.onActReFresh(name,clickId,type,eclassIds,status,highQuality);
 				map.clear();
+				for (int i = 0; i < 9; i++) {
+					if (i == WorkSpaceFragment.isSelectPosition){
+						workSpaceFragment.setDataChanged(i,false);
+					}else{
+						workSpaceFragment.setDataChanged(i,true);
+					}
+				}
 			}else{
 				if (name != null){
 					workSpaceFragment.onActReFresh(name,clickId,type,eclassIds,status,highQuality);
 					map.clear();
+					for (int i = 0; i < 9; i++) {
+						if (i == WorkSpaceFragment.isSelectPosition){
+							workSpaceFragment.setDataChanged(i,false);
+						}else{
+							workSpaceFragment.setDataChanged(i,true);
+						}
+					}
 				}
 			}
+
 			onSelectCancel();
 		}
 		if (requestCode == UPFILEACTIVITYCODE){
@@ -732,7 +760,14 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			if (tag != null&&tag.equals("true")){
 				doToast("上传成功！");
 				MainActivity.map.remove("UpFileActivityTag");
-				workSpaceFragment.workSpaceReFreshDatas(WorkSpaceGridAdapter.index,1);
+				workSpaceFragment.workSpaceReFreshDatas(WorkSpaceFragment.isSelectPosition,1);
+				for (int i = 0; i < 9; i++) {
+					if (i == WorkSpaceFragment.isSelectPosition){
+						workSpaceFragment.setDataChanged(i,false);
+					}else{
+						workSpaceFragment.setDataChanged(i,true);
+					}
+				}
 			}
 			onSelectCancel();
 		}

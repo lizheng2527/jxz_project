@@ -37,12 +37,15 @@ import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.entity.GridListBean;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -183,7 +186,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		}
 	}
 
-	public void setViewPager(ViewPager pager) {
+	public void setViewPager(ViewPager pager,Context context,List<GridListBean> gridListBeans) {
 		this.pager = pager;
 
 		if (pager.getAdapter() == null) {
@@ -192,14 +195,14 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 		pager.setOnPageChangeListener(pageListener);
 
-		notifyDataSetChanged();
+		notifyDataSetChanged(context,gridListBeans);
 	}
 
 	public void setOnPageChangeListener(OnPageChangeListener listener) {
 		this.delegatePageListener = listener;
 	}
 
-	public void notifyDataSetChanged() {
+	public void notifyDataSetChanged(Context context, List<GridListBean> gridListBeans) {
 
 		tabsContainer.removeAllViews();
 
@@ -207,12 +210,15 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 		for (int i = 0; i < tabCount; i++) {
 
-			if (pager.getAdapter() instanceof IconTabProvider) {
-				addIconTab(i, ((IconTabProvider) pager.getAdapter()).getPageIconResId(i));
-			} else {
-				addTextTab(i, pager.getAdapter().getPageTitle(i).toString());
+			if (context == null){
+				if (pager.getAdapter() instanceof IconTabProvider) {
+					addIconTab(i, ((IconTabProvider) pager.getAdapter()).getPageIconResId(i));
+				} else {
+					addTextTab(i, pager.getAdapter().getPageTitle(i).toString());
+				}
+			}else{
+				addLinearTab(i, gridListBeans.get(i),context);
 			}
-
 		}
 
 		updateTabStyles();
@@ -237,13 +243,26 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 	}
 
+	private void addLinearTab(final int position, GridListBean title, Context context){
+		View view  = View.inflate(context,R.layout.fragment_workspace_grid_item,null);
+		TextView tv = (TextView) view.findViewById(R.id.fragment_workspace_grid_item_tv);
+		tv.setText(title.getName());
+		ImageView img = (ImageView) view.findViewById(R.id.fragment_workspace_grid_item_img);
+		if (title.getImg() != 0){
+			img.setImageResource(title.getImg());
+		}else{
+			img.setVisibility(GONE);
+		}
+        textViewMap.put(position,tv);
+		addTab(position, view);
+
+	}
 	private void addTextTab(final int position, String title) {
 
 		TextView tab = new TextView(getContext());
 		tab.setText(title);
 		tab.setGravity(Gravity.CENTER);
 		tab.setSingleLine();
-
 		addTab(position, tab);
 	}
 
@@ -251,13 +270,13 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 		ImageButton tab = new ImageButton(getContext());
 		tab.setImageResource(resId);
-
 		addTab(position, tab);
 
 	}
 	
-	private Map<Integer, TextView> viewMap = new HashMap<Integer, TextView>();
-	
+	private Map<Integer, View> viewMap = new HashMap<Integer, View>();
+	private Map<Integer, TextView> textViewMap = new HashMap<Integer, TextView>();
+
 	private void addTab(final int position, final View tab) {
 		tab.setFocusable(true);
 		tab.setOnClickListener(new OnClickListener() {
@@ -270,7 +289,11 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 		tab.setPadding(tabPadding, 0, tabPadding, 0);
 		tabsContainer.addView(tab, position, shouldExpand ? expandedTabLayoutParams : defaultTabLayoutParams);
-		viewMap.put(position, (TextView) tab);
+		if (tab instanceof TextView){
+			viewMap.put(position, tab);
+		}else{
+			viewMap.put(position, tab);
+		}
 	}
 
 	private void updateTabStyles() {
@@ -303,15 +326,25 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 	private void scrollToChild(int position, int offset) {
 		//改变当前textView 颜色
-		for (Entry<Integer, TextView> entry : viewMap.entrySet()) {
-			   if (entry.getKey() == position) {
-				   entry.getValue().setTextColor(Color.parseColor("#4cbbda"));
-			   } else {
-				   entry.getValue().setTextColor(Color.parseColor("#363636"));
-			   }
-		
+		for (Entry<Integer, View> entry : viewMap.entrySet()) {
+			if (entry.getValue() instanceof TextView){
+				if (entry.getKey() == position) {
+					((TextView)entry.getValue()).setTextColor(Color.parseColor("#4cbbda"));
+				} else {
+					((TextView)entry.getValue()).setTextColor(Color.parseColor("#363636"));
+				}
+			}
 		}
-		
+		if (textViewMap.size()>0){
+            for (Entry<Integer, TextView> entry : textViewMap.entrySet()) {
+                if (entry.getKey() == position) {
+                    entry.getValue().setTextColor(Color.parseColor("#4cbbda"));
+                } else {
+                    entry.getValue().setTextColor(Color.parseColor("#363636"));
+                }
+            }
+        }
+
 		if (tabCount == 0) {
 			return;
 		}

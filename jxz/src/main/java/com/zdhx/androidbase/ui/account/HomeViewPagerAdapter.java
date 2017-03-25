@@ -28,6 +28,8 @@ public class HomeViewPagerAdapter extends PagerAdapter {
             return null;
         }
     }
+
+
     @Override
     public int getCount() {
         if (list != null && list.size() > 0) {
@@ -44,8 +46,6 @@ public class HomeViewPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-//        super.destroyItem(container, position, object);
-//        container.removeView(list.get(position));
         if (container != null)
         container.removeView((View) object);
 

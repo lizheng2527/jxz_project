@@ -16,7 +16,6 @@ import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.account.WorkSpaceFragment;
-import com.zdhx.androidbase.ui.account.WorkSpaceGridAdapter;
 import com.zdhx.androidbase.ui.base.BaseActivity;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.RunnableWrap;
@@ -134,7 +133,8 @@ public class PrePassActivity extends BaseActivity {
 										public void onClick(DialogInterface dialog, int which) {
 											MainActivity.showSelectBatchLinear(false);
 											WorkSpaceFragment.isBatchSelect = false;
-											fragment.workSpaceReFreshDatas(WorkSpaceGridAdapter.index,1);
+											fragment.showDialogForPrePassAct();
+											fragment.workSpaceReFreshDatas(WorkSpaceFragment.isSelectPosition,1);
 //											fragment.notifyForSelect();
 											PrePassActivity.this.finish();
 										}
@@ -143,7 +143,8 @@ public class PrePassActivity extends BaseActivity {
 										public void onClick(DialogInterface dialog, int which) {
 											MainActivity.showSelectBatchLinear(true);
 											WorkSpaceFragment.isBatchSelect = true;
-											fragment.workSpaceReFreshDatas(WorkSpaceGridAdapter.index,1);
+											fragment.showDialogForPrePassAct();
+											fragment.workSpaceReFreshDatas(WorkSpaceFragment.isSelectPosition,1);
 //											fragment.notifyForSelect();
 											PrePassActivity.this.finish();
 										}
@@ -151,11 +152,18 @@ public class PrePassActivity extends BaseActivity {
 								}else{
 									MainActivity.showSelectBatchLinear(false);
 									WorkSpaceFragment.isBatchSelect = false;
-									fragment.workSpaceReFreshDatas(WorkSpaceGridAdapter.index,1);
-//									fragment.notifyForSelect();
+									fragment.showDialogForPrePassAct();
+									fragment.workSpaceReFreshDatas(WorkSpaceFragment.isSelectPosition,1);
 									PrePassActivity.this.finish();
 								}
 								fragment.getBatchSelectMap().clear();
+								for (int i = 0; i < 8; i++) {
+									if (i == WorkSpaceFragment.isSelectPosition){
+										fragment.setDataChanged(i,false);
+									}else{
+										fragment.setDataChanged(i,true);
+									}
+								}
 							}
 						},10);
 					} catch (IOException e) {

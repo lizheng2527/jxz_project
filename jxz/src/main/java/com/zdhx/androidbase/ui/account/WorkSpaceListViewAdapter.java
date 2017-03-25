@@ -499,6 +499,13 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                         list.remove(i);
                                         ProgressUtil.hide();
                                         notifyDataSetChanged();
+                                        for (int i = 0; i < 9; i++) {
+                                            if (i == WorkSpaceFragment.isSelectPosition){
+                                                frag.setDataChanged(i,false);
+                                            }else{
+                                                frag.setDataChanged(i,true);
+                                            }
+                                        }
                                     }
                                 },5);
 

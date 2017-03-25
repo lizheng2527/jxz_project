@@ -833,7 +833,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
                         new ProgressThreadWrap(context, new RunnableWrap() {
                             @Override
                             public void run() {
-
                                 try {
                                     ZddcUtil.delete(hashMap);
                                     handler.postDelayed(new Runnable() {
@@ -841,6 +840,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                         public void run() {
                                             ProgressUtil.hide();
                                             list.remove(position);
+                                            fragment.removeForDeleteTreads(HomeFragment.isSelectIndex);
                                             notifyDataSetChanged();
                                         }
                                     },6);
@@ -896,44 +896,23 @@ public class TreadsListViewAdapter extends BaseAdapter {
             @Override
             public void run() {
                 try {
-//                    final int oldChildSize = list.get(position).getChild().size();
-//                    if (oldChildSize == 1) {
                     String allReply = ZddcUtil.initAllReply(map);
                     final Treads treads = new Gson().fromJson(allReply, Treads.class);
                     if (treads != null) {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-//                                    if (treads.getDataList().size() <= 10) {
                                 list.get(position).setChild(treads.getDataList());
                                 list.get(position).setLaunch(true);
-//                                    } else {
-//                                        for (int i = 0; i < 10; i++) {
-//                                            list.get(position).getChild().add(treads.getDataList().get(i));
-//                                        }
-//                                        list.get(position).setLaunch(false);
-//                                    }
                                 notifyDataSetChanged();
                             }
                         }, 10);
                     } else {
                         ToastUtil.showMessage("网络异常");
                     }
-//                    }else{
-//                        if (treads.getDataList().size() - oldChildSize < 10) {
-//                            list.get(position).setChild(treads.getDataList());
-//                            list.get(position).setLaunch(true);
-//                        } else {
-//                            for (int i = oldChildSize; i < oldChildSize + 10; i++) {
-//                                list.get(position).getChild().add(treads.getDataList().get(i));
-//                            }
-//                            list.get(position).setLaunch(false);
-//                        }
-//                    }
                 } catch(IOException e){
                     e.printStackTrace();
                 }
-
             }
         }).start();
     }
@@ -1072,9 +1051,9 @@ public class TreadsListViewAdapter extends BaseAdapter {
         textView.setPadding(0, 5, 0, 0);
         String allStringOfComment = "";
         if (parentName== null){
-            allStringOfComment = name + content;
+            allStringOfComment = name + content.trim();
         }else{
-            allStringOfComment = name + "@"+parentName+content;
+            allStringOfComment = name + "@"+parentName+content.trim();
             name = name + "@"+parentName;
         }
         CharSequence charSequence = allStringOfComment;

@@ -60,27 +60,27 @@ public final class R {
         public static final int btn_back_app = 0x7f0c004d;
         public static final int btn_right_lh = 0x7f0c0055;
         public static final int bv_back_lh = 0x7f0c0051;
-        public static final int cb_photo_lpsi = 0x7f0c015a;
+        public static final int cb_photo_lpsi = 0x7f0c0174;
         public static final int gv_photos_ar = 0x7f0c0057;
         public static final int hl_head_ar = 0x7f0c0050;
-        public static final int iv_album_la = 0x7f0c0155;
+        public static final int iv_album_la = 0x7f0c016f;
         public static final int iv_back_vb = 0x7f0c0052;
-        public static final int iv_content_vpp = 0x7f0c0195;
-        public static final int iv_index_la = 0x7f0c0158;
-        public static final int iv_photo_lpsi = 0x7f0c0159;
-        public static final int layout = 0x7f0c0193;
+        public static final int iv_content_vpp = 0x7f0c01af;
+        public static final int iv_index_la = 0x7f0c0172;
+        public static final int iv_photo_lpsi = 0x7f0c0173;
+        public static final int layout = 0x7f0c01ad;
         public static final int layout_album_ar = 0x7f0c0058;
-        public static final int layout_left_la = 0x7f0c0154;
+        public static final int layout_left_la = 0x7f0c016e;
         public static final int layout_toolbar_ar = 0x7f0c0056;
         public static final int layout_top_app = 0x7f0c004c;
         public static final int lv_ablum_ar = 0x7f0c0059;
-        public static final int pb_loading_vpp = 0x7f0c0194;
+        public static final int pb_loading_vpp = 0x7f0c01ae;
         public static final int tv_album_ar = 0x7f0c005a;
-        public static final int tv_camera_vc = 0x7f0c0192;
-        public static final int tv_count_la = 0x7f0c0157;
+        public static final int tv_camera_vc = 0x7f0c01ac;
+        public static final int tv_count_la = 0x7f0c0171;
         public static final int tv_line_apu = 0x7f0c004e;
         public static final int tv_line_ar = 0x7f0c005b;
-        public static final int tv_name_la = 0x7f0c0156;
+        public static final int tv_name_la = 0x7f0c0170;
         public static final int tv_percent_app = 0x7f0c004f;
         public static final int tv_preview_ar = 0x7f0c005c;
         public static final int tv_title_lh = 0x7f0c0054;
@@ -90,10 +90,10 @@ public final class R {
     public static final class layout {
         public static final int activity_photopreview = 0x7f030006;
         public static final int activity_photoselector = 0x7f030007;
-        public static final int layout_album = 0x7f03003b;
-        public static final int layout_photoitem = 0x7f03003c;
-        public static final int view_camera = 0x7f03004c;
-        public static final int view_photopreview = 0x7f03004d;
+        public static final int layout_album = 0x7f030044;
+        public static final int layout_photoitem = 0x7f030045;
+        public static final int view_camera = 0x7f030055;
+        public static final int view_photopreview = 0x7f030056;
     }
     public static final class string {
         public static final int app_name = 0x7f06006d;

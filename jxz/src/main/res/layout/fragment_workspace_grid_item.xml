@@ -3,10 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@null"
     android:orientation="vertical"
     tools:ignore="HardcodedText,DisableBaselineAlignment" >
 
     <RelativeLayout
+        android:layout_marginBottom="3dp"
         android:id="@+id/parentrel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,14 +16,14 @@
             <RelativeLayout
                 android:id="@+id/rel"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 >
                 <LinearLayout
+                    android:layout_centerInParent="true"
                     android:id="@+id/fragment_workspace_grid_item_linear"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:gravity="center">
                     <ImageView
@@ -33,9 +35,9 @@
                         android:layout_marginLeft="5dp"
                         android:id="@+id/fragment_workspace_grid_item_tv"
                         android:layout_width="wrap_content"
-                        android:layout_height="55dp"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textSize="14sp"
+                        android:textSize="15sp"
                         android:text="全部"
                         android:textColor="#444444"/>
                 </LinearLayout>
@@ -47,11 +49,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="3dp"
                     android:background="@color/title_color"
+                    android:visibility="gone"
                     />
             </RelativeLayout>
             <TextView
                 android:id="@+id/fragment_workspace_grid_item_tvrightline"
                 android:layout_alignParentRight="true"
+                android:visibility="gone"
                 android:layout_marginTop="16dp"
                 android:layout_width="2dp"
                 android:layout_height="20dp"

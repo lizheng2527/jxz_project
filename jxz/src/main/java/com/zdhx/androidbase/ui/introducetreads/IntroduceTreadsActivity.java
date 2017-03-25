@@ -148,7 +148,6 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 	@Override
 	protected void onResume() {
-		getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
 		super.onResume();
 	}
 
@@ -378,6 +377,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 			}
 		}
 	if (introduceReply == null){
+		getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
 		new ProgressThreadWrap(context, new RunnableWrap() {
 			@Override
 			public void run() {

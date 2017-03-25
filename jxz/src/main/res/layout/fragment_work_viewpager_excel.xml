@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:ignore="HardcodedText,DisableBaselineAlignment" >
+    <RelativeLayout
+        android:id="@+id/linear_excel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.zdhx.androidbase.ui.xlistview.XListView
+            android:id="@+id/fragment_work_viewpager_excel_listview"
+            android:layout_width="match_parent"
+            android:divider="@color/list_devider_color"
+            android:background="@null"
+            android:dividerHeight="2dp"
+            android:layout_height="match_parent">
+        </com.zdhx.androidbase.ui.xlistview.XListView>
+        <TextView
+            android:clickable="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/excelempty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已无更多"
+            android:visibility="gone"
+            android:gravity="center"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            />
+    </RelativeLayout>
+</RelativeLayout>
