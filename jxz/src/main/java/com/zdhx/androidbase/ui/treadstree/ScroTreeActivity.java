@@ -136,7 +136,7 @@ public class ScroTreeActivity extends BaseActivity{
 					if (className.equals("SearchWorkActivity")){
 						if (node.isLeaf()) {
 							if (positionMapForSearchWork.containsKey(node.getContactId())) {
-								positionMapForSearchWork.remove(node.getContactId());
+//								positionMapForSearchWork.remove(node.getContactId());
 							} else {
 								positionMapForSearchWork.clear();
 								positionMapForSearchWork.put(node.getContactId(), "true");
@@ -147,7 +147,7 @@ public class ScroTreeActivity extends BaseActivity{
 					else if (className.equals("UpFileActivity")){
 						if (node.isLeaf()) {
 							if (positionMapForUpFile.containsKey(node.getContactId())) {
-								positionMapForUpFile.remove(node.getContactId());
+//								positionMapForUpFile.remove(node.getContactId());
 							} else {
 								positionMapForUpFile.clear();
 								positionMapForUpFile.put(node.getContactId(), "true");
@@ -158,7 +158,7 @@ public class ScroTreeActivity extends BaseActivity{
 					else if (className.equals("SearchWorkForEclassTree")){
 						if (node.isLeaf()) {
 							if (positionMapForEclassTree.containsKey(node.getContactId())) {
-								positionMapForEclassTree.remove(node.getContactId());
+//								positionMapForEclassTree.remove(node.getContactId());
 							} else {
 								positionMapForEclassTree.clear();
 								positionMapForEclassTree.put(node.getContactId(), "true");
@@ -166,11 +166,10 @@ public class ScroTreeActivity extends BaseActivity{
 							adapter.notifyDataSetChanged();
 						}
 					}
-
 					else{
 						if (node.isLeaf()) {
 							if (positionMap.containsKey(node.getContactId())) {
-								positionMap.remove(node.getContactId());
+//								positionMap.remove(node.getContactId());
 							} else {
 								positionMap.clear();
 								positionMap.put(node.getContactId(), "true");
@@ -328,7 +327,7 @@ public class ScroTreeActivity extends BaseActivity{
 					if (className.equals("SearchWorkActivity")){
 						if (node.isLeaf()) {
 							if (positionMapForSearchWork.containsKey(node.getContactId())) {
-								positionMapForSearchWork.remove(node.getContactId());
+//								positionMapForSearchWork.remove(node.getContactId());
 							} else {
 								positionMapForSearchWork.clear();
 								positionMapForSearchWork.put(node.getContactId(), "true");
@@ -338,17 +337,29 @@ public class ScroTreeActivity extends BaseActivity{
 					}else if (className.equals("UpFileActivity")){
 						if (node.isLeaf()) {
 							if (positionMapForUpFile.containsKey(node.getContactId())) {
-								positionMapForUpFile.remove(node.getContactId());
+//								positionMapForUpFile.remove(node.getContactId());
 							} else {
 								positionMapForUpFile.clear();
 								positionMapForUpFile.put(node.getContactId(), "true");
 							}
 							adapter.notifyDataSetChanged();
 						}
-					}else{
+					}
+					else if (className.equals("SearchWorkForEclassTree")){
+						if (node.isLeaf()) {
+							if (positionMapForEclassTree.containsKey(node.getContactId())) {
+//								positionMapForEclassTree.remove(node.getContactId());
+							} else {
+								positionMapForEclassTree.clear();
+								positionMapForEclassTree.put(node.getContactId(), "true");
+							}
+							adapter.notifyDataSetChanged();
+						}
+					}
+					else{
 						if (node.isLeaf()) {
 							if (positionMap.containsKey(node.getContactId())) {
-								positionMap.remove(node.getContactId());
+//								positionMap.remove(node.getContactId());
 							} else {
 								positionMap.clear();
 								positionMap.put(node.getContactId(), "true");

@@ -158,7 +158,7 @@ public class SimpleTreeListViewAdapterForScro<T> extends TreeListViewAdapter<T> 
 //				}
 				if (className.equals("SearchWorkActivity")){
 					if (ScroTreeActivity.positionMapForSearchWork.containsKey(node.getContactId())){
-						ScroTreeActivity.positionMapForSearchWork.remove(node.getContactId());
+//						ScroTreeActivity.positionMapForSearchWork.remove(node.getContactId());
 					}else{
 						ScroTreeActivity.positionMapForSearchWork.clear();
 						ScroTreeActivity.positionMapForSearchWork.put(node.getContactId(),"true");
@@ -166,7 +166,7 @@ public class SimpleTreeListViewAdapterForScro<T> extends TreeListViewAdapter<T> 
 				}
 				else if (className.equals("UpFileActivity")){
 					if (ScroTreeActivity.positionMapForUpFile.containsKey(node.getContactId())){
-						ScroTreeActivity.positionMapForUpFile.remove(node.getContactId());
+//						ScroTreeActivity.positionMapForUpFile.remove(node.getContactId());
 					}else{
 						ScroTreeActivity.positionMapForUpFile.clear();
 						ScroTreeActivity.positionMapForUpFile.put(node.getContactId(),"true");
@@ -174,7 +174,7 @@ public class SimpleTreeListViewAdapterForScro<T> extends TreeListViewAdapter<T> 
 				}
 				else if (className.equals("SearchWorkForEclassTree")){
 					if (ScroTreeActivity.positionMapForEclassTree.containsKey(node.getContactId())){
-						ScroTreeActivity.positionMapForEclassTree.remove(node.getContactId());
+//						ScroTreeActivity.positionMapForEclassTree.remove(node.getContactId());
 					}else{
 						ScroTreeActivity.positionMapForEclassTree.clear();
 						ScroTreeActivity.positionMapForEclassTree.put(node.getContactId(),"true");
@@ -182,7 +182,7 @@ public class SimpleTreeListViewAdapterForScro<T> extends TreeListViewAdapter<T> 
 				}
 				else{
 					if (ScroTreeActivity.positionMap.containsKey(node.getContactId())){
-						ScroTreeActivity.positionMap.remove(node.getContactId());
+//						ScroTreeActivity.positionMap.remove(node.getContactId());
 					}else{
 						ScroTreeActivity.positionMap.clear();
 						ScroTreeActivity.positionMap.put(node.getContactId(),"true");

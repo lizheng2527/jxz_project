@@ -101,6 +101,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
 
 
+
+
 	private Fragment[] fragments;
 
 	private int index;
@@ -350,6 +352,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 						break;
 				}
 				ECListDialog d = new ECListDialog(MainActivity.this,homeMenuDatas,indexForMenu);
+				d.setTitle("请选择");
 				d.setOnDialogItemClickListener(new ECListDialog.OnDialogItemClickListener() {
 					@Override
 					public void onDialogItemClick(Dialog d, int position) {
@@ -760,6 +763,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			if (tag != null&&tag.equals("true")){
 				doToast("上传成功！");
 				MainActivity.map.remove("UpFileActivityTag");
+				workSpaceFragment.showDialogForPrePassAct();
 				workSpaceFragment.workSpaceReFreshDatas(WorkSpaceFragment.isSelectPosition,1);
 				for (int i = 0; i < 9; i++) {
 					if (i == WorkSpaceFragment.isSelectPosition){
@@ -774,18 +778,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		//单张网络图片查看，判断是否下载了图片
 		if (requestCode == 111){
 			LogUtil.w("mainActivity回来");
-//			String b = (String) MainActivity.map.get("isLoaded");
-//			List<Treads.DataListBean> list = (List<Treads.DataListBean>) MainActivity.map.get("treadsList");
-//			int position = (int) MainActivity.map.get("position");
-//			list.get(position).setDown(Integer.parseInt(list.get(position).getDown())+1+"");
-//			list.get(position).setBrowse(Integer.parseInt(list.get(position).getBrowse())+1+"");
-//			MainActivity.map.remove("treadsList");
-//			MainActivity.map.remove("treadsListPosition");
-//			if ("true".equals(b)){
-//				doToast("下载了图片");
-//				MainActivity.map.remove("isLoaded");
-//			}
-//			homeFragment.adapterNotify();
 		}
 
 	}
@@ -795,8 +787,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		switch (view.getId()) {
 			case R.id.btn_right:
 				startActivity(new Intent(context, LoginActivity.class));
-				break;
-			default:
 				break;
 		}
 	}

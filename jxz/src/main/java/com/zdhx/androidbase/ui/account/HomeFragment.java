@@ -56,6 +56,43 @@ import static com.zdhx.androidbase.ui.xlistview.XListViewUtils.onLoad;
  */
 
 public class HomeFragment extends Fragment {
+
+//    private HashMap<String,ProgressThreadWrap> threadMap = new HashMap<>();
+//    private void putThreadMap(final String url, final ProgressThreadWrap p,final int loadIndex,final XListView listView){
+//        threadMap.put(url,p);
+//        new ProgressThreadWrap(context, new RunnableWrap() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(3000);
+////                    if (threadMap.get(url) != null){
+////                        p.stop();
+////                    }
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        if (threadMap.get(url) != null){
+//                            threadMap.remove(url);
+//                            ZddcUtil.removeConnMap(url);
+//                            setIsLoadMoring(loadIndex,false);
+////                            onLoad(listView);
+//                            p.stop();
+//                            Log.e("Thread:","线程停止");
+//                        }
+//                    }
+//                },1);
+//            }
+//        }).start();
+//    }
+//    private void removeThreadMap(String url,int loadIndex,XListView listView){
+//        threadMap.remove(url);
+//        setIsLoadMoring(loadIndex,false);
+//        onLoad(listView);
+//        Log.e("Thread:","加载完成");
+//    }
     /**
      * 记录当前加载的是否有下一页
      */
@@ -73,12 +110,7 @@ public class HomeFragment extends Fragment {
     private static int loadMorePager4;
     private static int loadMorePager5;
 
-
-//    private GridView grid;
-
     private List<String> gridDatas;
-
-//    private HomeGridAdapter homeGridAdapter;
 
     private ViewPager vp;
     /**
@@ -92,7 +124,6 @@ public class HomeFragment extends Fragment {
     /**
      * 动态数据的适配器
      */
-//    private TreadsListViewAdapter treadsListViewAdapter;
     private TreadsListViewAdapter treadsListViewAdapter0;
     private TreadsListViewAdapter treadsListViewAdapter1;
     private TreadsListViewAdapter treadsListViewAdapter2;
@@ -167,39 +198,115 @@ public class HomeFragment extends Fragment {
     //发布回复的提交按钮
     private Button sendBtn;
     //当前展示的哪一组数据（gridView）
-//    private int gridAdapterIndex ;
 
     private ECProgressDialog dialog;
 
 
-    public void removeForDeleteTreads(int index){
-        for (int i = 0; i <6; i++) {
-            switch (i){
-                case 0:
-                    if (allDatas != null&&allDatas.size()>0&&index != 0){
-                        allDatas.clear();
-                    }
+    /**
+     * 互动交流删除一条数据，对应的相应模块删除
+     * @param bean
+     */
+    public void removeForDeleteTreads(Treads.DataListBean bean){
+        if (allDatas != null&&allDatas.size()>0&&isSelectIndex != 0){
+            for (int i = 0; i < allDatas.size(); i++) {
+                if (allDatas.get(i).getId().equals(bean.getId())){
+                    allDatas.remove(i);
                     break;
-                case 1:
-                    if (interactDatas != null&&interactDatas.size()>0&&index != 1)
-                        interactDatas.clear();
+                }
+            }
+        }
+        if (interactDatas != null&&interactDatas.size()>0&&isSelectIndex != 1){
+            for (int i = 0; i < interactDatas.size(); i++) {
+                if (interactDatas.get(i).getId().equals(bean.getId())){
+                    interactDatas.remove(i);
                     break;
-                case 2:
-                    if (myDatas != null&&myDatas.size()>0&&index != 2)
-                        myDatas.clear();
+                }
+            }
+        }
+        if (allDatas != null&&allDatas.size()>0&&interactDatas != null&&interactDatas.size()>0){
+            for (int i = 0; i < allDatas.size(); i++) {
+                if (allDatas.get(i).getId().equals(bean.getId())){
+                    allDatas.remove(i);
                     break;
-                case 3:
-                    if (impDatas != null&&impDatas.size()>0&&index != 3)
-                        impDatas.clear();
+                }
+            }
+        }
+        if (myDatas != null&&myDatas.size()>0&&isSelectIndex != 2){
+
+            for (int i = 0; i < myDatas.size(); i++) {
+                if (myDatas.get(i).getId().equals(bean.getId())){
+                    myDatas.remove(i);
                     break;
-                case 4:
-                    if (attDatas != null&&attDatas.size()>0&&index != 4)
-                        attDatas.clear();
+                }
+            }
+        }
+        if (impDatas != null&&impDatas.size()>0&&isSelectIndex != 3){
+            for (int i = 0; i < impDatas.size(); i++) {
+                if (impDatas.get(i).getId().equals(bean.getId())){
+                    impDatas.remove(i);
                     break;
-                case 5:
-                    if (resDatas != null&&resDatas.size()>0&&index != 5)
-                        resDatas.clear();
+                }
+            }
+        }
+        if (attDatas != null&&attDatas.size()>0&&isSelectIndex != 4){
+            for (int i = 0; i < attDatas.size(); i++) {
+                if (attDatas.get(i).getId().equals(bean.getId())){
+                    attDatas.remove(i);
                     break;
+                }
+            }
+        }
+        if (resDatas != null&&resDatas.size()>0&&isSelectIndex != 5){
+            for (int i = 0; i < resDatas.size(); i++) {
+                if (resDatas.get(i).getId().equals(bean.getId())){
+                    resDatas.remove(i);
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * 当互动交流数据有改变时，改变本地的其他模块数据
+     * @param bean
+     */
+    public void upDateTreads(Treads.DataListBean bean){
+        if (allDatas != null&&allDatas.size()>0&&isSelectIndex != 0){
+            upDataChild(allDatas,bean);
+        }
+        if (interactDatas != null&&interactDatas.size()>0&&isSelectIndex != 1){
+            upDataChild(interactDatas,bean);
+        }
+        if (myDatas != null&&myDatas.size()>0&&isSelectIndex != 2){
+            upDataChild(myDatas,bean);
+        }
+        if (impDatas != null&&impDatas.size()>0&&isSelectIndex != 3){
+            upDataChild(impDatas,bean);
+        }
+        if (attDatas != null&&attDatas.size()>0&&isSelectIndex != 4){
+            upDataChild(attDatas,bean);
+        }
+        if (resDatas != null&&resDatas.size()>0&&isSelectIndex != 5){
+            upDataChild(resDatas,bean);
+        }
+    }
+
+    /**
+     * 本地数据改变时调用此方法
+     * @param beans
+     * @param bean
+     */
+    private void upDataChild(List<Treads.DataListBean> beans,Treads.DataListBean bean){
+
+        for (int i = 0; i < beans.size(); i++) {
+            if (beans.get(i).getId().equals(bean.getId())){
+                beans.get(i).setBrowse(bean.getBrowse());
+                beans.get(i).setDown(bean.getDown());
+                beans.get(i).setPraiseNames(bean.getPraiseNames());
+                beans.get(i).setAllReplyCount(bean.getAllReplyCount());
+                beans.get(i).setChild(bean.getChild());
+                beans.get(i).setLaunch(bean.getLaunch());
+                break;
             }
         }
     }
@@ -390,7 +497,6 @@ public class HomeFragment extends Fragment {
     private String replyName = null;
     public void setReplyName(String replyName){
         this.replyName = replyName;
-//        treadsListViewAdapter.notifyDataSetChanged();
         setTreadsAdapterNotify(isSelectIndex);
     }
     @Override
@@ -417,13 +523,13 @@ public class HomeFragment extends Fragment {
             case 2:
                 toListDatas(myDatas,position,id,replyMes,newId,userName);
                 break;
-            case 3:
+            case 5:
                 toListDatas(resDatas,position,id,replyMes,newId,userName);
                 break;
             case 4:
                 toListDatas(attDatas,position,id,replyMes,newId,userName);
                 break;
-            case 5:
+            case 3:
                 toListDatas(impDatas,position,id,replyMes,newId,userName);
                 break;
         }
@@ -434,31 +540,24 @@ public class HomeFragment extends Fragment {
             replyMap.putAll(ECApplication.getInstance().getLoginUrlMap());
             switch (isSelectIndex){
                 case 0:
-//                    toListDatas(allDatas,position,id,replyMes,newId,userName);
                     treadsListViewAdapter0.initReplyDatas(replyMap,position);
                     break;
                 case 1:
-//                    toListDatas(interactDatas,position,id,replyMes,newId,userName);
                     treadsListViewAdapter1.initReplyDatas(replyMap,position);
                     break;
                 case 2:
-//                    toListDatas(myDatas,position,id,replyMes,newId,userName);
                     treadsListViewAdapter2.initReplyDatas(replyMap,position);
                     break;
                 case 3:
-//                    toListDatas(resDatas,position,id,replyMes,newId,userName);
                     treadsListViewAdapter3.initReplyDatas(replyMap,position);
                     break;
                 case 4:
-//                    toListDatas(attDatas,position,id,replyMes,newId,userName);
                     treadsListViewAdapter4.initReplyDatas(replyMap,position);
                     break;
                 case 5:
-//                    toListDatas(impDatas,position,id,replyMes,newId,userName);
                     treadsListViewAdapter5.initReplyDatas(replyMap,position);
                     break;
             }
-//            treadsListViewAdapter.initReplyDatas(replyMap,position);
         }
     }
     HashMap<String,ParameterValue> replyMap;
@@ -467,23 +566,30 @@ public class HomeFragment extends Fragment {
         switch (isSelectIndex){
             case 0:
                 allDatas.get(position).setAllReplyCount(allDatas.get(position).getAllReplyCount()+1);
+                upDateTreads(allDatas.get(position));
                 break;
             case 1:
                 interactDatas.get(position).setAllReplyCount(interactDatas.get(position).getAllReplyCount()+1);
+                upDateTreads(interactDatas.get(position));
                 break;
             case 2:
                 myDatas.get(position).setAllReplyCount(myDatas.get(position).getAllReplyCount()+1);
+                upDateTreads(myDatas.get(position));
                 break;
-            case 3:
+            case 5:
                 resDatas.get(position).setAllReplyCount(resDatas.get(position).getAllReplyCount()+1);
+                upDateTreads(resDatas.get(position));
                 break;
             case 4:
                 attDatas.get(position).setAllReplyCount(attDatas.get(position).getAllReplyCount()+1);
+                upDateTreads(attDatas.get(position));
                 break;
-            case 5:
+            case 3:
                 impDatas.get(position).setAllReplyCount(impDatas.get(position).getAllReplyCount()+1);
+                upDateTreads(impDatas.get(position));
                 break;
         }
+
     }
 
     private void toListDatas(List<Treads.DataListBean> beans, int position,String id,String replyMes,String newId,String userName){
@@ -539,7 +645,6 @@ public class HomeFragment extends Fragment {
     }
     private PagerSlidingTabStrip mPagerSlidingTabStrip;
     private void initView() {
-
         mPagerSlidingTabStrip = (PagerSlidingTabStrip)getView().findViewById(R.id.tabs);
         vp.setOffscreenPageLimit(1);
         homeViewPagerAdapter = new HomeViewPagerAdapter(viewPagerListDatas,gridDatas);
@@ -636,7 +741,6 @@ public class HomeFragment extends Fragment {
     public void onEmptyClick(int i){
         isSelectIndex = i;
         initTreadsDatas(i);//点击展示资源（重新加载）
-//        gridAdapterIndex = i;//更改页码
     }
 
     /**
@@ -686,58 +790,28 @@ public class HomeFragment extends Fragment {
     public void getSwitch(){
         switch (isSelectIndex){
             case 0:
-//                if (allreadsListView ==null ){
                 initXListView(allreadsListView,0);
-//                    initXListViewDatas(allreadsListView,0);
-//                    setLVonTouch(allreadsListView);
-//                }else{
                 initXListViewDatas(allreadsListView,0);
-//                }
                 break;
             case 1:
-//                if (interactreadsTtListView ==null ){
                 initXListView(interactreadsTtListView,1);
-//                    initXListViewDatas(interactreadsTtListView,1);
-//                    setLVonTouch(interactreadsTtListView);
-//                }else{
                 initXListViewDatas(interactreadsTtListView,1);
-//                }
                 break;
             case 2:
-//                if (myTreadsListView ==null ){
                 initXListView(myTreadsListView,2);
-//                    initXListViewDatas(myTreadsListView,2);
-//                    setLVonTouch(myTreadsListView);
-//                }else{
                 initXListViewDatas(myTreadsListView,2);
-//                }
                 break;
             case 5:
-//                if (resourcesTreadsListView ==null ){
                 initXListView(resourcesTreadsListView,5);
-//                    initXListViewDatas(resourcesTreadsListView,5);
-//                    setLVonTouch(resourcesTreadsListView);
-//                }else{
                 initXListViewDatas(resourcesTreadsListView,5);
-//                }
                 break;
             case 4:
-//                if (attendsTreadsListView ==null ){
                 initXListView(attendsTreadsListView,4);
-//                    initXListViewDatas(attendsTreadsListView,4);
-//                    setLVonTouch(attendsTreadsListView);
-//                }else{
                 initXListViewDatas(attendsTreadsListView,4);
-//                }
                 break;
             case 3:
-//                if (impTreadsListView ==null ){
                 initXListView(impTreadsListView,3);
-//                    initXListViewDatas(impTreadsListView,3);
-//                    setLVonTouch(impTreadsListView);
-//                }else{
                 initXListViewDatas(impTreadsListView,3);
-//                }
                 break;
         }
     }
@@ -751,10 +825,7 @@ public class HomeFragment extends Fragment {
     private void initTreadsDatas(int positon){
         switch (positon){
             case 0://加载全部
-//                allreadsListView = (XListView) allTreadsView.findViewById(R.id.fragment_home_viewpager_alltreads_listview);
                 if (viewPagerListTreadsDatas == null){
-//                    viewPagerListTreadsDatas = new ArrayList<Treads.DataListBean>();
-//                    treadsListViewAdapter = new TreadsListViewAdapter(viewPagerListTreadsDatas,context,HomeFragment.this);
                     viewPagerListTreadsDatas = new ArrayList<Treads.DataListBean>();
                     treadsListViewAdapter0 = new TreadsListViewAdapter(allDatas,context,HomeFragment.this);
                 }
@@ -764,8 +835,6 @@ public class HomeFragment extends Fragment {
                 setLVonTouch(allreadsListView);
                 break;
             case 1://加载互动交流
-//                interactreadsTtListView = (XListView) interacttreadsTreadsView.findViewById(R.id.fragment_home_viewpager_interacttreads_listview);
-//                treadsListViewAdapter = new TreadsListViewAdapter(viewPagerListTreadsDatas,context,HomeFragment.this);
                 treadsListViewAdapter1 = new TreadsListViewAdapter(interactDatas,context,HomeFragment.this);
                 initXListView(interactreadsTtListView,1);
                 initDatas(null,null,null,null,1);
@@ -773,8 +842,6 @@ public class HomeFragment extends Fragment {
                 setLVonTouch(interactreadsTtListView);
                 break;
             case 2://加载我的动态
-//                myTreadsListView = (XListView) myTreadsView.findViewById(R.id.fragment_home_viewpager_myTreads_listview);
-//                treadsListViewAdapter = new TreadsListViewAdapter(viewPagerListTreadsDatas,context,HomeFragment.this);
                 treadsListViewAdapter2 = new TreadsListViewAdapter(myDatas,context,HomeFragment.this);
                 initXListView(myTreadsListView,2);
                 initDatas(null,null,null,null,2);
@@ -782,8 +849,6 @@ public class HomeFragment extends Fragment {
                 setLVonTouch(myTreadsListView);
                 break;
             case 5://加载资源动态
-//                resourcesTreadsListView = (XListView) resourcesTreadsView.findViewById(R.id.fragment_home_viewpager_resourcesTreads_listview);
-//                treadsListViewAdapter = new TreadsListViewAdapter(viewPagerListTreadsDatas,context,HomeFragment.this);
                 treadsListViewAdapter5 = new TreadsListViewAdapter(resDatas,context,HomeFragment.this);
                 initXListView(resourcesTreadsListView,5);
                 initDatas(null,null,null,null,5);
@@ -791,8 +856,6 @@ public class HomeFragment extends Fragment {
                 setLVonTouch(resourcesTreadsListView);
                 break;
             case 4://加载我参与的
-//                attendsTreadsListView = (XListView) attendsTreadsView.findViewById(R.id.fragment_home_viewpager_attendsTreads_listview);
-//                treadsListViewAdapter = new TreadsListViewAdapter(viewPagerListTreadsDatas,context,HomeFragment.this);
                 treadsListViewAdapter4 = new TreadsListViewAdapter(attDatas,context,HomeFragment.this);
                 initXListView(attendsTreadsListView,4);
                 initDatas(null,null,null,null,4);
@@ -800,8 +863,6 @@ public class HomeFragment extends Fragment {
                 setLVonTouch(attendsTreadsListView);
                 break;
             case 3://加载重要通知
-//                impTreadsListView = (XListView) impTreadsView.findViewById(R.id.fragment_home_viewpager_important_listview);
-//                treadsListViewAdapter = new TreadsListViewAdapter(viewPagerListTreadsDatas,context,HomeFragment.this);
                 treadsListViewAdapter3 = new TreadsListViewAdapter(impDatas,context,HomeFragment.this);
                 initXListView(impTreadsListView,3);
                 initDatas(null,null,null,null,3);
@@ -905,17 +966,65 @@ public class HomeFragment extends Fragment {
         setLoadMorePager(1,index);
     }
 
+
+    private static boolean isFromCache0 = true;
+    private static boolean isFromCache1 = true;
+    private static boolean isFromCache2 = true;
+    private static boolean isFromCache3 = true;
+    private static boolean isFromCache4 = true;
+    private static boolean isFromCache5 = true;
+
+    private void setFromCache(int index){
+        switch (index){
+            case 0:
+                isFromCache0 = false;
+                break;
+            case 1:
+                isFromCache1 = false;
+                break;
+            case 2:
+                isFromCache2 = false;
+                break;
+            case 3:
+                isFromCache3 = false;
+                break;
+            case 4:
+                isFromCache4 = false;
+                break;
+            case 5:
+                isFromCache5 = false;
+                break;
+        }
+    }
+    private boolean getFromCache(int index){
+        switch (index){
+            case 0:
+                return isFromCache0;
+            case 1:
+                return isFromCache1;
+            case 2:
+                return isFromCache2;
+            case 3:
+                return isFromCache3;
+            case 4:
+                return isFromCache4;
+            case 5:
+                return isFromCache5;
+        }
+        return false;
+    }
+
     /**
      * 根据当前的加载条件来加载数据
      * @param listView
      */
     public void initXListViewDatas(final XListView listView,final int index){
         dialog.show();
-        new ProgressThreadWrap(context, new RunnableWrap() {
+        hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
+        ProgressThreadWrap p = new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
             public void run() {
                 try {
-                    hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
                     handler.postDelayed(new Runnable() {
@@ -944,10 +1053,6 @@ public class HomeFragment extends Fragment {
                                         break;
                                 }
                                 setDatasToNotNull(viewPagerListTreadsDatas);
-//                                if (viewPagerListTreadsDatas == null){
-//                                    viewPagerListTreadsDatas = new ArrayList<Treads.DataListBean>();
-//                                }
-//                                if (listView != null){
                                 switch (index){
                                     case 0:
                                         treadsListViewAdapter0 = new TreadsListViewAdapter(allDatas,context,HomeFragment.this);
@@ -984,38 +1089,6 @@ public class HomeFragment extends Fragment {
                                 if (dialog.isShowing()){
                                     dialog.dismiss();
                                 }
-//                                }else{
-//                                    switch (index){
-//                                        case 0:
-//                                            allreadsListView.setAdapter(treadsListViewAdapter0);
-//                                            allreadsListView.setEmptyView(allreadsListView.findViewById(R.id.emptyatt));
-//                                            break;
-//                                        case 1:
-//                                            interactreadsTtListView.setAdapter(treadsListViewAdapter1);
-//                                            interactreadsTtListView.setEmptyView(interacttreadsTreadsView.findViewById(R.id.emptyinter));
-//                                            break;
-//                                        case 2:
-//                                            myTreadsListView.setAdapter(treadsListViewAdapter2);
-//                                            myTreadsListView.setEmptyView(myTreadsView.findViewById(R.id.emptymy));
-//                                            break;
-//                                        case 5:
-//                                            resourcesTreadsListView.setAdapter(treadsListViewAdapter5);
-//                                            resourcesTreadsListView.setEmptyView(resourcesTreadsView.findViewById(R.id.emptyres));
-//                                            break;
-//                                        case 4:
-//                                            attendsTreadsListView.setAdapter(treadsListViewAdapter4);
-//                                            attendsTreadsListView.setEmptyView(attendsTreadsView.findViewById(R.id.emptyatt));
-//                                            break;
-//                                        case 3:
-//                                            impTreadsListView.setAdapter(treadsListViewAdapter3);
-//                                            impTreadsListView.setEmptyView(impTreadsView.findViewById(R.id.emptyimp));
-//                                            break;
-//                                    }
-//                                    ProgressUtil.hide();
-//                                    if (dialog.isShowing()){
-//                                        dialog.dismiss();
-//                                    }
-//                                }
                             } else {
                                 ToastUtil.showMessage("请检查网络");
                                 ProgressUtil.hide();
@@ -1031,33 +1104,15 @@ public class HomeFragment extends Fragment {
                     ToastUtil.showMessage("连接服务器失败");
                 }
             }
-        }).start();
+        });
+        p.start();
     }
 
-    /**
-     * 点击回复图片按钮时，显示输入框
-     * @param communcationId
-     * @param position
-     */
-    public static void showEdit(String communcationId,int position,String userName){
-
-        replyET.setText("");
-        if (userName == null||userName.equals("")){
-            replyET.setHint("");
-        }else{
-            replyET.setHint(ECApplication.getInstance().getCurrentUser().getName()+"@"+userName);
-        }
-        linear.setVisibility(View.VISIBLE);
-//        InputTools.KeyBoard(replyET,"open");
-        HomeFragment.communcationId = communcationId;
-        HomeFragment.position = position;
-    }
 
     /**
      * 隐藏输入框
      */
     public static void hideEdit(){
-//        InputTools.KeyBoard(replyET,"close");
         linear.setVisibility(View.GONE);
     }
 
@@ -1081,12 +1136,9 @@ public class HomeFragment extends Fragment {
 
     /**
      * 初始化下拉刷新，加载更多
-     * 下拉刷新：配置默认搜索条件（清空当前搜索条件）
-     * 加载更多：
      * @param listView
      */
     public void initXListView(final XListView listView,final int loadIndex){
-//        listView.setPullLoadEnable(false);
         final Handler mHandler = new Handler();
         listView.setXListViewListener(new XListView.IXListViewListener() {
             @Override
@@ -1276,7 +1328,6 @@ public class HomeFragment extends Fragment {
      * 加载更多时调用的方法
      * @param listView
      */
-
     private void onDatasChanged(final XListView listView,final int loadIndex){
         if (getIsLoadMoring(loadIndex)){
             return;
@@ -1328,17 +1379,17 @@ public class HomeFragment extends Fragment {
         if (getStatus(loadIndex).equals("1")){
             return;
         }
-        setLoadMorePager(getLoadMorePager()+1,loadIndex);
-        new ProgressThreadWrap(context, new RunnableWrap() {
+        hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
+        ProgressThreadWrap d  = new ProgressThreadWrap(context,new RunnableWrap() {
             @Override
             public void run() {
-                hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
                 try {
                     String treadsJson = ZddcUtil.getAllTreads(hashMap);
                     final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
                     handler.postDelayed(new Runnable() {
                         public void run() {
                             setStatus(treads.getStatus(),loadIndex);
+                            setLoadMorePager(getLoadMorePager()+1,loadIndex);
                             List<Treads.DataListBean> list = treads.getDataList();
                             if (list != null&&list.size()>0){
                                 switch (loadIndex){
@@ -1412,8 +1463,10 @@ public class HomeFragment extends Fragment {
                     ToastUtil.showMessage("连接服务器失败");
                 }
             }
-        }).start();
+        });
+        d.start();
     }
+
     /**
      * 只有下拉刷新时使用的方法
      * @param startDate
@@ -1430,7 +1483,6 @@ public class HomeFragment extends Fragment {
         }
 
         if (getIsRefshing(index)){
-//            onLoad(listView);
             return;
         }
         setIsRefshing(true,index);
@@ -1497,7 +1549,7 @@ public class HomeFragment extends Fragment {
         }
         hashMap.put("pageNo",new ParameterValue("1"));
         setLoadMorePager(1,index);
-        new ProgressThreadWrap(context, new RunnableWrap() {
+        ProgressThreadWrap p = new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
             public void run() {
                 hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
@@ -1560,11 +1612,6 @@ public class HomeFragment extends Fragment {
                                     break;
                             }
                             setIsRefshing(false,index);
-//                            } else {
-//                                setIsRefshing(false,index);
-//                                onLoad(listView);
-//                                ToastUtil.showMessage("请检查网络");
-//                            }
                         }
                     }, 5);
 
@@ -1573,8 +1620,10 @@ public class HomeFragment extends Fragment {
                     ToastUtil.showMessage("连接服务器失败");
                 }
             }
-        }).start();
+        });
+        p.start();
     }
+
 }
 
 

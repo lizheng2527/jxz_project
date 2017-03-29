@@ -132,6 +132,23 @@ public class ZddcUtil {
 		return getUrlResponse(url, null);
 	}
 
+//	public static HashMap<String,HttpURLConnection> connMap = new HashMap<>();
+
+//	public static boolean removeConnMap(String url) {
+//		Log.w("Zddc_remove_Thread:",url);
+//		if (ZddcUtil.connMap.get(url) != null){
+//			ZddcUtil.connMap.get(url).disconnect();
+//			ZddcUtil.connMap.remove(url);
+//			return true;
+//		}
+//		return false;
+//	}
+//
+//	public static void putConnMap(String url, HttpURLConnection conn) {
+//		Log.w("Zddc_put_Thread:",url);
+//		ZddcUtil.connMap.put(url,conn);
+//	}
+
 	public static String getUrlResponse(String url, Map<String, ParameterValue> map) throws IOException {
 		HttpURLConnection conn = (HttpURLConnection) (new URL(checkUrl(url)).openConnection());
 		conn.setDoInput(true);
@@ -143,9 +160,9 @@ public class ZddcUtil {
 		conn.setInstanceFollowRedirects(true);
 		// header 设置编码
 		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+//		putConnMap(getUrl(url,map),conn);
 		// 连接
 		conn.connect();
-
 		writeParameters(conn, map);
 		if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
 			Log.v("error", "错误的相应代码：" + conn.getResponseCode());
@@ -677,6 +694,7 @@ public class ZddcUtil {
 //		doAccess(ECApplication.getInstance().getLoginUrlMap());
 		return getUrlResponse(checkUrl(SystemConst.DEFAULT_SERVER) + "/il/mobile!communcationList.action", map);
 	}
+	public static String getAllTreadsStr = "/il/mobile!communcationList.action";
 	/**
 	 * 默认获取的工作平台信息
 	 *

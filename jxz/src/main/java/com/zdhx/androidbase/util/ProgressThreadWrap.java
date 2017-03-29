@@ -7,6 +7,7 @@ public class ProgressThreadWrap {
 
 
 	private RunnableWrap runnableWrap;
+	private Thread d;
 
 
 	public ProgressThreadWrap(Context context, RunnableWrap runnableWrap) {
@@ -14,7 +15,7 @@ public class ProgressThreadWrap {
 	}
 
 	public void start() {
-		new Thread(new Runnable() {
+		d = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
@@ -22,6 +23,26 @@ public class ProgressThreadWrap {
 				runnableWrap.run();
 				Looper.loop();
 			}
-		}).start();
+		});
+		d.start();
+	}
+
+	public void stop(){
+//			d.interrupt();
+		if (d != null&&d.isAlive()){
+			while(true){
+				try{
+					synchronized (d)
+					{
+						System.out.println("waiting");
+						d.wait();
+					}
+				}
+				catch(InterruptedException e){
+					e.printStackTrace();
+				}
+			}
+//			d.stop();
+		}
 	}
 }

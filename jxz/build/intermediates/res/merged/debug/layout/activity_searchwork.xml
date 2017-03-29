@@ -292,7 +292,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/greytext"
                 android:textSize="16sp"
-                android:text="审核通过" />
+                android:text="  审核通过" />
             <RadioGroup
                 android:layout_marginLeft="45dp"
                 android:id="@+id/highquality"
@@ -354,7 +354,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/greytext"
                 android:textSize="16sp"
-                android:text="待审核" />
+                android:text="  待审核" />
             <TextView
                 android:visibility="gone"
                 android:layout_width="match_parent"
@@ -371,7 +371,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/greytext"
                 android:textSize="16sp"
-                android:text="审核失败" />
+                android:text="  审核失败" />
             <TextView
                 android:visibility="gone"
                 android:layout_width="match_parent"

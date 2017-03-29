@@ -79,4 +79,7 @@ public final class PreferenceUtil {
 		sp.edit().clear().commit();
 	}
 
+
+
+
 }

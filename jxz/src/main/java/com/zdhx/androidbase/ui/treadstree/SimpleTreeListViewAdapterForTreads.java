@@ -198,9 +198,7 @@ public class SimpleTreeListViewAdapterForTreads<T> extends TreeListViewAdapter<T
 			return;
 		}
 		for (int i = 0; i < node.getParent().getChildren().size(); i++) {
-			boolean b = (TreadsTreeActivity.positionMap.containsKey(node.getParent().getChildren().get(i).getContactId()));
 			if(!(TreadsTreeActivity.positionMap.containsKey(node.getParent().getChildren().get(i).getContactId()))){
-
 				return;
 			}
 		}

@@ -151,7 +151,6 @@ public class ECApplication extends Application {
         if (!dir.exists()){
             dir.mkdir();
         }
-        LogUtil.w(dir.getAbsolutePath());
         return dir.getAbsolutePath();
     }
 

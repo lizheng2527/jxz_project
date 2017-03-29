@@ -443,6 +443,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                 @Override
                                 public void run() {
                                     list.get(i).setBrowse(list.get(i).getBrowse()+1);
+                                    frag.upDateTreads(list.get(i));
                                     notifyDataSetChanged();
                                 }
                             },5);
@@ -713,6 +714,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                                     public void run() {
                                                         vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
                                                         list.get(i).setDown(list.get(i).getDown()+1);
+                                                        frag.upDateTreads(list.get(i));
                                                         notifyDataSetChanged();
                                                     }
                                                 },5);

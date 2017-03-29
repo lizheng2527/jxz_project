@@ -53,6 +53,7 @@ import com.zdhx.androidbase.util.ZddcUtil;
 import com.zdhx.androidbase.util.lazyImageLoader.cache.ImageLoader;
 import com.zdhx.androidbase.view.SimpleDraweeViewCompressed.FrescoUtil;
 import com.zdhx.androidbase.view.dialog.ECAlertDialog;
+import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 
 import java.io.File;
 import java.io.IOException;
@@ -658,7 +659,9 @@ public class TreadsListViewAdapter extends BaseAdapter {
                     ToastUtil.showMessage("已存在该文件");
                     return true;
                 }
-
+                if (list.get(position).getLoading()){
+                    return true;
+                }
                 ECAlertDialog.buildAlert(context, "是否后台下载该附件？", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -701,6 +704,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                             list.get(position).setDown(Integer.parseInt(list.get(position).getDown())+1+"");
                                         }
                                     }
+                                    fragment.upDateTreads(list.get(position));
                                     notifyDataSetChanged();
                                     if (!list.get(position).getUserName().contains(ECApplication.getInstance().getCurrentUser().getName())){
                                         //互动交流下载完附件，工作平台下载量加1（自己上传的不加下载量）
@@ -791,6 +795,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                     public void run() {
                                         vh.praiseImage.setImageResource(R.drawable.button_praise_click);
                                         list.get(position).getPraiseNames().add(ECApplication.getInstance().getCurrentUser().getName());
+                                        fragment.upDateTreads(list.get(position));
                                         notifyDataSetChanged();
                                         ProgressUtil.hide();
                                     }
@@ -839,8 +844,8 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                         @Override
                                         public void run() {
                                             ProgressUtil.hide();
+                                            fragment.removeForDeleteTreads(list.get(position));
                                             list.remove(position);
-                                            fragment.removeForDeleteTreads(HomeFragment.isSelectIndex);
                                             notifyDataSetChanged();
                                         }
                                     },6);
@@ -876,7 +881,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
                 }
             }
         });
-        final Handler handler = new Handler();
         vh.launchOrRetract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -892,6 +896,9 @@ public class TreadsListViewAdapter extends BaseAdapter {
     }
 
     public void initReplyDatas(final HashMap<String,ParameterValue> map,final int position){
+        final ECProgressDialog dialog = new ECProgressDialog(context);
+        dialog.setPressText("正在获取回复内容..");
+        dialog.show();
         new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
             public void run() {
@@ -902,8 +909,11 @@ public class TreadsListViewAdapter extends BaseAdapter {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                //更改回复内容
                                 list.get(position).setChild(treads.getDataList());
                                 list.get(position).setLaunch(true);
+                                fragment.upDateTreads(list.get(position));
+                                dialog.dismiss();
                                 notifyDataSetChanged();
                             }
                         }, 10);
@@ -917,12 +927,13 @@ public class TreadsListViewAdapter extends BaseAdapter {
         }).start();
     }
 
-    public void doPreview(final int position) {
+    private void doPreview(final int position) {
         if (list.get(position).getBrowse().equals("")){
             list.get(position).setBrowse(1+"");
         }else{
             list.get(position).setBrowse(Integer.parseInt(list.get(position).getBrowse())+1+"");
         }
+        fragment.upDateTreads(list.get(position));
         notifyDataSetChanged();
         new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
@@ -944,12 +955,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
         }).start();
     }
     public void doDown(final int position) {
-        if (list.get(position).getDown().equals("")){
-            list.get(position).setDown(1+"");
-        }else{
-            list.get(position).setDown(Integer.parseInt(list.get(position).getDown())+1+"");
-        }
-        notifyDataSetChanged();
+
         new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
             public void run() {
@@ -963,15 +969,23 @@ public class TreadsListViewAdapter extends BaseAdapter {
                 map.putAll(ECApplication.getInstance().getLoginUrlMap());
                 try {
                     ZddcUtil.doPreviewOrDown(map);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (list.get(position).getDown().equals("")){
+                                list.get(position).setDown(1+"");
+                            }else{
+                                list.get(position).setDown(Integer.parseInt(list.get(position).getDown())+1+"");
+                            }
+                            fragment.upDateTreads(list.get(position));
+                            notifyDataSetChanged();
+                        }
+                    },10);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
-    }
-
-    public boolean isMyself(int position){
-        return list.get(position).getUserName().contains(ECApplication.getInstance().getCurrentUser().getName());
     }
 
 
@@ -1182,6 +1196,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                                 list.get(index).setAllReplyCount(list.get(index).getAllReplyCount()-deleteCount);
                                                 deleteCount = 1;
                                                 beans.remove(position);
+                                                fragment.upDateTreads(list.get(index));
                                                 notifyDataSetChanged();
                                             }
                                         },6);
@@ -1206,7 +1221,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
         });
     }
     private int deleteCount = 1;
-//    DownloadAsyncTask.DownloadResponser responser;
     private void resetAllReplyCount(List<Treads.DataListBean> beans) {
         deleteCount += beans.size();
         for (int i = 0; i < beans.size(); i++) {

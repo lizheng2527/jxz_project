@@ -25,7 +25,7 @@
                     android:gravity="center"
                     android:textSize="16sp"
                     android:text="全部"
-                    android:textColor="#444444"/>
+                    android:textColor="@color/dark_gray"/>
                 <TextView
                     android:layout_alignBottom="@id/fragment_home_grid_item_tv"
                     android:id="@+id/fragment_home_grid_item_tvline"

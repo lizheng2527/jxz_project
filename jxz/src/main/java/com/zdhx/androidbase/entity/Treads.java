@@ -56,7 +56,7 @@ public class Treads implements Serializable {
         this.dataList = dataList;
     }
 
-    public static class DataListBean {
+    public static class DataListBean implements Serializable {
         /**
          * child : []
          * id : 20170112173521400998030703271900
@@ -253,7 +253,7 @@ public class Treads implements Serializable {
             this.praiseNames = praiseNames;
         }
 
-        public static class AttachmentBean {
+        public static class AttachmentBean implements Serializable {
             /**
              * type : other
              * iconList : [{"img":"/il/module/teacherPreparation/img/icons/_defaultVedio.png","fileName":"引导页 (2).avi","fileSize":"339.09K","downUrl":"/component/attachment!download.action?checkUser=false&period=&downloadToken=201701121735198065831177922278906210e537ab7425ada8f8cd2430ccb36f&configCode=communcationVideo"}]
@@ -278,7 +278,7 @@ public class Treads implements Serializable {
                 this.iconList = iconList;
             }
 
-            public static class IconListBean {
+            public static class IconListBean implements Serializable {
                 /**
                  * img : /il/module/teacherPreparation/img/icons/_defaultVedio.png
                  * fileName : 引导页 (2).avi
@@ -334,5 +334,7 @@ public class Treads implements Serializable {
             }
         }
     }
+
+
 }
 

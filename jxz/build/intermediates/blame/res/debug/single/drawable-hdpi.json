@@ -80,6 +80,10 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-hdpi\\logo.png"
     },
     {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\icon_back.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-hdpi\\icon_back.png"
+    },
+    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\pull_to_refresh_progress_loading_bar.png",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-hdpi\\pull_to_refresh_progress_loading_bar.png"
     },

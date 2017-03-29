@@ -69,7 +69,7 @@ public class RequestWithCacheGet {
 		Response.Listener<String> netlistener = new Response.Listener<String>() {
 			@Override
 			public void onResponse(String response) {
-				Log.i("Response", response);
+//				Log.i("Response", response);
 				int sizekey = sharedPreferenceskey.getInt(url + STR_SIZE, -1);
 				if (sizekey != -1 && sizekey == response.getBytes().length+ response.hashCode()) {
 					listener.onResponse(NOT_OUTOFDATE);
@@ -100,6 +100,11 @@ public class RequestWithCacheGet {
 		// 清楚缓存FIX ME
 		mContext.getSharedPreferences(SHAREDPREFERENCES_NAME, 0).edit().clear()
 				.commit();
+	}
+
+	public void removeSimpleCache(String url,String json){
+		mContext.getSharedPreferences(SHAREDPREFERENCES_NAME, 0).edit().remove(url).commit();
+		mContext.getSharedPreferences(SHAREDPREFERENCES_NAME, 0).edit().putString(url,json).commit();
 	}
 
 	public interface RequestListener {

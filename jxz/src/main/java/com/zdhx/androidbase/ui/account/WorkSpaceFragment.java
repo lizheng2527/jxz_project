@@ -337,6 +337,58 @@ public class WorkSpaceFragment extends Fragment {
     private ArrayList<WorkSpaceDatasBean.DataListBean> rarDatas = new ArrayList<>();
     private ArrayList<WorkSpaceDatasBean.DataListBean> otherDatas = new ArrayList<>();
 
+    /**
+     * 修改本地对应数据调用的方法
+     * @param bean
+     * @param beans
+     */
+    private void upDataTreadsChild(WorkSpaceDatasBean.DataListBean bean,ArrayList<WorkSpaceDatasBean.DataListBean> beans){
+
+        for (int i = 0; i < beans.size(); i++) {
+            if (beans.get(i).getId().equals(bean.getId())){
+                beans.get(i).setBrowse(bean.getBrowse());
+                beans.get(i).setHighQuantity(bean.getHighQuantity());
+                beans.get(i).setDown(bean.getDown());
+                break;
+            }
+        }
+    }
+
+    /**
+     * 下载、浏览、推优修改对应数据（本地）
+     * @param bean
+     */
+    public void upDateTreads(WorkSpaceDatasBean.DataListBean bean){
+        if (allDatas != null&&allDatas.size()>0&&isSelectPosition != 0){
+            upDataTreadsChild(bean,allDatas);
+        }
+        if (imgDatas != null&&imgDatas.size()>0&&isSelectPosition != 1){
+            upDataTreadsChild(bean,imgDatas);
+        }
+        if (videoDatas != null&&videoDatas.size()>0&&isSelectPosition != 2){
+            upDataTreadsChild(bean,videoDatas);
+        }
+        if (pptDatas != null&&pptDatas.size()>0&&isSelectPosition != 3){
+            upDataTreadsChild(bean,pptDatas);
+        }
+        if (wordDatas != null&&wordDatas.size()>0&&isSelectPosition != 4){
+            upDataTreadsChild(bean,wordDatas);
+        }
+        if (musicDatas != null&&musicDatas.size()>0&&isSelectPosition != 5){
+            upDataTreadsChild(bean,musicDatas);
+        }
+        if (excelDatas != null&&excelDatas.size()>0&&isSelectPosition != 6){
+            upDataTreadsChild(bean,excelDatas);
+        }
+        if (rarDatas != null&&rarDatas.size()>0&&isSelectPosition != 7){
+            upDataTreadsChild(bean,rarDatas);
+        }
+        if (otherDatas != null&&otherDatas.size()>0&&isSelectPosition != 8){
+            upDataTreadsChild(bean,otherDatas);
+        }
+    }
+
+
 
     private String status0 = "0";
     private String status1 = "0";
@@ -1819,6 +1871,7 @@ public class WorkSpaceFragment extends Fragment {
                 list.get(position).setHighQuantity("1");
             }
         }
+        upDateTreads(list.get(position));
         switch (isSelectPosition){
             case 0:
                 allDatas = list;

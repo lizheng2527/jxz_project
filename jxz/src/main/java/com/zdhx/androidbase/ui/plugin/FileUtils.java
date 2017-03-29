@@ -31,6 +31,7 @@ import android.util.Log;
 
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.entity.Treads;
 import com.zdhx.androidbase.util.FileAccessor;
 import com.zdhx.androidbase.util.LogUtil;
 
@@ -41,11 +42,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectOutputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 文件工具类
@@ -55,10 +58,10 @@ public class FileUtils {
 
 
     public void savePicture(Bitmap bitmap) {
-        String path = ECApplication.getInstance().getDownloadJxzDir()+"/share";
-        String name = System.currentTimeMillis()+".jpg";
-        File file = new File(path,name);
-        if(!file.exists()){
+        String path = ECApplication.getInstance().getDownloadJxzDir() + "/share";
+        String name = System.currentTimeMillis() + ".jpg";
+        File file = new File(path, name);
+        if (!file.exists()) {
             file.mkdirs();
         }
         FileOutputStream out;
@@ -67,10 +70,9 @@ public class FileUtils {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
             out.flush();
             out.close();
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();}
-        catch (IOException e) {
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -131,7 +133,7 @@ public class FileUtils {
      */
     public static String getRealPathFromURI(Activity act, Uri contentUri) {
         // can post image
-        String[] proj = { MediaStore.Images.Media.DATA };
+        String[] proj = {MediaStore.Images.Media.DATA};
         Cursor cursor = act.managedQuery(contentUri, proj, // Which columns to
                 // return
                 null, // WHERE clause; which rows to return (all rows)
@@ -140,7 +142,7 @@ public class FileUtils {
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
         String s = cursor.getString(column_index);
-        LogUtil.w("s:"+s);
+        LogUtil.w("s:" + s);
         return s;
     }
 
@@ -177,7 +179,7 @@ public class FileUtils {
                     contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                 }
                 final String selection = "_id=?";
-                final String[] selectionArgs = new String[] { split[1] };
+                final String[] selectionArgs = new String[]{split[1]};
 //                LogUtil.w(getDataColumn(context, contentUri, selection, selectionArgs));
 //                Log.e("PATH:",getDataColumn(context, contentUri, selection, selectionArgs));
                 return getDataColumn(context, contentUri, selection, selectionArgs);
@@ -186,54 +188,50 @@ public class FileUtils {
             // (and
             // general)
 //            LogUtil.w(getDataColumn(context, uri, null, null));
-            Log.e("PATH:",getDataColumn(context, uri, null, null)+"FileUtils类189行");
+            Log.e("PATH:", getDataColumn(context, uri, null, null) + "FileUtils类189行");
             return getDataColumn(context, uri, null, null);
         } else if ("file".equalsIgnoreCase(uri.getScheme())) {// File
             LogUtil.w(uri.getPath());
-            Log.e("PATH:",uri.getPath()+"FileUtils类193行");
+            Log.e("PATH:", uri.getPath() + "FileUtils类193行");
             return uri.getPath();
         }
         LogUtil.w("null");
         return null;
     }
+
     /**
      * Get the value of the data column for this Uri. This is useful for
      * MediaStore Uris, and other file-based ContentProviders.
      *
-     * @param context
-     *            The context.
-     * @param uri
-     *            The Uri to query.
-     * @param selection
-     *            (Optional) Filter used in the query.
-     * @param selectionArgs
-     *            (Optional) Selection arguments used in the query.
+     * @param context       The context.
+     * @param uri           The Uri to query.
+     * @param selection     (Optional) Filter used in the query.
+     * @param selectionArgs (Optional) Selection arguments used in the query.
      * @return The value of the _data column, which is typically a file path.
      */
     public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
         Cursor cursor = null;
         String dataColumn = null;
         final String column = "_data";
-        final String[] projection = { column };
+        final String[] projection = {column};
         try {
             cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
             if (cursor != null && cursor.moveToFirst()) {
                 final int column_index = cursor.getColumnIndexOrThrow(column);
                 dataColumn = cursor.getString(column_index);
-                LogUtil.w("dataColumu"+dataColumn);
+                LogUtil.w("dataColumu" + dataColumn);
                 if (cursor != null)
                     cursor.close();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        LogUtil.w("dataColumu"+dataColumn);
+        LogUtil.w("dataColumu" + dataColumn);
         return dataColumn;
     }
 
     /**
-     * @param uri
-     *            The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is ExternalStorageProvider.
      */
     public static boolean isExternalStorageDocument(Uri uri) {
@@ -241,8 +239,7 @@ public class FileUtils {
     }
 
     /**
-     * @param uri
-     *            The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is DownloadsProvider.
      */
     public static boolean isDownloadsDocument(Uri uri) {
@@ -250,8 +247,7 @@ public class FileUtils {
     }
 
     /**
-     * @param uri
-     *            The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is MediaProvider.
      */
     public static boolean isMediaDocument(Uri uri) {
@@ -260,12 +256,13 @@ public class FileUtils {
 
     /**
      * 打开指定文件夹
+     *
      * @param path
      * @param context
      */
-    public static void openAssignFolder(String path,Context context){
+    public static void openAssignFolder(String path, Context context) {
         File file = new File(path);
-        if(null==file || !file.exists()){
+        if (null == file || !file.exists()) {
             return;
         }
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -281,23 +278,22 @@ public class FileUtils {
     }
 
     /**
-     *
      * @param root
      * @param fileName
      * @return
      */
-    public static String getMD5FileDir(String root , String fileName) {
+    public static String getMD5FileDir(String root, String fileName) {
         // FileAccessor.IMESSAGE_IMAGE + File.separator + FileAccessor.getSecondLevelDirectory(fileNameMD5)+ File.separator;
-        if(TextUtils.isEmpty(root)) {
+        if (TextUtils.isEmpty(root)) {
             return null;
         }
         File file = new File(root);
-        if(!file.exists()) {
+        if (!file.exists()) {
             file.mkdirs();
         }
 
-        File fullPath = new File(file , FileAccessor.getSecondLevelDirectory(fileName));
-        if(!fullPath.exists()) {
+        File fullPath = new File(file, FileAccessor.getSecondLevelDirectory(fileName));
+        if (!fullPath.exists()) {
             fullPath.mkdirs();
         }
         return fullPath.getAbsolutePath();
@@ -306,6 +302,7 @@ public class FileUtils {
 
     /**
      * 转换成单位
+     *
      * @param length
      * @return
      */
@@ -326,6 +323,7 @@ public class FileUtils {
 
     /**
      * 转换成Mb单位
+     *
      * @param length
      * @return
      */
@@ -336,14 +334,15 @@ public class FileUtils {
 
     /**
      * 检查SDCARD是否可写
+     *
      * @return
      */
     public static boolean checkExternalStorageCanWrite() {
         try {
             boolean mouted = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
-            if(mouted) {
+            if (mouted) {
                 boolean canWrite = new File(Environment.getExternalStorageDirectory().getAbsolutePath()).canWrite();
-                if(canWrite) {
+                if (canWrite) {
                     return true;
                 }
             }
@@ -353,37 +352,36 @@ public class FileUtils {
     }
 
 
-
-
     /**
      * 返回文件的图标
+     *
      * @param fileName
      * @return
      */
     public static int getFileIcon(String fileName) {
         String fileType = fileName.toLowerCase();
-        if(isDocument(fileType)) {
+        if (isDocument(fileType)) {
             return R.drawable.attach_file_icon_mailread_doc;
         }
-        if(isPic(fileType)) {
+        if (isPic(fileType)) {
             return R.drawable.attach_file_icon_mailread_img;
         }
 
-        if(isCompresseFile(fileType)) {
+        if (isCompresseFile(fileType)) {
             return R.drawable.attach_file_icon_mailread_zip;
         }
-        if(isTextFile(fileType)) {
+        if (isTextFile(fileType)) {
             return R.drawable.attach_file_icon_mailread_txt;
         }
-        if(isPdf(fileType)) {
+        if (isPdf(fileType)) {
             return R.drawable.attach_file_icon_mailread_pdf;
         }
 
-        if(isPPt(fileType)) {
+        if (isPPt(fileType)) {
             return R.drawable.attach_file_icon_mailread_ppt;
         }
 
-        if(isXls(fileType)) {
+        if (isXls(fileType)) {
             return R.drawable.attach_file_icon_mailread_xls;
         }
 
@@ -392,6 +390,7 @@ public class FileUtils {
 
     /**
      * 是否图片
+     *
      * @param fileName
      * @return
      */
@@ -401,11 +400,12 @@ public class FileUtils {
                 || lowerCase.endsWith(".png")
                 || lowerCase.endsWith(".jpg")
                 || lowerCase.endsWith(".jpeg")
-                || lowerCase .endsWith(".gif");
+                || lowerCase.endsWith(".gif");
     }
 
     /**
      * 是否压缩文件
+     *
      * @param fileName
      * @return
      */
@@ -420,6 +420,7 @@ public class FileUtils {
 
     /**
      * 是否音频
+     *
      * @param fileName
      * @return
      */
@@ -433,6 +434,7 @@ public class FileUtils {
 
     /**
      * 是否文档
+     *
      * @param fileName
      * @return
      */
@@ -440,11 +442,12 @@ public class FileUtils {
         String lowerCase = nullAsNil(fileName).toLowerCase();
         return lowerCase.endsWith(".doc")
                 || lowerCase.endsWith(".docx")
-                || lowerCase .endsWith("wps");
+                || lowerCase.endsWith("wps");
     }
 
     /**
      * 是否Pdf
+     *
      * @param fileName
      * @return
      */
@@ -454,6 +457,7 @@ public class FileUtils {
 
     /**
      * 是否Excel
+     *
      * @param fileName
      * @return
      */
@@ -465,39 +469,42 @@ public class FileUtils {
 
     /**
      * 是否文本文档
+     *
      * @param fileName
      * @return
      */
     public static boolean isTextFile(String fileName) {
         String lowerCase = nullAsNil(fileName).toLowerCase();
         return lowerCase.endsWith(".txt")
-                || lowerCase .endsWith(".rtf");
+                || lowerCase.endsWith(".rtf");
     }
 
     /**
      * 是否Ppt
+     *
      * @param fileName
      * @return
      */
     public static boolean isPPt(String fileName) {
         String lowerCase = nullAsNil(fileName).toLowerCase();
-        return lowerCase.endsWith(".ppt") || lowerCase .endsWith(".pptx");
+        return lowerCase.endsWith(".ppt") || lowerCase.endsWith(".pptx");
     }
 
     /**
      * decode file length
+     *
      * @param filePath
      * @return
      */
     public static int decodeFileLength(String filePath) {
-        if(TextUtils.isEmpty(filePath)) {
+        if (TextUtils.isEmpty(filePath)) {
             return 0;
         }
         File file = new File(filePath);
-        if(!file.exists()) {
+        if (!file.exists()) {
             return 0;
         }
-        return (int)file.length();
+        return (int) file.length();
     }
 
     /**
@@ -505,7 +512,7 @@ public class FileUtils {
      *
      * @param uri
      * @return Extension including the dot("."); "" if there is no extension;
-     *         null if uri was null.
+     * null if uri was null.
      */
     public static String getExtension(String uri) {
         if (uri == null) {
@@ -522,34 +529,32 @@ public class FileUtils {
     }
 
     /**
-     *
      * @param filePath
      * @return
      */
     public static boolean checkFile(String filePath) {
-        if(TextUtils.isEmpty(filePath) || !(new File(filePath).exists())) {
+        if (TextUtils.isEmpty(filePath) || !(new File(filePath).exists())) {
             return false;
         }
         return true;
     }
 
     /**
-     *
      * @param filePath
      * @param seek
      * @param length
      * @return
      */
-    public static byte[] readFlieToByte (String filePath , int seek , int length) {
-        if(TextUtils.isEmpty(filePath)) {
+    public static byte[] readFlieToByte(String filePath, int seek, int length) {
+        if (TextUtils.isEmpty(filePath)) {
             return null;
         }
         File file = new File(filePath);
-        if(!file.exists()) {
+        if (!file.exists()) {
             return null;
         }
-        if(length == -1) {
-            length = (int)file.length();
+        if (length == -1) {
+            length = (int) file.length();
         }
 
         try {
@@ -569,23 +574,24 @@ public class FileUtils {
 
     /**
      * 拷贝文件
+     *
      * @param fileDir
      * @param fileName
      * @param buffer
      * @return
      */
-    public static int copyFile(String fileDir ,String fileName , byte[] buffer) {
-        if(buffer == null) {
+    public static int copyFile(String fileDir, String fileName, byte[] buffer) {
+        if (buffer == null) {
             return -2;
         }
 
         try {
             File file = new File(fileDir);
-            if(!file.exists()) {
+            if (!file.exists()) {
                 file.mkdirs();
             }
             File resultFile = new File(file, fileName);
-            if(!resultFile.exists()) {
+            if (!resultFile.exists()) {
                 resultFile.createNewFile();
             }
             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(
@@ -603,13 +609,14 @@ public class FileUtils {
 
     /**
      * 根据文件名和后缀 拷贝文件
+     *
      * @param fileDir
      * @param fileName
      * @param ext
      * @param buffer
      * @return
      */
-    public static int copyFile(String fileDir ,String fileName , String ext , byte[] buffer) {
+    public static int copyFile(String fileDir, String fileName, String ext, byte[] buffer) {
         return copyFile(fileDir, fileName + ext, buffer);
     }
 
@@ -633,6 +640,7 @@ public class FileUtils {
 
     /**
      * 过滤字符串为空
+     *
      * @param str
      * @return
      */
@@ -642,10 +650,10 @@ public class FileUtils {
         }
         return str;
     }
+
     /**
      * Java文件操作 获取文件扩展名
      * Get the file extension, if no extension or file name
-     *
      */
     public static String getExtensionName(String filename) {
         if ((filename != null) && (filename.length() > 0)) {
@@ -659,12 +667,13 @@ public class FileUtils {
 
     /**
      * 返回文件名
+     *
      * @param pathName
      * @return
      */
     public static String getFilename(String pathName) {
         File file = new File(pathName);
-        if(!file.exists()) {
+        if (!file.exists()) {
             return "";
         }
         return file.getName();
@@ -672,44 +681,42 @@ public class FileUtils {
 
     /**
      * 获取展示手机的所有视频文件
+     *
      * @param context
      * @param extension
      */
-    public static ArrayList<String> getSpecificTypeOfFile(Context context, String[] extension){
-        ArrayList<String > list = new ArrayList<>();
+    public static ArrayList<String> getSpecificTypeOfFile(Context context, String[] extension) {
+        ArrayList<String> list = new ArrayList<>();
         //从外存中获取
-        Uri fileUri= MediaStore.Files.getContentUri("external");
+        Uri fileUri = MediaStore.Files.getContentUri("external");
         //筛选列，这里只筛选了：文件路径和不含后缀的文件名
-        String[] projection=new String[]{
+        String[] projection = new String[]{
                 MediaStore.Files.FileColumns.DATA, MediaStore.Files.FileColumns.TITLE
         };
         //构造筛选语句
-        String selection="";
-        for(int i=0;i<extension.length;i++)
-        {
-            if(i!=0)
-            {
-                selection=selection+" OR ";
+        String selection = "";
+        for (int i = 0; i < extension.length; i++) {
+            if (i != 0) {
+                selection = selection + " OR ";
             }
-            selection=selection+ MediaStore.Files.FileColumns.DATA+" LIKE '%"+extension[i]+"'";
+            selection = selection + MediaStore.Files.FileColumns.DATA + " LIKE '%" + extension[i] + "'";
         }
         //按时间递增顺序对结果进行排序;待会从后往前移动游标就可实现时间递减
-        String sortOrder= MediaStore.Files.FileColumns.DATE_MODIFIED;
+        String sortOrder = MediaStore.Files.FileColumns.DATE_MODIFIED;
         //获取内容解析器对象
-        ContentResolver resolver=context.getContentResolver();
+        ContentResolver resolver = context.getContentResolver();
         //获取游标
-        Cursor cursor=resolver.query(fileUri, projection, selection, null, sortOrder);
-        if(cursor==null)
+        Cursor cursor = resolver.query(fileUri, projection, selection, null, sortOrder);
+        if (cursor == null)
             return null;
         //游标从最后开始往前递减，以此实现时间递减顺序（最近访问的文件，优先显示）
-        if(cursor.moveToLast())
-        {
-            do{
+        if (cursor.moveToLast()) {
+            do {
                 //输出文件的完整路径
-                String data=cursor.getString(0);
+                String data = cursor.getString(0);
                 list.add(data);
                 Log.d("tag", data);
-            }while(cursor.moveToPrevious());
+            } while (cursor.moveToPrevious());
         }
         cursor.close();
         return list;
@@ -717,37 +724,108 @@ public class FileUtils {
 
     /**
      * 获取文件后缀名
+     *
      * @param path
      * @return
      */
-    public static String getStringEndWith (String path){
+    public static String getStringEndWith(String path) {
 
         String[] strs = path.split("\\.");
         for (int i = 0; i < strs.length; i++) {
-            if (i == strs.length-1){
+            if (i == strs.length - 1) {
                 return strs[i];
             }
         }
 
         return null;
     }
+
     /**
      * 获取文件后缀名
+     *
      * @param path
      * @return
      */
-    public static String getStringPathWithoutName (String path){
+    public static String getStringPathWithoutName(String path) {
         StringBuffer sb = new StringBuffer();
         String[] strs = path.split("\\.");
         strs = strs[0].split("/");
         for (int i = 0; i < strs.length; i++) {
-            if (i == strs.length-2){
+            if (i == strs.length - 2) {
                 sb.append(strs[i]);
                 return sb.toString();
-            }else{
-                sb.append(strs[i]+"/");
+            } else {
+                sb.append(strs[i] + "/");
             }
         }
         return null;
     }
+
+    /**
+     * 将集合写入sd卡
+     *
+     * @param fileName 文件名
+     * @param list     集合
+     * @return true 保存成功
+     */
+    public static boolean writeListIntoSDcard(String fileName, List<Treads.DataListBean> list) {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            File sdFile = new File(ECApplication.getInstance().getDownloadJxzDir(), fileName);
+            try {
+                FileOutputStream fos = new FileOutputStream(sdFile);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(list);//写入
+                fos.close();
+                oos.close();
+                return true;
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return false;
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 读取本地缓存的对象文件
+     * @param context
+     * @param fileName
+     * @return
+     */
+//    public static List<Treads.DataListBean> readObjectFromLocal(Context context, String fileName) {
+//        List<Treads.DataListBean> bean;
+//        try {
+//            FileInputStream fis = new FileInputStream(new File(ECApplication.getInstance().getDownloadJxzDir(),fileName));
+//            ObjectInputStream ois = new ObjectInputStream(fis);
+//            bean = (List<Treads.DataListBean>) ois.readObject();
+//            fis.close();
+//            ois.close();
+//            return bean;
+//        } catch (StreamCorruptedException e) {
+//            //Toast.makeText(ShareTencentActivity.this,"出现异常3",Toast.LENGTH_LONG).show();//弹出Toast消息
+//            e.printStackTrace();
+//            return null;
+//        } catch (OptionalDataException e) {
+//            //Toast.makeText(ShareTencentActivity.this,"出现异常4",Toast.LENGTH_LONG).show();//弹出Toast消息
+//            e.printStackTrace();
+//            return null;
+//        } catch (FileNotFoundException e) {
+//            //Toast.makeText(ShareTencentActivity.this,"出现异常5",Toast.LENGTH_LONG).show();//弹出Toast消息
+//            e.printStackTrace();
+//            return null;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        } catch (ClassNotFoundException e) {
+//            //Toast.makeText(ShareTencentActivity.this,"出现异常6",Toast.LENGTH_LONG).show();//弹出Toast消息
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 }

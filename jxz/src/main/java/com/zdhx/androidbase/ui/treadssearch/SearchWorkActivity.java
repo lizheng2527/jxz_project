@@ -411,7 +411,6 @@ public class SearchWorkActivity extends BaseActivity implements DatePickerDialog
 		}
 		startActivityForResult(new Intent(context,ScroTreeActivity.class),WORKTREEACTIVITYCODE);
 	}
-	//	private List<TreeBean> list = new ArrayList<>();
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
