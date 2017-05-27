@@ -60,6 +60,7 @@ class MeListViewAdapter extends BaseAdapter {
         list = new ArrayList<String>();
         list.add("手机号码");
         list.add("修改密码");
+        list.add("我的课堂");
         list.add("问题反馈");
         list.add("设置");
     }
@@ -104,11 +105,14 @@ class MeListViewAdapter extends BaseAdapter {
                 vh.phoneNumber.setVisibility(View.INVISIBLE);
                 break;
             case 2:
-                vh.img.setImageResource(R.drawable.feedback);
                 vh.phoneNumber.setVisibility(View.INVISIBLE);
                 break;
             case 3:
-                vh.img.setImageResource(R.drawable.set_up);
+            vh.img.setImageResource(R.drawable.set_up);
+            vh.phoneNumber.setVisibility(View.INVISIBLE);
+            break;
+            case 4:
+                vh.img.setImageResource(R.drawable.feedback);
                 vh.phoneNumber.setVisibility(View.INVISIBLE);
                 break;
         }

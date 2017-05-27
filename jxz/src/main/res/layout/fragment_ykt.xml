@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:ignore="HardcodedText,DisableBaselineAlignment">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:ignore="HardcodedText,DisableBaselineAlignment" >
+
+        <HorizontalScrollView
+            android:id="@+id/homework_scroll"
+            android:background="@color/list_devider_color"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:scrollbars="none"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <GridView
+                    android:id="@+id/fragment_ykt_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:numColumns="9"
+                    >
+                </GridView>
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/list_devider_color"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/linear_work_lv">
+            <com.zdhx.androidbase.ui.xlistview.XListView
+                android:layout_alignBottom="@+id/homework_scroll"
+                android:id="@+id/fragment_ykt_listview"
+                android:divider="@color/list_divider"
+                android:dividerHeight="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </com.zdhx.androidbase.ui.xlistview.XListView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <FrameLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/c_header_height"
+            >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="全部"
+                android:textColor="@color/dark_gray"
+                android:textSize="25sp"
+                android:background="#0072C6"
+                />
+
+            <com.zdhx.androidbase.view.pagerslidingtab.PagerSlidingTabStrip
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="48dip"
+                android:layout_gravity="bottom"
+                android:background="@color/white"
+                android:fillViewport="false" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/list_devider_color"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/fragment_ykt_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v4.view.ViewPager>
+    </LinearLayout>
+
+</RelativeLayout>

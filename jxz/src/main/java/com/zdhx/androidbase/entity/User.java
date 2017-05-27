@@ -8,6 +8,15 @@ public class User implements Serializable{
 	private String name;
 	private String type;
 	private String displayName;
+//	private String dataSourceName;
+//
+//	public String getDataSourceName() {
+//		return dataSourceName;
+//	}
+//
+//	public void setDataSourceName(String dataSourceName) {
+//		this.dataSourceName = dataSourceName;
+//	}
 
 	public String getLoginName() {
 		return loginName;

@@ -21,13 +21,21 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <com.facebook.drawee.view.SimpleDraweeView
+            <RelativeLayout
                 android:background="@color/light_gray"
-                fresco:roundedCornerRadius="5dp"
-                android:id="@+id/fileHeadImg"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                />
+                android:layout_width="51dp"
+                android:layout_height="51dp">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_centerInParent="true"
+                    android:background="@color/light_gray"
+                    fresco:roundedCornerRadius="5dp"
+                    android:id="@+id/fileHeadImg"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    />
+            </RelativeLayout>
+
+
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -42,7 +50,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.zdhx.androidbase.view.MarqueeTextView
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:background="@null"
+                        android:focusable="false"
                         android:id="@+id/fileTitle"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
@@ -131,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="22"
+                    android:text="0"
                     android:textColor="#555555"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -157,7 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="18"
+                    android:text="0"
                     android:textColor="#555555"
                     android:textSize="12sp" />
             </LinearLayout>

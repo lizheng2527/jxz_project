@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="#ffffff"
+    tools:ignore="HardcodedText,DisableBaselineAlignment" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.zdhx.androidbase.util.RoundCornerImageView
+                android:id="@+id/treachResouseHeadImg"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/teachResouceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:padding="2dp"
+                    android:textSize="15sp"
+                    android:text="名称"
+                    android:textColor="@color/name_blue" />
+
+                <TextView
+                    android:id="@+id/teachResouceDateTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="2dp"
+                    android:text="发送时间"
+                    android:textColor="@color/gray"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:text="(班级显示)"
+                android:visibility="gone"
+                android:textColor="#505050" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1" />
+            <LinearLayout
+                android:visibility="gone"
+                android:background="@drawable/bg_button_white_selector"
+                android:id="@+id/fragment_home_viewpager_listview_item_delete"
+                android:layout_width="40dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:src="@drawable/icon_delete_address" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:visibility="gone"
+            android:autoLink="all"
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:padding="2dp"
+            android:text="[什么什么什么什么什么]"
+            android:textColor="@color/dark_gray"
+            android:layout_marginRight="20dp"
+            android:textSize="15sp" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:visibility="gone"
+            android:id="@+id/simpleImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="55dp"
+            fresco:placeholderImage="@color/light_gray"
+            android:layout_marginTop="5dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:orientation="horizontal">
+            <GridView
+                android:visibility="gone"
+                android:id="@+id/fragment_home_viewpager_listview_item_grid"
+                android:layout_width="260dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="5dp"
+                android:numColumns="3"
+                >
+            </GridView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:clickable="true"
+                android:id="@+id/linearFile"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_button_light_gray_selector"
+                android:orientation="horizontal">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/filehead"
+                    fresco:placeholderImage="@color/light_gray"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="#eeeeee" />
+
+                <LinearLayout
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/filename"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:layout_height="wrap_content"
+                        android:text="文件标题"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/teacherName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="teacherName"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:id="@+id/down_progress_linear"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+                <com.zdhx.androidbase.ui.downloadui.NumberProgressBar
+                    android:id="@+id/amd_progressBar"
+                    style="@style/NumberProgressBar_Default"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    />
+                <TextView
+                    android:id="@+id/cancelDownLoad"
+                    android:background="@drawable/bg_button_white_selector"
+                    android:textColor="@color/name_blue"
+                    android:text="取消"
+                    android:textSize="14sp"
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:autoLink="all"
+            android:layout_marginLeft="55dp"
+            android:id="@+id/outUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:padding="5dp"
+            android:clickable="true"
+            android:visibility="gone"
+            android:textColor="@color/title_color"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:layout_marginLeft="55dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical|right"
+                android:orientation="horizontal">
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <RelativeLayout
+                    android:background="@drawable/bg_button_white_selector"
+                    android:id="@+id/downRel"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+
+                    <ImageButton
+                        android:background="@null"
+                        android:clickable="false"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/downFile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/download" />
+
+                    <TextView
+                        android:visibility="gone"
+                        android:paddingLeft="5dp"
+                        android:gravity="center_vertical"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray"
+                        android:id="@+id/praiseQuantity"
+                        android:textSize="14sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/thumbsupBT1"
+                        android:layout_toEndOf="@+id/thumbsupBT1" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:background="@drawable/bg_button_white_selector"
+                    android:id="@+id/passRel"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+
+                    <ImageButton
+                        android:clickable="false"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/prePass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/good_nor" />
+
+                    <TextView
+                        android:visibility="gone"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:id="@+id/replyCount"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/thumbsupBT"
+                        android:layout_toEndOf="@+id/thumbsupBT" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

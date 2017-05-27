@@ -60,6 +60,7 @@ public class WorkTreeActivity extends BaseActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getTopBarView().setVisibility(View.GONE);
+//		cacheGet = new RequestWithCacheGet(context);
 		back = (ImageView) findViewById(R.id.activity_selectscro_goback);
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -104,12 +105,99 @@ public class WorkTreeActivity extends BaseActivity{
 		}
 
 	}
+//	private RequestWithCacheGet cacheGet;
 
 	private void initTreeDatas() {
 		urlMap.clear();
 		//	跳转到加载教材树
 		if (SearchWorkActivity.eclassOrBooks.equals("books")){
 			ProgressUtil.show(this,"正在加载教材列表..");
+			final HashMap<String,ParameterValue> urlMap = new HashMap<String, ParameterValue>();
+			urlMap.put("userId", new ParameterValue(ECApplication.getInstance().getCurrentUser().getId()));
+			urlMap.putAll(ECApplication.getInstance().getLoginUrlMap());
+//			String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+ZddcUtil.buildChapterTreeStr,urlMap);
+//			String json = cacheGet.getRseponse(url, new RequestWithCacheGet.RequestListener() {
+//				@Override
+//				public void onResponse(String response) {
+//					if (response != null && !response.equals(RequestWithCacheGet.NOT_OUTOFDATE)) {
+//						beans = new Gson().fromJson(response, new TypeToken<List<TreeBean1>>(){}.getType());
+//						for (int i = 0; i < beans.size(); i++) {
+//							treeBean = new TreeBean();
+//							treeBean.setId(beans.get(i).getId());
+//							treeBean.setLabel(beans.get(i).getName());
+//							treeBean.setpId(beans.get(i).getParentId());
+//							treeBean.setContactId(beans.get(i).getId());
+//							treeBean.setType(beans.get(i).getType());
+//							treeList.add(treeBean);
+//						}
+//
+//						try {
+//							simpleAdapter = new SimpleTreeListViewAdapterForSelect<TreeBean>(lv,context,treeList,0);
+//							lv.setAdapter(simpleAdapter);
+//							simpleAdapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener() {
+//								@Override
+//								public void onClick(Node node, int arg0) {
+//									if (node.isLeaf()) {
+//										if (positionMap.containsKey(node.getContactId())) {
+//											positionMap.remove(node.getContactId());
+//											simpleAdapter.removeUperNode(node);
+//										} else {
+//											positionMap.put(node.getContactId(), "true");
+//											simpleAdapter.contentAll(node);
+//										}
+//										simpleAdapter.notifyDataSetChanged();
+//									}
+//								}
+//							});
+//							ProgressUtil.hide();
+//						} catch (IllegalAccessException e) {
+//							e.printStackTrace();
+//						}
+//					}
+//				}
+//
+//			}, new Response.ErrorListener() {
+//				@Override
+//				public void onErrorResponse(VolleyError error) {
+//
+//				}
+//			});
+//			if ((json != null && !json.equals(RequestWithCacheGet.NO_DATA))) {
+//				beans = new Gson().fromJson(json, new TypeToken<List<TreeBean1>>() {
+//				}.getType());
+//				for (int i = 0; i < beans.size(); i++) {
+//					treeBean = new TreeBean();
+//					treeBean.setId(beans.get(i).getId());
+//					treeBean.setLabel(beans.get(i).getName());
+//					treeBean.setpId(beans.get(i).getParentId());
+//					treeBean.setContactId(beans.get(i).getId());
+//					treeBean.setType(beans.get(i).getType());
+//					treeList.add(treeBean);
+//				}
+//				try {
+//					simpleAdapter = new SimpleTreeListViewAdapterForSelect<TreeBean>(lv, context, treeList, 0);
+//					lv.setAdapter(simpleAdapter);
+//					simpleAdapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener() {
+//						@Override
+//						public void onClick(Node node, int arg0) {
+//							if (node.isLeaf()) {
+//								if (positionMap.containsKey(node.getContactId())) {
+//									positionMap.remove(node.getContactId());
+//									simpleAdapter.removeUperNode(node);
+//								} else {
+//									positionMap.put(node.getContactId(), "true");
+//									simpleAdapter.contentAll(node);
+//								}
+//								simpleAdapter.notifyDataSetChanged();
+//							}
+//						}
+//					});
+//					ProgressUtil.hide();
+//				} catch (IllegalAccessException e) {
+//					e.printStackTrace();
+//				}
+
+
 			new ProgressThreadWrap(this, new RunnableWrap() {
 				@Override
 				public void run() {

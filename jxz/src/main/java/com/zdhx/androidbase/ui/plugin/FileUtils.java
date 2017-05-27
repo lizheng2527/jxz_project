@@ -180,22 +180,13 @@ public class FileUtils {
                 }
                 final String selection = "_id=?";
                 final String[] selectionArgs = new String[]{split[1]};
-//                LogUtil.w(getDataColumn(context, contentUri, selection, selectionArgs));
-//                Log.e("PATH:",getDataColumn(context, contentUri, selection, selectionArgs));
                 return getDataColumn(context, contentUri, selection, selectionArgs);
             }
         } else if ("content".equalsIgnoreCase(uri.getScheme())) {// MediaStore
-            // (and
-            // general)
-//            LogUtil.w(getDataColumn(context, uri, null, null));
-            Log.e("PATH:", getDataColumn(context, uri, null, null) + "FileUtils类189行");
             return getDataColumn(context, uri, null, null);
         } else if ("file".equalsIgnoreCase(uri.getScheme())) {// File
-            LogUtil.w(uri.getPath());
-            Log.e("PATH:", uri.getPath() + "FileUtils类193行");
             return uri.getPath();
         }
-        LogUtil.w("null");
         return null;
     }
 
@@ -309,14 +300,14 @@ public class FileUtils {
     public static String formatFileLength(long length) {
         if (length >> 30 > 0L) {
             float sizeGb = Math.round(10.0F * (float) length / 1.073742E+009F) / 10.0F;
-            return sizeGb + " GB";
+            return sizeGb + " G";
         }
         if (length >> 20 > 0L) {
             return formatSizeMb(length);
         }
         if (length >> 9 > 0L) {
             float sizekb = Math.round(10.0F * (float) length / 1024.0F) / 10.0F;
-            return sizekb + " KB";
+            return sizekb + " K";
         }
         return length + " B";
     }
@@ -329,7 +320,7 @@ public class FileUtils {
      */
     public static String formatSizeMb(long length) {
         float mbSize = Math.round(10.0F * (float) length / 1048576.0F) / 10.0F;
-        return mbSize + " MB";
+        return mbSize + " M";
     }
 
     /**

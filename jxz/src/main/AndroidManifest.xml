@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zdhx.androidbase"
-    android:versionCode="107"
-    android:versionName="1.0.7" >
+    android:versionCode="108"
+    android:versionName="1.0.8" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -84,6 +84,12 @@
         <!--查询动态 -->
         <activity android:name=".ui.treadssearch.SearchTreadsActivity"
             android:screenOrientation="portrait"/>
+        <!--查询手写笔记 -->
+        <activity android:name=".ui.ykt.SearchHandWriteActivity"
+            android:screenOrientation="portrait"/>
+        <!--展示教学周 -->
+        <activity android:name=".ui.ykt.ShowWeekActivity"
+            android:screenOrientation="portrait"/>
         <!--查询工作平台资源 -->
         <activity android:name=".ui.treadssearch.SearchWorkActivity"
             android:screenOrientation="portrait"/>
@@ -127,6 +133,8 @@
             android:screenOrientation="portrait"/>
         <!--教师登录动态查询班级树 -->
         <activity android:name=".ui.treadssearch.VideoShowSimpleActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.ykt.HandWriteSelectActivity"
             android:screenOrientation="portrait"/>
         <!-- 分享相关 -->
         <activity

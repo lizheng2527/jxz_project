@@ -43,7 +43,6 @@ import volley.Request;
 import volley.RequestQueue;
 import volley.toolbox.Volley;
 
-//import com.facebook.drawee.backends.pipeline.Fresco;
 
 public class ECApplication extends Application {
     private static ECApplication instance;
@@ -114,11 +113,8 @@ public class ECApplication extends Application {
                 .build();
         Fresco.initialize(this,frescoConfig);
         getFileFromJxz();
-        initEmjoy();
     }
 
-    private void initEmjoy() {
-    }
 
 
     /**
@@ -138,7 +134,6 @@ public class ECApplication extends Application {
                     for (int i = 0; i < files.length; i++) {
                         jxzFiles.add(files[i]);
                         jxzFileNames.add(files[i].getName());
-                        LogUtil.w(jxzFileNames.toString());
                     }
                 }
             }
@@ -179,7 +174,13 @@ public class ECApplication extends Application {
         String address = preferences.getString("address", SystemConst.DEFAULT_SERVER);
         return address;
     }
-
+    private User userForYKT;
+    public User getUserForYKT(){
+        return userForYKT;
+    }
+    public void saveUserInfoForYKT(User user){
+        userForYKT = user;
+    }
     /**
      * 返回配置文件的日志开关
      * @return
@@ -331,16 +332,4 @@ public class ECApplication extends Application {
         }
         System.exit(0);
     }
-
-    /**
-     * 当前用户的请求条件
-     * @return  */
-    public String getUserUrl(){
-        String url = null;
-        if (userInfoMap != null){
-            url = "sys_auto_authenticate=true&sys_username="+getCurrentUserMap().get("sys_username").getValues().get(0)+"&sys_password="+getCurrentUserMap().get("sys_username").getValues().get(0);
-        }
-        return url;
-    }
-
 }

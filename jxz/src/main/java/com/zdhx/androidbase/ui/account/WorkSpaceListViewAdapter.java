@@ -30,9 +30,11 @@ import com.zdhx.androidbase.util.IntentUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.ProgressUtil;
 import com.zdhx.androidbase.util.RunnableWrap;
+import com.zdhx.androidbase.util.SingleMediaScanner;
 import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.ZddcUtil;
 import com.zdhx.androidbase.util.lazyImageLoader.cache.ImageLoader;
+import com.zdhx.androidbase.view.MarqueeTextView;
 import com.zdhx.androidbase.view.dialog.ECAlertDialog;
 import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 
@@ -166,7 +168,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         vh.progressIndexLinear = (LinearLayout) view.findViewById(R.id.down_progress_linear);
         vh.cancelDownLoad = (TextView) view.findViewById(R.id.cancelDownLoad);
 //        标题-----------------------------------------------
-        vh.name = (TextView) view.findViewById(R.id.fileTitle);
+        vh.name = (MarqueeTextView) view.findViewById(R.id.fileTitle);
         vh.name.setText(list.get(i).getName());
 //        文件大小-----------------------------------------------
         vh.size = (TextView) view.findViewById(R.id.fileSize);
@@ -226,19 +228,10 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         if (!dir.exists()){
             dir.mkdir();
         }
-        File file = new File(dir,name);
+        File file = new File(dir,list.get(i).getCreateTime()+name);
         if (file.exists()){
-//            if (!list.get(i).getResourceStyle().equals("7")&&!list.get(i).getResourceStyle().equals("8")){
             vh.btnPreview.setVisibility(View.GONE);
-//                if (!list.get(i).getResourceStyle().equals("7")&&!list.get(i).getResourceStyle().equals("8")&&!list.get(i).getResourceStyle().equals("100")){
             vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
-//                }else{
-//                    vh.downloadImg.setVisibility(View.GONE);
-//                    vh.btnPreview.setVisibility(View.VISIBLE);
-//                }
-//            }else{
-//                vh.downloadImg.setVisibility(View.GONE);
-//            }
         }else{
             vh.downloadImg.setImageResource(R.drawable.download);
         }
@@ -497,16 +490,17 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
+                                        frag.removeForDeleteTreads(list.get(i));
                                         list.remove(i);
                                         ProgressUtil.hide();
                                         notifyDataSetChanged();
-                                        for (int i = 0; i < 9; i++) {
-                                            if (i == WorkSpaceFragment.isSelectPosition){
-                                                frag.setDataChanged(i,false);
-                                            }else{
-                                                frag.setDataChanged(i,true);
-                                            }
-                                        }
+//                                        for (int i = 0; i < 9; i++) {
+//                                            if (i == WorkSpaceFragment.isSelectPosition){
+//                                                frag.setDataChanged(i,false);
+//                                            }else{
+//                                                frag.setDataChanged(i,true);
+//                                            }
+//                                        }
                                     }
                                 },5);
 
@@ -540,7 +534,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                 dialog.setPressText("正在加载资源..");
                 dialog.show();
                 //TODO判断当前下载附件是否存在
-                String name = list.get(i).getName();
+                String name = list.get(i).getCreateTime()+list.get(i).getName();
                 File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
                 File dir = new File(idr+"/jxz");
                 if (!dir.exists()){
@@ -687,13 +681,13 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                 vh.progressBar.setProgress(progress);
                                 vh.downloadImg.setClickable(false);
                             }
-
                             @Override
                             public void downloaded(File file1, int position) {
                                 vh.progressIndexLinear.setVisibility(View.GONE);
                                 if (file1 != null){
-                                    File file = new File(file1.getParent(),list.get(i).getName());
+                                    File file = new File(file1.getParent(),list.get(i).getCreateTime()+list.get(i).getName());
                                     file1.renameTo(file);
+                                    new SingleMediaScanner(context, file);
                                     downCounts = downCounts -1;
                                     list.get(i).setLoading(false);
                                     new ProgressThreadWrap(context, new RunnableWrap() {
@@ -713,8 +707,10 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                                     @Override
                                                     public void run() {
                                                         vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
-                                                        list.get(i).setDown(list.get(i).getDown()+1);
-                                                        frag.upDateTreads(list.get(i));
+                                                        if(!list.get(i).getUserName().equals(ECApplication.getInstance().getCurrentUser().getName())){
+                                                            list.get(i).setDown(list.get(i).getDown()+1);
+                                                            frag.upDateTreads(list.get(i));
+                                                        }
                                                         notifyDataSetChanged();
                                                     }
                                                 },5);
@@ -772,7 +768,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
 
     class ViewHolder{
         private SimpleDraweeView fileHeadImg;//文件头像
-        private TextView name;
+        private MarqueeTextView name;
         private TextView size;
         private TextView userName;
         private TextView createTime;

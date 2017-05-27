@@ -88,6 +88,27 @@
                 android:textColor="#000000"
                 android:textSize="12sp" />
         </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/btn_container_ykt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/btn_ykt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center_horizontal"
+                android:onClick="onTabClicked"
+                android:paddingBottom="2dip"
+                android:paddingTop="8dip"
+                android:scaleType="matrix"
+                android:text="云课堂"
+                android:drawableTop="@drawable/tab_brand_selector"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/btn_container_expense"
@@ -135,9 +156,9 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/btn_container_me"
             android:layout_width="0dp"
-            android:visibility="gone"
             android:layout_height="match_parent"
             android:layout_weight="1" >
 

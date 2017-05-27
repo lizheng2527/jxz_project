@@ -142,7 +142,7 @@
                     android:textSize="18sp"
                     android:layout_centerInParent="true"
                     android:textColor="#ffffff"
-                    android:text="文件选择"/>
+                    android:text="资源发布"/>
                 <ImageView
                     android:id="@+id/search_treads_back"
                     style="?android:attr/buttonStyleSmall"
@@ -178,6 +178,7 @@
         android:layout_alignParentStart="true">
         >
         <include
+            android:id="@+id/seleteFile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             layout="@layout/pop_upfile"/>

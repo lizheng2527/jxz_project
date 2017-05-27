@@ -354,6 +354,49 @@ public class WorkSpaceFragment extends Fragment {
         }
     }
 
+    private void removeBeansForDelete(ArrayList<WorkSpaceDatasBean.DataListBean> beans,WorkSpaceDatasBean.DataListBean bean){
+        for (int i = 0; i < beans.size(); i++) {
+            if (beans.get(i).getId().equals(bean.getId())){
+                beans.remove(i);
+                break;
+            }
+        }
+    }
+
+    /**
+     * 删除本地资源时调用的方法
+     * @param bean
+     */
+    public void removeForDeleteTreads(WorkSpaceDatasBean.DataListBean bean){
+        if (allDatas != null&&allDatas.size()>0&&isSelectPosition != 0){
+            removeBeansForDelete(allDatas,bean);
+        }
+        if (imgDatas != null&&imgDatas.size()>0&&isSelectPosition != 1){
+            removeBeansForDelete(imgDatas,bean);
+        }
+        if (videoDatas != null&&videoDatas.size()>0&&isSelectPosition != 2){
+            removeBeansForDelete(videoDatas,bean);
+        }
+        if (pptDatas != null&&pptDatas.size()>0&&isSelectPosition != 3){
+            removeBeansForDelete(pptDatas,bean);
+        }
+        if (wordDatas != null&&wordDatas.size()>0&&isSelectPosition != 4){
+            removeBeansForDelete(wordDatas,bean);
+        }
+        if (musicDatas != null&&musicDatas.size()>0&&isSelectPosition != 5){
+            removeBeansForDelete(musicDatas,bean);
+        }
+        if (excelDatas != null&&excelDatas.size()>0&&isSelectPosition != 6){
+            removeBeansForDelete(excelDatas,bean);
+        }
+        if (rarDatas != null&&rarDatas.size()>0&&isSelectPosition != 7){
+            removeBeansForDelete(rarDatas,bean);
+        }
+        if (otherDatas != null&&otherDatas.size()>0&&isSelectPosition != 8){
+            removeBeansForDelete(otherDatas,bean);
+        }
+    }
+
     /**
      * 下载、浏览、推优修改对应数据（本地）
      * @param bean

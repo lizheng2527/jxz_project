@@ -67,9 +67,9 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 	// @formatter:off
 	private static final int[] ATTRS = new int[] {
-		android.R.attr.textSize,
-		android.R.attr.textColor
-    };
+			android.R.attr.textSize,
+			android.R.attr.textColor
+	};
 	// @formatter:on
 
 	private LinearLayout.LayoutParams defaultTabLayoutParams;
@@ -253,7 +253,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		}else{
 			img.setVisibility(GONE);
 		}
-        textViewMap.put(position,tv);
+		textViewMap.put(position,tv);
 		addTab(position, view);
 
 	}
@@ -273,7 +273,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		addTab(position, tab);
 
 	}
-	
+
 	private Map<Integer, View> viewMap = new HashMap<Integer, View>();
 	private Map<Integer, TextView> textViewMap = new HashMap<Integer, TextView>();
 
@@ -282,7 +282,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		tab.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				tabClickListener.onTabClick(tab,position);
+				if (tabClickListener != null)
+					tabClickListener.onTabClick(tab,position);
 				pager.setCurrentItem(position);
 			}
 		});
@@ -336,14 +337,14 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 			}
 		}
 		if (textViewMap.size()>0){
-            for (Entry<Integer, TextView> entry : textViewMap.entrySet()) {
-                if (entry.getKey() == position) {
-                    entry.getValue().setTextColor(Color.parseColor("#4cbbda"));
-                } else {
-                    entry.getValue().setTextColor(Color.parseColor("#363636"));
-                }
-            }
-        }
+			for (Entry<Integer, TextView> entry : textViewMap.entrySet()) {
+				if (entry.getKey() == position) {
+					entry.getValue().setTextColor(Color.parseColor("#4cbbda"));
+				} else {
+					entry.getValue().setTextColor(Color.parseColor("#363636"));
+				}
+			}
+		}
 
 		if (tabCount == 0) {
 			return;
@@ -412,9 +413,9 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 		@Override
 		public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-			
+
 			currentPosition = position;
-			
+
 			currentPositionOffset = positionOffset;
 
 			scrollToChild(position, (int) (positionOffset * tabsContainer.getChildAt(position).getWidth()));

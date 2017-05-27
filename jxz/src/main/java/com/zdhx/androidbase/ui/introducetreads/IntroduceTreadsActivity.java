@@ -44,18 +44,18 @@ import com.zdhx.androidbase.ui.plugin.SendFile;
 import com.zdhx.androidbase.ui.treadssearch.MyVideoThumbLoader;
 import com.zdhx.androidbase.ui.treadssearch.UpFileBean;
 import com.zdhx.androidbase.ui.treadssearch.VideoShowSimpleActivity;
+import com.zdhx.androidbase.util.FileUpLoadCallBack;
 import com.zdhx.androidbase.util.InputTools;
 import com.zdhx.androidbase.util.IntentUtil;
-import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
-import com.zdhx.androidbase.util.ProgressUtil;
 import com.zdhx.androidbase.util.RoundCornerImageView;
 import com.zdhx.androidbase.util.RunnableWrap;
+import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.Tools;
 import com.zdhx.androidbase.util.ZddcUtil;
 import com.zdhx.androidbase.view.dialog.ECAlertDialog;
+import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -67,25 +67,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.zdhx.androidbase.ui.account.HomeFragment.position;
 import static java.lang.System.out;
 
 public class IntroduceTreadsActivity extends BaseActivity{
 
-	private RadioGroup impNoticeGroup;
+	public RadioGroup impNoticeGroup;
 
 	private int isImportant = 0;
 
-	private RadioButton impNoticeRadioBtn1;
-	private RadioButton impNoticeRadioBtn2;
+	public RadioButton impNoticeRadioBtn1;
+	public RadioButton impNoticeRadioBtn2;
 	//显示“附件”文字对象
 	private TextView fujianTitle;
 	//显示“图片”文字对象
 	private TextView imgTitle;
 	//图片选择按钮
-	private Button imageBtn;
+	public Button imageBtn;
 	//文件选择按钮
-	private Button fileBtn;
+	public Button fileBtn;
 	//用来展示选择的附件列表
 	private GridView fileGv;
 	//点击选择附件（跳转到自定义文件管理器）
@@ -93,11 +92,11 @@ public class IntroduceTreadsActivity extends BaseActivity{
 	//用来展示文件与图片选择视图
 	private PopupWindow mPop;
 	//展示选择的附件集合
-	private List<File> sendFiles = new ArrayList<File>();
+	public List<File> sendFiles = new ArrayList<>();
 
 	public static final int MAX_IMG_COUNT = 9; // 选择图数量上限
 	//用户选择的图片展示对象（动态）
-	private GridView circleGV;
+	public GridView circleGV;
 	//图片展示集合（动态）
 	private ArrayList<PhotoModel> gridList;
 	//上下文
@@ -107,38 +106,35 @@ public class IntroduceTreadsActivity extends BaseActivity{
 	//动态发送的文字对象
 	private EditText circleET;
 	//发送按钮对象
-	private Button sendNoticeBT;
+	public Button sendNoticeBT;
 	//展示选择的文件集合
-	private List<SendFile> files = new ArrayList<SendFile>();
+	private List<SendFile> files = new ArrayList<>();
 	//动态图片压缩后的存储集合
-	private List<Bitmap> nowBmp = new ArrayList<Bitmap>();
+	private List<Bitmap> nowBmp = new ArrayList<>();
 	//附件数量显示对象
 	private TextView fujianCountTV;
-	//跳转到系统文件管理器
-	private final int FILECODE = 4564;
 	//选择附件的视图（sdcard）
-	private View view;
+	public View view;
 	//附件列表适配器
 	private FileGVAdapter adapterGV = new FileGVAdapter();
 
 	private final int VIDEOCODE = 22;
 
-	private Button backBtn;
+	public Button backBtn;
 
-	private ListView circleLV;
+	public ListView circleLV;
 
 	private TextView videoCountTV;
 
 	private HashMap<String,ParameterValue> map;
 
-	private TextView titleTV;
+	public TextView titleTV;
 
 	private String introduceReply = null;
 
 	private HomeFragment fragment;
 	private String introduceReplyToCommuncationId;
-	private String introduceReplyToUserName;
-//	private int introduceReplyPosition;
+	public String introduceReplyToUserName;
 
 	public static ArrayList<String> fileNames = new ArrayList<>();
 	@Override
@@ -180,14 +176,13 @@ public class IntroduceTreadsActivity extends BaseActivity{
 	}
 
 
-	private String shareContent = null;
-	private boolean isShare = false;
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context = this;
+		dialog = new ECProgressDialog(context);
 		getTopBarView().setVisibility(View.GONE);
 		map = new HashMap<>();
 		circleGV = (GridView)findViewById(R.id.circleGV);
@@ -227,7 +222,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 			}
 		});
 		fileGv.setAdapter(adapterGV);
-		gridList = new ArrayList<PhotoModel>();
+		gridList = new ArrayList<>();
 		gridList.add(null);//动态集合中“null"代表是“加号”图片
 		String path = shareFormOtherProg();
 		if (path != null&&!path.equals("")){
@@ -336,12 +331,13 @@ public class IntroduceTreadsActivity extends BaseActivity{
 	ArrayList<File> imgList = null;
 	ArrayList<File> videoList = null;
 	Handler handler = new Handler();
+	private ECProgressDialog dialog ;
 	public void commitTreads(){
-		ProgressUtil.show(context,"正在上传");
+		dialog.show();
 		map.clear();
 		final String content = circleET.getText().toString();//发表的内容
 		if (gridList != null &&gridList.size()>1){
-			imgList = new ArrayList();
+			imgList = new ArrayList<>();
 			type = 2;
 			if (gridList.size()<9){
 				for (int i = 0; i < gridList.size()-1; i++) {
@@ -364,9 +360,11 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		}
 
 		if (type == 0){//无附件
-			if (content == null||content.length() == 0){
+			if (content.length() == 0){
 				doToast("无上传内容");
-				ProgressUtil.hide();
+				if (dialog.isShowing()){
+					dialog.dismiss();
+				}
 				return;
 			}else{
 				map.put("content",new ParameterValue(content));
@@ -376,148 +374,207 @@ public class IntroduceTreadsActivity extends BaseActivity{
 				map.put("content",new ParameterValue(content));
 			}
 		}
-	if (introduceReply == null){
-		getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
-		new ProgressThreadWrap(context, new RunnableWrap() {
-			@Override
-			public void run() {
-				map.put("type",new ParameterValue(type+""));
-				map.put("status",new ParameterValue(isImportant+""));
-				map.put("userId",new ParameterValue(ECApplication.getInstance().getCurrentUser().getId()));
-				switch (type){
-					case 0:
-						try {
-							map.putAll(ECApplication.getInstance().getLoginUrlMap());
-							ZddcUtil.saveCommucationWithoutFile(map);
-						} catch (IOException e) {
-							e.printStackTrace();
-							ProgressUtil.hide();
-							doToast("网络异常0！");
-						}
-						handler.postDelayed(new Runnable() {
-							@Override
-							public void run() {
-								doToast("上传成功！");
-								ProgressUtil.hide();
-								MainActivity.map.put("IntroduceTreadsIsTrue","true");
-								IntroduceTreadsActivity.this.finish();
-							}
-						},10);
-						break;
-					case 1:
-						try {
-							ZddcUtil.saveCommucation(videoList,ECApplication.getInstance().getLoginUrlMap(),map);
-						} catch (IOException e) {
-							e.printStackTrace();
-							ProgressUtil.hide();
-							doToast("网络异常1！");
-						}
-						handler.postDelayed(new Runnable() {
-							@Override
-							public void run() {
-								doToast("上传成功！");
-								MainActivity.map.put("IntroduceTreadsIsTrue","true");
-								ProgressUtil.hide();
-								IntroduceTreadsActivity.this.finish();
-							}
-						},10);
-						break;
-					case 2:
-						try {
-							ZddcUtil.saveCommucation(imgList,ECApplication.getInstance().getLoginUrlMap(),map);
-						} catch (IOException e) {
-							e.printStackTrace();
-							ProgressUtil.hide();
-							doToast("网络异常2！");
-						}
-						handler.postDelayed(new Runnable() {
-							@Override
-							public void run() {
-								doToast("上传成功！");
-								MainActivity.map.put("IntroduceTreadsIsTrue","true");
-								ProgressUtil.hide();
-								IntroduceTreadsActivity.this.finish();
-							}
-						},10);
-						break;
-				}
+		if (introduceReply == null){
+			if (ECApplication.getInstance().getAddress().equals("http://117.117.217.19/dc")){
+				getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
 			}
-
-		}).start();
-	}else{
-
-		new ProgressThreadWrap(context, new RunnableWrap() {
-			@Override
-			public void run() {
-				map.put("content",new ParameterValue(content));
-				if (introduceReplyToCommuncationId != null&&!"".equals(introduceReplyToCommuncationId)){
-					map.put("communcationId",new ParameterValue(introduceReplyToCommuncationId));
-				}else{
-					map.put("communcationId",new ParameterValue(communcationId));
-				}
-				switch (type){
-					//无附件回复
-					case 0:
-						map.put("uploadFiles",new ParameterValue(new ArrayList<File>()));
-						map.put("uploadFileNames",new ParameterValue(""));
-						map.putAll(ECApplication.getInstance().getLoginUrlMap());
-						try {
-							String json = ZddcUtil.doReply(map);
-							JSONObject j = new JSONObject(json);
-							final String newId = j.getString("id");
-							final String userName = j.getString("userName");
-
+			new ProgressThreadWrap(context, new RunnableWrap() {
+				@Override
+				public void run() {
+					map.put("type",new ParameterValue(type+""));
+					map.put("status",new ParameterValue(isImportant+""));
+					map.put("userId",new ParameterValue(ECApplication.getInstance().getCurrentUser().getId()));
+					switch (type){
+						case 0:
+							try {
+								dialog.setPressText("正在发送..");
+								map.putAll(ECApplication.getInstance().getLoginUrlMap());
+								ZddcUtil.saveCommucationWithoutFile(map);
+							} catch (IOException e) {
+								e.printStackTrace();
+								if (dialog.isShowing()){
+									dialog.dismiss();
+								}
+								doToast("网络异常0！");
+							}
 							handler.postDelayed(new Runnable() {
 								@Override
 								public void run() {
-									if (introduceReplyToCommuncationId != null&&!"".equals(introduceReplyToCommuncationId)){
-										fragment.resetTreadsDatas(introduceReplyToCommuncationId,content, HomeFragment.position,newId,userName,null);
-									}else{
-										fragment.resetTreadsDatas(communcationId,content, HomeFragment.position,newId,userName,null);
+									doToast("上传成功！");
+									if (dialog.isShowing()){
+										dialog.dismiss();
 									}
-									fragment.setReplyName(null);
-									ProgressUtil.hide();
+									MainActivity.map.put("IntroduceTreadsIsTrue","true");
 									IntroduceTreadsActivity.this.finish();
 								}
-							},5);
+							},10);
+							break;
+						case 1:
+							try {
+								ZddcUtil.saveCommucation(videoList, ECApplication.getInstance().getLoginUrlMap(), map, new FileUpLoadCallBack() {
+									@Override
+									public void upLoadProgress(final int fileCount, final int currentIndex, int currentProgress, final int allProgress) {
+										handler.postDelayed(new Runnable() {
+											@Override
+											public void run() {
+												if(100 == allProgress) {
+													dialog.setPressText("附件上传完成,正在发送");
+												} else {
+													dialog.setPressText("正在上传附件(" + (currentIndex + 1) + "/"+ fileCount + ") 总进度:" + allProgress + "%");
+												}
+											}
 
-						} catch (IOException e) {
-							e.printStackTrace();
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
-						break;
-					//有图片
-					case 2:
+										},1);
+									}
+								});
+							} catch (IOException e) {
+								e.printStackTrace();
+								if (dialog.isShowing()){
+									dialog.dismiss();
+								}
+								doToast("网络异常1！");
+							}
+							handler.postDelayed(new Runnable() {
+								@Override
+								public void run() {
+									doToast("上传成功！");
+									MainActivity.map.put("IntroduceTreadsIsTrue","true");
+									if (dialog.isShowing())
+										dialog.dismiss();
+									IntroduceTreadsActivity.this.finish();
+								}
+							},10);
+							break;
+						case 2:
+							try {
+								ZddcUtil.saveCommucation(imgList, ECApplication.getInstance().getLoginUrlMap(), map, new FileUpLoadCallBack() {
+									@Override
+									public void upLoadProgress(final int fileCount, final int currentIndex, int currentProgress, final int allProgress) {
+										handler.postDelayed(new Runnable() {
+											@Override
+											public void run() {
+												if(100 == allProgress) {
+													dialog.setPressText("附件上传完成,正在发送");
+												} else {
+													dialog.setPressText("正在上传附件(" + (currentIndex + 1) + "/"+ fileCount + ") 总进度:" + allProgress + "%");
+												}
+											}
+
+										},1);
+									}
+								});
+							} catch (IOException e) {
+								e.printStackTrace();
+								if (dialog.isShowing()){
+									dialog.dismiss();
+								}
+								doToast("网络异常2！");
+							}
+							handler.postDelayed(new Runnable() {
+								@Override
+								public void run() {
+									doToast("上传成功！");
+									MainActivity.map.put("IntroduceTreadsIsTrue","true");
+									if (dialog.isShowing()){
+										dialog.dismiss();
+									}
+									IntroduceTreadsActivity.this.finish();
+								}
+							},10);
+							break;
+					}
+				}
+
+			}).start();
+		}else{
+
+			new ProgressThreadWrap(context, new RunnableWrap() {
+				@Override
+				public void run() {
+					map.put("content",new ParameterValue(content));
+					if (introduceReplyToCommuncationId != null&&!"".equals(introduceReplyToCommuncationId)){
+						map.put("communcationId",new ParameterValue(introduceReplyToCommuncationId));
+					}else{
+						map.put("communcationId",new ParameterValue(communcationId));
+					}
+					switch (type){
+						//无附件回复
+						case 0:
+							map.put("uploadFiles",new ParameterValue(new ArrayList<File>()));
+							map.put("uploadFileNames",new ParameterValue(""));
+							map.putAll(ECApplication.getInstance().getLoginUrlMap());
+							try {
+								String json = ZddcUtil.doReply(map);
+								JSONObject j = new JSONObject(json);
+								final String newId = j.getString("id");
+								final String userName = j.getString("userName");
+
+								handler.postDelayed(new Runnable() {
+									@Override
+									public void run() {
+										if (introduceReplyToCommuncationId != null&&!"".equals(introduceReplyToCommuncationId)){
+											fragment.resetTreadsDatas(introduceReplyToCommuncationId,content, HomeFragment.position,newId,userName,null);
+										}else{
+											fragment.resetTreadsDatas(communcationId,content, HomeFragment.position,newId,userName,null);
+										}
+										fragment.setReplyName();
+//										ProgressUtil.hide();
+										if (dialog.isShowing()){
+											dialog.dismiss();
+										}
+										IntroduceTreadsActivity.this.finish();
+									}
+								},5);
+
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							break;
+						//有图片
+						case 2:
 //						map.put("uploadFiles",new ParameterValue(new ArrayList<File>()));
 //						map.put("uploadFileNames",new ParameterValue(""));
-						map.putAll(ECApplication.getInstance().getLoginUrlMap());
-						try {
-							String json = ZddcUtil.doReplyWithFiles(imgList,ECApplication.getInstance().getLoginUrlMap(),map);
-							JSONObject j = new JSONObject(json);
-							final String newId = j.getString("id");
-							final String userName = j.getString("userName");
+							map.putAll(ECApplication.getInstance().getLoginUrlMap());
+							try {
+								String json = ZddcUtil.doReplyWithFiles(imgList, ECApplication.getInstance().getLoginUrlMap(), map, new FileUpLoadCallBack() {
+									@Override
+									public void upLoadProgress(final int fileCount, final int currentIndex, int currentProgress, final int allProgress) {
+										handler.postDelayed(new Runnable() {
+											@Override
+											public void run() {
+												if(100 == allProgress) {
+													dialog.setPressText("附件上传完成,正在发送");
+												} else {
+													dialog.setPressText("正在上传附件(" + (currentIndex + 1) + "/"+ fileCount + ") 总进度:" + allProgress + "%");
+												}
+											}
 
-							handler.postDelayed(new Runnable() {
-								@Override
-								public void run() {
-									fragment.resetTreadsDatas(communcationId,content, position,newId,userName,imgList);
-//									fragment.setReplyName(null);
-									ProgressUtil.hide();
-									IntroduceTreadsActivity.this.finish();
-								}
-							},5);
+										},1);
+									}
+								});
+								JSONObject j = new JSONObject(json);
+								final String newId = j.getString("id");
+								final String userName = j.getString("userName");
 
-						} catch (IOException e) {
-							e.printStackTrace();
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
-						break;
+								handler.postDelayed(new Runnable() {
+									@Override
+									public void run() {
+										fragment.resetTreadsDatas(communcationId,content, HomeFragment.position,newId,userName,imgList);
+										if (dialog.isShowing()){
+											dialog.dismiss();
+										}
+										IntroduceTreadsActivity.this.finish();
+									}
+								},5);
+
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							break;
+					}
 				}
-			}
-		}).start();
-	}
+			}).start();
+		}
 
 	}
 	private String communcationId = null;
@@ -530,8 +587,8 @@ public class IntroduceTreadsActivity extends BaseActivity{
 	 * 初始化上传附件的视图（视频、图片）
 	 */
 	private void initPopMenu() {
-		view = context.getLayoutInflater().inflate(
-				R.layout.pop_sendnotice_fujian, null);
+
+		view = View.inflate(context,R.layout.pop_sendnotice_fujian,null);
 		if (mPop == null) {
 			mPop = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT,
 					ViewGroup.LayoutParams.WRAP_CONTENT, true);
@@ -572,7 +629,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 	private ListViewAdapter listViewAdapter;
 	//选择的文件展示的标题集合
-	private List<UpFileBean> upFileBeens = new ArrayList<UpFileBean>();
+	private List<UpFileBean> upFileBeens = new ArrayList<>();
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -604,14 +661,14 @@ public class IntroduceTreadsActivity extends BaseActivity{
 			return ;
 		}
 //		********从相册管理器结束**********************************************************************************************
-		/**
-		 * 从系统相册回来
-		 */
 		if (requestCode == 0 && resultCode == RESULT_OK) {
 			if (data != null && data.getExtras() != null) {
 				@SuppressWarnings("unchecked")
 				List<PhotoModel> photos = (List<PhotoModel>) data.getExtras()
 						.getSerializable("photos");
+				if (photos == null){
+					return;
+				}
 				for (int i = 0; i < gridList.size(); i++) {
 					if (gridList.get(i) == null) {
 						gridList.remove(i);
@@ -683,7 +740,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 	/**
 	 * 从动态集合、附件集合中移除一个对象
-	 * @param position
+	 * @param position = 删除的下标
 	 */
 	public void remove(int position) {
 		gridList.remove(position);
@@ -707,21 +764,6 @@ public class IntroduceTreadsActivity extends BaseActivity{
 //		}
 		System.gc();
 	}
-	/**
-	 * 判断文件是否没有添加
-	 * @param path
-	 * @return
-	 */
-	private boolean isFileNotHas(String path){
-		for (SendFile f : files) {
-			if(f.getKind() == SendFile.FILE) {
-				if (f.getFile().getAbsolutePath().equals(path)) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
 
 	/**
 	 * 获取添加附件的数量
@@ -732,7 +774,8 @@ public class IntroduceTreadsActivity extends BaseActivity{
 			fujianTitle.setVisibility(View.GONE);
 		} else {
 			fujianCountTV.setVisibility(View.VISIBLE);
-			fujianCountTV.setText(files.size()+"");
+			String text = files.size()+"";
+			fujianCountTV.setText(text);
 			fujianTitle.setVisibility(View.VISIBLE);
 		}
 	}
@@ -740,9 +783,9 @@ public class IntroduceTreadsActivity extends BaseActivity{
 	/**
 	 * 展示附件的适配器
 	 */
-	class FileGVAdapter extends BaseAdapter {
+	private class FileGVAdapter extends BaseAdapter {
 
-		public FileGVAdapter() {
+		FileGVAdapter() {
 			super();
 		}
 
@@ -763,7 +806,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 		@Override
 		public View getView(final int position, View convertView,ViewGroup parent) {
-			Holder holder = null;
+			Holder holder ;
 			if (convertView == null) {
 				holder = new Holder();
 				convertView = View.inflate(context, R.layout.gv_item_file,null);
@@ -831,19 +874,19 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		/**
 		 * 从本地加载图片
 		 *
-		 * @param path
-		 * @return
+		 * @param path = 路径
+		 * @return 路径
 		 */
-		public Bitmap loadImageFromLocal(String path) {
+		private Bitmap loadImageFromLocal(String path) {
 			return BitmapFactory.decodeFile(path);
 		}
 	}
 	/**
 	 * 展示动态图片的适配器
 	 */
-	class ImageGVAdapter extends BaseAdapter {
+	private class ImageGVAdapter extends BaseAdapter {
 
-		public ImageGVAdapter() {
+		ImageGVAdapter() {
 			super();
 		}
 
@@ -864,7 +907,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 		@Override
 		public View getView(int position, View view, ViewGroup viewGroup) {
-			Holder holder = null;
+			Holder holder ;
 			if (view == null) {
 				holder = new Holder();
 				view = View.inflate(context, R.layout.gv_item_image,
@@ -891,8 +934,8 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 		/**
 		 * 添加增加图片和删除图片的点击事件
-		 * @param holder
-		 * @param position
+		 * @param holder = 点击事件封装的viewholder
+		 * @param position = 下标
 		 */
 		private void addListener(Holder holder, final int position) {
 
@@ -900,9 +943,8 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 				@Override
 				public void onClick(View arg0) {
-					if (position == gridList.size() - 1) {
+					if (position != gridList.size() - 1) {
 
-					} else {
 						remove(position);
 						for (int i = 0; i < gridList.size(); i++) {
 							if (gridList.get(i) == null) {
@@ -943,7 +985,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 							adapter.notifyDataSetChanged();
 						}
 					} else {
-						List<PhotoModel> nowPhoto = new ArrayList<PhotoModel>();
+						List<PhotoModel> nowPhoto = new ArrayList<>();
 						nowPhoto.add(gridList.get(position));
 						Bundle bundle = new Bundle();
 						bundle.putSerializable("photos",
@@ -960,9 +1002,9 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		}
 	}
 
-	class ListViewAdapter extends BaseAdapter{
+	private class ListViewAdapter extends BaseAdapter{
 
-		public ListViewAdapter() {
+		ListViewAdapter() {
 			if (upFileBeens == null)
 				upFileBeens = new ArrayList<>();
 		}
@@ -984,7 +1026,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			ViewHolder vh = null;
+			ViewHolder vh;
 			if (convertView == null){
 				vh = new ViewHolder();
 				convertView = View.inflate(context,R.layout.upfile_listview_item,null);
@@ -1072,46 +1114,42 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				final String name = ((EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText))).getText().toString();
-				if (name == null&&name.equals("")){
-					doToast("标题不能为空！");
+				if (buildAlert.getWindow() == null){
+					ToastUtil.showMessage("系统错误...");
 					return;
+				}
+				final String name = ((EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText))).getText().toString();
+				if (name.equals("")){
+					doToast("标题不能为空！");
 				}else{
 					//选中要修改的文件地址
 					String selectUrl = upFileBeens.get(position).getAbsolutePath();
 					File file = new File(selectUrl);
 					String oldPath = file.getPath();
 					String lastStr = FileUtils.getExtensionName(file.getName());
-					if (name != null&&!name.equals("")){
-						String newFileUrl = file.getAbsolutePath().replace(file.getName(),name)+"."+lastStr;
-						File newFile = new File(newFileUrl);
-						if (fileNames.contains(newFile.getName())){
-							doToast("该文件名已存在！");
-							return;
-						}
-						boolean isSuccess = file.renameTo(newFile);
-						if (isSuccess){
-							UpFileBean newBean = new UpFileBean();
-							newBean.setFileSize(FileUtils.formatFileLength(newFile.length()));
-							newBean.setIndex(upFileBeens.get(position).getIndex());
-							newBean.setTitle(newFile.getName());
-							newBean.setUserName(ECApplication.getInstance().getCurrentUser().getName());
-							newBean.setPath(oldPath);
-							newBean.setAbsolutePath(newFile.getAbsolutePath());
-							upFileBeens.remove(position);
-							upFileBeens.add(newBean);
-							dealwithMediaScanIntentData(newFile.getAbsolutePath());
-							listViewAdapter.notifyDataSetChanged();
-							MyVideoThumbLoader.getMyVideoThumbLoader().showThumbByAsynctack(newBean.getAbsolutePath(),vh.img);
-						}else{
-							doToast("修改失败");
-							return;
-						}
-					}else{
-						doToast("请输入新名称..");
+					String newFileUrl = file.getAbsolutePath().replace(file.getName(),name)+"."+lastStr;
+					File newFile = new File(newFileUrl);
+					if (fileNames.contains(newFile.getName())){
+						doToast("该文件名已存在！");
 						return;
 					}
-					LogUtil.w("选中文件的后缀："+lastStr);
+					boolean isSuccess = file.renameTo(newFile);
+					if (isSuccess){
+						UpFileBean newBean = new UpFileBean();
+						newBean.setFileSize(FileUtils.formatFileLength(newFile.length()));
+						newBean.setIndex(upFileBeens.get(position).getIndex());
+						newBean.setTitle(newFile.getName());
+						newBean.setUserName(ECApplication.getInstance().getCurrentUser().getName());
+						newBean.setPath(oldPath);
+						newBean.setAbsolutePath(newFile.getAbsolutePath());
+						upFileBeens.remove(position);
+						upFileBeens.add(newBean);
+						dealwithMediaScanIntentData(newFile.getAbsolutePath());
+						listViewAdapter.notifyDataSetChanged();
+						MyVideoThumbLoader.getMyVideoThumbLoader().showThumbByAsynctack(newBean.getAbsolutePath(),vh.img);
+					}else{
+						doToast("修改失败");
+					}
 				}
 			}
 		});
@@ -1119,6 +1157,10 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		buildAlert.setCanceledOnTouchOutside(false);
 		buildAlert.setContentView(R.layout.config_dcaddress_dialog);
 		String server = upFileBeens.get(position).getTitle();
+		if (buildAlert.getWindow() == null){
+			ToastUtil.showMessage("系统错误...");
+			return;
+		}
 		final EditText editText = (EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText));
 		TextView delectTV = (TextView) buildAlert.getWindow().findViewById(R.id.delectTV);
 		delectTV.setOnClickListener(new View.OnClickListener() {

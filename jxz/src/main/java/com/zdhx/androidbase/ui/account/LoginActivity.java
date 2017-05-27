@@ -10,6 +10,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -73,6 +75,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     private List<String> userNameList;
 
+    private boolean isOK = false;
+
     @Override
     protected int getLayoutId() {
 
@@ -127,6 +131,22 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 String key = etxt_username.getText().toString();
                 etxt_pwd.setText(ECApplication.getInstance().getUserValue(key).getPassWord());
 //                etxt_pwd.setText("");
+            }
+        });
+        etxt_username.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                etxt_pwd.setText("");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
@@ -196,7 +216,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     private void login() {
 
-        ProgressUtil.show(context,"正在登陆..");
+        ProgressUtil.show(context,"正在登录..");
 
         if (StringUtil.isBlank(getStringByUI(etxt_username))) {
             doToast("用户名不能为空  ");
@@ -207,8 +227,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             return;
         }
         loginMap = new HashMap<String, ParameterValue>();
-        loginMap.put("loginName", new ParameterValue(getStringByUI(etxt_username)));
-        loginMap.put("password", new ParameterValue(getStringByUI(etxt_pwd)));
+        loginMap.put("loginName", new ParameterValue(getStringByUI(etxt_username).trim()));
+        loginMap.put("password", new ParameterValue(getStringByUI(etxt_pwd).trim()));
+
+
         userInfoMap.put("sys_auto_authenticate", new ParameterValue("true"));
         userInfoMap.put("sys_username", new ParameterValue(getStringByUI(etxt_username)));
         userInfoMap.put("sys_password", new ParameterValue(getStringByUI(etxt_pwd)));
@@ -230,31 +252,34 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                             ECApplication.getInstance().setLoginUrlMap("sys_auto_authenticate", new ParameterValue("true"));
                             ECApplication.getInstance().setLoginUrlMap("sys_username", new ParameterValue(getStringByUI(etxt_username)));
                             ECApplication.getInstance().setLoginUrlMap("sys_password", new ParameterValue(getStringByUI(etxt_pwd)));
+                            //如果不是二毛学校，显示学乐堂（云课堂）二毛无学乐堂
+                            if (!"http://117.117.217.19/dc".equals(ECApplication.getInstance().getAddress())){
+                                ECApplication.getInstance().saveUserInfoForYKT(userInfos);
+                            }
+                        }
+                        String userAuth = null;
+                        try {
+                            userAuth = ZddcUtil.getUserAuth(ECApplication.getInstance().getLoginUrlMap());
+                            if (userAuth.length() != 0){
+                                if (userAuth.contains("yes")){
+                                    ECApplication.getInstance().setUserAuth("yes");
+                                }
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
                     }
                     handler.postDelayed(new Runnable() {
                         public void run() {
-                            ProgressUtil.hide();
                             if (loginJson.contains("true")) {
-                                startActivity(new Intent(context, MainActivity.class));
-                                new ProgressThreadWrap(context, new RunnableWrap() {
-                                    @Override
-                                    public void run() {
-                                        String userAuth = null;
-                                        try {
-                                            userAuth = ZddcUtil.getUserAuth(ECApplication.getInstance().getLoginUrlMap());
-                                            if (userAuth.length() != 0){
-                                                if (userAuth.contains("yes")){
-                                                    ECApplication.getInstance().setUserAuth("yes");
-                                                }
-                                            }
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                }).start();
-                                finish();
+//                                while (isOK){
+                                    ProgressUtil.hide();
+                                    startActivity(new Intent(context, MainActivity.class));
+                                    LoginActivity.this.finish();
+//                                    break;
+//                                }
                             } else {
+                                ProgressUtil.hide();
                                 ToastUtil.showMessage("账号或密码错误");
                             }
                         }

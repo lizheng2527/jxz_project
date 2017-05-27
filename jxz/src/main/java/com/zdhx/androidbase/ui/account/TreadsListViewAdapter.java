@@ -890,15 +890,17 @@ public class TreadsListViewAdapter extends BaseAdapter {
                 HashMap<String,ParameterValue> map = new HashMap<String, ParameterValue>();
                 map.put("commucationId",new ParameterValue(list.get(position).getId()));
                 map.putAll(ECApplication.getInstance().getLoginUrlMap());
-                initReplyDatas(map,position);
+                initReplyDatas("TreadsListViewAdapter",map,position);
             }
         });
     }
 
-    public void initReplyDatas(final HashMap<String,ParameterValue> map,final int position){
+    public void initReplyDatas(String from,final HashMap<String,ParameterValue> map,final int position){
         final ECProgressDialog dialog = new ECProgressDialog(context);
         dialog.setPressText("正在获取回复内容..");
-        dialog.show();
+        if (from.equals("HomeFragment")){
+            dialog.show();
+        }
         new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
             public void run() {
@@ -913,7 +915,9 @@ public class TreadsListViewAdapter extends BaseAdapter {
                                 list.get(position).setChild(treads.getDataList());
                                 list.get(position).setLaunch(true);
                                 fragment.upDateTreads(list.get(position));
-                                dialog.dismiss();
+                                if (dialog.isShowing()){
+                                    dialog.dismiss();
+                                }
                                 notifyDataSetChanged();
                             }
                         }, 10);
@@ -969,7 +973,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
                 map.putAll(ECApplication.getInstance().getLoginUrlMap());
                 try {
                     ZddcUtil.doPreviewOrDown(map);
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             if (list.get(position).getDown().equals("")){

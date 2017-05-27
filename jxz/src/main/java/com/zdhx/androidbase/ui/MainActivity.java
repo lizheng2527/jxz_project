@@ -72,6 +72,8 @@ import com.zdhx.androidbase.ui.treadssearch.SearchWorkActivity;
 import com.zdhx.androidbase.ui.treadssearch.UpFileActivity;
 import com.zdhx.androidbase.ui.treelistview.bean.TreeBean;
 import com.zdhx.androidbase.ui.xlistview.XListView;
+import com.zdhx.androidbase.ui.ykt.SearchHandWriteActivity;
+import com.zdhx.androidbase.ui.ykt.YKTFragment;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.ProgressUtil;
 import com.zdhx.androidbase.util.StringUtil;
@@ -94,13 +96,12 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	private WorkSpaceFragment workSpaceFragment;
 	//我的
 	private MeFragment meFragment;
+	//云课堂
+	private YKTFragment yktFragment;
 	//积分
 	private ScroFragment scroFragment;
 
 	public static MainActivity act;
-
-
-
 
 
 	private Fragment[] fragments;
@@ -147,6 +148,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	private final int SEARCHWORKCODE = 3;
 	//跳转到搜索工作平台资源请求码
 	private final int UPFILEACTIVITYCODE = 4;
+	//跳转到搜索手写笔记
+	private final int SEARCHHANDWRITECODE = 5;
 
 	//用来承接互动交流和工作平台菜单显示的过度变量
 	private int indexForMenu;
@@ -256,7 +259,10 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		act = this;
 		requestBasicPermission();
 		getTopBarView().setVisibility(View.GONE);
-		getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
+		//只有二毛学校调用统计接口
+		if (ECApplication.getInstance().getAddress().equals("http://117.117.217.19/dc")){
+			getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
+		}
 		initLauncherUIView();
 	}
 
@@ -287,6 +293,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		}else{
 			menuTitleForSecond = "教师引导";
 		}
+
+
 		selectBatchLinear = (LinearLayout) findViewById(R.id.fragment_selectbatch);
 		selectTure = (TextView) findViewById(R.id.selectTure);
 		selectCancel = (TextView) findViewById(R.id.selectCancel);
@@ -295,13 +303,15 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		workSpaceFragment = new WorkSpaceFragment();
 		meFragment = new MeFragment();
 		scroFragment = new ScroFragment();
-		fragments = new Fragment[] { homeFragment, workSpaceFragment,scroFragment, meFragment };
+		yktFragment = new YKTFragment();
+		fragments = new Fragment[] { homeFragment, workSpaceFragment,yktFragment,scroFragment, meFragment };
 		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, homeFragment)
 				.add(R.id.fragment_container, workSpaceFragment)
+				.add(R.id.fragment_container, yktFragment)
 				.add(R.id.fragment_container, scroFragment).add(R.id.fragment_container,meFragment)
-				.hide(workSpaceFragment).hide(scroFragment).hide(meFragment)
+				.hide(workSpaceFragment).hide(yktFragment).hide(scroFragment).hide(meFragment)
 				.show(homeFragment).commitAllowingStateLoss();
-		mTabs = new Button[4];
+		mTabs = new Button[5];
 		mTabs[0] = (Button) findViewById(R.id.btn_conversation);
 		mTabs[1] = (Button) findViewById(R.id.btn_address_list);
 		if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
@@ -309,13 +319,21 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		}else{
 			mTabs[1].setText("自主学习");
 		}
-		mTabs[2] = (Button) findViewById(R.id.btn_circle);
-		mTabs[3] = (Button) findViewById(R.id.btn_app);
-		mTabContainers = new RelativeLayout[4];
+		mTabs[2] = (Button) findViewById(R.id.btn_ykt);
+		mTabs[3] = (Button) findViewById(R.id.btn_circle);
+		mTabs[4] = (Button) findViewById(R.id.btn_app);
+		mTabContainers = new RelativeLayout[5];
 		mTabContainers[0] = (RelativeLayout) findViewById(R.id.btn_container_conversation);
 		mTabContainers[1] = (RelativeLayout) findViewById(R.id.btn_container_brand);
-		mTabContainers[2] = (RelativeLayout) findViewById(R.id.btn_container_expense);
-		mTabContainers[3] = (RelativeLayout) findViewById(R.id.btn_container_me);
+		mTabContainers[2] = (RelativeLayout) findViewById(R.id.btn_container_ykt);
+		mTabContainers[3] = (RelativeLayout) findViewById(R.id.btn_container_expense);
+		mTabContainers[4] = (RelativeLayout) findViewById(R.id.btn_container_me);
+
+		if (ECApplication.getInstance().getUserForYKT() == null){
+			mTabContainers[2].setVisibility(View.GONE);
+		}else{
+			mTabContainers[2].setVisibility(View.VISIBLE);
+		}
 
 		// 把第一个tab设为选中状态
 		mTabs[0].setSelected(true);
@@ -399,6 +417,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 								workSpaceFragment. workSpaceReFreshDatas(isSelectPosition,1);
 								if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
 									titleImgThirdLinear.setVisibility(View.VISIBLE);
+									titleImgThird.setVisibility(View.VISIBLE);
 									titleImgThird.setImageResource(R.drawable.upload);
 								}
 							}
@@ -442,6 +461,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			case 1:
 				startActivityForResult(new Intent(context,SearchWorkActivity.class),SEARCHWORKCODE);
 				break;
+			case 2:
+				startActivityForResult(new Intent(context,SearchHandWriteActivity.class),SEARCHHANDWRITECODE);
+				break;
 		}
 	}
 
@@ -456,13 +478,115 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			case 1:
 				startActivityForResult(new Intent(MainActivity.this,UpFileActivity.class),UPFILEACTIVITYCODE);
 				break;
-			case 2:
+			case 3:
 				startActivityForResult(new Intent(this, SelectScroActivity.class),SELECTSCROACTIVITYCODE);
 				break;
 		}
 	}
 
+	private void btnConversation(){
+		typeMenu.setVisibility(View.VISIBLE);
+		titleImgSecond.setVisibility(View.VISIBLE);
+		titleImgThird.setVisibility(View.VISIBLE);
+		titleImgSecond.setImageResource(R.drawable.nav_search);
+		titleImgThirdLinear.setVisibility(View.VISIBLE);
+		titleImgThird.setImageResource(R.drawable.nav_edit);
+		fragTitle.setText("互动交流");
+		menuSelectedTV.setText(menuTitleForFirst);
+		if (homeMenuDatas != null){
+			homeMenuDatas.clear();
 
+		}else{
+			homeMenuDatas = new ArrayList<String>();
+		}
+		if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+			homeMenuDatas.add("班级");
+			homeMenuDatas.add("年级");
+			homeMenuDatas.add("学校");
+			homeMenuDatas.add("教师");
+		}else{
+			homeMenuDatas.add("班级");
+			homeMenuDatas.add("年级");
+			homeMenuDatas.add("学校");
+		}
+		index = 0;
+		SELECTMENUINDEX = 0;
+	}
+
+	private void btnAddressList(){
+		titleImgSecond.setVisibility(View.VISIBLE);
+		typeMenu.setVisibility(View.VISIBLE);
+		titleImgSecond.setImageResource(R.drawable.nav_search);
+		if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+			titleImgThirdLinear.setVisibility(View.VISIBLE);
+			titleImgThird.setVisibility(View.VISIBLE);
+			titleImgThird.setImageResource(R.drawable.upload);
+		}else{
+			titleImgThirdLinear.setVisibility(View.GONE);
+		}
+		if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+			fragTitle.setText("工作平台");
+		}else{
+			fragTitle.setText("自主学习");
+		}
+		menuSelectedTV.setText(menuTitleForSecond);
+		if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
+			if (menuTitleForSecond.equals("学习成果")){
+				titleImgThirdLinear.setVisibility(View.VISIBLE);
+				titleImgThird.setVisibility(View.VISIBLE);
+				titleImgThird.setImageResource(R.drawable.upload);
+			}else{
+				titleImgThirdLinear.setVisibility(View.GONE);
+			}
+		}
+		if (homeMenuDatas != null){
+			homeMenuDatas.clear();
+		}else{
+			homeMenuDatas = new ArrayList<String>();
+
+		}
+		if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+			homeMenuDatas.add("教师备课资源");
+			homeMenuDatas.add("学生生成资源");
+		}else{
+			homeMenuDatas.add("教师引导");
+			homeMenuDatas.add("同伴互助");
+			homeMenuDatas.add("学习成果");
+		}
+		index = 1;
+		SELECTMENUINDEX = 1;
+	}
+
+	private void btnCircle(){
+		fragTitle.setText("积分排名");
+		titleImgThirdLinear.setVisibility(View.VISIBLE);
+		titleImgSecond.setVisibility(View.INVISIBLE);
+		titleImgThird.setVisibility(View.VISIBLE);
+		titleImgThird.setImageResource(R.drawable.time);
+		typeMenu.setVisibility(View.INVISIBLE);
+		SELECTMENUINDEX = 3;
+		index = 3;
+	}
+
+	private void btnApp(){
+		titleImgSecond.setVisibility(View.INVISIBLE);
+		titleImgThird.setVisibility(View.INVISIBLE);
+		titleImgThirdLinear.setVisibility(View.INVISIBLE);
+		typeMenu.setVisibility(View.INVISIBLE);
+		fragTitle.setText("我的");
+		SELECTMENUINDEX = 4;
+		index = 4;
+	}
+
+	private void btnYKT(){
+		titleImgSecond.setVisibility(View.VISIBLE);
+		titleImgThird.setVisibility(View.GONE);
+		titleImgThirdLinear.setVisibility(View.GONE);
+		typeMenu.setVisibility(View.INVISIBLE);
+		fragTitle.setText("云课堂");
+		SELECTMENUINDEX = 2;
+		index = 2;
+	}
 	/**
 	 * button点击事件
 	 * 标题栏文字转换处理及图片显示处理
@@ -471,94 +595,21 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	public void onTabClicked(View view) {
 		switch (view.getId()) {
 			case R.id.btn_conversation:
-				typeMenu.setVisibility(View.VISIBLE);
-				titleImgSecond.setVisibility(View.VISIBLE);
-				titleImgThird.setVisibility(View.VISIBLE);
-				titleImgSecond.setImageResource(R.drawable.nav_search);
-				titleImgThirdLinear.setVisibility(View.VISIBLE);
-				titleImgThird.setImageResource(R.drawable.nav_edit);
-				fragTitle.setText("互动交流");
-				menuSelectedTV.setText(menuTitleForFirst);
-				if (homeMenuDatas != null){
-					homeMenuDatas.clear();
-
-				}else{
-					homeMenuDatas = new ArrayList<String>();
-				}
-				if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
-					homeMenuDatas.add("班级");
-					homeMenuDatas.add("年级");
-					homeMenuDatas.add("学校");
-					homeMenuDatas.add("教师");
-				}else{
-					homeMenuDatas.add("班级");
-					homeMenuDatas.add("年级");
-					homeMenuDatas.add("学校");
-				}
-				index = 0;
-				SELECTMENUINDEX = 0;
+				btnConversation();
 				break;
 			case R.id.btn_address_list:
-				titleImgSecond.setVisibility(View.VISIBLE);
-				typeMenu.setVisibility(View.VISIBLE);
-				titleImgSecond.setImageResource(R.drawable.nav_search);
-				if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
-					titleImgThirdLinear.setVisibility(View.VISIBLE);
-					titleImgThird.setImageResource(R.drawable.upload);
-				}else{
-					titleImgThirdLinear.setVisibility(View.GONE);
-				}
-				if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
-					fragTitle.setText("工作平台");
-				}else{
-					fragTitle.setText("自主学习");
-				}
-				menuSelectedTV.setText(menuTitleForSecond);
-				if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
-					if (menuTitleForSecond.equals("学习成果")){
-						titleImgThirdLinear.setVisibility(View.VISIBLE);
-						titleImgThird.setImageResource(R.drawable.upload);
-					}else{
-						titleImgThirdLinear.setVisibility(View.GONE);
-					}
-				}
-				if (homeMenuDatas != null){
-					homeMenuDatas.clear();
-				}else{
-					homeMenuDatas = new ArrayList<String>();
-
-				}
-				if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
-					homeMenuDatas.add("教师备课资源");
-					homeMenuDatas.add("学生生成资源");
-				}else{
-					homeMenuDatas.add("教师引导");
-					homeMenuDatas.add("同伴互助");
-					homeMenuDatas.add("学习成果");
-				}
-				index = 1;
-				SELECTMENUINDEX = 1;
+				btnAddressList();
 				break;
 			case R.id.btn_circle:
-				fragTitle.setText("积分排名");
-				titleImgThirdLinear.setVisibility(View.VISIBLE);
-				titleImgSecond.setVisibility(View.INVISIBLE);
-				titleImgThird.setVisibility(View.VISIBLE);
-				titleImgThird.setImageResource(R.drawable.time);
-				typeMenu.setVisibility(View.INVISIBLE);
-				SELECTMENUINDEX = 2;
-				index = 2;
+				btnCircle();
 				break;
 			case R.id.btn_app:
-				titleImgSecond.setVisibility(View.INVISIBLE);
-				titleImgThird.setVisibility(View.INVISIBLE);
-				typeMenu.setVisibility(View.INVISIBLE);
-				fragTitle.setText("我的");
-				SELECTMENUINDEX = 3;
-				index = 3;
+				btnApp();
+				break;
+			case R.id.btn_ykt:
+				btnYKT();
 				break;
 		}
-//		menuPosition = 0;
 		if (currentTabIndex != index) {
 			FragmentTransaction trx = getSupportFragmentManager()
 					.beginTransaction();
@@ -758,7 +809,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
 			onSelectCancel();
 		}
-		if (requestCode == UPFILEACTIVITYCODE){
+		if (requestCode == UPFILEACTIVITYCODE){//上传资源
 			String tag = (String) MainActivity.map.get("UpFileActivityTag");
 			if (tag != null&&tag.equals("true")){
 				doToast("上传成功！");
@@ -778,6 +829,40 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		//单张网络图片查看，判断是否下载了图片
 		if (requestCode == 111){
 			LogUtil.w("mainActivity回来");
+		}
+
+		if (requestCode == SEARCHHANDWRITECODE){//搜索手写笔记
+			String isOK = (String) MainActivity.map.get("searchHandWriteOK");
+			if (isOK != null && isOK.equals("OK")){
+				MainActivity.map.remove("searchHandWriteOK");
+				if (ECApplication.getInstance().getUserForYKT().getType().equals("2")){
+					//无课程教师点击搜索无效
+					if (SearchHandWriteActivity.selectWeekMap.get("true") == null||SearchHandWriteActivity.selectEclassMap.get("true") == null){
+						return;
+					}
+					//教学周搜索
+					int positionForWeek = SearchHandWriteActivity.selectWeekMap.get("true");
+					int positionForEclass = SearchHandWriteActivity.selectEclassMap.get("true");
+
+					yktFragment.setStartDate(YKTFragment.tweekVos.get(positionForWeek).getStartDate());
+					yktFragment.setEndDate(YKTFragment.tweekVos.get(positionForWeek).getEndDate());
+					//班级搜索
+					yktFragment.setEclassId(YKTFragment.courses.get(positionForEclass).getId());
+					yktFragment.getHandWriteForTeacher(yktFragment.YKTPOSITION);
+				}
+				if (ECApplication.getInstance().getUserForYKT().getType().equals("0")){
+//					//教学周搜索
+					int positionForWeek = SearchHandWriteActivity.selectWeekMap.get("true");
+					yktFragment.setStartDate(YKTFragment.tweekVosForStudent.get(positionForWeek).getStartDate());
+					yktFragment.setEndDate(YKTFragment.tweekVosForStudent.get(positionForWeek).getEndDate());
+					//班级搜索
+					int positionForCourses = SearchHandWriteActivity.selectBooksMap.get("true");
+					yktFragment.setEclassId(YKTFragment.coursesForStudent.getEclass().getId());
+					yktFragment.setCourseId(YKTFragment.coursesForStudent.getCourses().get(positionForCourses).getId());
+					yktFragment.getHandWriteForStudent(yktFragment.YKTPOSITION);
+				}
+				yktFragment.showDialog(true,"正在获取数据...");
+			}
 		}
 
 	}

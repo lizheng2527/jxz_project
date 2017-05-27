@@ -28,6 +28,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -36,10 +37,12 @@ import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.downloadui.DownloadAsyncTask;
 import com.zdhx.androidbase.ui.photoview.PhotoView;
 import com.zdhx.androidbase.ui.photoview.PhotoViewAttacher;
+import com.zdhx.androidbase.ui.plugin.FileUtils;
 import com.zdhx.androidbase.ui.viewpagerindicator.CirclePageIndicator;
 import com.zdhx.androidbase.ui.viewpagerindicator.HackyViewPager;
 import com.zdhx.androidbase.ui.viewpagerindicator.PageIndicator;
 import com.zdhx.androidbase.util.LogUtil;
+import com.zdhx.androidbase.util.SingleMediaScanner;
 import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.lazyImageLoader.cache.ImageLoader;
 import com.zdhx.androidbase.util.myImageLoader.MyImageLoader;
@@ -123,6 +126,8 @@ public class ImagePagerActivity extends Activity {
 
 		private Context mContext;
 
+		private ECAlertDialog buildAlert;
+
 
 		ImagePagerAdapter(String[] images,Context context,String[] imgNames) {
 			this.images = images;
@@ -166,7 +171,90 @@ public class ImagePagerActivity extends Activity {
 				imageView.setOnLongClickListener(new View.OnLongClickListener() {
 					@Override
 					public boolean onLongClick(View v) {
-						ECAlertDialog.buildAlert(ImagePagerActivity.this, "是否下载该图片？", new DialogInterface.OnClickListener() {
+						buildAlert = ECAlertDialog.buildAlert(mContext,R.string.title, null, new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								String name = ((EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText))).getText().toString();
+								String lastStr = FileUtils.getStringEndWith(name);
+								if (lastStr != null){
+									lastStr = lastStr.toLowerCase();
+								}
+								if (!"".equals(lastStr)&&!"jpg".equals(lastStr)&&!"png".equals(lastStr)&&!"jpeg".equals(lastStr)){
+									name = name +".jpg";
+								}
+								if (name == null||name.equals("")){
+									ToastUtil.showMessage("输入名称不能为空!");
+									return;
+								}
+								File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+								File dir = new File(idr+"/jxz");
+								if (!dir.exists()){
+									dir.mkdir();
+								}
+								File file = new File(dir,name);
+								if (!file.exists()){
+									final DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(new DownloadAsyncTask.DownloadResponser() {
+										@Override
+										public void predownload() {
+											TreadsListViewAdapter adapter = (TreadsListViewAdapter) MainActivity.map.get("adapter");
+											if (adapter != null){
+												int position1 = (int) MainActivity.map.get("11");
+												adapter.doDown(position1);
+												MainActivity.map.remove("treadsListPosition");
+												MainActivity.map.remove("adapter");
+											}
+										}
+
+										@Override
+										public void downloading(int progress, int position) {
+
+										}
+
+										@Override
+										public void downloaded(File file, int position) {
+											new SingleMediaScanner(mContext, file);
+											ToastUtil.showMessage(file.getName()+"下载成功！");
+										}
+
+										@Override
+										public void canceled(int position) {
+										}
+									}, ImagePagerActivity.this);
+									downloadAsyncTask.execute(images[position], "aaa", position + "",name);
+									LogUtil.w(images[position]);
+								}else{
+									ToastUtil.showMessage("已存在该文件");
+									return;
+								}
+
+							}
+						});
+						buildAlert.setTitle("图片下载");
+						buildAlert.setCanceledOnTouchOutside(false);
+						buildAlert.setContentView(R.layout.config_dcaddress_dialog);
+						String server = imgNames[position];
+						final EditText editText = (EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText));
+						TextView delectTV = (TextView) buildAlert.getWindow().findViewById(R.id.delectTV);
+						delectTV.setOnClickListener(new View.OnClickListener() {
+
+							@Override
+							public void onClick(View v) {
+								editText.setText("");
+							}
+						});
+						if (!server.equals("")) {
+							editText.setText(server);
+						}
+						if(!buildAlert.isShowing()){
+							buildAlert.show();
+							editText.setSelection(editText.getText().length());
+							editText.setSelectAllOnFocus(true);
+						}
+
+
+
+
+						/*ECAlertDialog.buildAlert(ImagePagerActivity.this, "是否下载该图片？", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 								String name = imgNames[position];
@@ -211,7 +299,7 @@ public class ImagePagerActivity extends Activity {
 									return;
 								}
 							}
-						}).show();
+						}).show();*/
 
 						return true;
 					}

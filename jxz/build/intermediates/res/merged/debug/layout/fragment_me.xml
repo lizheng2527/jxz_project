@@ -107,12 +107,12 @@
         <TextView
             android:layout_width="match_parent"
             android:background="@color/list_devider_color"
-            android:layout_height="10dp" />
+            android:layout_height="2dp" />
         <ListView
             android:id="@+id/fragment_me_listview"
             android:scrollbars="none"
             android:divider="@color/list_devider_color"
-            android:dividerHeight="5dp"
+            android:dividerHeight="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </ListView>
