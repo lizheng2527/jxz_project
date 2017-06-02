@@ -1,6 +1,7 @@
 package com.zdhx.androidbase.ui.ykt;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,7 +20,9 @@ import com.google.gson.reflect.TypeToken;
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ParameterValue;
+import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.account.HomeViewPagerAdapter;
+import com.zdhx.androidbase.ui.treadssearch.UpFileActivity;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.RunnableWrap;
 import com.zdhx.androidbase.util.ToastUtil;
@@ -31,6 +34,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.zdhx.androidbase.ui.MainActivity.setAllSelectText;
+import static com.zdhx.androidbase.ui.ykt.BlackBoradAdapter.isMuchSelectMap;
 
 /**
  * Created by lizheng on 2016/12/24.
@@ -110,6 +116,15 @@ public class YKTFragment extends Fragment {
     public static RecentDataConditions condition;
     public static RecentDataConditions conditionForStudent;
 
+    private void onCancelMuchSelect(){
+        if (ECApplication.getInstance().getUserForYKT().getType().equals("2")){
+            BlackBoradAdapter.isMuchSelect = false;
+            BlackBoradAdapter.isMuchSelectMap.clear();
+            MainActivity.setAllSelectText(false);
+            MainActivity.showSelectBatchLinear(false);
+            notifyForMuchSelect();
+        }
+    }
 
 
     private void initViewPager(){
@@ -151,6 +166,7 @@ public class YKTFragment extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 loadYKTDatas(position);
+                onCancelMuchSelect();
             }
 
             @Override
@@ -168,6 +184,7 @@ public class YKTFragment extends Fragment {
                 }else{
                     getHandWriteForStudent(position);
                 }
+                onCancelMuchSelect();
             }
         });
         //学生登录
@@ -1002,8 +1019,44 @@ public class YKTFragment extends Fragment {
             }
         }).start();
     }
-
-
+    //全选确定
+    public void onMuchSelectOK(){
+        if (isMuchSelectMap.size()>0){
+            ArrayList<BlackboardWrite> list = new ArrayList<>();
+            for (BlackboardWrite v : isMuchSelectMap.values()) {
+                list.add(v);
+            }
+            MainActivity.map.put("BlackBorad",list);
+            isMuchSelectMap.clear();
+            BlackBoradAdapter.isMuchSelect = false;
+            MainActivity.showSelectBatchLinear(false);
+            setAllSelectText(false);
+            blackBoradAdapter.notifyDataSetChanged();
+            startActivity(new Intent(context,UpFileActivity.class));
+        }else{
+            ToastUtil.showMessage("请选择板书记录..");
+        }
+    }
+    //取消刷新
+    public void notifyForMuchSelect(){
+        if (blackBoradAdapter != null){
+            blackBoradAdapter.notifyDataSetChanged();
+        }
+    }
+    //全选
+    public void selectAll(boolean isAllSelect){
+        if (isAllSelect){
+            if (blackBoradList != null &&blackBoradList.size()>0){
+                isMuchSelectMap.clear();
+                for (int i = 0; i < blackBoradList.size(); i++) {
+                    isMuchSelectMap.put(i,blackBoradList.get(i));
+                }
+            }
+        }else{
+            isMuchSelectMap.clear();
+        }
+        blackBoradAdapter.notifyDataSetChanged();
+    }
     private ArrayList<HandWriteBean> handWriteBeans = new ArrayList<>();
     private Handler handler = new Handler();
     public static int YKTPOSITION;
@@ -1038,6 +1091,7 @@ public class YKTFragment extends Fragment {
                 }else{
                     blackBoradAdapter.notifyDataSetChanged();
                 }
+
                 break;
             case 2:
                 YKTPOSITION = 2;

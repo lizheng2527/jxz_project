@@ -9,8 +9,8 @@
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
@@ -122,6 +122,8 @@
         <activity
             android:name="com.zdhx.androidbase.ui.treadssearch.VideoShowActivity"
             android:screenOrientation="portrait" />
+        <!-- 展示视频文件 -->
+        <activity android:name="com.zdhx.androidbase.ui.paint.activity.PaintActivity" />
         <!-- 展示图片文件 -->
         <activity
             android:name="com.zdhx.androidbase.ui.account.ImagePagerActivity"

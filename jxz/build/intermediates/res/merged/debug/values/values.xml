@@ -595,20 +595,20 @@ function login(form){
     </style>
     <style name="ActionSheetDialogStyle" parent="@android:style/Theme.Dialog">
 
-        <!-- 背景透明 -->
+        
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
-        <!-- 浮于Activity之上 -->
+        
         <item name="android:windowIsFloating">true</item>
-        <!-- 边框 -->
+        
         <item name="android:windowFrame">@null</item>
-        <!-- Dialog以外的区域模糊效果 -->
+        
         <item name="android:backgroundDimEnabled">true</item>
-        <!-- 无标题 -->
+        
         <item name="android:windowNoTitle">true</item>
-        <!-- 半透明 -->
+        
         <item name="android:windowIsTranslucent">false</item>
-        <!-- Dialog进入及退出动画 -->
+        
         <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
     </style>
     <style name="AlertDialogStyle" parent="@android:style/Theme.Dialog">
@@ -803,6 +803,31 @@ function login(form){
         <item name="android:button">@drawable/btn_checkbox_selector</item>
         <item name="android:scaleType">centerInside</item>
     </style>
+    <style name="CustomRadioButton1">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/size_radioxm_1</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="CustomRadioButton2">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/size_radioxm_2</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="CustomRadioButton3">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/size_radioxm_3</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="CustomRadioButton4">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/size_radioxm_4</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="CustomRadioButton5">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/size_radioxm_5</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
     <style name="DialogButton">
         <item name="android:textSize">16.0dip</item>
         <item name="android:textColor">@color/btn_dialog</item>
@@ -849,6 +874,56 @@ function login(form){
         <item name="android:shadowDx">0.0</item>
         <item name="android:shadowDy">-1.0</item>
         <item name="android:shadowRadius">1.0</item>
+    </style>
+    <style name="ShapSelectCircle">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/shap_select_circle</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="ShapSelectCirclef">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/shap_select_circlef</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="ShapSelectCurv">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/shap_select_curv</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="ShapSelectLine">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/shap_select_line</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="ShapSelectOval">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/shap_select_oval</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="ShapSelectOvalf">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/shap_select_ovalf</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="ShapSelectRect">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/shap_select_rect</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="ShapSelectRectf">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/shap_select_rectf</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="ShapSelectSquare">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/shap_select_square</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="ShapSelectSquaref">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/shap_select_squaref</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
     <style name="Style_Scrollable">
         <item name="android:fadingEdge">none</item>

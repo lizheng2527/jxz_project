@@ -102,4 +102,5 @@ public class DensityUtil {
     public static int round(Context context, int paramInt) {
         return Math.round(paramInt / getDensity(context));
     }
+
 }

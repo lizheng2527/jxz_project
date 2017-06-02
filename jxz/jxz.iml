@@ -112,6 +112,7 @@
     <orderEntry type="library" exported="" name="alipaySingle-20160428" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-Wechat-Core-2.7.2" level="project" />
     <orderEntry type="library" exported="" name="fbcore-0.12.0" level="project" />
+    <orderEntry type="library" exported="" name="wechat-sdk-android-without-mta-1.1.6" level="project" />
     <orderEntry type="library" exported="" name="support-core-utils-25.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-25.1.0" level="project" />
     <orderEntry type="library" exported="" name="imagepipeline-0.12.0" level="project" />

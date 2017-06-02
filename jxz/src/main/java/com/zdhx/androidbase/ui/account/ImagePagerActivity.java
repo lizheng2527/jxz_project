@@ -17,6 +17,7 @@ package com.zdhx.androidbase.ui.account; /**************************************
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,16 +26,20 @@ import android.os.Environment;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.downloadui.DownloadAsyncTask;
+import com.zdhx.androidbase.ui.paint.activity.PaintActivity;
 import com.zdhx.androidbase.ui.photoview.PhotoView;
 import com.zdhx.androidbase.ui.photoview.PhotoViewAttacher;
 import com.zdhx.androidbase.ui.plugin.FileUtils;
@@ -119,11 +124,9 @@ public class ImagePagerActivity extends Activity {
 	}
 
 	private class ImagePagerAdapter extends PagerAdapter {
-
 		private String[] images;
 		private String[] imgNames;
 		private LayoutInflater inflater;
-
 		private Context mContext;
 
 		private ECAlertDialog buildAlert;
@@ -154,8 +157,11 @@ public class ImagePagerActivity extends Activity {
 		public Object instantiateItem(ViewGroup view, final int position) {
 
 			View imageLayout = inflater.inflate(R.layout.item_pager_image, view, false);
-
 			PhotoView imageView = (PhotoView) imageLayout.findViewById(R.id.image);
+			ImageView pzForTeacher = (ImageView) imageLayout.findViewById(R.id.pzForTeacher);
+
+
+
 			imageView.setOnViewTapListener(new PhotoViewAttacher.OnViewTapListener() {
 				@Override
 				public void onViewTap(View view, float x, float y) {
@@ -250,57 +256,6 @@ public class ImagePagerActivity extends Activity {
 							editText.setSelection(editText.getText().length());
 							editText.setSelectAllOnFocus(true);
 						}
-
-
-
-
-						/*ECAlertDialog.buildAlert(ImagePagerActivity.this, "是否下载该图片？", new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								String name = imgNames[position];
-								File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-								File dir = new File(idr+"/jxz");
-								if (!dir.exists()){
-									dir.mkdir();
-								}
-								File file = new File(dir,name);
-								if (!file.exists()){
-									final DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(new DownloadAsyncTask.DownloadResponser() {
-										@Override
-										public void predownload() {
-											TreadsListViewAdapter adapter = (TreadsListViewAdapter) MainActivity.map.get("adapter");
-											if (adapter != null){
-												int position1 = (int) MainActivity.map.get("11");
-												adapter.doDown(position1);
-												MainActivity.map.remove("treadsListPosition");
-												MainActivity.map.remove("adapter");
-											}
-										}
-
-										@Override
-										public void downloading(int progress, int position) {
-
-										}
-
-										@Override
-										public void downloaded(File file, int position) {
-											ToastUtil.showMessage(file.getName()+"下载成功！");
-											LogUtil.w("下载成功的地址为："+file.getAbsolutePath());
-										}
-
-										@Override
-										public void canceled(int position) {
-										}
-									}, ImagePagerActivity.this);
-									downloadAsyncTask.execute(images[position], "aaa", position + "",name);
-									LogUtil.w(images[position]);
-								}else{
-									ToastUtil.showMessage("已存在该文件");
-									return;
-								}
-							}
-						}).show();*/
-
 						return true;
 					}
 				});
@@ -316,7 +271,34 @@ public class ImagePagerActivity extends Activity {
 				Bitmap bm = BitmapFactory.decodeFile(images[position], newOpts);
 				imageView.setImageBitmap(bm);
 			}
+
 			((ViewPager) view).addView(imageLayout, 0);
+
+
+			if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+				pzForTeacher.setVisibility(View.VISIBLE);
+				pzForTeacher.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Log.w("ImagePagerActivity",images[position]);
+						File f = imageLoader.getFileFromCache(images[position]);
+						copyFile(f.getAbsolutePath(),ECApplication.getInstance().getDownloadJxzDir()+"/"+f.getName());
+						File newFile = new File(ECApplication.getInstance().getDownloadJxzDir()+"/"+f.getName());
+						File file = new File(ECApplication.getInstance().getDownloadJxzDir(),f.getName()+".jpg");
+						boolean b = newFile.renameTo(file);
+						if (b){
+							Log.w("ImagePagerActivity","修改成功");
+							MainActivity.map.put("fileForPaint",file);
+							startActivity(new Intent(mContext,PaintActivity.class));
+							ImagePagerActivity.this.finish();
+						}else{
+							Log.w("ImagePagerActivity","修改失败");
+						}
+					}
+				});
+			}else{
+				pzForTeacher.setVisibility(View.GONE);
+			}
 			return imageLayout;
 		}
 

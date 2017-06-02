@@ -867,7 +867,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(context, ImagePagerActivity.class);
                 intent.putExtra("images", new String[]{ZddcUtil.getUrlAnd(ECApplication.getInstance().getAddress()+list.get(position).getAttachment().getIconList().get(0).getDownUrl(),ECApplication.getInstance().getLoginUrlMap())});
-                LogUtil.e("单张："+ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(position).getAttachment().getIconList().get(0).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()));
                 intent.putExtra("image_index",0);
                 intent.putExtra("imgNames",new String[]{list.get(position).getAttachment().getIconList().get(0).getFileName()});
                 if (list.get(position).getUserName().contains(ECApplication.getInstance().getCurrentUser().getName())){

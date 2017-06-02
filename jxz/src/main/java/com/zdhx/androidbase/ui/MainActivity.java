@@ -72,6 +72,7 @@ import com.zdhx.androidbase.ui.treadssearch.SearchWorkActivity;
 import com.zdhx.androidbase.ui.treadssearch.UpFileActivity;
 import com.zdhx.androidbase.ui.treelistview.bean.TreeBean;
 import com.zdhx.androidbase.ui.xlistview.XListView;
+import com.zdhx.androidbase.ui.ykt.BlackBoradAdapter;
 import com.zdhx.androidbase.ui.ykt.SearchHandWriteActivity;
 import com.zdhx.androidbase.ui.ykt.YKTFragment;
 import com.zdhx.androidbase.util.LogUtil;
@@ -175,13 +176,23 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	public void onSelectCancel(){
 		showSelectBatchLinear(false);
 		allSelect.setText("全  选");
-		WorkSpaceFragment.isBatchSelect = false;
-		HashMap<WorkSpaceDatasBean.DataListBean, String> batchSelectMap = workSpaceFragment.getBatchSelectMap();
-		for (WorkSpaceDatasBean.DataListBean in : batchSelectMap.keySet()) {
-			in.setSelect(false);
+		//批量审核取消点击事件
+		if (SELECTMENUINDEX == 1){
+			WorkSpaceFragment.isBatchSelect = false;
+			HashMap<WorkSpaceDatasBean.DataListBean, String> batchSelectMap = workSpaceFragment.getBatchSelectMap();
+			for (WorkSpaceDatasBean.DataListBean in : batchSelectMap.keySet()) {
+				in.setSelect(false);
+			}
+			workSpaceFragment.getBatchSelectMap().clear();
+			workSpaceFragment.notifyForSelect();
 		}
-		workSpaceFragment.getBatchSelectMap().clear();
-		workSpaceFragment.notifyForSelect();
+		//云课堂板书记录取消点击事件
+		if (SELECTMENUINDEX == 2){
+			BlackBoradAdapter.isMuchSelect = false;
+			BlackBoradAdapter.isMuchSelectMap.clear();
+			yktFragment.notifyForMuchSelect();
+			setAllSelectText(false);
+		}
 	}
 
 	public static void setAllSelectText(boolean b){
@@ -197,42 +208,58 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	 * @param view
 	 */
 	public void onAllSelectClick(View view){
-		if (!allSelect.getText().toString().contains("取消")){
-			allSelect.setText("取消全选");
-			workSpaceFragment.selectAll(true);
-		}else{
-			allSelect.setText("全  选");
-			workSpaceFragment.selectAll(false);
-		}
+			if (!allSelect.getText().toString().contains("取消")){
+				allSelect.setText("取消全选");
+				if (SELECTMENUINDEX == 1){
+					workSpaceFragment.selectAll(true);
+				}
+				if (SELECTMENUINDEX == 2){
+					yktFragment.selectAll(true);
+				}
+			}else{
+				allSelect.setText("全  选");
+				if (SELECTMENUINDEX == 1){
+					workSpaceFragment.selectAll(false);
+				}
+				if (SELECTMENUINDEX == 2){
+					yktFragment.selectAll(false);
+				}
+			}
 	}
 
 	/**
-	 * 进行审核
+	 * 进行审核/发布云课堂板书记录
 	 * @param view
 	 */
 	private final int PREPASSCODE = 111;
 	public void onSelectTureClick(View view){
-		//TODO 执行批量审核
-		allSelect.setText("全  选");
-		HashMap<WorkSpaceDatasBean.DataListBean, String> batchSelectMap = workSpaceFragment.getBatchSelectMap();
-		int count = 0;
-		if (batchSelectMap.size() == 0){
-			doToast("请选择审批的数据");
-			return;
-		}
-		StringBuffer sb = new StringBuffer();
-		for (WorkSpaceDatasBean.DataListBean in : batchSelectMap.keySet()) {
-			count = count +1;
-			if (count == batchSelectMap.size()){
-				sb.append(batchSelectMap.get(in));
-			}else{
-				sb.append(batchSelectMap.get(in)+",");
 
+		if (SELECTMENUINDEX == 1){
+			allSelect.setText("全  选");
+			HashMap<WorkSpaceDatasBean.DataListBean, String> batchSelectMap = workSpaceFragment.getBatchSelectMap();
+			int count = 0;
+			if (batchSelectMap.size() == 0){
+				doToast("请选择审批的数据");
+				return;
 			}
+			StringBuffer sb = new StringBuffer();
+			for (WorkSpaceDatasBean.DataListBean in : batchSelectMap.keySet()) {
+				count = count +1;
+				if (count == batchSelectMap.size()){
+					sb.append(batchSelectMap.get(in));
+				}else{
+					sb.append(batchSelectMap.get(in)+",");
+
+				}
+			}
+			startActivityForResult(new Intent(context, PrePassActivity.class),PREPASSCODE);
+			MainActivity.map.put("ids",sb.toString());
+			MainActivity.map.put("WorkSpaceFragment",workSpaceFragment);
 		}
-		startActivityForResult(new Intent(context, PrePassActivity.class),PREPASSCODE);
-		MainActivity.map.put("ids",sb.toString());
-		MainActivity.map.put("WorkSpaceFragment",workSpaceFragment);
+
+		if (SELECTMENUINDEX == 2){
+			yktFragment.onMuchSelectOK();
+		}
 	}
 
 	/**
@@ -241,7 +268,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	 */
 	public static boolean selectBatchLinearIsShowing;
 	public static void showSelectBatchLinear(boolean isShow){
-		selectBatchLinearIsShowing = isShow;
+		if (SELECTMENUINDEX == 1){
+			selectBatchLinearIsShowing = isShow;
+		}
 		if (isShow){
 			selectBatchLinear.setVisibility(View.VISIBLE);
 		}else{
@@ -279,7 +308,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 						Manifest.permission.READ_PHONE_STATE,
 						Manifest.permission.RECORD_AUDIO,
 						Manifest.permission.ACCESS_COARSE_LOCATION,
-						Manifest.permission.ACCESS_FINE_LOCATION
+						Manifest.permission.ACCESS_FINE_LOCATION,
+						Manifest.permission.MANAGE_DOCUMENTS
 				)
 				.request();
 	}
@@ -462,6 +492,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 				startActivityForResult(new Intent(context,SearchWorkActivity.class),SEARCHWORKCODE);
 				break;
 			case 2:
+				onSelectCancel();
 				startActivityForResult(new Intent(context,SearchHandWriteActivity.class),SEARCHHANDWRITECODE);
 				break;
 		}

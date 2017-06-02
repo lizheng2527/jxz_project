@@ -58,6 +58,10 @@ public class ImageLoader {
 		executorService.submit(new PhotosLoader(p));
 	}
 
+	public File getFileFromCache(String url){
+		return fileCache.getFile(url);
+	}
+
 	private Bitmap getBitmap(String url) {
 		File f = fileCache.getFile(url);
 		// 锟饺达拷锟侥硷拷锟斤拷锟斤拷锟叫诧拷锟斤拷锟角凤拷锟斤拷
@@ -194,10 +198,10 @@ public class ImageLoader {
 		}
 	}
 
-	public void clearCache() {
-		memoryCache.clear();
-		fileCache.clear();
-	}
+//	public void clearCache() {
+//		memoryCache.clear();
+//		fileCache.clear();
+//	}
 
 	public static void CopyStream(InputStream is, OutputStream os) {
 		final int buffer_size = 1024;

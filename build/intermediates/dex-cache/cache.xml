@@ -30,6 +30,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\lizheng\.gradle\caches\modules-2\files-2.1\com.tencent.mm.opensdk\wechat-sdk-android-without-mta\1.1.6\b125274d18e3f4085d6133a0b8db21e94aa82d18\wechat-sdk-android-without-mta-1.1.6.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b125274d18e3f4085d6133a0b8db21e94aa82d18">
+        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\wechat-sdk-android-without-mta-1.1.6_8dcaec17f925665737c13cc4971bdbf3d3b4c888.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\01_work\jxz-project\AndroidBase\jxz\libs\PlayerSDK.jar"
         jumboMode="false"
         optimize="true"

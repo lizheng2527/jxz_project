@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,12 +31,16 @@ import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
-class BlackBoradAdapter extends BaseAdapter {
+public class BlackBoradAdapter extends BaseAdapter {
 
     private ArrayList<BlackboardWrite> list;
     private Context context;
+    public static Boolean isMuchSelect = false;
+    public static HashMap<Integer,BlackboardWrite> isMuchSelectMap = new HashMap<>();
+
     BlackBoradAdapter(ArrayList<BlackboardWrite> list, Context context) {
         this.list = list;
         this.context = context;
@@ -57,7 +62,7 @@ class BlackBoradAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         ViewHolder vh;
         if (view == null){
             vh = new ViewHolder();
@@ -65,6 +70,18 @@ class BlackBoradAdapter extends BaseAdapter {
             view.setTag(vh);
         }else{
             vh = (ViewHolder) view.getTag();
+        }
+
+        vh.muchSelectBox = (CheckBox) view.findViewById(R.id.muchSelectBox);
+        if (isMuchSelect){
+            vh.muchSelectBox.setVisibility(View.VISIBLE);
+            if (isMuchSelectMap.containsKey(i)){
+                vh.muchSelectBox.setChecked(true);
+            }else{
+                vh.muchSelectBox.setChecked(false);
+            }
+        }else{
+            vh.muchSelectBox.setVisibility(View.GONE);
         }
         vh.balckBoradImg = (SimpleDraweeView) view.findViewById(R.id.balckBoradImg);
 //        vh.balckBoradImg.setImageResource(R.drawable.logo_wechat);
@@ -107,6 +124,18 @@ class BlackBoradAdapter extends BaseAdapter {
         }else{
             vh.progressIndexLinear.setVisibility(View.GONE);
         }
+
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (ECApplication.getInstance().getUserForYKT().getType().equals("2")){
+                    isMuchSelect = true;
+                    MainActivity.showSelectBatchLinear(true);
+                    notifyDataSetChanged();
+                }
+                return true;
+            }
+        });
         addClick(vh,i);
         return view;
     }
@@ -126,7 +155,9 @@ class BlackBoradAdapter extends BaseAdapter {
         vh.good_nor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.map.put("BlackBorad",list.get(i));
+                ArrayList<BlackboardWrite> l = new ArrayList<>();
+                l.add(list.get(i));
+                MainActivity.map.put("BlackBorad",l);
                 context.startActivity(new Intent(context,UpFileActivity.class));
             }
         });
@@ -228,6 +259,20 @@ class BlackBoradAdapter extends BaseAdapter {
 
             }
         });
+
+
+        //批量checkBox点击事件
+        vh.muchSelectBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isMuchSelectMap.containsKey(i)){
+                    isMuchSelectMap.remove(i);
+                }else{
+                    isMuchSelectMap.put(i,list.get(i));
+                }
+                notifyDataSetChanged();
+            }
+        });
     }
 
     class ViewHolder{
@@ -244,5 +289,6 @@ class BlackBoradAdapter extends BaseAdapter {
         private ImageView good_nor;
 
         private TextView cancelDownLoad;
+        private CheckBox muchSelectBox;
     }
 }

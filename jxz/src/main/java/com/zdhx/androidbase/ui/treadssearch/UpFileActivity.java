@@ -116,7 +116,8 @@ public class UpFileActivity extends BaseActivity {
 	private Boolean isOpenTag = true;
 
 	private HashMap<String,WriteAnswerResults> handWriteFilesMap;
-	private BlackboardWrite blackBorad;
+//	private BlackboardWrite blackBorad;
+	private ArrayList<BlackboardWrite> blackBoradList;
 	private CourseWare courseWare;
 	private ArrayList<WriteAnswerResults> listForYKT;
 	private ArrayList<BlackboardWrite> listForBlackBorad;
@@ -184,7 +185,7 @@ public class UpFileActivity extends BaseActivity {
 		});
 
 		handWriteFilesMap = (HashMap<String, WriteAnswerResults>) map.get("HandWriteFilesMap");
-		blackBorad = (BlackboardWrite) MainActivity.map.get("BlackBorad");
+		blackBoradList = (ArrayList<BlackboardWrite>) MainActivity.map.get("BlackBorad");
 		courseWare = (CourseWare) MainActivity.map.get("TeachCourse");
 
 		//上传手写笔记
@@ -200,11 +201,11 @@ public class UpFileActivity extends BaseActivity {
 			listViewAdapterForYKT = new ListViewAdapterForYKT();
 			lv.setAdapter(listViewAdapterForYKT);
 			//上传板书记录
-		}else if (blackBorad != null){
+		}else if (blackBoradList != null){
 			seleteFile.setVisibility(View.GONE);
 			MainActivity.map.remove("BlackBorad");
 			listForBlackBorad = new ArrayList<>();
-			listForBlackBorad.add(blackBorad);
+			listForBlackBorad = blackBoradList;
 			adapterForBlackBorad = new AdapterForBlackBorad();
 			lv.setAdapter(adapterForBlackBorad);
 			//上传课件

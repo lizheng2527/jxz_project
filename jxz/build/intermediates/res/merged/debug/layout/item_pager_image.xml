@@ -20,20 +20,33 @@
         android:contentDescription="@string/app_name"
         android:scaleType="centerInside"
          />
-    <LinearLayout
+    <RelativeLayout
         android:layout_marginBottom="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_gravity="right|bottom"
+        android:layout_gravity="bottom"
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <ImageView
+            android:clickable="true"
+            android:id="@+id/pzForTeacher"
+            android:padding="5dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/icon_pz_teacher"
+            android:layout_gravity="center"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
         <TextView
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:layout_alignParentRight="true"
+            android:text="ffffff"
             android:textColor="@color/white"
             android:id="@+id/count"
             android:gravity="center"
             android:layout_width="40dp"
             android:layout_height="30dp" />
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </FrameLayout>

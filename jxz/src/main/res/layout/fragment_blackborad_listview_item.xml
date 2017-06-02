@@ -9,176 +9,181 @@
     android:background="#ffffff"
     android:descendantFocusability="blocksDescendants"
     tools:ignore="HardcodedText,DisableBaselineAlignment" >
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:background="@color/light_gray"
-                fresco:roundedCornerRadius="5dp"
-                android:id="@+id/balckBoradImg"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                />
-
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="5dp"
                 android:gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
+                android:orientation="horizontal">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:background="@color/light_gray"
+                    fresco:roundedCornerRadius="5dp"
+                    android:id="@+id/balckBoradImg"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_marginRight="20dp"
-                        android:id="@+id/balckBoradTitle"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:lines="1"
-                        android:text="文件标题"
-                        android:textColor="@color/dark_gray"
-                        android:textSize="16sp" />
+                        android:orientation="horizontal">
 
+                        <TextView
+                            android:layout_marginRight="20dp"
+                            android:id="@+id/balckBoradTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lines="1"
+                            android:text="文件标题"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:visibility="gone"
+                            android:layout_gravity="right"
+                            android:id="@+id/fileSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:gravity="right"
+                            android:text="(500kb)"
+                            android:textColor="@color/gray"
+                            android:textSize="13sp" />
+                    </LinearLayout>
                     <TextView
-                        android:visibility="gone"
-                        android:layout_gravity="right"
-                        android:id="@+id/fileSize"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:gravity="right"
-                        android:text="(500kb)"
-                        android:textColor="@color/gray"
-                        android:textSize="13sp" />
-                </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:visibility="invisible"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/balckBoradUserName"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="上传姓名"
-                        android:textColor="#888888"
-                        android:textSize="14sp" />
+                        android:layout_height="2dp"
+                        android:visibility="invisible"/>
 
-                    <TextView
-                        android:id="@+id/balckBoradDateTime"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="2016-11-11 11:11"
-                        android:textColor="@color/gray"
-                        android:textSize="13sp" />
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/balckBoradUserName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="上传姓名"
+                            android:textColor="#888888"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/balckBoradDateTime"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="2016-11-11 11:11"
+                            android:textColor="@color/gray"
+                            android:textSize="13sp" />
+                    </LinearLayout>
                 </LinearLayout>
+                <CheckBox
+                    android:visibility="gone"
+                    style="@style/CCPCheckBox"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/muchSelectBox"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
             </LinearLayout>
-            <CheckBox
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
                 android:visibility="gone"
-                style="@style/CCPCheckBox"
+                android:id="@+id/down_progress_linear"
+                android:layout_height="wrap_content">
+                <com.zdhx.androidbase.ui.downloadui.NumberProgressBar
+                    android:id="@+id/amd_progressBar"
+                    style="@style/NumberProgressBar_Default"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    />
+                <TextView
+                    android:id="@+id/cancelDownLoad"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_button_white_selector"
+                    android:textColor="@color/name_blue"
+                    android:text="取消"
+                    android:textSize="14sp"
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:layout_marginRight="10dp"
-                android:id="@+id/batchselectbox"
-                android:layout_width="25dp"
-                android:layout_height="25dp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:textColor="#555555"
+                    android:textSize="10sp"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:background="@drawable/bg_button_white_selector"
+                    android:padding="10dp"
+                    android:id="@+id/btn_pre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_preview" />
+                <ImageView
+                    android:background="@drawable/bg_button_white_selector"
+                    android:padding="10dp"
+                    android:id="@+id/download"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/download" />
+
+                <ImageView
+                    android:visibility="gone"
+                    android:background="@drawable/bg_button_white_selector"
+                    android:id="@+id/delete_nor"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/delete_nor" />
+
+                <ImageView
+                    android:background="@drawable/bg_button_white_selector"
+                    android:id="@+id/good_nor"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/good_nor" />
+
+            </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical"
-            android:visibility="gone"
-            android:id="@+id/down_progress_linear"
-            android:layout_height="wrap_content">
-            <com.zdhx.androidbase.ui.downloadui.NumberProgressBar
-                android:id="@+id/amd_progressBar"
-                style="@style/NumberProgressBar_Default"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                />
-            <TextView
-                android:id="@+id/cancelDownLoad"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/bg_button_white_selector"
-                android:textColor="@color/name_blue"
-                android:text="取消"
-                android:textSize="14sp"
-                android:padding="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:textColor="#555555"
-                android:textSize="10sp"
-                android:visibility="invisible" />
-
-            <ImageView
-                android:background="@drawable/bg_button_white_selector"
-                android:padding="10dp"
-                android:id="@+id/btn_pre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/btn_preview" />
-            <ImageView
-                android:background="@drawable/bg_button_white_selector"
-                android:padding="10dp"
-                android:id="@+id/download"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/download" />
-
-            <ImageView
-                android:visibility="gone"
-                android:background="@drawable/bg_button_white_selector"
-                android:id="@+id/delete_nor"
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/delete_nor" />
-
-            <ImageView
-                android:background="@drawable/bg_button_white_selector"
-                android:id="@+id/good_nor"
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/good_nor" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
