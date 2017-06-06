@@ -1,11 +1,15 @@
 package com.zdhx.androidbase.ui.account;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +47,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import cn.sharesdk.onekeyshare.OnekeyShare;
+
+import static com.mob.tools.utils.R.copyFile;
+import static com.zdhx.androidbase.util.ZddcUtil.getUrl;
 
 /**
  * Created by lizheng on 2016/12/26.
@@ -134,7 +143,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                     break;
                 case "4":
                     vh.btnPreview.setVisibility(View.VISIBLE);
-                    String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+ list.get(i).getIconUrl(),ECApplication.getInstance().getLoginUrlMap());
+                    String url = getUrl(ECApplication.getInstance().getAddress()+ list.get(i).getIconUrl(),ECApplication.getInstance().getLoginUrlMap());
                     Uri uri = Uri.parse(url);
                     vh.fileHeadImg.setImageURI(uri);
                     break;
@@ -337,11 +346,137 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
             vh.highQuantityImgS.setVisibility(View.GONE);
             vh.highQuantityImgB.setVisibility(View.GONE);
         }
+        vh.wxImgBtn = (ImageView) view.findViewById(R.id.wxImgBtn);
+        if ("4".equals(list.get(i).getResourceStyle())){
+            vh.wxImgBtn.setVisibility(View.VISIBLE);
+        }else{
+            vh.wxImgBtn.setVisibility(View.GONE);
+        }
+
+
         addClick(vh,i);
         return view;
     }
 
+    public static void shareImages(Context context, Uri[] uri) {
+        Intent shareIntent = new Intent();
+        // 1 Finals 2016-11-2 调用系统分享
+        shareIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        // 2 Finals 2016-11-2 添加图片数组
+        ArrayList<Uri> imageUris = new ArrayList<Uri>();
+        for (int i = 0; i < uri.length; i++) {
+            imageUris.add(uri[i]);
+        }
+        shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
+        shareIntent.setType("image/*");
+
+        // 3 Finals 2016-11-2 指定选择微信。
+        ComponentName mComponentName = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI");
+        shareIntent.setComponent(mComponentName);
+
+        // 4 Finals 2016-11-2 开始分享。
+        context.startActivity(Intent.createChooser(shareIntent, "分享图片"));
+    }
+
     private void addClick(final ViewHolder vh, final int i) {
+
+        //微信分享
+        vh.wxImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (list.get(i).getResourceStyle().equals("4")){
+                    ImageLoader imageLoader = new ImageLoader(context);
+                    String showUrl = getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap());
+                    File f = imageLoader.getFileFromCache(showUrl);
+                    if (f != null &&f.length()>0){
+                        copyFile(f.getAbsolutePath(),ECApplication.getInstance().getDownloadJxzDir()+"/"+f.getName());
+                        File newFile = new File(ECApplication.getInstance().getDownloadJxzDir()+"/"+f.getName());
+                        File file = new File(ECApplication.getInstance().getDownloadJxzDir(),f.getName()+".jpg");
+                        boolean b = newFile.renameTo(file);
+                        if (b){
+                            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                            if (bitmap != null){
+                                OnekeyShare oks = new OnekeyShare();
+                                oks.disableSSOWhenAuthorize();
+                                oks.setImagePath(file.getPath());//确保SDcard下面存在此张图片
+                                oks.show(context);
+                            }
+//                            ArrayList<File> list = new ArrayList<>();
+//                            list.add(file);
+//                            list.add(file);
+//                            list.add(file);
+//                            list.add(file);
+//                            Uri[] uris = new Uri[list.size()];
+//                            for (int i1 = 0; i1 < list.size(); i1++) {
+//                                uris[i1] = Uri.fromFile(file);
+//                            }
+//                            shareImages(context,uris);
+                        }
+                    }else{
+                        final ECProgressDialog dialog = new ECProgressDialog(context);
+                        dialog.setPressText("正在获取图片...");
+                        dialog.setCancelable(false);
+                        final DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(new DownloadAsyncTask.DownloadResponser() {
+                            @Override
+                            public void predownload() {
+                                dialog.show();
+                                list.get(i).setLoading(true);
+                            }
+
+                            @Override
+                            public void downloading(int progress, int position) {
+                                vh.downloadImg.setClickable(false);
+                            }
+                            @Override
+                            public void downloaded(File file1, int position) {
+                                vh.progressIndexLinear.setVisibility(View.GONE);
+                                if (file1 != null){
+                                    File file = new File(file1.getParent(),list.get(i).getCreateTime()+list.get(i).getName());
+                                    file1.renameTo(file);
+                                    new SingleMediaScanner(context, file);
+                                    OnekeyShare oks = new OnekeyShare();
+                                    oks.disableSSOWhenAuthorize();
+                                    oks.setImagePath(file.getPath());//确保SDcard下面存在此张图片
+                                    oks.show(context);
+                                    list.get(i).setLoading(false);
+                                }else{
+                                    ToastUtil.showMessage("文件存在未知错误");
+                                }
+                                dialog.dismiss();
+                            }
+
+                            @Override
+                            public void canceled(int position) {
+                                File file = new File(ECApplication.getInstance().getDownloadJxzDir(),"jxz_workSpace_downFile");
+                                if (file.exists()){
+                                    file.delete();
+                                }
+                                list.get(i).setLoading(false);
+                                notifyDataSetChanged();
+                            }
+                        }, context);
+                        downloadAsyncTask.execute(getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()), "aaa", i + "","jxz_workSpace_downFile");
+                        MainActivity.map.put("jxz_workSpace_downFile"+i,downloadAsyncTask);
+                    }
+                }
+
+                else if ("5".equals(list.get(i).getResourceStyle())||"6".equals(list.get(i).getResourceStyle())){
+
+                    String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap());
+                    OnekeyShare oks = new OnekeyShare();
+//                    url仅在微信（包括好友和朋友圈）中使用
+//                    oks.setUrl(url);
+                    oks.setText(url);
+                    Log.w("wx",url);
+                    oks.show(context);
+                }
+//                WeiChatUtil.ShareImgToWX();
+            }
+        });
+
+
         //批量审核checkBox点击事件
         vh.batchSelectBox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -371,7 +506,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 String resourceStyle = list.get(i).getResourceStyle();
-                String showUrl = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap());
+                String showUrl = getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap());
 //                音频、视频**********************************************************************
                 if (resourceStyle.equals("6")||resourceStyle.equals("5")){
 
@@ -735,7 +870,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                 notifyDataSetChanged();
                             }
                         }, context);
-                        downloadAsyncTask.execute(ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()), "aaa", i + "","jxz_workSpace_downFile");
+                        downloadAsyncTask.execute(getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()), "aaa", i + "","jxz_workSpace_downFile");
                         MainActivity.map.put("jxz_workSpace_downFile"+i,downloadAsyncTask);
                     }
                 }).show();
@@ -755,7 +890,8 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                     @Override
                     public void onClick(DialogInterface dialog1, int which) {
                         DownloadAsyncTask d = (DownloadAsyncTask) MainActivity.map.get("jxz_workSpace_downFile"+i);
-                        d.cancel(true);
+                        if (d != null)
+                            d.cancel(true);
                     }
                 }).show();
 
@@ -784,5 +920,8 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         //下载进度条及按钮
         private LinearLayout progressIndexLinear;
         private TextView cancelDownLoad;
+
+        private ImageView wxImgBtn;
+
     }
 }

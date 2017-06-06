@@ -169,8 +169,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
                 vh.threadUserHead.setImageResource(R.drawable.girl);
             }
         }
-
-
         vh.threadUserName = (TextView) view.findViewById(R.id.fragment_home_viewpager_listview_item_username);
         vh.threadUserName.setText(list.get(i).getUserName());
         if (list.get(i).getUserName().contains(ECApplication.getInstance().getCurrentUser().getName())){
@@ -438,9 +436,10 @@ public class TreadsListViewAdapter extends BaseAdapter {
                             }
                         }
                         if (urls.size() > 0) {
-                            ImageGirdAdapter adapter = new ImageGirdAdapter((Activity) context, urls, fragment,i,this.adapter);
+                            ImageGirdAdapter adapter = new ImageGirdAdapter((Activity) context, urls, fragment,i,this.adapter,list.get(i).getId());
                             vh.muchImages.setAdapter(adapter);
                             Tools.setGridViewHeightBasedOnChildren(vh.muchImages);
+
                         }
                     }
                 }
@@ -878,6 +877,9 @@ public class TreadsListViewAdapter extends BaseAdapter {
                     //预览+1
                     doPreview(position);
                 }
+                MainActivity.map.put("treadsId",list.get(position).getId());
+                MainActivity.map.put("isGraffiti","true");
+                MainActivity.map.put("introduceReplyFragment",fragment);
             }
         });
         vh.launchOrRetract.setOnClickListener(new View.OnClickListener() {
@@ -1050,6 +1052,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
 
         private TextView cancelDownLoad;
 
+
     }
 
     /**
@@ -1149,7 +1152,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
             gridView.setHorizontalSpacing(5);
             layout.addView(gridView);
             if (urls.size() > 0) {
-                ImageGirdAdapter adapter = new ImageGirdAdapter((Activity) context, urls, fragment,0,this.adapter);
+                ImageGirdAdapter adapter = new ImageGirdAdapter((Activity) context, urls, fragment,0,this.adapter,null);
                 gridView.setAdapter(adapter);
                 Tools.setGridViewHeightBasedOnChildren(gridView);
             }

@@ -85,6 +85,8 @@
     <color name="foot_color">#1d2a3a</color>
     <color name="footer_text_color">#ff7f7f7f</color>
     <color name="form_hint_text_color">#ffdddddd</color>
+    <color name="graffiti_btn_pressed_color">#dfffd943</color>
+    <color name="graffiti_btn_text">#000000</color>
     <color name="gray">#aaaaaa</color>
     <item name="green_btn_color_disable" type="color">@color/ccp_green_alpha</item>
     <color name="green_btn_color_pressed">#ff298409</color>
@@ -147,6 +149,10 @@
     <declare-styleable name="CircleProgress"><attr format="reference|color" name="color1"/><attr format="reference|color" name="color2"/><attr format="reference|color" name="color3"/></declare-styleable>
     <declare-styleable name="Emojicon"><attr format="dimension" name="emojiconSize"/><attr format="integer" name="emojiconTextStart"/><attr format="integer" name="emojiconTextLength"/><attr format="boolean" name="emojiconUseSystemDefault"/></declare-styleable>
     <declare-styleable name="GenericDraweeHierarchy"><attr format="integer" name="fadeDuration"/><attr format="float" name="viewAspectRatio"/><attr format="reference" name="placeholderImage"/><attr name="placeholderImageScaleType"><enum name="none" value="-1"/><enum name="fitXY" value="0"/><enum name="fitStart" value="1"/><enum name="fitCenter" value="2"/><enum name="fitEnd" value="3"/><enum name="center" value="4"/><enum name="centerInside" value="5"/><enum name="centerCrop" value="6"/><enum name="focusCrop" value="7"/></attr><attr format="reference" name="retryImage"/><attr name="retryImageScaleType"><enum name="none" value="-1"/><enum name="fitXY" value="0"/><enum name="fitStart" value="1"/><enum name="fitCenter" value="2"/><enum name="fitEnd" value="3"/><enum name="center" value="4"/><enum name="centerInside" value="5"/><enum name="centerCrop" value="6"/><enum name="focusCrop" value="7"/></attr><attr format="reference" name="failureImage"/><attr name="failureImageScaleType"><enum name="none" value="-1"/><enum name="fitXY" value="0"/><enum name="fitStart" value="1"/><enum name="fitCenter" value="2"/><enum name="fitEnd" value="3"/><enum name="center" value="4"/><enum name="centerInside" value="5"/><enum name="centerCrop" value="6"/><enum name="focusCrop" value="7"/></attr><attr format="reference" name="progressBarImage"/><attr name="progressBarImageScaleType"><enum name="none" value="-1"/><enum name="fitXY" value="0"/><enum name="fitStart" value="1"/><enum name="fitCenter" value="2"/><enum name="fitEnd" value="3"/><enum name="center" value="4"/><enum name="centerInside" value="5"/><enum name="centerCrop" value="6"/><enum name="focusCrop" value="7"/></attr><attr format="integer" name="progressBarAutoRotateInterval"/><attr name="actualImageScaleType"><enum name="none" value="-1"/><enum name="fitXY" value="0"/><enum name="fitStart" value="1"/><enum name="fitCenter" value="2"/><enum name="fitEnd" value="3"/><enum name="center" value="4"/><enum name="centerInside" value="5"/><enum name="centerCrop" value="6"/><enum name="focusCrop" value="7"/></attr><attr format="reference" name="backgroundImage"/><attr format="reference" name="overlayImage"/><attr format="reference" name="pressedStateOverlayImage"/><attr format="boolean" name="roundAsCircle"/><attr format="dimension" name="roundedCornerRadius"/><attr format="boolean" name="roundTopLeft"/><attr format="boolean" name="roundTopRight"/><attr format="boolean" name="roundBottomRight"/><attr format="boolean" name="roundBottomLeft"/><attr format="color" name="roundWithOverlayColor"/><attr format="dimension" name="roundingBorderWidth"/><attr format="color" name="roundingBorderColor"/><attr format="dimension" name="roundingBorderPadding"/></declare-styleable>
+    <declare-styleable name="MaskImageView"><attr format="enum" name="miv_mask_level">
+            <enum name="background" value="1"/>
+            <enum name="foreground" value="2"/>
+        </attr><attr format="boolean" name="miv_is_show_mask_on_click"/><attr format="color" name="miv_mask_color"/><attr format="boolean" name="miv_is_ignore_alpha"/></declare-styleable>
     <declare-styleable name="MaskLayout"><attr format="reference" name="foreground"/><attr format="dimension" name="content_margin"/><attr format="dimension" name="content_marginLeft"/><attr format="dimension" name="content_marginRight"/><attr format="dimension" name="content_marginTop"/><attr format="dimension" name="content_marginBottom"/></declare-styleable>
     <declare-styleable name="NumberProgressBar"><attr format="integer" name="progress_current"/><attr format="integer" name="progress_max"/><attr format="color" name="progress_unreached_color"/><attr format="color" name="progress_reached_color"/><attr format="dimension" name="progress_reached_bar_height"/><attr format="dimension" name="progress_unreached_bar_height"/><attr format="dimension" name="progress_text_size"/><attr format="color" name="progress_text_color"/><attr format="dimension" name="progress_text_offset"/><attr format="enum" name="progress_text_visibility">
             <enum name="visible" value="0"/>
@@ -163,11 +169,26 @@
             <flag name="rotate" value="0x00000000"/>
             <flag name="flip" value="0x00000001"/>
         </attr></declare-styleable>
+    <declare-styleable name="RatioImageView"><attr format="boolean" name="riv_is_width_fix_drawable_size_ratio"/><attr format="boolean" name="riv_is_height_fix_drawable_size_ratio"/><attr format="dimension" name="riv_max_width_when_width_fix_drawable"/><attr format="dimension" name="riv_max_height_when_height_fix_drawable"/><attr format="float" name="riv_height_to_width_ratio"/><attr format="float" name="riv_width_to_height_ratio"/><attr format="dimension" name="riv_width"/><attr format="dimension" name="riv_height"/></declare-styleable>
     <declare-styleable name="RoundAngleImageView"><attr format="dimension" name="roundWidth"/><attr format="dimension" name="roundHeight"/></declare-styleable>
+    <declare-styleable name="RoundProgressBar"><attr format="color" name="rpb_background"/><attr format="dimension" name="rpb_background_width"/><attr format="color" name="rpb_color"/><attr format="dimension" name="rpb_width"/><attr format="float" name="rpb_max_progress"/><attr format="float" name="rpb_progress"/></declare-styleable>
+    <declare-styleable name="STextView"><attr format="color" name="stv_text_color_selected"/><attr format="color" name="stv_text_color_pressed"/><attr format="color" name="stv_text_color_disable"/><attr format="color" name="mtv_text_color_pressed"/><attr format="color" name="mtv_text_color_disable"/></declare-styleable>
+    <declare-styleable name="ScrollPickerView"><attr format="dimension" name="spv_min_text_size"/><attr format="dimension" name="spv_max_text_size"/><attr format="color" name="spv_start_color"/><attr format="color" name="spv_end_color"/><attr format="color" name="spv_center_item_background"/><attr format="integer" name="spv_visible_item_count"/><attr format="integer" name="spv_center_item_position"/><attr format="boolean" name="spv_is_circulation"/><attr format="boolean" name="spv_disallow_intercept_touch"/></declare-styleable>
+    <declare-styleable name="ShapeImageView"><attr format="enum" name="siv_shape">
+            <enum name="rect" value="1"/>
+            <enum name="circle" value="2"/>
+            <enum name="oval" value="3"/>
+        </attr><attr format="dimension" name="siv_round_radius"/><attr format="dimension" name="siv_round_radius_leftTop"/><attr format="dimension" name="siv_round_radius_leftBottom"/><attr format="dimension" name="siv_round_radius_rightTop"/><attr format="dimension" name="siv_round_radius_rightBottom"/><attr format="dimension" name="siv_border_size"/><attr format="color" name="siv_border_color"/></declare-styleable>
     <declare-styleable name="SimpleDraweeView"><attr format="string" name="actualImageUri"/></declare-styleable>
     <declare-styleable name="TagGroup"><attr format="boolean" name="atg_isAppendMode"/><attr format="string" name="atg_inputHint"/><attr format="color" name="atg_borderColor"/><attr format="color" name="atg_textColor"/><attr format="color" name="atg_backgroundColor"/><attr format="color" name="atg_dashBorderColor"/><attr format="color" name="atg_inputHintColor"/><attr format="color" name="atg_inputTextColor"/><attr format="color" name="atg_checkedBorderColor"/><attr format="color" name="atg_checkedTextColor"/><attr format="color" name="atg_checkedMarkerColor"/><attr format="color" name="atg_checkedBackgroundColor"/><attr format="color" name="atg_pressedBackgroundColor"/><attr format="dimension" name="atg_borderStrokeWidth"/><attr format="dimension" name="atg_textSize"/><attr format="dimension" name="atg_horizontalSpacing"/><attr format="dimension" name="atg_verticalSpacing"/><attr format="dimension" name="atg_horizontalPadding"/><attr format="dimension" name="atg_verticalPadding"/></declare-styleable>
     <declare-styleable name="Themes"><attr format="reference" name="numberProgressBarStyle"/></declare-styleable>
     <declare-styleable name="ThemesForTag"><attr format="reference" name="tagGroupStyle"/></declare-styleable>
+    <declare-styleable name="View"><attr format="boolean" name="injectListener"/><attr format="color" name="sel_background"/><attr format="enum" name="sel_background_shape">
+            <enum name="rect" value="0"/>
+            <enum name="oval" value="1"/>
+            <enum name="line" value="2"/>
+            <enum name="ring" value="3"/>
+        </attr><attr format="dimension" name="sel_background_corners"/><attr format="dimension" name="sel_background_corner_topLeft"/><attr format="dimension" name="sel_background_corner_topRight"/><attr format="dimension" name="sel_background_corner_bottomLeft"/><attr format="dimension" name="sel_background_corner_bottomRight"/><attr format="color" name="sel_background_border_color"/><attr format="dimension" name="sel_background_border_width"/><attr format="color" name="sel_background_pressed"/><attr format="color" name="sel_background_border_pressed"/><attr format="color" name="sel_background_selected"/><attr format="color" name="sel_background_border_selected"/></declare-styleable>
     <declare-styleable name="form_input"><attr format="reference" name="form_layout"/><attr format="string" name="form_title"/><attr format="string" name="form_hint"/></declare-styleable>
     <declare-styleable name="setting_info"><attr format="string" name="item_titleText"/><attr format="string" name="item_detailText"/><attr name="item_accessoryType">
             <enum name="none" value="0"/>
@@ -336,6 +357,7 @@
     <dimen name="text_title">18sp</dimen>
     <dimen name="text_view_content">15.0sp</dimen>
     <dimen name="time_label_size">60sp</dimen>
+    <dimen name="title_bar_height">50dp</dimen>
     <dimen name="topbar_content_height">50.0dip</dimen>
     <dimen name="topbar_height">52.0dip</dimen>
     <dimen name="topbar_hight">75dp</dimen>
@@ -383,6 +405,15 @@
     <string name="dialog_btn_confim">确认</string>
     <string name="dialog_title_alert">提示</string>
     <string name="done_label">Done</string>
+    <string name="graffiti_app_name">Graffiti</string>
+    <string name="graffiti_cancel">取消</string>
+    <string name="graffiti_cant_undo_after_clearing">清屏后不可撤销</string>
+    <string name="graffiti_clear_screen">清屏</string>
+    <string name="graffiti_enter">确定</string>
+    <string name="graffiti_failed">失败</string>
+    <string name="graffiti_moving_pic">单指移动、双指缩放</string>
+    <string name="graffiti_saving_picture">保存图片</string>
+    <string name="graffiti_success">成功</string>
     <string name="hour_picker_description">Hours circular slider</string>
     <string name="item_is_selected"><ns1:g example="2013" id="item">%1$s</ns1:g> selected</string>
     <string name="launch">查看回复</string>
@@ -595,20 +626,20 @@ function login(form){
     </style>
     <style name="ActionSheetDialogStyle" parent="@android:style/Theme.Dialog">
 
-        
+        <!-- 背景透明 -->
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
-        
+        <!-- 浮于Activity之上 -->
         <item name="android:windowIsFloating">true</item>
-        
+        <!-- 边框 -->
         <item name="android:windowFrame">@null</item>
-        
+        <!-- Dialog以外的区域模糊效果 -->
         <item name="android:backgroundDimEnabled">true</item>
-        
+        <!-- 无标题 -->
         <item name="android:windowNoTitle">true</item>
-        
+        <!-- 半透明 -->
         <item name="android:windowIsTranslucent">false</item>
-        
+        <!-- Dialog进入及退出动画 -->
         <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
     </style>
     <style name="AlertDialogStyle" parent="@android:style/Theme.Dialog">

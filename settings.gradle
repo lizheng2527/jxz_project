@@ -1,1 +1,1 @@
-include ':jxz', ':baselibrary', ':datetimepicker', ':photoSelector'
+include ':jxz', ':baselibrary', ':datetimepicker', ':photoSelector', ':GraffitiLib'

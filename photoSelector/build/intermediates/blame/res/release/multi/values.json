@@ -4,11 +4,11 @@
         "map": [
             {
                 "to": {
-                    "startLine": 2,
+                    "startLine": 21,
                     "startColumn": 4,
-                    "startOffset": 55,
+                    "startOffset": 3830,
                     "endColumn": 55,
-                    "endOffset": 106
+                    "endOffset": 3881
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\values\\dimens.xml",
@@ -23,11 +23,11 @@
             },
             {
                 "to": {
-                    "startLine": 3,
+                    "startLine": 22,
                     "startColumn": 4,
-                    "startOffset": 111,
+                    "startOffset": 3886,
                     "endColumn": 48,
-                    "endOffset": 155
+                    "endOffset": 3930
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\values\\dimens.xml",
@@ -42,11 +42,11 @@
             },
             {
                 "to": {
-                    "startLine": 4,
+                    "startLine": 23,
                     "startColumn": 4,
-                    "startOffset": 160,
+                    "startOffset": 3935,
                     "endColumn": 53,
-                    "endOffset": 209
+                    "endOffset": 3984
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\values\\dimens.xml",
@@ -61,11 +61,11 @@
             },
             {
                 "to": {
-                    "startLine": 5,
+                    "startLine": 24,
                     "startColumn": 4,
-                    "startOffset": 214,
+                    "startOffset": 3989,
                     "endColumn": 46,
-                    "endOffset": 256
+                    "endOffset": 4031
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\values\\dimens.xml",
@@ -80,11 +80,11 @@
             },
             {
                 "to": {
-                    "startLine": 6,
+                    "startLine": 25,
                     "startColumn": 4,
-                    "startOffset": 261,
+                    "startOffset": 4036,
                     "endColumn": 62,
-                    "endOffset": 319
+                    "endOffset": 4094
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\values\\dimens.xml",
@@ -99,11 +99,11 @@
             },
             {
                 "to": {
-                    "startLine": 7,
+                    "startLine": 26,
                     "startColumn": 4,
-                    "startOffset": 324,
+                    "startOffset": 4099,
                     "endColumn": 57,
-                    "endOffset": 377
+                    "endOffset": 4152
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\values\\dimens.xml",
@@ -118,11 +118,11 @@
             },
             {
                 "to": {
-                    "startLine": 8,
+                    "startLine": 27,
                     "startColumn": 4,
-                    "startOffset": 382,
+                    "startOffset": 4157,
                     "endColumn": 49,
-                    "endOffset": 427
+                    "endOffset": 4202
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\values\\dimens.xml",
@@ -137,11 +137,11 @@
             },
             {
                 "to": {
-                    "startLine": 9,
+                    "startLine": 28,
                     "startColumn": 4,
-                    "startOffset": 432,
+                    "startOffset": 4207,
                     "endColumn": 57,
-                    "endOffset": 485
+                    "endOffset": 4260
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\values\\dimens.xml",
@@ -156,11 +156,11 @@
             },
             {
                 "to": {
-                    "startLine": 10,
+                    "startLine": 29,
                     "startColumn": 4,
-                    "startOffset": 490,
+                    "startOffset": 4265,
                     "endColumn": 59,
-                    "endOffset": 545
+                    "endOffset": 4320
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\values\\dimens.xml",
@@ -175,11 +175,11 @@
             },
             {
                 "to": {
-                    "startLine": 11,
+                    "startLine": 30,
                     "startColumn": 4,
-                    "startOffset": 550,
+                    "startOffset": 4325,
                     "endColumn": 57,
-                    "endOffset": 603
+                    "endOffset": 4378
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\values\\dimens.xml",
@@ -194,11 +194,11 @@
             },
             {
                 "to": {
-                    "startLine": 12,
+                    "startLine": 31,
                     "startColumn": 4,
-                    "startOffset": 608,
+                    "startOffset": 4383,
                     "endColumn": 50,
-                    "endOffset": 654
+                    "endOffset": 4429
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\values\\strings.xml",
@@ -213,12 +213,12 @@
             },
             {
                 "to": {
-                    "startLine": 13,
+                    "startLine": 32,
                     "startColumn": 4,
-                    "startOffset": 659,
-                    "endLine": 16,
+                    "startOffset": 4434,
+                    "endLine": 35,
                     "endColumn": 12,
-                    "endOffset": 895
+                    "endOffset": 4670
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\src\\main\\res\\values\\styles.xml",

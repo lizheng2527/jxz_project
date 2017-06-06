@@ -115,6 +115,7 @@
     <orderEntry type="library" exported="" name="wechat-sdk-android-without-mta-1.1.6" level="project" />
     <orderEntry type="library" exported="" name="support-core-utils-25.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-25.1.0" level="project" />
+    <orderEntry type="library" exported="" name="androids-1.1.4" level="project" />
     <orderEntry type="library" exported="" name="imagepipeline-0.12.0" level="project" />
     <orderEntry type="library" exported="" name="library-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="httpmime-4.2.2" level="project" />
@@ -133,6 +134,7 @@
     <orderEntry type="library" exported="" name="AudioEngineSDK" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-Core-2.7.2" level="project" />
     <orderEntry type="library" exported="" name="pgyer_sdk_2.2.2" level="project" />
+    <orderEntry type="module" module-name="GraffitiLib" exported="" />
     <orderEntry type="module" module-name="datetimepicker" exported="" />
     <orderEntry type="module" module-name="baselibrary" exported="" />
     <orderEntry type="module" module-name="photoSelector" exported="" />

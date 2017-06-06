@@ -17,6 +17,508 @@ public final class R {
         public static final int translate_up_current=0x7f040005;
     }
     public static final class attr {
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int injectListener=0x7f010028;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int miv_is_ignore_alpha=0x7f010003;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int miv_is_show_mask_on_click=0x7f010001;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int miv_mask_color=0x7f010002;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>background</code></td><td>1</td><td></td></tr>
+<tr><td><code>foreground</code></td><td>2</td><td></td></tr>
+</table>
+         */
+        public static final int miv_mask_level=0x7f010000;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int mtv_text_color_disable=0x7f010016;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int mtv_text_color_pressed=0x7f010015;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int riv_height=0x7f01000b;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int riv_height_to_width_ratio=0x7f010008;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int riv_is_height_fix_drawable_size_ratio=0x7f010005;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int riv_is_width_fix_drawable_size_ratio=0x7f010004;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int riv_max_height_when_height_fix_drawable=0x7f010007;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int riv_max_width_when_width_fix_drawable=0x7f010006;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int riv_width=0x7f01000a;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int riv_width_to_height_ratio=0x7f010009;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int rpb_background=0x7f01000c;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int rpb_background_width=0x7f01000d;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int rpb_color=0x7f01000e;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int rpb_max_progress=0x7f010010;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int rpb_progress=0x7f010011;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int rpb_width=0x7f01000f;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int sel_background=0x7f010029;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int sel_background_border_color=0x7f010030;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int sel_background_border_pressed=0x7f010033;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int sel_background_border_selected=0x7f010035;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int sel_background_border_width=0x7f010031;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int sel_background_corner_bottomLeft=0x7f01002e;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int sel_background_corner_bottomRight=0x7f01002f;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int sel_background_corner_topLeft=0x7f01002c;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int sel_background_corner_topRight=0x7f01002d;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int sel_background_corners=0x7f01002b;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int sel_background_pressed=0x7f010032;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int sel_background_selected=0x7f010034;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>rect</code></td><td>0</td><td></td></tr>
+<tr><td><code>oval</code></td><td>1</td><td></td></tr>
+<tr><td><code>line</code></td><td>2</td><td></td></tr>
+<tr><td><code>ring</code></td><td>3</td><td></td></tr>
+</table>
+         */
+        public static final int sel_background_shape=0x7f01002a;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int siv_border_color=0x7f010027;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int siv_border_size=0x7f010026;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int siv_round_radius=0x7f010021;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int siv_round_radius_leftBottom=0x7f010023;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int siv_round_radius_leftTop=0x7f010022;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int siv_round_radius_rightBottom=0x7f010025;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int siv_round_radius_rightTop=0x7f010024;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>rect</code></td><td>1</td><td></td></tr>
+<tr><td><code>circle</code></td><td>2</td><td></td></tr>
+<tr><td><code>oval</code></td><td>3</td><td></td></tr>
+</table>
+         */
+        public static final int siv_shape=0x7f010020;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int spv_center_item_background=0x7f01001b;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int spv_center_item_position=0x7f01001d;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int spv_disallow_intercept_touch=0x7f01001f;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int spv_end_color=0x7f01001a;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int spv_is_circulation=0x7f01001e;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int spv_max_text_size=0x7f010018;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int spv_min_text_size=0x7f010017;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int spv_start_color=0x7f010019;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int spv_visible_item_count=0x7f01001c;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int stv_text_color_disable=0x7f010014;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int stv_text_color_pressed=0x7f010013;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int stv_text_color_selected=0x7f010012;
     }
     public static final class dimen {
         public static final int albumitem_content_height=0x7f050000;
@@ -60,35 +562,42 @@ public final class R {
         public static final int ic_title_btn_back=0x7f02001a;
     }
     public static final class id {
-        public static final int btn_back_app=0x7f080002;
-        public static final int btn_right_lh=0x7f08000a;
-        public static final int bv_back_lh=0x7f080006;
-        public static final int cb_photo_lpsi=0x7f080018;
-        public static final int gv_photos_ar=0x7f08000c;
-        public static final int hl_head_ar=0x7f080005;
-        public static final int iv_album_la=0x7f080013;
-        public static final int iv_back_vb=0x7f080007;
-        public static final int iv_content_vpp=0x7f08001c;
-        public static final int iv_index_la=0x7f080016;
-        public static final int iv_photo_lpsi=0x7f080017;
-        public static final int layout=0x7f08001a;
-        public static final int layout_album_ar=0x7f08000d;
-        public static final int layout_left_la=0x7f080012;
-        public static final int layout_toolbar_ar=0x7f08000b;
-        public static final int layout_top_app=0x7f080001;
-        public static final int lv_ablum_ar=0x7f08000e;
-        public static final int pb_loading_vpp=0x7f08001b;
-        public static final int tv_album_ar=0x7f08000f;
-        public static final int tv_camera_vc=0x7f080019;
-        public static final int tv_count_la=0x7f080015;
-        public static final int tv_line_apu=0x7f080003;
-        public static final int tv_line_ar=0x7f080010;
-        public static final int tv_name_la=0x7f080014;
-        public static final int tv_percent_app=0x7f080004;
-        public static final int tv_preview_ar=0x7f080011;
-        public static final int tv_title_lh=0x7f080009;
-        public static final int tv_title_vb=0x7f080008;
-        public static final int vp_base_app=0x7f080000;
+        public static final int background=0x7f080000;
+        public static final int btn_back_app=0x7f080009;
+        public static final int btn_right_lh=0x7f080011;
+        public static final int bv_back_lh=0x7f08000d;
+        public static final int cb_photo_lpsi=0x7f08001f;
+        public static final int circle=0x7f080002;
+        public static final int foreground=0x7f080001;
+        public static final int gv_photos_ar=0x7f080013;
+        public static final int hl_head_ar=0x7f08000c;
+        public static final int iv_album_la=0x7f08001a;
+        public static final int iv_back_vb=0x7f08000e;
+        public static final int iv_content_vpp=0x7f080023;
+        public static final int iv_index_la=0x7f08001d;
+        public static final int iv_photo_lpsi=0x7f08001e;
+        public static final int layout=0x7f080021;
+        public static final int layout_album_ar=0x7f080014;
+        public static final int layout_left_la=0x7f080019;
+        public static final int layout_toolbar_ar=0x7f080012;
+        public static final int layout_top_app=0x7f080008;
+        public static final int line=0x7f080005;
+        public static final int lv_ablum_ar=0x7f080015;
+        public static final int oval=0x7f080003;
+        public static final int pb_loading_vpp=0x7f080022;
+        public static final int rect=0x7f080004;
+        public static final int ring=0x7f080006;
+        public static final int tv_album_ar=0x7f080016;
+        public static final int tv_camera_vc=0x7f080020;
+        public static final int tv_count_la=0x7f08001c;
+        public static final int tv_line_apu=0x7f08000a;
+        public static final int tv_line_ar=0x7f080017;
+        public static final int tv_name_la=0x7f08001b;
+        public static final int tv_percent_app=0x7f08000b;
+        public static final int tv_preview_ar=0x7f080018;
+        public static final int tv_title_lh=0x7f080010;
+        public static final int tv_title_vb=0x7f08000f;
+        public static final int vp_base_app=0x7f080007;
     }
     public static final class layout {
         public static final int activity_photopreview=0x7f030000;
@@ -104,4 +613,1026 @@ public final class R {
     public static final class style {
         public static final int CustomCheckboxTheme=0x7f070000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a MaskImageView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #MaskImageView_miv_is_ignore_alpha com.photoselector.test:miv_is_ignore_alpha}</code></td><td></td></tr>
+           <tr><td><code>{@link #MaskImageView_miv_is_show_mask_on_click com.photoselector.test:miv_is_show_mask_on_click}</code></td><td></td></tr>
+           <tr><td><code>{@link #MaskImageView_miv_mask_color com.photoselector.test:miv_mask_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #MaskImageView_miv_mask_level com.photoselector.test:miv_mask_level}</code></td><td></td></tr>
+           </table>
+           @see #MaskImageView_miv_is_ignore_alpha
+           @see #MaskImageView_miv_is_show_mask_on_click
+           @see #MaskImageView_miv_mask_color
+           @see #MaskImageView_miv_mask_level
+         */
+        public static final int[] MaskImageView = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#miv_is_ignore_alpha}
+          attribute's value can be found in the {@link #MaskImageView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:miv_is_ignore_alpha
+        */
+        public static final int MaskImageView_miv_is_ignore_alpha = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#miv_is_show_mask_on_click}
+          attribute's value can be found in the {@link #MaskImageView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:miv_is_show_mask_on_click
+        */
+        public static final int MaskImageView_miv_is_show_mask_on_click = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#miv_mask_color}
+          attribute's value can be found in the {@link #MaskImageView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:miv_mask_color
+        */
+        public static final int MaskImageView_miv_mask_color = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#miv_mask_level}
+          attribute's value can be found in the {@link #MaskImageView} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>background</code></td><td>1</td><td></td></tr>
+<tr><td><code>foreground</code></td><td>2</td><td></td></tr>
+</table>
+          @attr name com.photoselector.test:miv_mask_level
+        */
+        public static final int MaskImageView_miv_mask_level = 0;
+        /** Attributes that can be used with a RatioImageView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #RatioImageView_riv_height com.photoselector.test:riv_height}</code></td><td></td></tr>
+           <tr><td><code>{@link #RatioImageView_riv_height_to_width_ratio com.photoselector.test:riv_height_to_width_ratio}</code></td><td></td></tr>
+           <tr><td><code>{@link #RatioImageView_riv_is_height_fix_drawable_size_ratio com.photoselector.test:riv_is_height_fix_drawable_size_ratio}</code></td><td></td></tr>
+           <tr><td><code>{@link #RatioImageView_riv_is_width_fix_drawable_size_ratio com.photoselector.test:riv_is_width_fix_drawable_size_ratio}</code></td><td></td></tr>
+           <tr><td><code>{@link #RatioImageView_riv_max_height_when_height_fix_drawable com.photoselector.test:riv_max_height_when_height_fix_drawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #RatioImageView_riv_max_width_when_width_fix_drawable com.photoselector.test:riv_max_width_when_width_fix_drawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #RatioImageView_riv_width com.photoselector.test:riv_width}</code></td><td></td></tr>
+           <tr><td><code>{@link #RatioImageView_riv_width_to_height_ratio com.photoselector.test:riv_width_to_height_ratio}</code></td><td></td></tr>
+           </table>
+           @see #RatioImageView_riv_height
+           @see #RatioImageView_riv_height_to_width_ratio
+           @see #RatioImageView_riv_is_height_fix_drawable_size_ratio
+           @see #RatioImageView_riv_is_width_fix_drawable_size_ratio
+           @see #RatioImageView_riv_max_height_when_height_fix_drawable
+           @see #RatioImageView_riv_max_width_when_width_fix_drawable
+           @see #RatioImageView_riv_width
+           @see #RatioImageView_riv_width_to_height_ratio
+         */
+        public static final int[] RatioImageView = {
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
+            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#riv_height}
+          attribute's value can be found in the {@link #RatioImageView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:riv_height
+        */
+        public static final int RatioImageView_riv_height = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#riv_height_to_width_ratio}
+          attribute's value can be found in the {@link #RatioImageView} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:riv_height_to_width_ratio
+        */
+        public static final int RatioImageView_riv_height_to_width_ratio = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#riv_is_height_fix_drawable_size_ratio}
+          attribute's value can be found in the {@link #RatioImageView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:riv_is_height_fix_drawable_size_ratio
+        */
+        public static final int RatioImageView_riv_is_height_fix_drawable_size_ratio = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#riv_is_width_fix_drawable_size_ratio}
+          attribute's value can be found in the {@link #RatioImageView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:riv_is_width_fix_drawable_size_ratio
+        */
+        public static final int RatioImageView_riv_is_width_fix_drawable_size_ratio = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#riv_max_height_when_height_fix_drawable}
+          attribute's value can be found in the {@link #RatioImageView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:riv_max_height_when_height_fix_drawable
+        */
+        public static final int RatioImageView_riv_max_height_when_height_fix_drawable = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#riv_max_width_when_width_fix_drawable}
+          attribute's value can be found in the {@link #RatioImageView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:riv_max_width_when_width_fix_drawable
+        */
+        public static final int RatioImageView_riv_max_width_when_width_fix_drawable = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#riv_width}
+          attribute's value can be found in the {@link #RatioImageView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:riv_width
+        */
+        public static final int RatioImageView_riv_width = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#riv_width_to_height_ratio}
+          attribute's value can be found in the {@link #RatioImageView} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:riv_width_to_height_ratio
+        */
+        public static final int RatioImageView_riv_width_to_height_ratio = 5;
+        /** Attributes that can be used with a RoundProgressBar.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #RoundProgressBar_rpb_background com.photoselector.test:rpb_background}</code></td><td></td></tr>
+           <tr><td><code>{@link #RoundProgressBar_rpb_background_width com.photoselector.test:rpb_background_width}</code></td><td></td></tr>
+           <tr><td><code>{@link #RoundProgressBar_rpb_color com.photoselector.test:rpb_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #RoundProgressBar_rpb_max_progress com.photoselector.test:rpb_max_progress}</code></td><td></td></tr>
+           <tr><td><code>{@link #RoundProgressBar_rpb_progress com.photoselector.test:rpb_progress}</code></td><td></td></tr>
+           <tr><td><code>{@link #RoundProgressBar_rpb_width com.photoselector.test:rpb_width}</code></td><td></td></tr>
+           </table>
+           @see #RoundProgressBar_rpb_background
+           @see #RoundProgressBar_rpb_background_width
+           @see #RoundProgressBar_rpb_color
+           @see #RoundProgressBar_rpb_max_progress
+           @see #RoundProgressBar_rpb_progress
+           @see #RoundProgressBar_rpb_width
+         */
+        public static final int[] RoundProgressBar = {
+            0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f,
+            0x7f010010, 0x7f010011
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#rpb_background}
+          attribute's value can be found in the {@link #RoundProgressBar} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:rpb_background
+        */
+        public static final int RoundProgressBar_rpb_background = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#rpb_background_width}
+          attribute's value can be found in the {@link #RoundProgressBar} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:rpb_background_width
+        */
+        public static final int RoundProgressBar_rpb_background_width = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#rpb_color}
+          attribute's value can be found in the {@link #RoundProgressBar} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:rpb_color
+        */
+        public static final int RoundProgressBar_rpb_color = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#rpb_max_progress}
+          attribute's value can be found in the {@link #RoundProgressBar} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:rpb_max_progress
+        */
+        public static final int RoundProgressBar_rpb_max_progress = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#rpb_progress}
+          attribute's value can be found in the {@link #RoundProgressBar} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:rpb_progress
+        */
+        public static final int RoundProgressBar_rpb_progress = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#rpb_width}
+          attribute's value can be found in the {@link #RoundProgressBar} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:rpb_width
+        */
+        public static final int RoundProgressBar_rpb_width = 3;
+        /** Attributes that can be used with a STextView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #STextView_mtv_text_color_disable com.photoselector.test:mtv_text_color_disable}</code></td><td></td></tr>
+           <tr><td><code>{@link #STextView_mtv_text_color_pressed com.photoselector.test:mtv_text_color_pressed}</code></td><td></td></tr>
+           <tr><td><code>{@link #STextView_stv_text_color_disable com.photoselector.test:stv_text_color_disable}</code></td><td></td></tr>
+           <tr><td><code>{@link #STextView_stv_text_color_pressed com.photoselector.test:stv_text_color_pressed}</code></td><td></td></tr>
+           <tr><td><code>{@link #STextView_stv_text_color_selected com.photoselector.test:stv_text_color_selected}</code></td><td></td></tr>
+           </table>
+           @see #STextView_mtv_text_color_disable
+           @see #STextView_mtv_text_color_pressed
+           @see #STextView_stv_text_color_disable
+           @see #STextView_stv_text_color_pressed
+           @see #STextView_stv_text_color_selected
+         */
+        public static final int[] STextView = {
+            0x7f010012, 0x7f010013, 0x7f010014, 0x7f010015,
+            0x7f010016
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#mtv_text_color_disable}
+          attribute's value can be found in the {@link #STextView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:mtv_text_color_disable
+        */
+        public static final int STextView_mtv_text_color_disable = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#mtv_text_color_pressed}
+          attribute's value can be found in the {@link #STextView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:mtv_text_color_pressed
+        */
+        public static final int STextView_mtv_text_color_pressed = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#stv_text_color_disable}
+          attribute's value can be found in the {@link #STextView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:stv_text_color_disable
+        */
+        public static final int STextView_stv_text_color_disable = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#stv_text_color_pressed}
+          attribute's value can be found in the {@link #STextView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:stv_text_color_pressed
+        */
+        public static final int STextView_stv_text_color_pressed = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#stv_text_color_selected}
+          attribute's value can be found in the {@link #STextView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:stv_text_color_selected
+        */
+        public static final int STextView_stv_text_color_selected = 0;
+        /** Attributes that can be used with a ScrollPickerView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ScrollPickerView_spv_center_item_background com.photoselector.test:spv_center_item_background}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollPickerView_spv_center_item_position com.photoselector.test:spv_center_item_position}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollPickerView_spv_disallow_intercept_touch com.photoselector.test:spv_disallow_intercept_touch}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollPickerView_spv_end_color com.photoselector.test:spv_end_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollPickerView_spv_is_circulation com.photoselector.test:spv_is_circulation}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollPickerView_spv_max_text_size com.photoselector.test:spv_max_text_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollPickerView_spv_min_text_size com.photoselector.test:spv_min_text_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollPickerView_spv_start_color com.photoselector.test:spv_start_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollPickerView_spv_visible_item_count com.photoselector.test:spv_visible_item_count}</code></td><td></td></tr>
+           </table>
+           @see #ScrollPickerView_spv_center_item_background
+           @see #ScrollPickerView_spv_center_item_position
+           @see #ScrollPickerView_spv_disallow_intercept_touch
+           @see #ScrollPickerView_spv_end_color
+           @see #ScrollPickerView_spv_is_circulation
+           @see #ScrollPickerView_spv_max_text_size
+           @see #ScrollPickerView_spv_min_text_size
+           @see #ScrollPickerView_spv_start_color
+           @see #ScrollPickerView_spv_visible_item_count
+         */
+        public static final int[] ScrollPickerView = {
+            0x7f010017, 0x7f010018, 0x7f010019, 0x7f01001a,
+            0x7f01001b, 0x7f01001c, 0x7f01001d, 0x7f01001e,
+            0x7f01001f
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#spv_center_item_background}
+          attribute's value can be found in the {@link #ScrollPickerView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:spv_center_item_background
+        */
+        public static final int ScrollPickerView_spv_center_item_background = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#spv_center_item_position}
+          attribute's value can be found in the {@link #ScrollPickerView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:spv_center_item_position
+        */
+        public static final int ScrollPickerView_spv_center_item_position = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#spv_disallow_intercept_touch}
+          attribute's value can be found in the {@link #ScrollPickerView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:spv_disallow_intercept_touch
+        */
+        public static final int ScrollPickerView_spv_disallow_intercept_touch = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#spv_end_color}
+          attribute's value can be found in the {@link #ScrollPickerView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:spv_end_color
+        */
+        public static final int ScrollPickerView_spv_end_color = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#spv_is_circulation}
+          attribute's value can be found in the {@link #ScrollPickerView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:spv_is_circulation
+        */
+        public static final int ScrollPickerView_spv_is_circulation = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#spv_max_text_size}
+          attribute's value can be found in the {@link #ScrollPickerView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:spv_max_text_size
+        */
+        public static final int ScrollPickerView_spv_max_text_size = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#spv_min_text_size}
+          attribute's value can be found in the {@link #ScrollPickerView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:spv_min_text_size
+        */
+        public static final int ScrollPickerView_spv_min_text_size = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#spv_start_color}
+          attribute's value can be found in the {@link #ScrollPickerView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:spv_start_color
+        */
+        public static final int ScrollPickerView_spv_start_color = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#spv_visible_item_count}
+          attribute's value can be found in the {@link #ScrollPickerView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:spv_visible_item_count
+        */
+        public static final int ScrollPickerView_spv_visible_item_count = 5;
+        /** Attributes that can be used with a ShapeImageView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ShapeImageView_siv_border_color com.photoselector.test:siv_border_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #ShapeImageView_siv_border_size com.photoselector.test:siv_border_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #ShapeImageView_siv_round_radius com.photoselector.test:siv_round_radius}</code></td><td></td></tr>
+           <tr><td><code>{@link #ShapeImageView_siv_round_radius_leftBottom com.photoselector.test:siv_round_radius_leftBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #ShapeImageView_siv_round_radius_leftTop com.photoselector.test:siv_round_radius_leftTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #ShapeImageView_siv_round_radius_rightBottom com.photoselector.test:siv_round_radius_rightBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #ShapeImageView_siv_round_radius_rightTop com.photoselector.test:siv_round_radius_rightTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #ShapeImageView_siv_shape com.photoselector.test:siv_shape}</code></td><td></td></tr>
+           </table>
+           @see #ShapeImageView_siv_border_color
+           @see #ShapeImageView_siv_border_size
+           @see #ShapeImageView_siv_round_radius
+           @see #ShapeImageView_siv_round_radius_leftBottom
+           @see #ShapeImageView_siv_round_radius_leftTop
+           @see #ShapeImageView_siv_round_radius_rightBottom
+           @see #ShapeImageView_siv_round_radius_rightTop
+           @see #ShapeImageView_siv_shape
+         */
+        public static final int[] ShapeImageView = {
+            0x7f010020, 0x7f010021, 0x7f010022, 0x7f010023,
+            0x7f010024, 0x7f010025, 0x7f010026, 0x7f010027
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#siv_border_color}
+          attribute's value can be found in the {@link #ShapeImageView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:siv_border_color
+        */
+        public static final int ShapeImageView_siv_border_color = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#siv_border_size}
+          attribute's value can be found in the {@link #ShapeImageView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:siv_border_size
+        */
+        public static final int ShapeImageView_siv_border_size = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#siv_round_radius}
+          attribute's value can be found in the {@link #ShapeImageView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:siv_round_radius
+        */
+        public static final int ShapeImageView_siv_round_radius = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#siv_round_radius_leftBottom}
+          attribute's value can be found in the {@link #ShapeImageView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:siv_round_radius_leftBottom
+        */
+        public static final int ShapeImageView_siv_round_radius_leftBottom = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#siv_round_radius_leftTop}
+          attribute's value can be found in the {@link #ShapeImageView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:siv_round_radius_leftTop
+        */
+        public static final int ShapeImageView_siv_round_radius_leftTop = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#siv_round_radius_rightBottom}
+          attribute's value can be found in the {@link #ShapeImageView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:siv_round_radius_rightBottom
+        */
+        public static final int ShapeImageView_siv_round_radius_rightBottom = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#siv_round_radius_rightTop}
+          attribute's value can be found in the {@link #ShapeImageView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:siv_round_radius_rightTop
+        */
+        public static final int ShapeImageView_siv_round_radius_rightTop = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#siv_shape}
+          attribute's value can be found in the {@link #ShapeImageView} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>rect</code></td><td>1</td><td></td></tr>
+<tr><td><code>circle</code></td><td>2</td><td></td></tr>
+<tr><td><code>oval</code></td><td>3</td><td></td></tr>
+</table>
+          @attr name com.photoselector.test:siv_shape
+        */
+        public static final int ShapeImageView_siv_shape = 0;
+        /** Attributes that can be used with a View.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #View_injectListener com.photoselector.test:injectListener}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_sel_background com.photoselector.test:sel_background}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_sel_background_border_color com.photoselector.test:sel_background_border_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_sel_background_border_pressed com.photoselector.test:sel_background_border_pressed}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_sel_background_border_selected com.photoselector.test:sel_background_border_selected}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_sel_background_border_width com.photoselector.test:sel_background_border_width}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_sel_background_corner_bottomLeft com.photoselector.test:sel_background_corner_bottomLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_sel_background_corner_bottomRight com.photoselector.test:sel_background_corner_bottomRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_sel_background_corner_topLeft com.photoselector.test:sel_background_corner_topLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_sel_background_corner_topRight com.photoselector.test:sel_background_corner_topRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_sel_background_corners com.photoselector.test:sel_background_corners}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_sel_background_pressed com.photoselector.test:sel_background_pressed}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_sel_background_selected com.photoselector.test:sel_background_selected}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_sel_background_shape com.photoselector.test:sel_background_shape}</code></td><td></td></tr>
+           </table>
+           @see #View_injectListener
+           @see #View_sel_background
+           @see #View_sel_background_border_color
+           @see #View_sel_background_border_pressed
+           @see #View_sel_background_border_selected
+           @see #View_sel_background_border_width
+           @see #View_sel_background_corner_bottomLeft
+           @see #View_sel_background_corner_bottomRight
+           @see #View_sel_background_corner_topLeft
+           @see #View_sel_background_corner_topRight
+           @see #View_sel_background_corners
+           @see #View_sel_background_pressed
+           @see #View_sel_background_selected
+           @see #View_sel_background_shape
+         */
+        public static final int[] View = {
+            0x7f010028, 0x7f010029, 0x7f01002a, 0x7f01002b,
+            0x7f01002c, 0x7f01002d, 0x7f01002e, 0x7f01002f,
+            0x7f010030, 0x7f010031, 0x7f010032, 0x7f010033,
+            0x7f010034, 0x7f010035
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#injectListener}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:injectListener
+        */
+        public static final int View_injectListener = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#sel_background}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:sel_background
+        */
+        public static final int View_sel_background = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#sel_background_border_color}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:sel_background_border_color
+        */
+        public static final int View_sel_background_border_color = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#sel_background_border_pressed}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:sel_background_border_pressed
+        */
+        public static final int View_sel_background_border_pressed = 11;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#sel_background_border_selected}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:sel_background_border_selected
+        */
+        public static final int View_sel_background_border_selected = 13;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#sel_background_border_width}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:sel_background_border_width
+        */
+        public static final int View_sel_background_border_width = 9;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#sel_background_corner_bottomLeft}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:sel_background_corner_bottomLeft
+        */
+        public static final int View_sel_background_corner_bottomLeft = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#sel_background_corner_bottomRight}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:sel_background_corner_bottomRight
+        */
+        public static final int View_sel_background_corner_bottomRight = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#sel_background_corner_topLeft}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:sel_background_corner_topLeft
+        */
+        public static final int View_sel_background_corner_topLeft = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#sel_background_corner_topRight}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:sel_background_corner_topRight
+        */
+        public static final int View_sel_background_corner_topRight = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#sel_background_corners}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:sel_background_corners
+        */
+        public static final int View_sel_background_corners = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#sel_background_pressed}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:sel_background_pressed
+        */
+        public static final int View_sel_background_pressed = 10;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#sel_background_selected}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.photoselector.test:sel_background_selected
+        */
+        public static final int View_sel_background_selected = 12;
+        /**
+          <p>This symbol is the offset where the {@link com.photoselector.test.R.attr#sel_background_shape}
+          attribute's value can be found in the {@link #View} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>rect</code></td><td>0</td><td></td></tr>
+<tr><td><code>oval</code></td><td>1</td><td></td></tr>
+<tr><td><code>line</code></td><td>2</td><td></td></tr>
+<tr><td><code>ring</code></td><td>3</td><td></td></tr>
+</table>
+          @attr name com.photoselector.test:sel_background_shape
+        */
+        public static final int View_sel_background_shape = 2;
+    };
 }

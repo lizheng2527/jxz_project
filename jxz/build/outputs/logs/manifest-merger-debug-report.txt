@@ -19,7 +19,6 @@ uses-sdk
 ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:7:5-9:41
 MERGED from [AndroidBase:datetimepicker:unspecified] D:\01_work\jxz-project\AndroidBase\datetimepicker\build\intermediates\bundles\default\AndroidManifest.xml:22:5-24:41
 MERGED from [AndroidBase:photoSelector:unspecified] D:\01_work\jxz-project\AndroidBase\photoSelector\build\intermediates\bundles\default\AndroidManifest.xml:7:5-9:41
-MERGED from [AndroidBase:baselibrary:unspecified] D:\01_work\jxz-project\AndroidBase\baselibrary\build\intermediates\bundles\default\AndroidManifest.xml:7:5-9:41
 MERGED from [io.reactivex:rxandroid:1.2.1] C:\Users\lizheng\.android\build-cache\395528eb9cc38f71c2192c1bce3e46d03db8eb82\output\AndroidManifest.xml:19:5-43
 MERGED from [top.zibin:Luban:1.0.9] C:\Users\lizheng\.android\build-cache\19f3749060d1a2d48ce1f4db09ced06f407b74c1\output\AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.fresco:fresco:0.12.0] C:\Users\lizheng\.android\build-cache\89788ea9f3b1694224c4cb807f464750c5e394a0\output\AndroidManifest.xml:5:5-7:41
@@ -29,13 +28,16 @@ MERGED from [com.facebook.fresco:animated-base:0.12.0] C:\Users\lizheng\.android
 MERGED from [com.facebook.fresco:imagepipeline:0.12.0] C:\Users\lizheng\.android\build-cache\d5be8438c6c8c192bc113b4ee5e0f6ba89a03c41\output\AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:webpsupport:0.12.0] C:\Users\lizheng\.android\build-cache\9a4294a892050375d27898331c8891112e5cb208\output\AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:imagepipeline-base:0.12.0] C:\Users\lizheng\.android\build-cache\0722fedbbaca85121fef68e4bcd0f8c1963c8324\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:0.12.0] C:\Users\lizheng\.android\build-cache\82976f984aed5e1b761a15d914c9249bf5e0aa4a\output\AndroidManifest.xml:5:5-7:41
+MERGED from [AndroidBase:GraffitiLib:unspecified] D:\01_work\jxz-project\AndroidBase\GraffitiLib\build\intermediates\bundles\default\AndroidManifest.xml:5:5-7:41
+MERGED from [AndroidBase:baselibrary:unspecified] D:\01_work\jxz-project\AndroidBase\baselibrary\build\intermediates\bundles\default\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:support-v4:25.1.0] C:\Users\lizheng\.android\build-cache\ec5ceddf1fe03a7d7d91550531f74aec8cbb2776\output\AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:support-fragment:25.1.0] C:\Users\lizheng\.android\build-cache\d0df2f4edc6c81de64b94c970e9c9e07b6cc8797\output\AndroidManifest.xml:21:5-23:60
 MERGED from [com.android.support:support-media-compat:25.1.0] C:\Users\lizheng\.android\build-cache\d5a532bbc387ccbd51e606661b2076755f6440b5\output\AndroidManifest.xml:21:5-23:63
 MERGED from [com.android.support:support-core-ui:25.1.0] C:\Users\lizheng\.android\build-cache\177c228bda0b2800a2884ee06cc929fdc7e741c6\output\AndroidManifest.xml:21:5-23:58
 MERGED from [com.android.support:support-core-utils:25.1.0] C:\Users\lizheng\.android\build-cache\1b0dc8398aec89be723d67d31df23eb3c5b159e3\output\AndroidManifest.xml:21:5-23:61
 MERGED from [com.android.support:support-compat:25.1.0] C:\Users\lizheng\.android\build-cache\5a826864894c6fb4fb30123677bfc56288fca324\output\AndroidManifest.xml:21:5-23:58
-MERGED from [com.facebook.fresco:fbcore:0.12.0] C:\Users\lizheng\.android\build-cache\82976f984aed5e1b761a15d914c9249bf5e0aa4a\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.forward.androids:androids:1.1.4] C:\Users\lizheng\.android\build-cache\6a3d241d04687eb9b103d06ff61762edd2e801bc\output\AndroidManifest.xml:7:5-9:41
 	tools:overrideLibrary
 		ADDED from [com.android.support:support-v4:25.1.0] C:\Users\lizheng\.android\build-cache\ec5ceddf1fe03a7d7d91550531f74aec8cbb2776\output\AndroidManifest.xml:23:9-51
 	android:targetSdkVersion
@@ -78,6 +80,7 @@ ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:1
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:18:5-81
 MERGED from [AndroidBase:photoSelector:unspecified] D:\01_work\jxz-project\AndroidBase\photoSelector\build\intermediates\bundles\default\AndroidManifest.xml:14:5-81
+MERGED from [AndroidBase:GraffitiLib:unspecified] D:\01_work\jxz-project\AndroidBase\GraffitiLib\build\intermediates\bundles\default\AndroidManifest.xml:12:5-81
 	android:name
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:18:22-78
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
@@ -111,11 +114,25 @@ ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:2
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:25:22-76
 uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
 ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:26:5-83
+MERGED from [AndroidBase:GraffitiLib:unspecified] D:\01_work\jxz-project\AndroidBase\GraffitiLib\build\intermediates\bundles\default\AndroidManifest.xml:10:5-84
 	android:name
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:26:22-81
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:27:5-75
+	android:name
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:27:22-73
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:28:5-70
+	android:name
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:28:22-68
+uses-permission#android.permission.MANAGE_ACCOUNTS
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:29:5-73
+	android:name
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:29:22-71
 application
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:28:5-180:19
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:31:5-180:19
 MERGED from [AndroidBase:photoSelector:unspecified] D:\01_work\jxz-project\AndroidBase\photoSelector\build\intermediates\bundles\default\AndroidManifest.xml:16:5-30:19
+MERGED from [AndroidBase:GraffitiLib:unspecified] D:\01_work\jxz-project\AndroidBase\GraffitiLib\build\intermediates\bundles\default\AndroidManifest.xml:14:5-16:19
 MERGED from [AndroidBase:baselibrary:unspecified] D:\01_work\jxz-project\AndroidBase\baselibrary\build\intermediates\bundles\default\AndroidManifest.xml:11:5-15:19
 MERGED from [com.android.support:support-v4:25.1.0] C:\Users\lizheng\.android\build-cache\ec5ceddf1fe03a7d7d91550531f74aec8cbb2776\output\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-fragment:25.1.0] C:\Users\lizheng\.android\build-cache\d0df2f4edc6c81de64b94c970e9c9e07b6cc8797\output\AndroidManifest.xml:25:5-20
@@ -124,157 +141,153 @@ MERGED from [com.android.support:support-core-ui:25.1.0] C:\Users\lizheng\.andro
 MERGED from [com.android.support:support-core-utils:25.1.0] C:\Users\lizheng\.android\build-cache\1b0dc8398aec89be723d67d31df23eb3c5b159e3\output\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-compat:25.1.0] C:\Users\lizheng\.android\build-cache\5a826864894c6fb4fb30123677bfc56288fca324\output\AndroidManifest.xml:25:5-20
 	android:label
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:33:9-41
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:36:9-41
 	android:supportsRtl
 		ADDED from [AndroidBase:baselibrary:unspecified] D:\01_work\jxz-project\AndroidBase\baselibrary\build\intermediates\bundles\default\AndroidManifest.xml:14:9-35
 	android:hardwareAccelerated
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:31:9-43
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:34:9-43
 	android:allowBackup
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:30:9-35
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:33:9-35
 	android:icon
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:32:9-38
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:35:9-38
 	android:theme
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:34:9-40
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:37:9-40
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:29:9-38
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:32:9-38
 uses-library#org.simalliance.openmobileapi
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:36:9-38:40
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:39:9-41:40
 	android:required
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:38:13-37
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:41:13-37
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:37:13-57
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:40:13-57
 activity#com.zdhx.androidbase.ui.account.WelcomeActivity
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:40:9-48:20
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:43:9-51:20
 	android:label
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:42:13-45
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:45:13-45
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:41:13-75
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:44:13-75
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:43:13-47:29
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:46:13-50:29
 action#android.intent.action.MAIN
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:44:17-69
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:47:17-69
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:44:25-66
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:47:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:46:17-77
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:49:17-77
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:46:27-74
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:49:27-74
 activity#com.zdhx.androidbase.ui.MainActivity
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:49:9-55:20
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:52:9-58:20
 	android:screenOrientation
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:53:13-49
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:56:13-49
 	android:label
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:52:13-31
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:55:13-31
 	android:windowSoftInputMode
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:54:13-72
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:57:13-72
 	android:configChanges
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:51:13-74
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:54:13-74
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:50:13-64
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:53:13-64
 activity#com.zdhx.androidbase.ui.account.LoginActivity
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:56:9-62:20
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:59:9-65:20
 	android:screenOrientation
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:60:13-49
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:63:13-49
 	android:label
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:59:13-31
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:62:13-31
 	android:windowSoftInputMode
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:61:13-72
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:64:13-72
 	android:configChanges
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:58:13-63
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:61:13-63
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:57:13-73
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:60:13-73
 activity#com.zdhx.androidbase.ui.scrosearch.SelectScroActivity
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:64:9-65:51
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:67:9-68:51
 	android:screenOrientation
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:65:13-49
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:68:13-49
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:64:19-67
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:67:19-67
 activity#com.zdhx.androidbase.ui.introducetreads.IntroduceTreadsActivity
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:67:9-82:20
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:70:9-85:20
 	android:screenOrientation
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:69:13-49
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:72:13-49
 	android:label
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:70:13-36
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:73:13-36
 	android:icon
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:68:13-42
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:71:13-42
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:67:19-77
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:70:19-77
 intent-filter#android.intent.action.SEND+android.intent.action.SENDTO+android.intent.category.DEFAULT
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:71:13-81:29
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:74:13-84:29
 action#android.intent.action.SEND
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:73:17-69
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:76:17-69
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:73:25-66
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:76:25-66
 action#android.intent.action.SENDTO
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:74:17-71
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:77:17-71
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:74:25-68
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:77:25-68
 category#android.intent.category.DEFAULT
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:76:17-76
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:79:17-76
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:76:27-73
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:79:27-73
 data
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:78:17-52
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:81:17-52
 	android:mimeType
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:78:23-49
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:81:23-49
 activity#com.zdhx.androidbase.ui.treadssearch.SearchTreadsActivity
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:84:9-85:51
-	android:screenOrientation
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:85:13-49
-	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:84:19-71
-activity#com.zdhx.androidbase.ui.ykt.SearchHandWriteActivity
 ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:87:9-88:51
 	android:screenOrientation
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:88:13-49
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:87:19-65
-activity#com.zdhx.androidbase.ui.ykt.ShowWeekActivity
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:87:19-71
+activity#com.zdhx.androidbase.ui.ykt.SearchHandWriteActivity
 ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:90:9-91:51
 	android:screenOrientation
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:91:13-49
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:90:19-58
-activity#com.zdhx.androidbase.ui.treadssearch.SearchWorkActivity
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:90:19-65
+activity#com.zdhx.androidbase.ui.ykt.ShowWeekActivity
 ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:93:9-94:51
 	android:screenOrientation
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:94:13-49
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:93:19-69
-activity#com.zdhx.androidbase.ui.plugin.FileExplorerActivity
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:93:19-58
+activity#com.zdhx.androidbase.ui.treadssearch.SearchWorkActivity
 ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:96:9-97:51
 	android:screenOrientation
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:97:13-49
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:96:19-65
-activity#com.zdhx.androidbase.ui.treadstree.TreeActivity
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:96:19-69
+activity#com.zdhx.androidbase.ui.plugin.FileExplorerActivity
 ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:99:9-100:51
 	android:screenOrientation
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:100:13-49
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:99:19-61
-activity#com.zdhx.androidbase.ui.treadstree.WorkTreeActivity
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:103:9-104:51
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:99:19-65
+activity#com.zdhx.androidbase.ui.treadstree.TreeActivity
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:102:9-103:51
 	android:screenOrientation
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:104:13-49
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:103:13-49
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:103:19-65
-activity#com.zdhx.androidbase.ui.treadssearch.UpFileActivity
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:106:9-109:20
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:102:19-61
+activity#com.zdhx.androidbase.ui.treadstree.WorkTreeActivity
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:106:9-107:51
 	android:screenOrientation
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:107:13-49
 	android:name
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:106:19-65
-activity#com.zdhx.androidbase.ui.treadssearch.VideoShowActivity
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:113:9-114:51
+activity#com.zdhx.androidbase.ui.treadssearch.UpFileActivity
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:109:9-112:20
 	android:screenOrientation
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:114:13-49
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:110:13-49
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:113:19-68
-activity#com.zdhx.androidbase.ui.paint.activity.PaintActivity
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:116:9-117:15
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:109:19-65
+activity#com.zdhx.androidbase.ui.treadssearch.VideoShowActivity
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:116:9-117:51
+	android:screenOrientation
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:117:13-49
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:116:19-66
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:116:19-68
 activity#com.zdhx.androidbase.ui.account.ImagePagerActivity
 ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:119:9-120:51
 	android:screenOrientation
@@ -381,3 +394,7 @@ ADDED from [AndroidBase:photoSelector:unspecified] D:\01_work\jxz-project\Androi
 		ADDED from [AndroidBase:photoSelector:unspecified] D:\01_work\jxz-project\AndroidBase\photoSelector\build\intermediates\bundles\default\AndroidManifest.xml:23:13-33
 	android:name
 		ADDED from [AndroidBase:photoSelector:unspecified] D:\01_work\jxz-project\AndroidBase\photoSelector\build\intermediates\bundles\default\AndroidManifest.xml:22:13-69
+activity#cn.hzw.graffiti.GraffitiActivity
+ADDED from [AndroidBase:GraffitiLib:unspecified] D:\01_work\jxz-project\AndroidBase\GraffitiLib\build\intermediates\bundles\default\AndroidManifest.xml:15:9-69
+	android:name
+		ADDED from [AndroidBase:GraffitiLib:unspecified] D:\01_work\jxz-project\AndroidBase\GraffitiLib\build\intermediates\bundles\default\AndroidManifest.xml:15:19-66

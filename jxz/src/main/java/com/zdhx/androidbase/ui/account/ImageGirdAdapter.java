@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ImageUrlBean;
+import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.util.DensityUtil;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.lazyImageLoader.cache.ImageLoader;
@@ -25,9 +26,10 @@ public class ImageGirdAdapter extends BaseAdapter {
 	private HomeFragment frag;
 	private String[] urls;
 	private String[] names;
+	private String id;
 	private int listPosition;
 	private TreadsListViewAdapter adapter;
-	public ImageGirdAdapter(Activity context, ArrayList<ImageUrlBean> list, HomeFragment frag,int position,TreadsListViewAdapter adapter) {
+	public ImageGirdAdapter(Activity context, ArrayList<ImageUrlBean> list, HomeFragment frag,int position,TreadsListViewAdapter adapter,String id) {
 		super();
 		this.context = context;
 		this.list = list;
@@ -37,6 +39,7 @@ public class ImageGirdAdapter extends BaseAdapter {
 		names = new String[list.size()];
 		this.listPosition = position;
 		this.adapter = adapter;
+		this.id = id;
 	}
 	@Override
 	public int getCount() {
@@ -81,6 +84,11 @@ public class ImageGirdAdapter extends BaseAdapter {
 				intent.putExtra("image_index",position);
 				intent.putExtra("imgNames",names);
 				frag.startActivity(intent);
+				if (id != null){
+					MainActivity.map.put("treadsId",id);
+					MainActivity.map.put("isGraffiti","true");
+					MainActivity.map.put("introduceReplyFragment",frag);
+				}
 			}
 		});
 		return convertView;

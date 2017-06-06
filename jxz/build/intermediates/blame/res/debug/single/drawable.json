@@ -132,6 +132,14 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_prepass.png"
     },
     {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\graffiti_btn_effect_round_pressed_yellow.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable\\graffiti_btn_effect_round_pressed_yellow.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\graffiti_btn_effect_rect_line.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable\\graffiti_btn_effect_rect_line.xml"
+    },
+    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_button_shot_blue.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_button_shot_blue.xml"
     },
@@ -142,6 +150,10 @@
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_back_selector.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\drawable\\btn_back_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\graffiti_shape_rect_pressed_black.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable\\graffiti_shape_rect_pressed_black.xml"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_button_active.xml",
@@ -180,8 +192,16 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\list_selector_transition.xml"
     },
     {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\graffiti_thumb_seekbarr.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable\\graffiti_thumb_seekbarr.xml"
+    },
+    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\wheel_val.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\wheel_val.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\graffiti_shape_circle_normal.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable\\graffiti_shape_circle_normal.xml"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_camera_selector.xml",
@@ -216,6 +236,10 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\ssdk_oks_classic_progressbar.xml"
     },
     {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\graffiti_shape_rect_stroke_normal.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable\\graffiti_shape_rect_stroke_normal.xml"
+    },
+    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\progress_drawable.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\progress_drawable.xml"
     },
@@ -236,6 +260,10 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\alertdialog_right_btn_select.xml"
     },
     {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\graffiti_shape_circle_pressed.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable\\graffiti_shape_circle_pressed.xml"
+    },
+    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_right.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_right.xml"
     },
@@ -246,6 +274,10 @@
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_single.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_single.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\graffiti_seekbar_bg.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable\\graffiti_seekbar_bg.xml"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_center_normal.xml",
@@ -276,6 +308,10 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_button.xml"
     },
     {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\graffiti_btn_effect_round.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable\\graffiti_btn_effect_round.xml"
+    },
+    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\done_background_color_dark.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\drawable\\done_background_color_dark.xml"
     },
@@ -304,8 +340,16 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_tab.xml"
     },
     {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\graffiti_shape_rect_stroke_pressed.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable\\graffiti_shape_rect_stroke_pressed.xml"
+    },
+    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\alertdialog_left_btn_select.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\alertdialog_left_btn_select.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\graffiti_btn_effect_rect_pressed_black.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable\\graffiti_btn_effect_rect_pressed_black.xml"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_dialog_btnbar.xml",

@@ -175,7 +175,8 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		return null;
 	}
 
-
+	private String graffPath;
+	private String replyId;
 
 
 	@Override
@@ -281,11 +282,30 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		MainActivity.map.remove("introduceReplyPosition");
 		MainActivity.map.remove("introduceReplyFragment");
 		initPopMenu();
-		if (introduceReply == null){
+
+		graffPath = (String) MainActivity.map.get("GrafftiActImgPath");
+		replyId = (String) MainActivity.map.get("treadsId");
+
+		if (introduceReply == null && graffPath == null && replyId == null){
 			fujianBT.setVisibility(View.VISIBLE);
 			titleTV.setText("新动态");
 			circleET.setHint("这一刻的想法...");
-		}else{
+		}
+		else if (graffPath != null && replyId != null){
+			graffPath = (String) MainActivity.map.remove("GrafftiActImgPath");
+			replyId = (String) MainActivity.map.remove("treadsId");
+			fujianBT.setVisibility(View.GONE);
+			impNoticeGroup.setVisibility(View.GONE);
+			titleTV.setText("交流回复");
+			circleET.setHint("内容已标注...");
+			gridList.clear();
+			gridList.add(new PhotoModel(graffPath,true));
+			gridList.add(null);
+			Compress();
+			videoCountTV.setVisibility(View.GONE);
+			communcationId = replyId;
+		}
+		else{
 			fujianBT.setVisibility(View.GONE);
 			impNoticeGroup.setVisibility(View.GONE);
 			titleTV.setText("交流回复");
@@ -295,6 +315,8 @@ public class IntroduceTreadsActivity extends BaseActivity{
 				circleET.setHint("说点什么吧...");
 			}
 		}
+
+
 		//添加附件
 		fujianBT.setOnClickListener(new OnClickListener() {
 			@Override
@@ -374,7 +396,8 @@ public class IntroduceTreadsActivity extends BaseActivity{
 				map.put("content",new ParameterValue(content));
 			}
 		}
-		if (introduceReply == null){
+		//正常发表
+		if (introduceReply == null && graffPath == null && replyId == null){
 			if (ECApplication.getInstance().getAddress().equals("http://117.117.217.19/dc")){
 				getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
 			}
@@ -487,7 +510,6 @@ public class IntroduceTreadsActivity extends BaseActivity{
 
 			}).start();
 		}else{
-
 			new ProgressThreadWrap(context, new RunnableWrap() {
 				@Override
 				public void run() {

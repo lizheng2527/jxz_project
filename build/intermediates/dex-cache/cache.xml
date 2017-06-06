@@ -3,21 +3,21 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\177c228bda0b2800a2884ee06cc929fdc7e741c6\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="aee64634871d88a419d59eb743c1258a60f19700">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_bce87cfc2082982270c94df35265f46fc3232ef1.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\01_work\jxz-project\AndroidBase\jxz\libs\alipaySingle-20160428.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="660c47a8fc7c8df16155d8d0254d4e7477c23806">
         <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\alipaySingle-20160428_08f5397d350b9d66a43fc2d67e9b7465d07fc1ad.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\01_work\jxz-project\AndroidBase\datetimepicker\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e7dc85abeab9d507f58b210865aa4e8d1c544727">
+        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_c18caf496f4a82088caad6e7516e97bb282c6ed0.jar" />
     </item>
     <item
         is-multidex="false"
@@ -30,12 +30,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\lizheng\.gradle\caches\modules-2\files-2.1\com.tencent.mm.opensdk\wechat-sdk-android-without-mta\1.1.6\b125274d18e3f4085d6133a0b8db21e94aa82d18\wechat-sdk-android-without-mta-1.1.6.jar"
+        jar="C:\Users\lizheng\.android\build-cache\6a3d241d04687eb9b103d06ff61762edd2e801bc\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="b125274d18e3f4085d6133a0b8db21e94aa82d18">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\wechat-sdk-android-without-mta-1.1.6_8dcaec17f925665737c13cc4971bdbf3d3b4c888.jar" />
+        sha1="95f40797c6af90dcbd4a404744816e84b6f67fa9">
+        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_341277e4c29e47e6768a0009dbba144034cb8d2f.jar" />
     </item>
     <item
         is-multidex="false"
@@ -57,30 +57,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\d5a532bbc387ccbd51e606661b2076755f6440b5\output\jars\classes.jar"
+        jar="D:\01_work\jxz-project\AndroidBase\baselibrary\build\intermediates\bundles\default\libs\universal-image-loader-1.9.3-with-sources.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_25ea7ab19a42cd233bc1b161bbbfe207c7d30145.jar" />
+        sha1="6986dec9fc940599f6557c73866d04fe329e2e92">
+        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.3-with-sources_668e40f1effc2203eb11fcf44eda384130be45e4.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\1b0dc8398aec89be723d67d31df23eb3c5b159e3\output\jars\classes.jar"
+        jar="D:\01_work\jxz-project\AndroidBase\GraffitiLib\build\intermediates\bundles\default\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_39dd884456fa0cb1d2beb96124e70e218384b61e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\d0df2f4edc6c81de64b94c970e9c9e07b6cc8797\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_933f1d30ddee181a6aa54697a60fff58aa9abac7.jar" />
+        sha1="3929858e522345d4bc7cb04d5037f72a09dc4258">
+        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_680e11c03903b97422bd280808adc21141578115.jar" />
     </item>
     <item
         is-multidex="false"
@@ -102,21 +93,30 @@
     </item>
     <item
         is-multidex="false"
+        jar="D:\01_work\jxz-project\AndroidBase\jxz\libs\ShareSDK-Core-2.7.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="484d87cb8abd3c6d05eeca5abfac1cdd1aa1dc2e">
+        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\ShareSDK-Core-2.7.2_6e09069191f92b5c5840b8938cb2562e23896599.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\01_work\jxz-project\AndroidBase\jxz\libs\AudioEngineSDK.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fc8c572594f6d1d4781cdb25a7016ef7f7000d0d">
+        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\AudioEngineSDK_7a947b36cc74211ad008c7534c94dab769f767de.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\01_work\jxz-project\AndroidBase\jxz\libs\MobCommons-2016.0426.1819.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="5fce3a96cadb15dd2980863f403d7d1ab8732989">
         <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\MobCommons-2016.0426.1819_30dcb49b8b0203ef6587265433dddd7757681f4a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.1.6\2586312cd2b8a511e4c6236736f5a039fc0f2273\rxjava-1.1.6.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2586312cd2b8a511e4c6236736f5a039fc0f2273">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\rxjava-1.1.6_bd7f6e6801e426181e0d2125e305fd1fc97760a5.jar" />
     </item>
     <item
         is-multidex="false"
@@ -129,12 +129,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\89788ea9f3b1694224c4cb807f464750c5e394a0\output\jars\classes.jar"
+        jar="D:\01_work\jxz-project\AndroidBase\jxz\libs\ShareSDK-QQ-2.7.2.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="a540784239c611ea490593e2053a5e2890675c68">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_e2bba639396356598e7a71550c9eb809c0103d97.jar" />
+        sha1="c3717539454ca4b61bf8323a6f307c248a1bd0ef">
+        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\ShareSDK-QQ-2.7.2_9b5c3a2548470c3e19d3527001f23101c4107ca2.jar" />
     </item>
     <item
         is-multidex="false"
@@ -147,21 +147,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\01_work\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.0\support-annotations-25.1.0.jar"
+        jar="D:\01_work\jxz-project\AndroidBase\jxz\libs\libammsdk.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\support-annotations-25.1.0_960454b3f3af602570de30267c98f6ec49140c1c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\d5be8438c6c8c192bc113b4ee5e0f6ba89a03c41\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="145da27a459a63ea0c4e318930365cf0a8b8e891">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_3d7c2a974b872674d6701f24962d3ab2051e0c92.jar" />
+        sha1="d7c2f29c05b35e8c8713be2b81c41cf18f98b64a">
+        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\libammsdk_06dc78e01f7c2ae8651388bbde39592efec47ac7.jar" />
     </item>
     <item
         is-multidex="false"
@@ -171,15 +162,6 @@
         revision="25.0.0"
         sha1="f35a675620df47da8984207d797860a734d41b10">
         <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_34b1f771391eb180b537a4b7114c5058949883ed.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\19f3749060d1a2d48ce1f4db09ced06f407b74c1\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="737d7bbf8e6914c446029ca99b725ce7047e56ca">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_b7691cf5e8fae28ed16c52d22369347584cb82c8.jar" />
     </item>
     <item
         is-multidex="false"
@@ -201,174 +183,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\ec5ceddf1fe03a7d7d91550531f74aec8cbb2776\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_455e8257b00017b9a04cc1f162a81d6feac9452a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\bolts-tasks-1.4.0_76c0bee32e73b1d38b00d8890da13577d2bffea2.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\01_work\jxz-project\AndroidBase\jxz\libs\ShareSDK-SinaWeibo-2.7.2.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="7d038932c1902316f542e2ca7b7d73c16265185a">
         <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\ShareSDK-SinaWeibo-2.7.2_caaadb2441c2251bd5eed939856bac5634624968.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\01_work\jxz-project\AndroidBase\datetimepicker\build\intermediates\bundles\default\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e7dc85abeab9d507f58b210865aa4e8d1c544727">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_c18caf496f4a82088caad6e7516e97bb282c6ed0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\0722fedbbaca85121fef68e4bcd0f8c1963c8324\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="c9a86e6bc8300fc00c191949ac61a2f7165e35c7">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_31077e94fa39b901caff15a14ed2a983e62b374e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\8f7c4f965c2bd8f3eb49c79c56d38fd567804bf6\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="1e346707e4770db216049a532ab3eb5e317cf82a">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_effff1e02f42ec470ada30f8561b6889b193aa62.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\01_work\jxz-project\AndroidBase\baselibrary\build\intermediates\bundles\default\libs\universal-image-loader-1.9.3-with-sources.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="6986dec9fc940599f6557c73866d04fe329e2e92">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.3-with-sources_668e40f1effc2203eb11fcf44eda384130be45e4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\820dc35b7ffc7f16402c382073b6c7b3f5f0e69a\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7ba22785d529a9cd95f714ca782a59846a22ce02">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_dc6c8a363090384188ca57c831f572e6849177c6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\395528eb9cc38f71c2192c1bce3e46d03db8eb82\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="5a2386ad9bfff580b206a7fe305cdccd00798159">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_84db0bd268a7482eda7fcfb5b53f85e623f7c377.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\01_work\jxz-project\AndroidBase\jxz\libs\ShareSDK-Core-2.7.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="484d87cb8abd3c6d05eeca5abfac1cdd1aa1dc2e">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\ShareSDK-Core-2.7.2_6e09069191f92b5c5840b8938cb2562e23896599.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\01_work\jxz-project\AndroidBase\jxz\libs\AudioEngineSDK.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="fc8c572594f6d1d4781cdb25a7016ef7f7000d0d">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\AudioEngineSDK_7a947b36cc74211ad008c7534c94dab769f767de.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\library-2.4.0_76b871b1aaf7bea33c700791844ffba93dcbb924.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\9a4294a892050375d27898331c8891112e5cb208\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="f3d9074e9cbc7d0eb180287e29ad3dec039763b5">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_23ec467e4299b95811c1af3c279aefde011ad7b0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\01_work\jxz-project\AndroidBase\jxz\libs\ShareSDK-QQ-2.7.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="c3717539454ca4b61bf8323a6f307c248a1bd0ef">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\ShareSDK-QQ-2.7.2_9b5c3a2548470c3e19d3527001f23101c4107ca2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\01_work\jxz-project\AndroidBase\jxz\libs\libammsdk.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d7c2f29c05b35e8c8713be2b81c41cf18f98b64a">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\libammsdk_06dc78e01f7c2ae8651388bbde39592efec47ac7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\5a826864894c6fb4fb30123677bfc56288fca324\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_06bb56b42d57bbba2a97a5b85fe9fba755550bb8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.4.2\b8e98ae35bf6e3f14382deb60f2ea6e4e0e220fd\httpcore-4.4.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="b8e98ae35bf6e3f14382deb60f2ea6e4e0e220fd">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\httpcore-4.4.2_c796763a70ed8e27505fa91f4eb87075e23d8e0e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\13afcec7eeb215fbcec87980c006e5c1053e39c4\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="907480570b617f29e3a8f3d248b8a1d9fd137677">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_37839ff2013df5561be8f5afc340c1e78e01d291.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lizheng\.android\build-cache\82976f984aed5e1b761a15d914c9249bf5e0aa4a\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="40e5cb8708fc25fe57cb403cc82e9ef98376b648">
-        <dex dex="D:\01_work\jxz-project\AndroidBase\jxz\build\intermediates\pre-dexed\debug\classes_3b7da862c657075b24f23db2f9e5f9f2d07ed250.jar" />
     </item>
 
 </items>

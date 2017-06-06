@@ -5,7 +5,7 @@
     android:versionName="1.0.8" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -24,6 +24,9 @@
     <uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT" />
     <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 
     <application
         android:name="com.zdhx.androidbase.ECApplication"
@@ -122,8 +125,6 @@
         <activity
             android:name="com.zdhx.androidbase.ui.treadssearch.VideoShowActivity"
             android:screenOrientation="portrait" />
-        <!-- 展示视频文件 -->
-        <activity android:name="com.zdhx.androidbase.ui.paint.activity.PaintActivity" />
         <!-- 展示图片文件 -->
         <activity
             android:name="com.zdhx.androidbase.ui.account.ImagePagerActivity"
@@ -201,6 +202,7 @@
             android:name="com.photoselector.ui.PhotoPreviewActivity"
             android:label="图片预览" >
         </activity>
+        <activity android:name="cn.hzw.graffiti.GraffitiActivity" />
     </application>
 
 </manifest>

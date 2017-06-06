@@ -24,6 +24,9 @@
     <uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT" />
     <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
 
     <application
         android:name=".ECApplication"
@@ -112,9 +115,6 @@
         <!--展示视频文件 -->
         <activity android:name=".ui.treadssearch.VideoShowActivity"
             android:screenOrientation="portrait"/>
-        <!--展示视频文件 -->
-        <activity android:name=".ui.paint.activity.PaintActivity"
-            />
         <!--展示图片文件 -->
         <activity android:name=".ui.account.ImagePagerActivity"
             android:screenOrientation="portrait"/>

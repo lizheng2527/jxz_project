@@ -1,19 +1,35 @@
 [
     {
-        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\btn_thumbsup_selector.xml",
-        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\btn_thumbsup_selector.xml"
-    },
-    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_normal_shape.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\button_normal_shape.xml"
     },
     {
-        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\actionsheet_bottom_selector.xml",
-        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\actionsheet_bottom_selector.xml"
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_hide_panel.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_hide_panel.png"
     },
     {
-        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_normal_shape_handwriteselection.xml",
-        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\button_normal_shape_handwriteselection.xml"
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_btn_sub.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_btn_sub.png"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_btn_add.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_btn_add.png"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_thumb_normal.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_thumb_normal.png"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_bar_progress.9.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_bar_progress.9.png"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_btn_back.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_btn_back.png"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_bar_background.9.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_bar_background.9.png"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\btn_fujian_selecter.xml",
@@ -24,19 +40,63 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\button_normal_shape_radius.xml"
     },
     {
-        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\actionsheet_single_selector.xml",
-        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\actionsheet_single_selector.xml"
-    },
-    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ccp_listitem.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\ccp_listitem.xml"
     },
     {
-        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ccp_checkbox_btn.xml",
-        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\ccp_checkbox_btn.xml"
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_shader5.jpg",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_shader5.jpg"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\red_circle.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\red_circle.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_shader2.jpg",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_shader2.jpg"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\btn_thumbsup_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\btn_thumbsup_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_btn_finish.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_btn_finish.png"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_thumb_pressed.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_thumb_pressed.png"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_shader3.jpg",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_shader3.jpg"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_rotate.png",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_rotate.png"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_shader1.jpg",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_shader1.jpg"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\actionsheet_bottom_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\actionsheet_bottom_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_normal_shape_handwriteselection.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\button_normal_shape_handwriteselection.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\graffiti_shader4.jpg",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\graffiti_shader4.jpg"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\actionsheet_single_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\actionsheet_single_selector.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ccp_checkbox_btn.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable-xxhdpi\\ccp_checkbox_btn.xml"
     }
 ]

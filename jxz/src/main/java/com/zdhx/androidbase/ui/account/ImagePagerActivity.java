@@ -34,12 +34,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.downloadui.DownloadAsyncTask;
-import com.zdhx.androidbase.ui.paint.activity.PaintActivity;
+import com.zdhx.androidbase.ui.introducetreads.IntroduceTreadsActivity;
 import com.zdhx.androidbase.ui.photoview.PhotoView;
 import com.zdhx.androidbase.ui.photoview.PhotoViewAttacher;
 import com.zdhx.androidbase.ui.plugin.FileUtils;
@@ -48,6 +49,7 @@ import com.zdhx.androidbase.ui.viewpagerindicator.HackyViewPager;
 import com.zdhx.androidbase.ui.viewpagerindicator.PageIndicator;
 import com.zdhx.androidbase.util.LogUtil;
 import com.zdhx.androidbase.util.SingleMediaScanner;
+import com.zdhx.androidbase.util.StringUtil;
 import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.lazyImageLoader.cache.ImageLoader;
 import com.zdhx.androidbase.util.myImageLoader.MyImageLoader;
@@ -58,6 +60,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+
+import cn.hzw.graffiti.GraffitiActivity;
+import cn.hzw.graffiti.GraffitiParams;
+
+import static com.zdhx.androidbase.ui.MainActivity.map;
 
 
 /**
@@ -78,12 +85,37 @@ public class ImagePagerActivity extends Activity {
 	private String imgName ;
 	private ECProgressDialog dialog;
 	private String[] compressImageUrls;
-
+	private String id;
+	private String b;
+	private HomeFragment fragment;
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		imageLoader = null;
 		loader = null;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == 1) {
+			if (data == null) {
+				return;
+			}
+			if (resultCode == GraffitiActivity.RESULT_OK) {
+				String path = data.getStringExtra(GraffitiActivity.KEY_IMAGE_PATH);
+				if (StringUtil.isBlank(path)) {
+					return;
+				}
+				MainActivity.map.put("GrafftiActImgPath",path);
+				MainActivity.map.put("treadsId",id);
+				MainActivity.map.put("introduceReplyFragment",fragment);
+				startActivity(new Intent(ImagePagerActivity.this, IntroduceTreadsActivity.class));
+				this.finish();
+			} else if (resultCode == GraffitiActivity.RESULT_ERROR) {
+				Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+			}
+		}
 	}
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -94,9 +126,20 @@ public class ImagePagerActivity extends Activity {
 		imageLoader = new ImageLoader(this);
 		loader = new MyImageLoader();
 		dialog = new ECProgressDialog(this);
-
 		Bundle bundle = getIntent().getExtras();
 		String[] imageUrls = bundle.getStringArray(IMAGES);
+		id = (String) MainActivity.map.get("treadsId");
+		if (id != null){
+			MainActivity.map.remove("treadsId");
+		}
+		b = (String) MainActivity.map.get("isGraffiti");
+		if (b != null){
+			MainActivity.map.remove("isGraffiti");
+		}
+		fragment = (HomeFragment) MainActivity.map.get("introduceReplyFragment");
+		if (fragment != null){
+			MainActivity.map.remove("isGraffiti");
+		}
 		compressImageUrls = imageUrls;
 		String[] imgNames = new String[compressImageUrls.length];
 		int pagerPosition = bundle.getInt(IMAGE_POSITION, 0);
@@ -202,12 +245,12 @@ public class ImagePagerActivity extends Activity {
 									final DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(new DownloadAsyncTask.DownloadResponser() {
 										@Override
 										public void predownload() {
-											TreadsListViewAdapter adapter = (TreadsListViewAdapter) MainActivity.map.get("adapter");
+											TreadsListViewAdapter adapter = (TreadsListViewAdapter) map.get("adapter");
 											if (adapter != null){
-												int position1 = (int) MainActivity.map.get("11");
+												int position1 = (int) map.get("11");
 												adapter.doDown(position1);
-												MainActivity.map.remove("treadsListPosition");
-												MainActivity.map.remove("adapter");
+												map.remove("treadsListPosition");
+												map.remove("adapter");
 											}
 										}
 
@@ -273,9 +316,7 @@ public class ImagePagerActivity extends Activity {
 			}
 
 			((ViewPager) view).addView(imageLayout, 0);
-
-
-			if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+			if (ECApplication.getInstance().getCurrentUser().getType().equals("2")&&"true".equals(b)){
 				pzForTeacher.setVisibility(View.VISIBLE);
 				pzForTeacher.setOnClickListener(new View.OnClickListener() {
 					@Override
@@ -287,10 +328,13 @@ public class ImagePagerActivity extends Activity {
 						File file = new File(ECApplication.getInstance().getDownloadJxzDir(),f.getName()+".jpg");
 						boolean b = newFile.renameTo(file);
 						if (b){
-							Log.w("ImagePagerActivity","修改成功");
-							MainActivity.map.put("fileForPaint",file);
-							startActivity(new Intent(mContext,PaintActivity.class));
-							ImagePagerActivity.this.finish();
+							// 涂鸦参数
+							GraffitiParams params = new GraffitiParams();
+							// 图片路径
+							params.mImagePath = file.getAbsolutePath();
+							Intent intent = new Intent(mContext, GraffitiActivity.class);
+							intent.putExtra(GraffitiActivity.KEY_PARAMS,params);
+							startActivityForResult(intent,1);
 						}else{
 							Log.w("ImagePagerActivity","修改失败");
 						}
@@ -301,6 +345,7 @@ public class ImagePagerActivity extends Activity {
 			}
 			return imageLayout;
 		}
+
 
 		/**
 		 * 复制单个文件
