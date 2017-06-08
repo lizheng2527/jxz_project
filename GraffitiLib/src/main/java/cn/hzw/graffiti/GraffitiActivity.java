@@ -177,7 +177,6 @@ public class GraffitiActivity extends Activity {
         mBitmap = ImageUtils.createBitmapFromPath(mImagePath, this);
         if (mBitmap == null) {
             LogUtil.e("TAG", "bitmap is null!");
-            this.finish();
             return;
         }
 
@@ -601,8 +600,18 @@ public class GraffitiActivity extends Activity {
                 }
                 mDone = true;
             } else if (v.getId() == R.id.graffiti_btn_finish) {
-                mGraffitiView.save();
-                mDone = true;
+                DialogController.showEnterCancelDialog(GraffitiActivity.this, getString(R.string.graffiti_saving_picture), null, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mGraffitiView.save();
+                        mDone = true;
+                    }
+                }, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
             } else if (v.getId() == R.id.graffiti_btn_back) {
                 if (!mGraffitiView.isModified()) {
                     finish();

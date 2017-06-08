@@ -25,8 +25,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,12 +52,8 @@ import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.lazyImageLoader.cache.ImageLoader;
 import com.zdhx.androidbase.util.myImageLoader.MyImageLoader;
 import com.zdhx.androidbase.view.dialog.ECAlertDialog;
-import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 
 import cn.hzw.graffiti.GraffitiActivity;
 import cn.hzw.graffiti.GraffitiParams;
@@ -82,9 +76,9 @@ public class ImagePagerActivity extends Activity {
 
 	HackyViewPager pager;
 	PageIndicator mIndicator;
-	private String imgName ;
-	private ECProgressDialog dialog;
-	private String[] compressImageUrls;
+//	private String imgName ;
+//	private ECProgressDialog dialog;
+//	private String[] compressImageUrls;
 	private String id;
 	private String b;
 	private HomeFragment fragment;
@@ -125,23 +119,24 @@ public class ImagePagerActivity extends Activity {
 		setContentView(R.layout.ac_image_pager);
 		imageLoader = new ImageLoader(this);
 		loader = new MyImageLoader();
-		dialog = new ECProgressDialog(this);
+//		dialog = new ECProgressDialog(this);
 		Bundle bundle = getIntent().getExtras();
 		String[] imageUrls = bundle.getStringArray(IMAGES);
 		id = (String) MainActivity.map.get("treadsId");
 		if (id != null){
 			MainActivity.map.remove("treadsId");
 		}
+		//判断是否需要显示图片涂鸦
 		b = (String) MainActivity.map.get("isGraffiti");
 		if (b != null){
 			MainActivity.map.remove("isGraffiti");
 		}
 		fragment = (HomeFragment) MainActivity.map.get("introduceReplyFragment");
 		if (fragment != null){
-			MainActivity.map.remove("isGraffiti");
+			MainActivity.map.remove("introduceReplyFragment");
 		}
-		compressImageUrls = imageUrls;
-		String[] imgNames = new String[compressImageUrls.length];
+//		compressImageUrls = imageUrls;
+		String[] imgNames ;
 		int pagerPosition = bundle.getInt(IMAGE_POSITION, 0);
 		imgNames = bundle.getStringArray("imgNames");
 		if (savedInstanceState != null) {
@@ -150,7 +145,8 @@ public class ImagePagerActivity extends Activity {
 		pager = (HackyViewPager) findViewById(R.id.pager);
 		pager.setAdapter(new ImagePagerAdapter(imageUrls,this,imgNames));
 		pager.setCurrentItem(pagerPosition);
-		if (imageUrls.length<10){
+		//显示图片下边的圆点
+		if (imageUrls != null &&imageUrls.length<10){
 			mIndicator = (CirclePageIndicator)findViewById(R.id.indicator);
 			mIndicator.setViewPager(pager);
 		}
@@ -184,7 +180,7 @@ public class ImagePagerActivity extends Activity {
 
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
-			((ViewPager) container).removeView((View) object);
+			container.removeView((View) object);
 		}
 
 		@Override
@@ -211,10 +207,9 @@ public class ImagePagerActivity extends Activity {
 					onBackPressed();
 				}
 			});
-			final ProgressBar spinner = (ProgressBar) imageLayout.findViewById(R.id.loading);
+			ProgressBar spinner = (ProgressBar) imageLayout.findViewById(R.id.loading);
 			TextView count = (TextView) imageLayout.findViewById(R.id.count);
-			int selectCount = position;
-			count.setText(selectCount+1+"/"+images.length);
+			count.setText(position +1+"/"+images.length);
 			if (images[position].contains("http")){
 				imageLoader.DisplayImage(images[position],imageView,false);
 				imageView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -261,8 +256,10 @@ public class ImagePagerActivity extends Activity {
 
 										@Override
 										public void downloaded(File file, int position) {
-											new SingleMediaScanner(mContext, file);
-											ToastUtil.showMessage(file.getName()+"下载成功！");
+											if (file != null){
+												new SingleMediaScanner(mContext, file);
+												ToastUtil.showMessage(file.getName()+"下载成功！");
+											}
 										}
 
 										@Override
@@ -273,7 +270,6 @@ public class ImagePagerActivity extends Activity {
 									LogUtil.w(images[position]);
 								}else{
 									ToastUtil.showMessage("已存在该文件");
-									return;
 								}
 
 							}
@@ -315,15 +311,14 @@ public class ImagePagerActivity extends Activity {
 				imageView.setImageBitmap(bm);
 			}
 
-			((ViewPager) view).addView(imageLayout, 0);
+			view.addView(imageLayout, 0);
 			if (ECApplication.getInstance().getCurrentUser().getType().equals("2")&&"true".equals(b)){
 				pzForTeacher.setVisibility(View.VISIBLE);
 				pzForTeacher.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						Log.w("ImagePagerActivity",images[position]);
 						File f = imageLoader.getFileFromCache(images[position]);
-						copyFile(f.getAbsolutePath(),ECApplication.getInstance().getDownloadJxzDir()+"/"+f.getName());
+						FileUtils.copyFile(f.getAbsolutePath(),ECApplication.getInstance().getDownloadJxzDir()+"/"+f.getName());
 						File newFile = new File(ECApplication.getInstance().getDownloadJxzDir()+"/"+f.getName());
 						File file = new File(ECApplication.getInstance().getDownloadJxzDir(),f.getName()+".jpg");
 						boolean b = newFile.renameTo(file);
@@ -336,7 +331,7 @@ public class ImagePagerActivity extends Activity {
 							intent.putExtra(GraffitiActivity.KEY_PARAMS,params);
 							startActivityForResult(intent,1);
 						}else{
-							Log.w("ImagePagerActivity","修改失败");
+							ToastUtil.showMessage("修改失败");
 						}
 					}
 				});
@@ -345,40 +340,6 @@ public class ImagePagerActivity extends Activity {
 			}
 			return imageLayout;
 		}
-
-
-		/**
-		 * 复制单个文件
-		 * @param oldPath String 原文件路径 如：c:/fqf.txt
-		 * @param newPath String 复制后路径 如：f:/fqf.txt
-		 * @return boolean
-		 */
-		public void copyFile(String oldPath, String newPath) {
-			try {
-				int bytesum = 0;
-				int byteread = 0;
-				File oldfile = new File(oldPath);
-				if (oldfile.exists()) { //文件存在时
-					InputStream inStream = new FileInputStream(oldPath); //读入原文件
-					FileOutputStream fs = new FileOutputStream(newPath);
-					byte[] buffer = new byte[1444];
-					int length;
-					while ( (byteread = inStream.read(buffer)) != -1) {
-						bytesum += byteread; //字节数 文件大小
-						System.out.println(bytesum);
-						fs.write(buffer, 0, byteread);
-					}
-					inStream.close();
-				}
-			}
-			catch (Exception e) {
-				System.out.println("复制单个文件操作出错");
-				e.printStackTrace();
-
-			}
-
-		}
-
 		@Override
 		public boolean isViewFromObject(View view, Object object) {
 			return view.equals(object);

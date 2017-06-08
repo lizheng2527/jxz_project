@@ -412,7 +412,7 @@
     <string name="graffiti_enter">确定</string>
     <string name="graffiti_failed">失败</string>
     <string name="graffiti_moving_pic">单指移动、双指缩放</string>
-    <string name="graffiti_saving_picture">保存图片</string>
+    <string name="graffiti_saving_picture">保存为回复附件</string>
     <string name="graffiti_success">成功</string>
     <string name="hour_picker_description">Hours circular slider</string>
     <string name="item_is_selected"><ns1:g example="2013" id="item">%1$s</ns1:g> selected</string>
@@ -626,20 +626,20 @@ function login(form){
     </style>
     <style name="ActionSheetDialogStyle" parent="@android:style/Theme.Dialog">
 
-        <!-- 背景透明 -->
+        
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
-        <!-- 浮于Activity之上 -->
+        
         <item name="android:windowIsFloating">true</item>
-        <!-- 边框 -->
+        
         <item name="android:windowFrame">@null</item>
-        <!-- Dialog以外的区域模糊效果 -->
+        
         <item name="android:backgroundDimEnabled">true</item>
-        <!-- 无标题 -->
+        
         <item name="android:windowNoTitle">true</item>
-        <!-- 半透明 -->
+        
         <item name="android:windowIsTranslucent">false</item>
-        <!-- Dialog进入及退出动画 -->
+        
         <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
     </style>
     <style name="AlertDialogStyle" parent="@android:style/Theme.Dialog">
@@ -652,11 +652,7 @@ function login(form){
         <item name="android:windowIsTranslucent">true</item>
     </style>
     <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
+        
     </style>
     <style name="AppTheme" parent="@style/BaseAppTheme">
 
@@ -1000,17 +996,17 @@ function login(form){
     <style name="day_of_week_label_condensed"/>
     <style name="dialog" parent="@android:style/Theme.Dialog">
 
-        <!-- 边框 -->
+        
         <item name="android:windowFrame">@null</item>
-        <!-- 是否浮现在activity之上 -->
+        
         <item name="android:windowIsFloating">true</item>
-        <!-- 半透明 -->
+        
         <item name="android:windowIsTranslucent">true</item>
-        <!-- 无标题 -->
+        
         <item name="android:windowNoTitle">true</item>
-        <!-- 背景透明 -->
+        
         <item name="android:windowBackground">@color/transparent</item>
-        <!-- 模糊 -->
+        
         <item name="android:backgroundDimEnabled">true</item>
     </style>
     <style name="dialogAnim">

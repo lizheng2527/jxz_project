@@ -235,9 +235,9 @@ public class IntroduceTreadsActivity extends BaseActivity{
 			User user = ECApplication.getInstance().getCurrentUser();
 			if (user != null){
 				circleET.setText("来自于分享内容");
-				ECApplication.getInstance().setLoginUrlMap("sys_auto_authenticate", new ParameterValue("true"));
-				ECApplication.getInstance().setLoginUrlMap("sys_username", new ParameterValue(user.getLoginName()));
-				ECApplication.getInstance().setLoginUrlMap("sys_password", new ParameterValue(user.getPassWord()));
+				ECApplication.getInstance().setLoginUrlMap("sys_auto_authenticate", "true");
+				ECApplication.getInstance().setLoginUrlMap("sys_username", user.getLoginName());
+				ECApplication.getInstance().setLoginUrlMap("sys_password", user.getPassWord());
 				if (lastName != null){
 					if (lastName.equals("jpg")||lastName.equals("jpeg")||lastName.equals("png")||lastName.equals("bmp")){
 						gridList.clear();
@@ -554,8 +554,6 @@ public class IntroduceTreadsActivity extends BaseActivity{
 							break;
 						//有图片
 						case 2:
-//						map.put("uploadFiles",new ParameterValue(new ArrayList<File>()));
-//						map.put("uploadFileNames",new ParameterValue(""));
 							map.putAll(ECApplication.getInstance().getLoginUrlMap());
 							try {
 								String json = ZddcUtil.doReplyWithFiles(imgList, ECApplication.getInstance().getLoginUrlMap(), map, new FileUpLoadCallBack() {

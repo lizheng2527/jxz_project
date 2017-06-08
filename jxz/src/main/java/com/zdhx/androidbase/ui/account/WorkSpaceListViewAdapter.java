@@ -1,6 +1,5 @@
 package com.zdhx.androidbase.ui.account;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,8 +8,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -54,37 +51,38 @@ import static com.mob.tools.utils.R.copyFile;
 import static com.zdhx.androidbase.util.ZddcUtil.getUrl;
 
 /**
+ *
  * Created by lizheng on 2016/12/26.
  */
 
-public class WorkSpaceListViewAdapter extends BaseAdapter {
+class WorkSpaceListViewAdapter extends BaseAdapter {
 
 
     private List<WorkSpaceDatasBean.DataListBean> list;
 
     private Context context;
 
-    private LayoutInflater inflater;
+//    private LayoutInflater inflater;
 
-    private ImageLoader loader;
+//    private ImageLoader loader;
 
     private WorkSpaceFragment frag;
 
-    private HashMap<String,ParameterValue> map = new HashMap();
+    private HashMap<String,ParameterValue> map = new HashMap<>();
 
     private Handler handler;
 
-    private XListView listView;
+//    private XListView listView;
+//
+//    private int showProBarPosition = -1;
 
-    private int showProBarPosition = -1;
-
-    public WorkSpaceListViewAdapter(List<WorkSpaceDatasBean.DataListBean> list, Context context, WorkSpaceFragment frag, XListView ListView) {
+    WorkSpaceListViewAdapter(List<WorkSpaceDatasBean.DataListBean> list, Context context, WorkSpaceFragment frag, XListView ListView) {
         this.list = list;
         this.context = context;
-        inflater = LayoutInflater.from(context);
-        loader = new ImageLoader(context);
+//        inflater = LayoutInflater.from(context);
+//        loader = new ImageLoader(context);
         handler = new Handler();
-        this.listView = ListView;
+//        this.listView = ListView;
         this.frag = frag;
     }
 
@@ -105,8 +103,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View item = view ;
-        ViewHolder vh = null;
+        ViewHolder vh ;
         if (view == null){
             vh = new ViewHolder();
             view = View.inflate(context, R.layout.fragment_workspace_listview_item,null);
@@ -195,12 +192,12 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
         vh.createTime.setText(list.get(i).getCreateTime());
 //        浏览量-----------------------------------------------
         vh.browse = (TextView) view.findViewById(R.id.browse);
-        vh.browse.setText(list.get(i).getBrowse()+"");
+        vh.browse.setText(String.valueOf(list.get(i).getBrowse()));
 
 //        下载量-----------------------------------------------
         vh.down = (TextView) view.findViewById(R.id.down);
         vh.downText = (TextView) view.findViewById(R.id.downtext);
-        vh.down.setText(list.get(i).getDown()+"");
+        vh.down.setText(String.valueOf(list.get(i).getDown()));
         if (list.get(i).getResourceStyle().equals("100")){
             vh.down.setVisibility(View.INVISIBLE);
             vh.downText.setVisibility(View.INVISIBLE);
@@ -347,6 +344,8 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
             vh.highQuantityImgB.setVisibility(View.GONE);
         }
         vh.wxImgBtn = (ImageView) view.findViewById(R.id.wxImgBtn);
+
+        //只有图片分享
         if ("4".equals(list.get(i).getResourceStyle())){
             vh.wxImgBtn.setVisibility(View.VISIBLE);
         }else{
@@ -356,28 +355,6 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
 
         addClick(vh,i);
         return view;
-    }
-
-    public static void shareImages(Context context, Uri[] uri) {
-        Intent shareIntent = new Intent();
-        // 1 Finals 2016-11-2 调用系统分享
-        shareIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
-        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        // 2 Finals 2016-11-2 添加图片数组
-        ArrayList<Uri> imageUris = new ArrayList<Uri>();
-        for (int i = 0; i < uri.length; i++) {
-            imageUris.add(uri[i]);
-        }
-        shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
-        shareIntent.setType("image/*");
-
-        // 3 Finals 2016-11-2 指定选择微信。
-        ComponentName mComponentName = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI");
-        shareIntent.setComponent(mComponentName);
-
-        // 4 Finals 2016-11-2 开始分享。
-        context.startActivity(Intent.createChooser(shareIntent, "分享图片"));
     }
 
     private void addClick(final ViewHolder vh, final int i) {
@@ -393,7 +370,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                     if (f != null &&f.length()>0){
                         copyFile(f.getAbsolutePath(),ECApplication.getInstance().getDownloadJxzDir()+"/"+f.getName());
                         File newFile = new File(ECApplication.getInstance().getDownloadJxzDir()+"/"+f.getName());
-                        File file = new File(ECApplication.getInstance().getDownloadJxzDir(),f.getName()+".jpg");
+                        File file = new File(ECApplication.getInstance().getDownloadJxzDir()+"/share",f.getName()+".jpg");
                         boolean b = newFile.renameTo(file);
                         if (b){
                             Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
@@ -402,21 +379,13 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                 oks.disableSSOWhenAuthorize();
                                 oks.setImagePath(file.getPath());//确保SDcard下面存在此张图片
                                 oks.show(context);
+                            }else{
+                                ToastUtil.showMessage("图片获取失败..");
                             }
-//                            ArrayList<File> list = new ArrayList<>();
-//                            list.add(file);
-//                            list.add(file);
-//                            list.add(file);
-//                            list.add(file);
-//                            Uri[] uris = new Uri[list.size()];
-//                            for (int i1 = 0; i1 < list.size(); i1++) {
-//                                uris[i1] = Uri.fromFile(file);
-//                            }
-//                            shareImages(context,uris);
                         }
                     }else{
                         final ECProgressDialog dialog = new ECProgressDialog(context);
-                        dialog.setPressText("正在获取图片...");
+                        dialog.setPressText("正在检索图片...");
                         dialog.setCancelable(false);
                         final DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(new DownloadAsyncTask.DownloadResponser() {
                             @Override
@@ -429,11 +398,16 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                             public void downloading(int progress, int position) {
                                 vh.downloadImg.setClickable(false);
                             }
+
                             @Override
                             public void downloaded(File file1, int position) {
                                 vh.progressIndexLinear.setVisibility(View.GONE);
                                 if (file1 != null){
-                                    File file = new File(file1.getParent(),list.get(i).getCreateTime()+list.get(i).getName());
+                                    File fileDir = new File(file1.getParent()+"/share");
+                                    if (!fileDir.exists()){
+                                        fileDir.mkdir();
+                                    }
+                                    File file = new File(fileDir,list.get(i).getCreateTime()+list.get(i).getName());
                                     file1.renameTo(file);
                                     new SingleMediaScanner(context, file);
                                     OnekeyShare oks = new OnekeyShare();
@@ -449,30 +423,12 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
 
                             @Override
                             public void canceled(int position) {
-                                File file = new File(ECApplication.getInstance().getDownloadJxzDir(),"jxz_workSpace_downFile");
-                                if (file.exists()){
-                                    file.delete();
-                                }
-                                list.get(i).setLoading(false);
-                                notifyDataSetChanged();
+
                             }
                         }, context);
                         downloadAsyncTask.execute(getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()), "aaa", i + "","jxz_workSpace_downFile");
-                        MainActivity.map.put("jxz_workSpace_downFile"+i,downloadAsyncTask);
                     }
                 }
-
-                else if ("5".equals(list.get(i).getResourceStyle())||"6".equals(list.get(i).getResourceStyle())){
-
-                    String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap());
-                    OnekeyShare oks = new OnekeyShare();
-//                    url仅在微信（包括好友和朋友圈）中使用
-//                    oks.setUrl(url);
-                    oks.setText(url);
-                    Log.w("wx",url);
-                    oks.show(context);
-                }
-//                WeiChatUtil.ShareImgToWX();
             }
         });
 
@@ -560,7 +516,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                         String resouceId = list.get(i).getId();
                         String userId = ECApplication.getInstance().getCurrentUser().getId();
                         String type = "1";
-                        HashMap<String,ParameterValue> map = new HashMap<String, ParameterValue>();
+                        HashMap<String,ParameterValue> map = new HashMap<>();
                         map.put("resouceId",new ParameterValue(resouceId));
                         map.put("userId",new ParameterValue(userId));
                         map.put("type",new ParameterValue(type));
@@ -706,12 +662,12 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                 break;
                             case "4":
                                 File[] files = dir.listFiles();
-                                ArrayList<String> paths = new ArrayList<String>();
+                                ArrayList<String> paths = new ArrayList<>();
                                 int selectCount = 0;
-                                for (int i = 0; i < files.length; i++) {
-                                    String path = files[i].getAbsolutePath().toLowerCase();
-                                    if (path.contains(".jpg")||path.contains(".png")||path.contains(".jpeg")){
-                                        paths.add(files[i].getAbsolutePath());
+                                for (File file1 : files) {
+                                    String path = file1.getAbsolutePath().toLowerCase();
+                                    if (path.contains(".jpg") || path.contains(".png") || path.contains(".jpeg")) {
+                                        paths.add(file1.getAbsolutePath());
                                     }
                                 }
                                 String[] urls = new String[paths.size()];
@@ -801,7 +757,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                         final DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(new DownloadAsyncTask.DownloadResponser() {
                             @Override
                             public void predownload() {
-                                showProBarPosition = i;
+//                                showProBarPosition = i;
                                 if (downCounts>3){
                                     ToastUtil.showMessage("当前下载队列过多..");
                                     return;
@@ -831,7 +787,7 @@ public class WorkSpaceListViewAdapter extends BaseAdapter {
                                             String resouceId = list.get(i).getId();
                                             String userId = ECApplication.getInstance().getCurrentUser().getId();
                                             String type = "2";
-                                            HashMap<String,ParameterValue> map = new HashMap<String, ParameterValue>();
+                                            HashMap<String,ParameterValue> map = new HashMap<>();
                                             map.put("resouceId",new ParameterValue(resouceId));
                                             map.put("userId",new ParameterValue(userId));
                                             map.put("type",new ParameterValue(type));

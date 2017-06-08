@@ -8,14 +8,15 @@
 
 package cn.sharesdk.onekeyshare;
 
+import com.mob.tools.FakeActivity;
+import com.zdhx.androidbase.util.ToastUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.PlatformActionListener;
-
-import com.mob.tools.FakeActivity;
 
 /** 快捷分享的基类 */
 public class OnekeySharePage extends FakeActivity {
@@ -74,4 +75,9 @@ public class OnekeySharePage extends FakeActivity {
 		return impl.isUseClientToShare(platform);
 	}
 
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		ToastUtil.showMessage("onDestroyOneKeySharePage");
+	}
 }

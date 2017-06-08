@@ -94,10 +94,10 @@ public class WelcomeActivity extends BaseActivity {
 							userInfos.setPassWord(loginMap.get("password").getValues().get(0));
 							LogUtil.e(userInfos.toString());
 							ECApplication.getInstance().saveUser(userInfos);
-							ECApplication.getInstance().setCurrentUserMap(userInfoMap);
-							ECApplication.getInstance().setLoginUrlMap("sys_auto_authenticate", new ParameterValue("true"));
-							ECApplication.getInstance().setLoginUrlMap("sys_username", new ParameterValue(loginName));
-							ECApplication.getInstance().setLoginUrlMap("sys_password", new ParameterValue(password));
+//							ECApplication.getInstance().setCurrentUserMap(userInfoMap);
+							ECApplication.getInstance().setLoginUrlMap("sys_auto_authenticate", "true");
+							ECApplication.getInstance().setLoginUrlMap("sys_username", loginName);
+							ECApplication.getInstance().setLoginUrlMap("sys_password", password);
 						}
 					}
 					new Handler().postDelayed(new Runnable() {

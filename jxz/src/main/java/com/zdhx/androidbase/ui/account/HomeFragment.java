@@ -837,7 +837,7 @@ public class HomeFragment extends Fragment {
                 break;
         }
     }
-    public HashMap<String,ParameterValue> hashMap = ECApplication.getInstance().getCurrentUserMap();
+    public HashMap<String,ParameterValue> hashMap = new HashMap<>();
     public Handler handler = new Handler();
 
     private String startDate;

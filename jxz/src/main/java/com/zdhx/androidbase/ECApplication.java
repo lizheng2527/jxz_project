@@ -11,11 +11,8 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */package com.zdhx.androidbase;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -39,7 +36,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.onekeyshare.OnekeyShare;
 import volley.Request;
 import volley.RequestQueue;
 import volley.toolbox.Volley;
@@ -50,24 +46,25 @@ public class ECApplication extends Application {
 
     private static RequestQueue mVolleyQueue = null;
 
-    private static HashMap<String, ParameterValue> userInfoMap = new HashMap<>();
+//    private static HashMap<String, ParameterValue> userInfoMap = new HashMap<>();
 
-    private List<Activity> activityList = new ArrayList<Activity>();
+//    private List<Activity> activityList = new ArrayList<>();
 
     public HashMap<String, ParameterValue> loginUrlMap = new HashMap<>();
 
-    private static ArrayList<File> jxzFiles = new ArrayList<>();
+    public static ArrayList<File> jxzFiles = new ArrayList<>();
     private static ArrayList<String> jxzFileNames = new ArrayList<>();
 
     private static String userAuth = "no";
 
-    private static final String APP_ID = "wx0e662ccb34bb7889";
-
-    private final String SHARESDKAPP_KEY = "1e69404689338";
+//    private static final String APP_ID = "wx0e662ccb34bb7889";
+//
+//    private final String SHARESDKAPP_KEY = "1e69404689338";
 
     /**
      * 单例，返回一个实例
-     * @return
+     *
+     * @return instance
      */
     public static synchronized  ECApplication getInstance() {
         if (instance == null) {
@@ -79,7 +76,7 @@ public class ECApplication extends Application {
 
     /**
      * 返回是否有发布重要活动的权限
-     * @return
+     * @return 是否有权限“no“，“yes”
      */
     public String getUserAuth() {
 
@@ -89,7 +86,7 @@ public class ECApplication extends Application {
     public void setUserAuth(String userAutl){
         ECApplication.userAuth = userAutl;
     }
-    private ImageLoader loader;
+    public ImageLoader loader;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -119,7 +116,7 @@ public class ECApplication extends Application {
         ShareSDK.initSDK(this);
     }
 
-    public void showShare(File file) {
+    /*public void showShare(File file) {
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
 //        oks.disableSSOWhenAuthorize();
@@ -143,7 +140,7 @@ public class ECApplication extends Application {
 //        oks.setSiteUrl("http://sharesdk.cn");
 // 启动分享GUI
         oks.show(this);
-    }
+    }*/
 
 
     /**
@@ -160,9 +157,9 @@ public class ECApplication extends Application {
                 }
                 File[] files = dir.listFiles();
                 if (files != null&&files.length>0){
-                    for (int i = 0; i < files.length; i++) {
-                        jxzFiles.add(files[i]);
-                        jxzFileNames.add(files[i].getName());
+                    for (File file : files) {
+                        jxzFiles.add(file);
+                        jxzFileNames.add(file.getName());
                     }
                 }
             }
@@ -178,14 +175,10 @@ public class ECApplication extends Application {
         return dir.getAbsolutePath();
     }
 
-    /**
-     * 获取jxz文件夹内的文件集合
-     * @return
-     */
-    public List<File> getJxzFile (){
+  /*  public List<File> getJxzFile (){
 
         return jxzFiles;
-    }
+    }*/
 
     public void addJxzFiles(String fileName,File file){
         jxzFileNames.add(fileName);
@@ -200,21 +193,19 @@ public class ECApplication extends Application {
 
     public String getAddress(){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(instance);
-        String address = preferences.getString("address", SystemConst.DEFAULT_SERVER);
-        return address;
+        return preferences.getString("address", SystemConst.DEFAULT_SERVER);
     }
     private User userForYKT;
     public User getUserForYKT(){
+
         return userForYKT;
     }
     public void saveUserInfoForYKT(User user){
+
         userForYKT = user;
     }
-    /**
-     * 返回配置文件的日志开关
-     * @return
-     */
-    public boolean getLoggingSwitch() {
+
+    /*public boolean getLoggingSwitch() {
         try {
             ApplicationInfo appInfo = getPackageManager().getApplicationInfo(
                     getPackageName(), PackageManager.GET_META_DATA);
@@ -225,9 +216,9 @@ public class ECApplication extends Application {
             e.printStackTrace();
         }
         return false;
-    }
+    }*/
 
-    public boolean getAlphaSwitch() {
+    /*public boolean getAlphaSwitch() {
         try {
             ApplicationInfo appInfo = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
             boolean b = appInfo.metaData.getBoolean("ALPHA");
@@ -238,7 +229,7 @@ public class ECApplication extends Application {
         }
 
         return false;
-    }
+    }*/
 
     @Override
     public void onLowMemory() {
@@ -260,14 +251,14 @@ public class ECApplication extends Application {
 
     /**
      * 存储当前用户
-     * @param user
+     * @param user 登录用户
      */
     public void saveUser(User user) {
         PreferenceUtil.save(user, "user");
     }
     /**
      * 存储当前用户
-     * @param user
+     * @param user 登录用户
      */
     public void saveUsers(User user) {
         PreferenceUtil.save(user, user.getLoginName());
@@ -275,7 +266,8 @@ public class ECApplication extends Application {
 
     /**
      * 获取当前用户实体
-     * @return
+     *
+     * @return user
      */
     public User getCurrentUser(){
 
@@ -283,7 +275,8 @@ public class ECApplication extends Application {
     }
     /**
      * 获取当前用户实体
-     * @return
+     *
+     * @return User
      */
     public User getUserValue(String key){
 
@@ -292,7 +285,8 @@ public class ECApplication extends Application {
 
     /**
      * 获取当前用户实体
-     * @return
+     *
+     * @return User
      */
     public List<User> getAllUser(){
 
@@ -301,22 +295,33 @@ public class ECApplication extends Application {
 
     public HashMap<String,ParameterValue> getLoginUrlMap(){
 
+        if (loginUrlMap == null||loginUrlMap.size() == 0){
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(instance);
+            String sys_auto_authenticate = preferences.getString("sys_auto_authenticate", "");
+            String sys_username = preferences.getString("sys_username", "");
+            String sys_password = preferences.getString("sys_password", "");
+            loginUrlMap.put("sys_auto_authenticate",new ParameterValue(sys_auto_authenticate));
+            loginUrlMap.put("sys_username",new ParameterValue(sys_username));
+            loginUrlMap.put("sys_password",new ParameterValue(sys_password));
+        }
         return loginUrlMap;
     }
 
-    public void setLoginUrlMap(String key,ParameterValue value){
-        loginUrlMap.put(key,value);
+    public void setLoginUrlMap(String key,String value){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(instance);
+        preferences.edit().putString(key,value).commit();
     }
 
-    public HashMap<String,ParameterValue> getCurrentUserMap(){
-
-        return userInfoMap;
-    }
-
-
-    public void setCurrentUserMap(HashMap<String,ParameterValue> map){
-        userInfoMap = map;
-    }
+//    public HashMap<String,ParameterValue> getCurrentUserMap(){
+//
+//        return userInfoMap;
+//    }
+//
+//
+//    public void setCurrentUserMap(HashMap<String,ParameterValue> map){
+//
+//        userInfoMap = map;
+//    }
     /**
      * 存储数据（sharePreference）
      */
@@ -327,39 +332,40 @@ public class ECApplication extends Application {
 
     /**
      * 获取数据（sharePreference）
-     * @param key
-     * @return
+     * @param key key
+     * @return value or ""
      */
     public String getValue(String key){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(instance);
         return preferences.getString(key, "");
     }
 
-    /**
-     * 将当前activity添加到容器中
-     * @param activity
-     */
-    public void addActivity(Activity activity){
+//    /**
+//     * 将当前activity添加到容器中
+//     *
+//     * @param activity
+//     */
+   /* public void addActivity(Activity activity){
         activityList.add(activity);
         System.out.println("activityList"+activityList.size());
-    }
+    }*/
 
-    /**
-     * 从容器中移除当前activity
-     * @param activity
-     */
-    public void removeActivity(Activity activity){
-        activityList.remove(activity);
-        System.out.println("activityList"+activityList.size());
-    }
+//    /**
+//     * 从容器中移除当前activity
+//     * @param activity
+//     */
+//    public void removeActivity(Activity activity){
+//        activityList.remove(activity);
+//        System.out.println("activityList"+activityList.size());
+//    }
 
-    /**
-     * 遍历activity集合，退出所有！
-     */
-    public void exit(){
-        for (Activity activity : activityList){
-            activity.finish();
-        }
-        System.exit(0);
-    }
+//    /**
+//     * 遍历activity集合，退出所有！
+//     */
+//    public void exit(){
+//        for (Activity activity : activityList){
+//            activity.finish();
+//        }
+//        System.exit(0);
+//    }
 }

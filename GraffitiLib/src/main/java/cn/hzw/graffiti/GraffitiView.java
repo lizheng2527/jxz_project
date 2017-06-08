@@ -987,9 +987,7 @@ public class GraffitiView extends View {
      * 保存
      */
     public void save() {
-
         mSelectedText = null;
-
         // 保存的时候，把文字画上去
         for (GraffitiText text : mTextStack) {
             draw(mBitmapCanvas, text);

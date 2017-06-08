@@ -78,6 +78,8 @@ public class DownloadAsyncTask extends AsyncTask<String, Integer, File> {
 			conn.setRequestProperty("Accept-Encoding", "identity");
 			conn.setRequestMethod("GET");
 			conn.setDoInput(true);
+			conn.setReadTimeout(10*1000);//15秒
+			conn.setConnectTimeout(10*1000);
 			conn.connect();
 			String filename = null;
 			if(params.length >= 4) {

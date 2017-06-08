@@ -248,10 +248,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                             LogUtil.e(userInfos.toString());
                             ECApplication.getInstance().saveUser(userInfos);
                             ECApplication.getInstance().saveUsers(userInfos);
-                            ECApplication.getInstance().setCurrentUserMap(userInfoMap);
-                            ECApplication.getInstance().setLoginUrlMap("sys_auto_authenticate", new ParameterValue("true"));
-                            ECApplication.getInstance().setLoginUrlMap("sys_username", new ParameterValue(getStringByUI(etxt_username)));
-                            ECApplication.getInstance().setLoginUrlMap("sys_password", new ParameterValue(getStringByUI(etxt_pwd)));
+//                            ECApplication.getInstance().setCurrentUserMap(userInfoMap);
+                            ECApplication.getInstance().setLoginUrlMap("sys_auto_authenticate", "true");
+                            ECApplication.getInstance().setLoginUrlMap("sys_username", getStringByUI(etxt_username));
+                            ECApplication.getInstance().setLoginUrlMap("sys_password", getStringByUI(etxt_pwd));
                             //如果不是二毛学校，显示学乐堂（云课堂）二毛无学乐堂
                             if (!"http://117.117.217.19/dc".equals(ECApplication.getInstance().getAddress())){
                                 ECApplication.getInstance().saveUserInfoForYKT(userInfos);
