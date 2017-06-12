@@ -9,7 +9,6 @@
 package cn.sharesdk.onekeyshare;
 
 import com.mob.tools.FakeActivity;
-import com.zdhx.androidbase.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,6 +77,5 @@ public class OnekeySharePage extends FakeActivity {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		ToastUtil.showMessage("onDestroyOneKeySharePage");
 	}
 }

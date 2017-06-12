@@ -9,7 +9,6 @@
 package cn.sharesdk.onekeyshare.themes.classic;
 
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -20,6 +19,8 @@ import android.widget.TextView;
 
 import com.mob.tools.gui.MobViewPager;
 import com.mob.tools.utils.R;
+import com.zdhx.androidbase.ECApplication;
+import com.zdhx.androidbase.ui.plugin.FileUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -186,12 +187,11 @@ public abstract class PlatformPage extends OnekeySharePage {
 				if (beforeFinish == null) {
 					// 取消分享菜单的统计
 					ShareSDK.logDemoEvent(2, null);
-					Log.w("PlatformPage","取消分享菜单的统计");
+					FileUtils.delFilesFromDir(ECApplication.getInstance().getDownloadJxzDir()+"/share");
 				} else {
 					beforeFinish.run();
 					beforeFinish = null;
 				}
-
 				finished = true;
 				finish();
 			}
@@ -201,5 +201,4 @@ public abstract class PlatformPage extends OnekeySharePage {
 		llPanel.setVisibility(View.GONE);
 		return true;
 	}
-
 }

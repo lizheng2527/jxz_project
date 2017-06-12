@@ -4319,14 +4319,7 @@
                     "endOffset": 32978
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 594,
-                        "endColumn": 59,
-                        "endOffset": 649
-                    }
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\GraffitiLib\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
                 }
             },
             {
@@ -4646,20 +4639,27 @@
                     "startLine": 441,
                     "startColumn": 4,
                     "startOffset": 34534,
-                    "endColumn": 51,
-                    "endOffset": 34581
+                    "endColumn": 47,
+                    "endOffset": 34577
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 38,
+                        "startColumn": 4,
+                        "startOffset": 1579,
+                        "endColumn": 47,
+                        "endOffset": 1622
+                    }
                 }
             },
             {
                 "to": {
                     "startLine": 442,
                     "startColumn": 4,
-                    "startOffset": 34586,
-                    "endColumn": 85,
-                    "endOffset": 34667
+                    "startOffset": 34582,
+                    "endColumn": 51,
+                    "endOffset": 34629
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
@@ -4669,9 +4669,21 @@
                 "to": {
                     "startLine": 443,
                     "startColumn": 4,
-                    "startOffset": 34672,
+                    "startOffset": 34634,
+                    "endColumn": 85,
+                    "endOffset": 34715
+                },
+                "from": {
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 444,
+                    "startColumn": 4,
+                    "startOffset": 34720,
                     "endColumn": 35,
-                    "endOffset": 34703
+                    "endOffset": 34751
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\strings.xml"
@@ -4679,23 +4691,11 @@
             },
             {
                 "to": {
-                    "startLine": 444,
-                    "startColumn": 4,
-                    "startOffset": 34708,
-                    "endColumn": 45,
-                    "endOffset": 34749
-                },
-                "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
-                }
-            },
-            {
-                "to": {
                     "startLine": 445,
                     "startColumn": 4,
-                    "startOffset": 34754,
-                    "endColumn": 86,
-                    "endOffset": 34836
+                    "startOffset": 34756,
+                    "endColumn": 45,
+                    "endOffset": 34797
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4705,9 +4705,9 @@
                 "to": {
                     "startLine": 446,
                     "startColumn": 4,
-                    "startOffset": 34841,
-                    "endColumn": 48,
-                    "endOffset": 34885
+                    "startOffset": 34802,
+                    "endColumn": 86,
+                    "endOffset": 34884
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4717,9 +4717,9 @@
                 "to": {
                     "startLine": 447,
                     "startColumn": 4,
-                    "startOffset": 34890,
-                    "endColumn": 92,
-                    "endOffset": 34978
+                    "startOffset": 34889,
+                    "endColumn": 48,
+                    "endOffset": 34933
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4729,9 +4729,9 @@
                 "to": {
                     "startLine": 448,
                     "startColumn": 4,
-                    "startOffset": 34983,
-                    "endColumn": 45,
-                    "endOffset": 35024
+                    "startOffset": 34938,
+                    "endColumn": 92,
+                    "endOffset": 35026
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4741,9 +4741,9 @@
                 "to": {
                     "startLine": 449,
                     "startColumn": 4,
-                    "startOffset": 35029,
-                    "endColumn": 42,
-                    "endOffset": 35067
+                    "startOffset": 35031,
+                    "endColumn": 45,
+                    "endOffset": 35072
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4753,9 +4753,9 @@
                 "to": {
                     "startLine": 450,
                     "startColumn": 4,
-                    "startOffset": 35072,
-                    "endColumn": 48,
-                    "endOffset": 35116
+                    "startOffset": 35077,
+                    "endColumn": 42,
+                    "endOffset": 35115
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4765,9 +4765,9 @@
                 "to": {
                     "startLine": 451,
                     "startColumn": 4,
-                    "startOffset": 35121,
-                    "endColumn": 41,
-                    "endOffset": 35158
+                    "startOffset": 35120,
+                    "endColumn": 48,
+                    "endOffset": 35164
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4777,9 +4777,9 @@
                 "to": {
                     "startLine": 452,
                     "startColumn": 4,
-                    "startOffset": 35163,
-                    "endColumn": 46,
-                    "endOffset": 35205
+                    "startOffset": 35169,
+                    "endColumn": 41,
+                    "endOffset": 35206
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4789,9 +4789,9 @@
                 "to": {
                     "startLine": 453,
                     "startColumn": 4,
-                    "startOffset": 35210,
-                    "endColumn": 50,
-                    "endOffset": 35256
+                    "startOffset": 35211,
+                    "endColumn": 46,
+                    "endOffset": 35253
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4801,9 +4801,9 @@
                 "to": {
                     "startLine": 454,
                     "startColumn": 4,
-                    "startOffset": 35261,
-                    "endColumn": 69,
-                    "endOffset": 35326
+                    "startOffset": 35258,
+                    "endColumn": 50,
+                    "endOffset": 35304
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4813,9 +4813,9 @@
                 "to": {
                     "startLine": 455,
                     "startColumn": 4,
-                    "startOffset": 35331,
-                    "endColumn": 108,
-                    "endOffset": 35435
+                    "startOffset": 35309,
+                    "endColumn": 69,
+                    "endOffset": 35374
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4825,9 +4825,9 @@
                 "to": {
                     "startLine": 456,
                     "startColumn": 4,
-                    "startOffset": 35440,
-                    "endColumn": 46,
-                    "endOffset": 35482
+                    "startOffset": 35379,
+                    "endColumn": 108,
+                    "endOffset": 35483
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4837,9 +4837,9 @@
                 "to": {
                     "startLine": 457,
                     "startColumn": 4,
-                    "startOffset": 35487,
-                    "endColumn": 54,
-                    "endOffset": 35537
+                    "startOffset": 35488,
+                    "endColumn": 46,
+                    "endOffset": 35530
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4849,9 +4849,9 @@
                 "to": {
                     "startLine": 458,
                     "startColumn": 4,
-                    "startOffset": 35542,
-                    "endColumn": 102,
-                    "endOffset": 35640
+                    "startOffset": 35535,
+                    "endColumn": 54,
+                    "endOffset": 35585
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4861,9 +4861,9 @@
                 "to": {
                     "startLine": 459,
                     "startColumn": 4,
-                    "startOffset": 35645,
-                    "endColumn": 51,
-                    "endOffset": 35692
+                    "startOffset": 35590,
+                    "endColumn": 102,
+                    "endOffset": 35688
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4873,9 +4873,9 @@
                 "to": {
                     "startLine": 460,
                     "startColumn": 4,
-                    "startOffset": 35697,
-                    "endColumn": 52,
-                    "endOffset": 35745
+                    "startOffset": 35693,
+                    "endColumn": 51,
+                    "endOffset": 35740
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4885,9 +4885,9 @@
                 "to": {
                     "startLine": 461,
                     "startColumn": 4,
-                    "startOffset": 35750,
-                    "endColumn": 103,
-                    "endOffset": 35849
+                    "startOffset": 35745,
+                    "endColumn": 52,
+                    "endOffset": 35793
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4897,9 +4897,9 @@
                 "to": {
                     "startLine": 462,
                     "startColumn": 4,
-                    "startOffset": 35854,
-                    "endColumn": 83,
-                    "endOffset": 35933
+                    "startOffset": 35798,
+                    "endColumn": 103,
+                    "endOffset": 35897
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4909,22 +4909,9 @@
                 "to": {
                     "startLine": 463,
                     "startColumn": 4,
-                    "startOffset": 35938,
-                    "endLine": 528,
-                    "endColumn": 9,
-                    "endOffset": 37818
-                },
-                "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_instapaper_strings.xml"
-                }
-            },
-            {
-                "to": {
-                    "startLine": 529,
-                    "startColumn": 4,
-                    "startOffset": 37823,
-                    "endColumn": 54,
-                    "endOffset": 37873
+                    "startOffset": 35902,
+                    "endColumn": 83,
+                    "endOffset": 35981
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4932,11 +4919,24 @@
             },
             {
                 "to": {
+                    "startLine": 464,
+                    "startColumn": 4,
+                    "startOffset": 35986,
+                    "endLine": 529,
+                    "endColumn": 9,
+                    "endOffset": 37866
+                },
+                "from": {
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_instapaper_strings.xml"
+                }
+            },
+            {
+                "to": {
                     "startLine": 530,
                     "startColumn": 4,
-                    "startOffset": 37878,
-                    "endColumn": 52,
-                    "endOffset": 37926
+                    "startOffset": 37871,
+                    "endColumn": 54,
+                    "endOffset": 37921
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4946,9 +4946,9 @@
                 "to": {
                     "startLine": 531,
                     "startColumn": 4,
-                    "startOffset": 37931,
+                    "startOffset": 37926,
                     "endColumn": 52,
-                    "endOffset": 37979
+                    "endOffset": 37974
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4958,9 +4958,9 @@
                 "to": {
                     "startLine": 532,
                     "startColumn": 4,
-                    "startOffset": 37984,
-                    "endColumn": 57,
-                    "endOffset": 38037
+                    "startOffset": 37979,
+                    "endColumn": 52,
+                    "endOffset": 38027
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4970,9 +4970,9 @@
                 "to": {
                     "startLine": 533,
                     "startColumn": 4,
-                    "startOffset": 38042,
-                    "endColumn": 50,
-                    "endOffset": 38088
+                    "startOffset": 38032,
+                    "endColumn": 57,
+                    "endOffset": 38085
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4982,9 +4982,9 @@
                 "to": {
                     "startLine": 534,
                     "startColumn": 4,
-                    "startOffset": 38093,
-                    "endColumn": 43,
-                    "endOffset": 38132
+                    "startOffset": 38090,
+                    "endColumn": 50,
+                    "endOffset": 38136
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -4994,9 +4994,9 @@
                 "to": {
                     "startLine": 535,
                     "startColumn": 4,
-                    "startOffset": 38137,
-                    "endColumn": 54,
-                    "endOffset": 38187
+                    "startOffset": 38141,
+                    "endColumn": 43,
+                    "endOffset": 38180
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5006,9 +5006,9 @@
                 "to": {
                     "startLine": 536,
                     "startColumn": 4,
-                    "startOffset": 38192,
-                    "endColumn": 104,
-                    "endOffset": 38292
+                    "startOffset": 38185,
+                    "endColumn": 54,
+                    "endOffset": 38235
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5018,9 +5018,9 @@
                 "to": {
                     "startLine": 537,
                     "startColumn": 4,
-                    "startOffset": 38297,
-                    "endColumn": 52,
-                    "endOffset": 38345
+                    "startOffset": 38240,
+                    "endColumn": 104,
+                    "endOffset": 38340
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5030,9 +5030,9 @@
                 "to": {
                     "startLine": 538,
                     "startColumn": 4,
-                    "startOffset": 38350,
-                    "endColumn": 101,
-                    "endOffset": 38447
+                    "startOffset": 38345,
+                    "endColumn": 52,
+                    "endOffset": 38393
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5042,9 +5042,9 @@
                 "to": {
                     "startLine": 539,
                     "startColumn": 4,
-                    "startOffset": 38452,
-                    "endColumn": 43,
-                    "endOffset": 38491
+                    "startOffset": 38398,
+                    "endColumn": 101,
+                    "endOffset": 38495
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5054,9 +5054,9 @@
                 "to": {
                     "startLine": 540,
                     "startColumn": 4,
-                    "startOffset": 38496,
-                    "endColumn": 85,
-                    "endOffset": 38577
+                    "startOffset": 38500,
+                    "endColumn": 43,
+                    "endOffset": 38539
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5066,9 +5066,9 @@
                 "to": {
                     "startLine": 541,
                     "startColumn": 4,
-                    "startOffset": 38582,
-                    "endColumn": 52,
-                    "endOffset": 38630
+                    "startOffset": 38544,
+                    "endColumn": 85,
+                    "endOffset": 38625
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5078,9 +5078,9 @@
                 "to": {
                     "startLine": 542,
                     "startColumn": 4,
-                    "startOffset": 38635,
-                    "endColumn": 42,
-                    "endOffset": 38673
+                    "startOffset": 38630,
+                    "endColumn": 52,
+                    "endOffset": 38678
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5090,9 +5090,9 @@
                 "to": {
                     "startLine": 543,
                     "startColumn": 4,
-                    "startOffset": 38678,
-                    "endColumn": 86,
-                    "endOffset": 38760
+                    "startOffset": 38683,
+                    "endColumn": 42,
+                    "endOffset": 38721
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5102,9 +5102,9 @@
                 "to": {
                     "startLine": 544,
                     "startColumn": 4,
-                    "startOffset": 38765,
-                    "endColumn": 44,
-                    "endOffset": 38805
+                    "startOffset": 38726,
+                    "endColumn": 86,
+                    "endOffset": 38808
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5114,9 +5114,9 @@
                 "to": {
                     "startLine": 545,
                     "startColumn": 4,
-                    "startOffset": 38810,
-                    "endColumn": 43,
-                    "endOffset": 38849
+                    "startOffset": 38813,
+                    "endColumn": 44,
+                    "endOffset": 38853
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5126,9 +5126,9 @@
                 "to": {
                     "startLine": 546,
                     "startColumn": 4,
-                    "startOffset": 38854,
-                    "endColumn": 59,
-                    "endOffset": 38909
+                    "startOffset": 38858,
+                    "endColumn": 43,
+                    "endOffset": 38897
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5138,9 +5138,9 @@
                 "to": {
                     "startLine": 547,
                     "startColumn": 4,
-                    "startOffset": 38914,
-                    "endColumn": 54,
-                    "endOffset": 38964
+                    "startOffset": 38902,
+                    "endColumn": 59,
+                    "endOffset": 38957
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5150,20 +5150,20 @@
                 "to": {
                     "startLine": 548,
                     "startColumn": 4,
-                    "startOffset": 38969,
-                    "endColumn": 46,
-                    "endOffset": 39011
+                    "startOffset": 38962,
+                    "endColumn": 54,
+                    "endOffset": 39012
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_oks_strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 549,
                     "startColumn": 4,
-                    "startOffset": 39016,
-                    "endColumn": 47,
+                    "startOffset": 39017,
+                    "endColumn": 46,
                     "endOffset": 39059
                 },
                 "from": {
@@ -5175,8 +5175,8 @@
                     "startLine": 550,
                     "startColumn": 4,
                     "startOffset": 39064,
-                    "endColumn": 49,
-                    "endOffset": 39109
+                    "endColumn": 47,
+                    "endOffset": 39107
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_oks_strings.xml"
@@ -5186,9 +5186,9 @@
                 "to": {
                     "startLine": 551,
                     "startColumn": 4,
-                    "startOffset": 39114,
-                    "endColumn": 53,
-                    "endOffset": 39163
+                    "startOffset": 39112,
+                    "endColumn": 49,
+                    "endOffset": 39157
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_oks_strings.xml"
@@ -5198,9 +5198,9 @@
                 "to": {
                     "startLine": 552,
                     "startColumn": 4,
-                    "startOffset": 39168,
-                    "endColumn": 57,
-                    "endOffset": 39221
+                    "startOffset": 39162,
+                    "endColumn": 53,
+                    "endOffset": 39211
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_oks_strings.xml"
@@ -5210,9 +5210,9 @@
                 "to": {
                     "startLine": 553,
                     "startColumn": 4,
-                    "startOffset": 39226,
-                    "endColumn": 52,
-                    "endOffset": 39274
+                    "startOffset": 39216,
+                    "endColumn": 57,
+                    "endOffset": 39269
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_oks_strings.xml"
@@ -5222,9 +5222,9 @@
                 "to": {
                     "startLine": 554,
                     "startColumn": 4,
-                    "startOffset": 39279,
-                    "endColumn": 60,
-                    "endOffset": 39335
+                    "startOffset": 39274,
+                    "endColumn": 52,
+                    "endOffset": 39322
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_oks_strings.xml"
@@ -5234,9 +5234,9 @@
                 "to": {
                     "startLine": 555,
                     "startColumn": 4,
-                    "startOffset": 39340,
-                    "endColumn": 45,
-                    "endOffset": 39381
+                    "startOffset": 39327,
+                    "endColumn": 60,
+                    "endOffset": 39383
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_oks_strings.xml"
@@ -5246,9 +5246,9 @@
                 "to": {
                     "startLine": 556,
                     "startColumn": 4,
-                    "startOffset": 39386,
-                    "endColumn": 57,
-                    "endOffset": 39439
+                    "startOffset": 39388,
+                    "endColumn": 45,
+                    "endOffset": 39429
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_oks_strings.xml"
@@ -5258,9 +5258,9 @@
                 "to": {
                     "startLine": 557,
                     "startColumn": 4,
-                    "startOffset": 39444,
+                    "startOffset": 39434,
                     "endColumn": 57,
-                    "endOffset": 39497
+                    "endOffset": 39487
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_oks_strings.xml"
@@ -5270,9 +5270,9 @@
                 "to": {
                     "startLine": 558,
                     "startColumn": 4,
-                    "startOffset": 39502,
-                    "endColumn": 54,
-                    "endOffset": 39552
+                    "startOffset": 39492,
+                    "endColumn": 57,
+                    "endOffset": 39545
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_oks_strings.xml"
@@ -5282,9 +5282,9 @@
                 "to": {
                     "startLine": 559,
                     "startColumn": 4,
-                    "startOffset": 39557,
-                    "endColumn": 56,
-                    "endOffset": 39609
+                    "startOffset": 39550,
+                    "endColumn": 54,
+                    "endOffset": 39600
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_oks_strings.xml"
@@ -5294,21 +5294,21 @@
                 "to": {
                     "startLine": 560,
                     "startColumn": 4,
-                    "startOffset": 39614,
-                    "endColumn": 52,
-                    "endOffset": 39662
+                    "startOffset": 39605,
+                    "endColumn": 56,
+                    "endOffset": 39657
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_oks_strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 561,
                     "startColumn": 4,
-                    "startOffset": 39667,
-                    "endColumn": 103,
-                    "endOffset": 39766
+                    "startOffset": 39662,
+                    "endColumn": 52,
+                    "endOffset": 39710
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5318,9 +5318,9 @@
                 "to": {
                     "startLine": 562,
                     "startColumn": 4,
-                    "startOffset": 39771,
-                    "endColumn": 46,
-                    "endOffset": 39813
+                    "startOffset": 39715,
+                    "endColumn": 103,
+                    "endOffset": 39814
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5330,9 +5330,9 @@
                 "to": {
                     "startLine": 563,
                     "startColumn": 4,
-                    "startOffset": 39818,
-                    "endColumn": 38,
-                    "endOffset": 39852
+                    "startOffset": 39819,
+                    "endColumn": 46,
+                    "endOffset": 39861
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5342,9 +5342,9 @@
                 "to": {
                     "startLine": 564,
                     "startColumn": 4,
-                    "startOffset": 39857,
-                    "endColumn": 83,
-                    "endOffset": 39936
+                    "startOffset": 39866,
+                    "endColumn": 38,
+                    "endOffset": 39900
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5354,9 +5354,9 @@
                 "to": {
                     "startLine": 565,
                     "startColumn": 4,
-                    "startOffset": 39941,
-                    "endColumn": 43,
-                    "endOffset": 39980
+                    "startOffset": 39905,
+                    "endColumn": 83,
+                    "endOffset": 39984
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5366,9 +5366,9 @@
                 "to": {
                     "startLine": 566,
                     "startColumn": 4,
-                    "startOffset": 39985,
+                    "startOffset": 39989,
                     "endColumn": 43,
-                    "endOffset": 40024
+                    "endOffset": 40028
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5378,9 +5378,9 @@
                 "to": {
                     "startLine": 567,
                     "startColumn": 4,
-                    "startOffset": 40029,
-                    "endColumn": 60,
-                    "endOffset": 40085
+                    "startOffset": 40033,
+                    "endColumn": 43,
+                    "endOffset": 40072
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5390,9 +5390,9 @@
                 "to": {
                     "startLine": 568,
                     "startColumn": 4,
-                    "startOffset": 40090,
-                    "endColumn": 55,
-                    "endOffset": 40141
+                    "startOffset": 40077,
+                    "endColumn": 60,
+                    "endOffset": 40133
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5402,9 +5402,9 @@
                 "to": {
                     "startLine": 569,
                     "startColumn": 4,
-                    "startOffset": 40146,
-                    "endColumn": 50,
-                    "endOffset": 40192
+                    "startOffset": 40138,
+                    "endColumn": 55,
+                    "endOffset": 40189
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5414,9 +5414,9 @@
                 "to": {
                     "startLine": 570,
                     "startColumn": 4,
-                    "startOffset": 40197,
-                    "endColumn": 55,
-                    "endOffset": 40248
+                    "startOffset": 40194,
+                    "endColumn": 50,
+                    "endOffset": 40240
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5426,9 +5426,9 @@
                 "to": {
                     "startLine": 571,
                     "startColumn": 4,
-                    "startOffset": 40253,
-                    "endColumn": 63,
-                    "endOffset": 40312
+                    "startOffset": 40245,
+                    "endColumn": 55,
+                    "endOffset": 40296
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5438,9 +5438,9 @@
                 "to": {
                     "startLine": 572,
                     "startColumn": 4,
-                    "startOffset": 40317,
-                    "endColumn": 48,
-                    "endOffset": 40361
+                    "startOffset": 40301,
+                    "endColumn": 63,
+                    "endOffset": 40360
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5450,8 +5450,8 @@
                 "to": {
                     "startLine": 573,
                     "startColumn": 4,
-                    "startOffset": 40366,
-                    "endColumn": 47,
+                    "startOffset": 40365,
+                    "endColumn": 48,
                     "endOffset": 40409
                 },
                 "from": {
@@ -5463,8 +5463,8 @@
                     "startLine": 574,
                     "startColumn": 4,
                     "startOffset": 40414,
-                    "endColumn": 51,
-                    "endOffset": 40461
+                    "endColumn": 47,
+                    "endOffset": 40457
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5474,9 +5474,9 @@
                 "to": {
                     "startLine": 575,
                     "startColumn": 4,
-                    "startOffset": 40466,
-                    "endColumn": 53,
-                    "endOffset": 40515
+                    "startOffset": 40462,
+                    "endColumn": 51,
+                    "endOffset": 40509
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5486,9 +5486,9 @@
                 "to": {
                     "startLine": 576,
                     "startColumn": 4,
-                    "startOffset": 40520,
-                    "endColumn": 50,
-                    "endOffset": 40566
+                    "startOffset": 40514,
+                    "endColumn": 53,
+                    "endOffset": 40563
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5498,9 +5498,9 @@
                 "to": {
                     "startLine": 577,
                     "startColumn": 4,
-                    "startOffset": 40571,
-                    "endColumn": 46,
-                    "endOffset": 40613
+                    "startOffset": 40568,
+                    "endColumn": 50,
+                    "endOffset": 40614
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5510,9 +5510,9 @@
                 "to": {
                     "startLine": 578,
                     "startColumn": 4,
-                    "startOffset": 40618,
-                    "endColumn": 48,
-                    "endOffset": 40662
+                    "startOffset": 40619,
+                    "endColumn": 46,
+                    "endOffset": 40661
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5522,9 +5522,9 @@
                 "to": {
                     "startLine": 579,
                     "startColumn": 4,
-                    "startOffset": 40667,
-                    "endColumn": 59,
-                    "endOffset": 40722
+                    "startOffset": 40666,
+                    "endColumn": 48,
+                    "endOffset": 40710
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5534,9 +5534,9 @@
                 "to": {
                     "startLine": 580,
                     "startColumn": 4,
-                    "startOffset": 40727,
-                    "endColumn": 45,
-                    "endOffset": 40768
+                    "startOffset": 40715,
+                    "endColumn": 59,
+                    "endOffset": 40770
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5546,9 +5546,9 @@
                 "to": {
                     "startLine": 581,
                     "startColumn": 4,
-                    "startOffset": 40773,
-                    "endColumn": 59,
-                    "endOffset": 40828
+                    "startOffset": 40775,
+                    "endColumn": 45,
+                    "endOffset": 40816
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5558,9 +5558,9 @@
                 "to": {
                     "startLine": 582,
                     "startColumn": 4,
-                    "startOffset": 40833,
-                    "endColumn": 44,
-                    "endOffset": 40873
+                    "startOffset": 40821,
+                    "endColumn": 59,
+                    "endOffset": 40876
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5570,9 +5570,9 @@
                 "to": {
                     "startLine": 583,
                     "startColumn": 4,
-                    "startOffset": 40878,
-                    "endColumn": 86,
-                    "endOffset": 40960
+                    "startOffset": 40881,
+                    "endColumn": 44,
+                    "endOffset": 40921
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5582,9 +5582,9 @@
                 "to": {
                     "startLine": 584,
                     "startColumn": 4,
-                    "startOffset": 40965,
-                    "endColumn": 52,
-                    "endOffset": 41013
+                    "startOffset": 40926,
+                    "endColumn": 86,
+                    "endOffset": 41008
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5594,9 +5594,9 @@
                 "to": {
                     "startLine": 585,
                     "startColumn": 4,
-                    "startOffset": 41018,
+                    "startOffset": 41013,
                     "endColumn": 52,
-                    "endOffset": 41066
+                    "endOffset": 41061
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5606,9 +5606,9 @@
                 "to": {
                     "startLine": 586,
                     "startColumn": 4,
-                    "startOffset": 41071,
-                    "endColumn": 59,
-                    "endOffset": 41126
+                    "startOffset": 41066,
+                    "endColumn": 52,
+                    "endOffset": 41114
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5618,9 +5618,9 @@
                 "to": {
                     "startLine": 587,
                     "startColumn": 4,
-                    "startOffset": 41131,
-                    "endColumn": 58,
-                    "endOffset": 41185
+                    "startOffset": 41119,
+                    "endColumn": 59,
+                    "endOffset": 41174
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5630,9 +5630,9 @@
                 "to": {
                     "startLine": 588,
                     "startColumn": 4,
-                    "startOffset": 41190,
-                    "endColumn": 50,
-                    "endOffset": 41236
+                    "startOffset": 41179,
+                    "endColumn": 58,
+                    "endOffset": 41233
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5642,9 +5642,9 @@
                 "to": {
                     "startLine": 589,
                     "startColumn": 4,
-                    "startOffset": 41241,
-                    "endColumn": 98,
-                    "endOffset": 41335
+                    "startOffset": 41238,
+                    "endColumn": 50,
+                    "endOffset": 41284
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5654,9 +5654,9 @@
                 "to": {
                     "startLine": 590,
                     "startColumn": 4,
-                    "startOffset": 41340,
-                    "endColumn": 41,
-                    "endOffset": 41377
+                    "startOffset": 41289,
+                    "endColumn": 98,
+                    "endOffset": 41383
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5666,9 +5666,9 @@
                 "to": {
                     "startLine": 591,
                     "startColumn": 4,
-                    "startOffset": 41382,
-                    "endColumn": 83,
-                    "endOffset": 41461
+                    "startOffset": 41388,
+                    "endColumn": 41,
+                    "endOffset": 41425
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5678,9 +5678,9 @@
                 "to": {
                     "startLine": 592,
                     "startColumn": 4,
-                    "startOffset": 41466,
-                    "endColumn": 51,
-                    "endOffset": 41513
+                    "startOffset": 41430,
+                    "endColumn": 83,
+                    "endOffset": 41509
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5690,9 +5690,9 @@
                 "to": {
                     "startLine": 593,
                     "startColumn": 4,
-                    "startOffset": 41518,
-                    "endColumn": 45,
-                    "endOffset": 41559
+                    "startOffset": 41514,
+                    "endColumn": 51,
+                    "endOffset": 41561
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
@@ -5702,21 +5702,21 @@
                 "to": {
                     "startLine": 594,
                     "startColumn": 4,
-                    "startOffset": 41564,
-                    "endColumn": 84,
-                    "endOffset": 41644
+                    "startOffset": 41566,
+                    "endColumn": 45,
+                    "endOffset": 41607
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\ssdk_strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 595,
                     "startColumn": 4,
-                    "startOffset": 41649,
-                    "endColumn": 85,
-                    "endOffset": 41730
+                    "startOffset": 41612,
+                    "endColumn": 84,
+                    "endOffset": 41692
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
@@ -5726,9 +5726,9 @@
                 "to": {
                     "startLine": 596,
                     "startColumn": 4,
-                    "startOffset": 41735,
-                    "endColumn": 84,
-                    "endOffset": 41815
+                    "startOffset": 41697,
+                    "endColumn": 85,
+                    "endOffset": 41778
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
@@ -5738,8 +5738,8 @@
                 "to": {
                     "startLine": 597,
                     "startColumn": 4,
-                    "startOffset": 41820,
-                    "endColumn": 47,
+                    "startOffset": 41783,
+                    "endColumn": 84,
                     "endOffset": 41863
                 },
                 "from": {
@@ -5751,8 +5751,8 @@
                     "startLine": 598,
                     "startColumn": 4,
                     "startOffset": 41868,
-                    "endColumn": 44,
-                    "endOffset": 41908
+                    "endColumn": 47,
+                    "endOffset": 41911
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
@@ -5762,21 +5762,21 @@
                 "to": {
                     "startLine": 599,
                     "startColumn": 4,
-                    "startOffset": 41913,
-                    "endColumn": 41,
-                    "endOffset": 41950
+                    "startOffset": 41916,
+                    "endColumn": 44,
+                    "endOffset": 41956
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 600,
                     "startColumn": 4,
-                    "startOffset": 41955,
-                    "endColumn": 71,
-                    "endOffset": 42022
+                    "startOffset": 41961,
+                    "endColumn": 41,
+                    "endOffset": 41998
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\strings.xml"
@@ -5786,9 +5786,9 @@
                 "to": {
                     "startLine": 601,
                     "startColumn": 4,
-                    "startOffset": 42027,
-                    "endColumn": 61,
-                    "endOffset": 42084
+                    "startOffset": 42003,
+                    "endColumn": 71,
+                    "endOffset": 42070
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\strings.xml"
@@ -5798,9 +5798,9 @@
                 "to": {
                     "startLine": 602,
                     "startColumn": 4,
-                    "startOffset": 42089,
-                    "endColumn": 62,
-                    "endOffset": 42147
+                    "startOffset": 42075,
+                    "endColumn": 61,
+                    "endOffset": 42132
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\strings.xml"
@@ -5810,9 +5810,9 @@
                 "to": {
                     "startLine": 603,
                     "startColumn": 4,
-                    "startOffset": 42152,
-                    "endColumn": 65,
-                    "endOffset": 42213
+                    "startOffset": 42137,
+                    "endColumn": 62,
+                    "endOffset": 42195
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\strings.xml"
@@ -5822,9 +5822,9 @@
                 "to": {
                     "startLine": 604,
                     "startColumn": 4,
-                    "startOffset": 42218,
-                    "endColumn": 61,
-                    "endOffset": 42275
+                    "startOffset": 42200,
+                    "endColumn": 65,
+                    "endOffset": 42261
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\strings.xml"
@@ -5834,9 +5834,9 @@
                 "to": {
                     "startLine": 605,
                     "startColumn": 4,
-                    "startOffset": 42280,
-                    "endColumn": 62,
-                    "endOffset": 42338
+                    "startOffset": 42266,
+                    "endColumn": 61,
+                    "endOffset": 42323
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\strings.xml"
@@ -5846,9 +5846,9 @@
                 "to": {
                     "startLine": 606,
                     "startColumn": 4,
-                    "startOffset": 42343,
+                    "startOffset": 42328,
                     "endColumn": 62,
-                    "endOffset": 42401
+                    "endOffset": 42386
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\strings.xml"
@@ -5858,9 +5858,21 @@
                 "to": {
                     "startLine": 607,
                     "startColumn": 4,
-                    "startOffset": 42406,
+                    "startOffset": 42391,
+                    "endColumn": 62,
+                    "endOffset": 42449
+                },
+                "from": {
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 608,
+                    "startColumn": 4,
+                    "startOffset": 42454,
                     "endColumn": 61,
-                    "endOffset": 42463
+                    "endOffset": 42511
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
@@ -5868,12 +5880,12 @@
             },
             {
                 "to": {
-                    "startLine": 608,
+                    "startLine": 609,
                     "startColumn": 4,
-                    "startOffset": 42468,
-                    "endLine": 617,
+                    "startOffset": 42516,
+                    "endLine": 618,
                     "endColumn": 12,
-                    "endOffset": 43057
+                    "endOffset": 43105
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\themes.xml"
@@ -5881,12 +5893,12 @@
             },
             {
                 "to": {
-                    "startLine": 618,
+                    "startLine": 619,
                     "startColumn": 4,
-                    "startOffset": 43062,
-                    "endLine": 621,
+                    "startOffset": 43110,
+                    "endLine": 622,
                     "endColumn": 12,
-                    "endOffset": 43299
+                    "endOffset": 43347
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -5894,12 +5906,12 @@
             },
             {
                 "to": {
-                    "startLine": 622,
+                    "startLine": 623,
                     "startColumn": 4,
-                    "startOffset": 43304,
-                    "endLine": 625,
+                    "startOffset": 43352,
+                    "endLine": 626,
                     "endColumn": 12,
-                    "endOffset": 43569
+                    "endOffset": 43617
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles_ios_dialog.xml"
@@ -5907,12 +5919,12 @@
             },
             {
                 "to": {
-                    "startLine": 626,
+                    "startLine": 627,
                     "startColumn": 4,
-                    "startOffset": 43574,
-                    "endLine": 643,
+                    "startOffset": 43622,
+                    "endLine": 644,
                     "endColumn": 12,
-                    "endOffset": 44250
+                    "endOffset": 44298
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles_ios_dialog.xml"
@@ -5920,12 +5932,12 @@
             },
             {
                 "to": {
-                    "startLine": 644,
+                    "startLine": 645,
                     "startColumn": 4,
-                    "startOffset": 44255,
-                    "endLine": 652,
+                    "startOffset": 44303,
+                    "endLine": 653,
                     "endColumn": 12,
-                    "endOffset": 44769
+                    "endOffset": 44817
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles_ios_dialog.xml"
@@ -5933,12 +5945,12 @@
             },
             {
                 "to": {
-                    "startLine": 653,
+                    "startLine": 654,
                     "startColumn": 4,
-                    "startOffset": 44774,
-                    "endLine": 655,
+                    "startOffset": 44822,
+                    "endLine": 656,
                     "endColumn": 12,
-                    "endOffset": 44852
+                    "endOffset": 44900
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -5946,24 +5958,12 @@
             },
             {
                 "to": {
-                    "startLine": 656,
+                    "startLine": 657,
                     "startColumn": 4,
-                    "startOffset": 44857,
-                    "endLine": 669,
+                    "startOffset": 44905,
+                    "endLine": 670,
                     "endColumn": 12,
-                    "endOffset": 45742
-                },
-                "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
-                }
-            },
-            {
-                "to": {
-                    "startLine": 670,
-                    "startColumn": 4,
-                    "startOffset": 45747,
-                    "endColumn": 93,
-                    "endOffset": 45836
+                    "endOffset": 45790
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -5973,9 +5973,9 @@
                 "to": {
                     "startLine": 671,
                     "startColumn": 4,
-                    "startOffset": 45841,
-                    "endColumn": 101,
-                    "endOffset": 45938
+                    "startOffset": 45795,
+                    "endColumn": 93,
+                    "endOffset": 45884
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -5985,9 +5985,9 @@
                 "to": {
                     "startLine": 672,
                     "startColumn": 4,
-                    "startOffset": 45943,
-                    "endColumn": 73,
-                    "endOffset": 46012
+                    "startOffset": 45889,
+                    "endColumn": 101,
+                    "endOffset": 45986
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -5997,9 +5997,9 @@
                 "to": {
                     "startLine": 673,
                     "startColumn": 4,
-                    "startOffset": 46017,
-                    "endColumn": 92,
-                    "endOffset": 46105
+                    "startOffset": 45991,
+                    "endColumn": 73,
+                    "endOffset": 46060
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6009,9 +6009,9 @@
                 "to": {
                     "startLine": 674,
                     "startColumn": 4,
-                    "startOffset": 46110,
-                    "endColumn": 67,
-                    "endOffset": 46173
+                    "startOffset": 46065,
+                    "endColumn": 92,
+                    "endOffset": 46153
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6021,9 +6021,9 @@
                 "to": {
                     "startLine": 675,
                     "startColumn": 4,
-                    "startOffset": 46178,
-                    "endColumn": 77,
-                    "endOffset": 46251
+                    "startOffset": 46158,
+                    "endColumn": 67,
+                    "endOffset": 46221
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6033,10 +6033,9 @@
                 "to": {
                     "startLine": 676,
                     "startColumn": 4,
-                    "startOffset": 46256,
-                    "endLine": 679,
-                    "endColumn": 12,
-                    "endOffset": 46482
+                    "startOffset": 46226,
+                    "endColumn": 77,
+                    "endOffset": 46299
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6044,11 +6043,12 @@
             },
             {
                 "to": {
-                    "startLine": 680,
+                    "startLine": 677,
                     "startColumn": 4,
-                    "startOffset": 46487,
-                    "endColumn": 98,
-                    "endOffset": 46581
+                    "startOffset": 46304,
+                    "endLine": 680,
+                    "endColumn": 12,
+                    "endOffset": 46530
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6058,9 +6058,9 @@
                 "to": {
                     "startLine": 681,
                     "startColumn": 4,
-                    "startOffset": 46586,
-                    "endColumn": 77,
-                    "endOffset": 46659
+                    "startOffset": 46535,
+                    "endColumn": 98,
+                    "endOffset": 46629
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6070,9 +6070,9 @@
                 "to": {
                     "startLine": 682,
                     "startColumn": 4,
-                    "startOffset": 46664,
-                    "endColumn": 86,
-                    "endOffset": 46746
+                    "startOffset": 46634,
+                    "endColumn": 77,
+                    "endOffset": 46707
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6082,10 +6082,9 @@
                 "to": {
                     "startLine": 683,
                     "startColumn": 4,
-                    "startOffset": 46751,
-                    "endLine": 691,
-                    "endColumn": 12,
-                    "endOffset": 47220
+                    "startOffset": 46712,
+                    "endColumn": 86,
+                    "endOffset": 46794
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6093,12 +6092,12 @@
             },
             {
                 "to": {
-                    "startLine": 692,
+                    "startLine": 684,
                     "startColumn": 4,
-                    "startOffset": 47225,
-                    "endLine": 700,
+                    "startOffset": 46799,
+                    "endLine": 692,
                     "endColumn": 12,
-                    "endOffset": 47693
+                    "endOffset": 47268
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6106,12 +6105,12 @@
             },
             {
                 "to": {
-                    "startLine": 701,
+                    "startLine": 693,
                     "startColumn": 4,
-                    "startOffset": 47698,
-                    "endLine": 704,
+                    "startOffset": 47273,
+                    "endLine": 701,
                     "endColumn": 12,
-                    "endOffset": 47914
+                    "endOffset": 47741
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6119,12 +6118,12 @@
             },
             {
                 "to": {
-                    "startLine": 705,
+                    "startLine": 702,
                     "startColumn": 4,
-                    "startOffset": 47919,
-                    "endLine": 707,
+                    "startOffset": 47746,
+                    "endLine": 705,
                     "endColumn": 12,
-                    "endOffset": 48053
+                    "endOffset": 47962
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6132,12 +6131,12 @@
             },
             {
                 "to": {
-                    "startLine": 708,
+                    "startLine": 706,
                     "startColumn": 4,
-                    "startOffset": 48058,
-                    "endLine": 711,
+                    "startOffset": 47967,
+                    "endLine": 708,
                     "endColumn": 12,
-                    "endOffset": 48283
+                    "endOffset": 48101
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6145,12 +6144,12 @@
             },
             {
                 "to": {
-                    "startLine": 712,
+                    "startLine": 709,
                     "startColumn": 4,
-                    "startOffset": 48288,
-                    "endLine": 715,
+                    "startOffset": 48106,
+                    "endLine": 712,
                     "endColumn": 12,
-                    "endOffset": 48512
+                    "endOffset": 48331
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6158,12 +6157,12 @@
             },
             {
                 "to": {
-                    "startLine": 716,
+                    "startLine": 713,
                     "startColumn": 4,
-                    "startOffset": 48517,
-                    "endLine": 719,
+                    "startOffset": 48336,
+                    "endLine": 716,
                     "endColumn": 12,
-                    "endOffset": 48741
+                    "endOffset": 48560
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6171,12 +6170,12 @@
             },
             {
                 "to": {
-                    "startLine": 720,
+                    "startLine": 717,
                     "startColumn": 4,
-                    "startOffset": 48746,
-                    "endLine": 722,
+                    "startOffset": 48565,
+                    "endLine": 720,
                     "endColumn": 12,
-                    "endOffset": 48882
+                    "endOffset": 48789
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6184,12 +6183,12 @@
             },
             {
                 "to": {
-                    "startLine": 723,
+                    "startLine": 721,
                     "startColumn": 4,
-                    "startOffset": 48887,
-                    "endLine": 730,
+                    "startOffset": 48794,
+                    "endLine": 723,
                     "endColumn": 12,
-                    "endOffset": 49291
+                    "endOffset": 48930
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6197,12 +6196,12 @@
             },
             {
                 "to": {
-                    "startLine": 731,
+                    "startLine": 724,
                     "startColumn": 4,
-                    "startOffset": 49296,
-                    "endLine": 733,
+                    "startOffset": 48935,
+                    "endLine": 731,
                     "endColumn": 12,
-                    "endOffset": 49427
+                    "endOffset": 49339
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6210,12 +6209,12 @@
             },
             {
                 "to": {
-                    "startLine": 734,
+                    "startLine": 732,
                     "startColumn": 4,
-                    "startOffset": 49432,
-                    "endLine": 741,
+                    "startOffset": 49344,
+                    "endLine": 734,
                     "endColumn": 12,
-                    "endOffset": 49844
+                    "endOffset": 49475
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6223,12 +6222,12 @@
             },
             {
                 "to": {
-                    "startLine": 742,
+                    "startLine": 735,
                     "startColumn": 4,
-                    "startOffset": 49849,
-                    "endLine": 747,
+                    "startOffset": 49480,
+                    "endLine": 742,
                     "endColumn": 12,
-                    "endOffset": 50260
+                    "endOffset": 49892
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6236,12 +6235,12 @@
             },
             {
                 "to": {
-                    "startLine": 748,
+                    "startLine": 743,
                     "startColumn": 4,
-                    "startOffset": 50265,
-                    "endLine": 751,
+                    "startOffset": 49897,
+                    "endLine": 748,
                     "endColumn": 12,
-                    "endOffset": 50482
+                    "endOffset": 50308
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6249,12 +6248,12 @@
             },
             {
                 "to": {
-                    "startLine": 752,
+                    "startLine": 749,
                     "startColumn": 4,
-                    "startOffset": 50487,
-                    "endLine": 757,
+                    "startOffset": 50313,
+                    "endLine": 752,
                     "endColumn": 12,
-                    "endOffset": 50818
+                    "endOffset": 50530
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6262,12 +6261,12 @@
             },
             {
                 "to": {
-                    "startLine": 758,
+                    "startLine": 753,
                     "startColumn": 4,
-                    "startOffset": 50823,
-                    "endLine": 765,
+                    "startOffset": 50535,
+                    "endLine": 758,
                     "endColumn": 12,
-                    "endOffset": 51241
+                    "endOffset": 50866
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6275,12 +6274,12 @@
             },
             {
                 "to": {
-                    "startLine": 766,
+                    "startLine": 759,
                     "startColumn": 4,
-                    "startOffset": 51246,
-                    "endLine": 777,
+                    "startOffset": 50871,
+                    "endLine": 766,
                     "endColumn": 12,
-                    "endOffset": 51873
+                    "endOffset": 51289
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6288,12 +6287,12 @@
             },
             {
                 "to": {
-                    "startLine": 778,
+                    "startLine": 767,
                     "startColumn": 4,
-                    "startOffset": 51878,
-                    "endLine": 781,
+                    "startOffset": 51294,
+                    "endLine": 778,
                     "endColumn": 12,
-                    "endOffset": 52116
+                    "endOffset": 51921
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6301,12 +6300,12 @@
             },
             {
                 "to": {
-                    "startLine": 782,
+                    "startLine": 779,
                     "startColumn": 4,
-                    "startOffset": 52121,
-                    "endLine": 789,
+                    "startOffset": 51926,
+                    "endLine": 782,
                     "endColumn": 12,
-                    "endOffset": 52580
+                    "endOffset": 52164
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6314,12 +6313,12 @@
             },
             {
                 "to": {
-                    "startLine": 790,
+                    "startLine": 783,
                     "startColumn": 4,
-                    "startOffset": 52585,
-                    "endLine": 798,
+                    "startOffset": 52169,
+                    "endLine": 790,
                     "endColumn": 12,
-                    "endOffset": 53041
+                    "endOffset": 52628
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6327,12 +6326,12 @@
             },
             {
                 "to": {
-                    "startLine": 799,
+                    "startLine": 791,
                     "startColumn": 4,
-                    "startOffset": 53046,
-                    "endLine": 804,
+                    "startOffset": 52633,
+                    "endLine": 799,
                     "endColumn": 12,
-                    "endOffset": 53330
+                    "endOffset": 53089
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6340,12 +6339,12 @@
             },
             {
                 "to": {
-                    "startLine": 805,
+                    "startLine": 800,
                     "startColumn": 4,
-                    "startOffset": 53335,
-                    "endLine": 810,
+                    "startOffset": 53094,
+                    "endLine": 805,
                     "endColumn": 12,
-                    "endOffset": 53622
+                    "endOffset": 53378
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6353,12 +6352,12 @@
             },
             {
                 "to": {
-                    "startLine": 811,
+                    "startLine": 806,
                     "startColumn": 4,
-                    "startOffset": 53627,
-                    "endLine": 816,
+                    "startOffset": 53383,
+                    "endLine": 811,
                     "endColumn": 12,
-                    "endOffset": 53915
+                    "endOffset": 53670
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6366,12 +6365,12 @@
             },
             {
                 "to": {
-                    "startLine": 817,
+                    "startLine": 812,
                     "startColumn": 4,
-                    "startOffset": 53920,
-                    "endLine": 827,
+                    "startOffset": 53675,
+                    "endLine": 817,
                     "endColumn": 12,
-                    "endOffset": 54554
+                    "endOffset": 53963
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6379,12 +6378,25 @@
             },
             {
                 "to": {
-                    "startLine": 828,
+                    "startLine": 818,
                     "startColumn": 4,
-                    "startOffset": 54559,
-                    "endLine": 831,
+                    "startOffset": 53968,
+                    "endLine": 828,
                     "endColumn": 12,
-                    "endOffset": 54795
+                    "endOffset": 54602
+                },
+                "from": {
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 829,
+                    "startColumn": 4,
+                    "startOffset": 54607,
+                    "endLine": 832,
+                    "endColumn": 12,
+                    "endOffset": 54843
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
@@ -6392,12 +6404,12 @@
             },
             {
                 "to": {
-                    "startLine": 832,
+                    "startLine": 833,
                     "startColumn": 4,
-                    "startOffset": 54800,
-                    "endLine": 836,
+                    "startOffset": 54848,
+                    "endLine": 837,
                     "endColumn": 12,
-                    "endOffset": 55029
+                    "endOffset": 55077
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6405,12 +6417,12 @@
             },
             {
                 "to": {
-                    "startLine": 837,
+                    "startLine": 838,
                     "startColumn": 4,
-                    "startOffset": 55034,
-                    "endLine": 841,
+                    "startOffset": 55082,
+                    "endLine": 842,
                     "endColumn": 12,
-                    "endOffset": 55263
+                    "endOffset": 55311
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6418,12 +6430,12 @@
             },
             {
                 "to": {
-                    "startLine": 842,
+                    "startLine": 843,
                     "startColumn": 4,
-                    "startOffset": 55268,
-                    "endLine": 846,
+                    "startOffset": 55316,
+                    "endLine": 847,
                     "endColumn": 12,
-                    "endOffset": 55497
+                    "endOffset": 55545
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6431,12 +6443,12 @@
             },
             {
                 "to": {
-                    "startLine": 847,
+                    "startLine": 848,
                     "startColumn": 4,
-                    "startOffset": 55502,
-                    "endLine": 851,
+                    "startOffset": 55550,
+                    "endLine": 852,
                     "endColumn": 12,
-                    "endOffset": 55731
+                    "endOffset": 55779
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6444,12 +6456,12 @@
             },
             {
                 "to": {
-                    "startLine": 852,
+                    "startLine": 853,
                     "startColumn": 4,
-                    "startOffset": 55736,
-                    "endLine": 856,
+                    "startOffset": 55784,
+                    "endLine": 857,
                     "endColumn": 12,
-                    "endOffset": 55965
+                    "endOffset": 56013
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6457,12 +6469,12 @@
             },
             {
                 "to": {
-                    "startLine": 857,
+                    "startLine": 858,
                     "startColumn": 4,
-                    "startOffset": 55970,
-                    "endLine": 861,
+                    "startOffset": 56018,
+                    "endLine": 862,
                     "endColumn": 12,
-                    "endOffset": 56181
+                    "endOffset": 56229
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6470,12 +6482,12 @@
             },
             {
                 "to": {
-                    "startLine": 862,
+                    "startLine": 863,
                     "startColumn": 4,
-                    "startOffset": 56186,
-                    "endLine": 864,
+                    "startOffset": 56234,
+                    "endLine": 865,
                     "endColumn": 12,
-                    "endOffset": 56337
+                    "endOffset": 56385
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6483,12 +6495,12 @@
             },
             {
                 "to": {
-                    "startLine": 865,
+                    "startLine": 866,
                     "startColumn": 4,
-                    "startOffset": 56342,
-                    "endLine": 867,
+                    "startOffset": 56390,
+                    "endLine": 868,
                     "endColumn": 12,
-                    "endOffset": 56489
+                    "endOffset": 56537
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6496,12 +6508,12 @@
             },
             {
                 "to": {
-                    "startLine": 868,
+                    "startLine": 869,
                     "startColumn": 4,
-                    "startOffset": 56494,
-                    "endLine": 870,
+                    "startOffset": 56542,
+                    "endLine": 871,
                     "endColumn": 12,
-                    "endOffset": 56643
+                    "endOffset": 56691
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6509,12 +6521,12 @@
             },
             {
                 "to": {
-                    "startLine": 871,
+                    "startLine": 872,
                     "startColumn": 4,
-                    "startOffset": 56648,
-                    "endLine": 873,
+                    "startOffset": 56696,
+                    "endLine": 874,
                     "endColumn": 12,
-                    "endOffset": 56777
+                    "endOffset": 56825
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6522,12 +6534,12 @@
             },
             {
                 "to": {
-                    "startLine": 874,
+                    "startLine": 875,
                     "startColumn": 4,
-                    "startOffset": 56782,
-                    "endLine": 879,
+                    "startOffset": 56830,
+                    "endLine": 880,
                     "endColumn": 12,
-                    "endOffset": 57228
+                    "endOffset": 57276
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6535,12 +6547,12 @@
             },
             {
                 "to": {
-                    "startLine": 880,
+                    "startLine": 881,
                     "startColumn": 4,
-                    "startOffset": 57233,
-                    "endLine": 886,
+                    "startOffset": 57281,
+                    "endLine": 887,
                     "endColumn": 12,
-                    "endOffset": 57572
+                    "endOffset": 57620
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6548,12 +6560,12 @@
             },
             {
                 "to": {
-                    "startLine": 887,
+                    "startLine": 888,
                     "startColumn": 4,
-                    "startOffset": 57577,
-                    "endLine": 898,
+                    "startOffset": 57625,
+                    "endLine": 899,
                     "endColumn": 12,
-                    "endOffset": 58202
+                    "endOffset": 58250
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6561,12 +6573,12 @@
             },
             {
                 "to": {
-                    "startLine": 899,
+                    "startLine": 900,
                     "startColumn": 4,
-                    "startOffset": 58207,
-                    "endLine": 903,
+                    "startOffset": 58255,
+                    "endLine": 904,
                     "endColumn": 12,
-                    "endOffset": 58399
+                    "endOffset": 58447
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6574,12 +6586,12 @@
             },
             {
                 "to": {
-                    "startLine": 904,
+                    "startLine": 905,
                     "startColumn": 4,
-                    "startOffset": 58404,
-                    "endLine": 908,
+                    "startOffset": 58452,
+                    "endLine": 909,
                     "endColumn": 12,
-                    "endOffset": 58635
+                    "endOffset": 58683
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6587,12 +6599,12 @@
             },
             {
                 "to": {
-                    "startLine": 909,
+                    "startLine": 910,
                     "startColumn": 4,
-                    "startOffset": 58640,
-                    "endLine": 913,
+                    "startOffset": 58688,
+                    "endLine": 914,
                     "endColumn": 12,
-                    "endOffset": 58873
+                    "endOffset": 58921
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6600,12 +6612,12 @@
             },
             {
                 "to": {
-                    "startLine": 914,
+                    "startLine": 915,
                     "startColumn": 4,
-                    "startOffset": 58878,
-                    "endLine": 918,
+                    "startOffset": 58926,
+                    "endLine": 919,
                     "endColumn": 12,
-                    "endOffset": 59105
+                    "endOffset": 59153
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6613,12 +6625,12 @@
             },
             {
                 "to": {
-                    "startLine": 919,
+                    "startLine": 920,
                     "startColumn": 4,
-                    "startOffset": 59110,
-                    "endLine": 923,
+                    "startOffset": 59158,
+                    "endLine": 924,
                     "endColumn": 12,
-                    "endOffset": 59337
+                    "endOffset": 59385
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6626,12 +6638,12 @@
             },
             {
                 "to": {
-                    "startLine": 924,
+                    "startLine": 925,
                     "startColumn": 4,
-                    "startOffset": 59342,
-                    "endLine": 928,
+                    "startOffset": 59390,
+                    "endLine": 929,
                     "endColumn": 12,
-                    "endOffset": 59569
+                    "endOffset": 59617
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6639,12 +6651,12 @@
             },
             {
                 "to": {
-                    "startLine": 929,
+                    "startLine": 930,
                     "startColumn": 4,
-                    "startOffset": 59574,
-                    "endLine": 933,
+                    "startOffset": 59622,
+                    "endLine": 934,
                     "endColumn": 12,
-                    "endOffset": 59803
+                    "endOffset": 59851
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6652,12 +6664,12 @@
             },
             {
                 "to": {
-                    "startLine": 934,
+                    "startLine": 935,
                     "startColumn": 4,
-                    "startOffset": 59808,
-                    "endLine": 938,
+                    "startOffset": 59856,
+                    "endLine": 939,
                     "endColumn": 12,
-                    "endOffset": 60035
+                    "endOffset": 60083
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6665,12 +6677,12 @@
             },
             {
                 "to": {
-                    "startLine": 939,
+                    "startLine": 940,
                     "startColumn": 4,
-                    "startOffset": 60040,
-                    "endLine": 943,
+                    "startOffset": 60088,
+                    "endLine": 944,
                     "endColumn": 12,
-                    "endOffset": 60269
+                    "endOffset": 60317
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6678,12 +6690,12 @@
             },
             {
                 "to": {
-                    "startLine": 944,
+                    "startLine": 945,
                     "startColumn": 4,
-                    "startOffset": 60274,
-                    "endLine": 948,
+                    "startOffset": 60322,
+                    "endLine": 949,
                     "endColumn": 12,
-                    "endOffset": 60505
+                    "endOffset": 60553
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6691,12 +6703,12 @@
             },
             {
                 "to": {
-                    "startLine": 949,
+                    "startLine": 950,
                     "startColumn": 4,
-                    "startOffset": 60510,
-                    "endLine": 953,
+                    "startOffset": 60558,
+                    "endLine": 954,
                     "endColumn": 12,
-                    "endOffset": 60743
+                    "endOffset": 60791
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6704,12 +6716,12 @@
             },
             {
                 "to": {
-                    "startLine": 954,
+                    "startLine": 955,
                     "startColumn": 4,
-                    "startOffset": 60748,
-                    "endLine": 959,
+                    "startOffset": 60796,
+                    "endLine": 960,
                     "endColumn": 12,
-                    "endOffset": 61019
+                    "endOffset": 61067
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6717,12 +6729,12 @@
             },
             {
                 "to": {
-                    "startLine": 960,
+                    "startLine": 961,
                     "startColumn": 4,
-                    "startOffset": 61024,
-                    "endLine": 970,
+                    "startOffset": 61072,
+                    "endLine": 971,
                     "endColumn": 12,
-                    "endOffset": 61685
+                    "endOffset": 61733
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6730,12 +6742,12 @@
             },
             {
                 "to": {
-                    "startLine": 971,
+                    "startLine": 972,
                     "startColumn": 4,
-                    "startOffset": 61690,
-                    "endLine": 978,
+                    "startOffset": 61738,
+                    "endLine": 979,
                     "endColumn": 12,
-                    "endOffset": 62139
+                    "endOffset": 62187
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6743,12 +6755,12 @@
             },
             {
                 "to": {
-                    "startLine": 979,
+                    "startLine": 980,
                     "startColumn": 4,
-                    "startOffset": 62144,
-                    "endLine": 988,
+                    "startOffset": 62192,
+                    "endLine": 989,
                     "endColumn": 12,
-                    "endOffset": 62775
+                    "endOffset": 62823
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6756,23 +6768,11 @@
             },
             {
                 "to": {
-                    "startLine": 989,
+                    "startLine": 990,
                     "startColumn": 4,
-                    "startOffset": 62780,
-                    "endLine": 994,
+                    "startOffset": 62828,
+                    "endLine": 995,
                     "endColumn": 12,
-                    "endOffset": 63059
-                },
-                "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
-                }
-            },
-            {
-                "to": {
-                    "startLine": 995,
-                    "startColumn": 4,
-                    "startOffset": 63064,
-                    "endColumn": 47,
                     "endOffset": 63107
                 },
                 "from": {
@@ -6784,9 +6784,21 @@
                     "startLine": 996,
                     "startColumn": 4,
                     "startOffset": 63112,
-                    "endLine": 1010,
+                    "endColumn": 47,
+                    "endOffset": 63155
+                },
+                "from": {
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 997,
+                    "startColumn": 4,
+                    "startOffset": 63160,
+                    "endLine": 1011,
                     "endColumn": 12,
-                    "endOffset": 63600
+                    "endOffset": 63648
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6794,12 +6806,12 @@
             },
             {
                 "to": {
-                    "startLine": 1011,
+                    "startLine": 1012,
                     "startColumn": 4,
-                    "startOffset": 63605,
-                    "endLine": 1014,
+                    "startOffset": 63653,
+                    "endLine": 1015,
                     "endColumn": 12,
-                    "endOffset": 63791
+                    "endOffset": 63839
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6807,12 +6819,12 @@
             },
             {
                 "to": {
-                    "startLine": 1015,
+                    "startLine": 1016,
                     "startColumn": 4,
-                    "startOffset": 63796,
-                    "endLine": 1018,
+                    "startOffset": 63844,
+                    "endLine": 1019,
                     "endColumn": 12,
-                    "endOffset": 63996
+                    "endOffset": 64044
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\styles.xml"
@@ -6820,12 +6832,12 @@
             },
             {
                 "to": {
-                    "startLine": 1019,
+                    "startLine": 1020,
                     "startColumn": 4,
-                    "startOffset": 64001,
-                    "endLine": 1022,
+                    "startOffset": 64049,
+                    "endLine": 1023,
                     "endColumn": 12,
-                    "endOffset": 64179
+                    "endOffset": 64227
                 },
                 "from": {
                     "file": "D:\\01_work\\jxz-project\\AndroidBase\\datetimepicker\\build\\intermediates\\bundles\\default\\res\\values\\values.xml"

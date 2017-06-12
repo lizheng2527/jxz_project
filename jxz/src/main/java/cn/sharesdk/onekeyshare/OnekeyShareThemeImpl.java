@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.mob.tools.utils.R;
 import com.mob.tools.utils.UIHandler;
-import com.zdhx.androidbase.ECApplication;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -310,7 +309,6 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 			toast("ssdk_oks_share_failed");
 			return null;
 		}
-
 		return new ShareParams(shareParamsMap);
 	}
 
@@ -343,7 +341,6 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 
 	public final void onError(Platform platform, int action, Throwable t) {
 		t.printStackTrace();
-
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
@@ -404,16 +401,6 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 				// 取消
 				toast("ssdk_oks_share_canceled");
 			} break;
-		}
-
-		//删除分享复制出来的图片
-		File fileDir = new File(ECApplication.getInstance().getDownloadJxzDir()+"/share");
-		if (fileDir.exists()){
-			String[] paths = fileDir.list();
-			for (String path : paths) {
-				File file = new File(path);
-				file.delete();
-			}
 		}
 		return false;
 	}

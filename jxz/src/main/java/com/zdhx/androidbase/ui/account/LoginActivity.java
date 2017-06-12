@@ -168,6 +168,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 buildAlert.setContentView(R.layout.config_dcaddress_dialog);
                 String server = "";
                 final EditText editText = (EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText));
+                editText.setText(ECApplication.getInstance().getAddress());
                 TextView delectTV = (TextView) buildAlert.getWindow().findViewById(R.id.delectTV);
                 delectTV.setOnClickListener(new View.OnClickListener() {
 

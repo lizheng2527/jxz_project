@@ -195,12 +195,12 @@ public final class R {
         public static final int select_hours = 0x7f060007;
         public static final int select_minutes = 0x7f060008;
         public static final int select_year = 0x7f060009;
-        public static final int selection_radius_multiplier = 0x7f060095;
-        public static final int text_size_multiplier_inner = 0x7f06009b;
-        public static final int text_size_multiplier_normal = 0x7f06009c;
-        public static final int text_size_multiplier_outer = 0x7f06009d;
-        public static final int time_placeholder = 0x7f06009e;
-        public static final int time_separator = 0x7f06009f;
+        public static final int selection_radius_multiplier = 0x7f060096;
+        public static final int text_size_multiplier_inner = 0x7f06009c;
+        public static final int text_size_multiplier_normal = 0x7f06009d;
+        public static final int text_size_multiplier_outer = 0x7f06009e;
+        public static final int time_placeholder = 0x7f06009f;
+        public static final int time_separator = 0x7f0600a0;
         public static final int year_picker_description = 0x7f06000a;
     }
     public static final class style {

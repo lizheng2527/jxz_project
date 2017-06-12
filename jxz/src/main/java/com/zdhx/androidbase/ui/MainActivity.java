@@ -65,6 +65,7 @@ import com.zdhx.androidbase.ui.account.ScroGridAdapter;
 import com.zdhx.androidbase.ui.account.WorkSpaceFragment;
 import com.zdhx.androidbase.ui.base.BaseActivity;
 import com.zdhx.androidbase.ui.introducetreads.IntroduceTreadsActivity;
+import com.zdhx.androidbase.ui.plugin.FileUtils;
 import com.zdhx.androidbase.ui.quantity.PrePassActivity;
 import com.zdhx.androidbase.ui.scrosearch.SelectScroActivity;
 import com.zdhx.androidbase.ui.treadssearch.SearchTreadsActivity;
@@ -749,7 +750,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		if (requestCode == PREPASSCODE){
 			setAllSelectText(workSpaceFragment.isSelectAll());
 		}
-
 		if (requestCode == SELECTSCROACTIVITYCODE){//搜索积分
 			if (map !=null){
 				if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
@@ -899,6 +899,12 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	}
 
 	@Override
+	protected void onRestart() {
+		super.onRestart();
+		FileUtils.delFilesFromDir(ECApplication.getInstance().getDownloadJxzDir()+"/share");
+	}
+
+	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
 			case R.id.btn_right:
@@ -907,6 +913,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		}
 	}
 
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		FileUtils.delFilesFromDir(ECApplication.getInstance().getDownloadJxzDir()+"/share");
+	}
 
 	/**
 	 * listView 无数据时的点击事件

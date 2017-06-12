@@ -814,6 +814,29 @@ public class FileUtils {
     }
 
     /**
+     * 删除某个文件夹内所有图片
+     * @param dirPath 文件夹路径
+     */
+    public static void delFilesFromDir(String dirPath){
+        File fileDir = new File(dirPath);
+        if (!fileDir.exists()){
+            return;
+        }
+        File[] files = fileDir.listFiles();
+        if (files.length == 0){
+            return;
+        }
+        for (File file : files) {
+            String path = file.getAbsolutePath();
+            boolean b = file.delete();
+            if (b){
+                Log.w("delFilesFromDir",path+"删除成功！");
+            }
+
+        }
+    }
+
+    /**
      * 读取本地缓存的对象文件
      * @param context
      * @param fileName

@@ -359,7 +359,7 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
 
     private void addClick(final ViewHolder vh, final int i) {
 
-        //微信分享
+        //分享
         vh.wxImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -429,6 +429,58 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
                         downloadAsyncTask.execute(getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()), "aaa", i + "","jxz_workSpace_downFile");
                     }
                 }
+
+                /*else{
+                    Log.w("wx",getUrl(ECApplication.getInstance().getAddress()+list.get(i).getIconUrl(),ECApplication.getInstance().getLoginUrlMap()));
+                    final ECProgressDialog dialog = new ECProgressDialog(context);
+                    dialog.setPressText("正在检索图片...");
+                    dialog.setCancelable(false);
+                    final DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(new DownloadAsyncTask.DownloadResponser() {
+                        @Override
+                        public void predownload() {
+                            dialog.show();
+                            list.get(i).setLoading(true);
+                        }
+
+                        @Override
+                        public void downloading(int progress, int position) {
+                            vh.downloadImg.setClickable(false);
+                        }
+
+                        @Override
+                        public void downloaded(File file1, int position) {
+                            vh.progressIndexLinear.setVisibility(View.GONE);
+                            if (file1 != null){
+                                File fileDir = new File(file1.getParent()+"/share");
+                                if (!fileDir.exists()){
+                                    fileDir.mkdir();
+                                }
+                                File file = new File(fileDir,list.get(i).getCreateTime()+list.get(i).getName());
+                                boolean b = file1.renameTo(file);
+                                if (b){
+                                    new SingleMediaScanner(context, file);
+                                    OnekeyShare oks = new OnekeyShare();
+                                    oks.disableSSOWhenAuthorize();
+                                    oks.setTitle("标题");
+                                    oks.setText(list.get(i).getName());
+                                    oks.setUrl("https://www.pgyer.com/zhwx");
+                                    oks.setImagePath(file.getPath());//确保SDcard下面存在此张图片
+                                    oks.show(context);
+                                }
+                                list.get(i).setLoading(false);
+                            }else{
+                                ToastUtil.showMessage("文件存在未知错误");
+                            }
+                            dialog.dismiss();
+                        }
+
+                        @Override
+                        public void canceled(int position) {
+
+                        }
+                    }, context);
+                    downloadAsyncTask.execute(getUrl(ECApplication.getInstance().getAddress()+list.get(i).getIconUrl(),ECApplication.getInstance().getLoginUrlMap()), "aaa", i + "","jxz_workSpace_downFile");
+                }*/
             }
         });
 
