@@ -33,6 +33,7 @@ import com.photoselector.util.CommonUtils;
 import com.zdhx.androidbase.Constant;
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.SystemConst;
 import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.entity.User;
 import com.zdhx.androidbase.ui.MainActivity;
@@ -47,6 +48,7 @@ import com.zdhx.androidbase.ui.treadssearch.VideoShowSimpleActivity;
 import com.zdhx.androidbase.util.FileUpLoadCallBack;
 import com.zdhx.androidbase.util.InputTools;
 import com.zdhx.androidbase.util.IntentUtil;
+import com.zdhx.androidbase.util.PhoneShareUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.RoundCornerImageView;
 import com.zdhx.androidbase.util.RunnableWrap;
@@ -147,33 +149,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		super.onResume();
 	}
 
-	/**
-	 * 其他应用调用本分享功能
-	 */
-	private String shareFormOtherProg() {
-		/* 比如通过Gallery方式来调用本分享功能 */
-		Intent intent = getIntent();
-		Bundle extras = intent.getExtras();
-		String action = intent.getAction();
-		if (Intent.ACTION_SEND.equals(action)) {
-			if (extras.containsKey(Intent.EXTRA_STREAM)) {
-				try {
-					// Get resource path from intent
-					Uri uri = (Uri) extras.getParcelable(Intent.EXTRA_STREAM);
-					// 返回路径
-					String path = FileUtils.getPathByUri4kitkat(context, uri);
-					out.println("path-->" + path);
-					return path;
-				} catch (Exception e) {
-					e.printStackTrace();
-					return null;
-				}
-			} else if (extras.containsKey(Intent.EXTRA_TEXT)) {
-				return null;
-			}
-		}
-		return null;
-	}
+
 
 	private String graffPath;
 	private String replyId;
@@ -225,7 +201,8 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		fileGv.setAdapter(adapterGV);
 		gridList = new ArrayList<>();
 		gridList.add(null);//动态集合中“null"代表是“加号”图片
-		String path = shareFormOtherProg();
+		Intent intent = getIntent();
+		String path = PhoneShareUtil.shareFormOtherProg(intent,context);
 		if (path != null&&!path.equals("")){
 			String lastName = FileUtils.getStringEndWith(path);
 			if (lastName != null){
@@ -398,7 +375,7 @@ public class IntroduceTreadsActivity extends BaseActivity{
 		}
 		//正常发表
 		if (introduceReply == null && graffPath == null && replyId == null){
-			if (ECApplication.getInstance().getAddress().equals("http://117.117.217.19/dc")){
+			if (SystemConst.doAccess){
 				getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
 			}
 			new ProgressThreadWrap(context, new RunnableWrap() {

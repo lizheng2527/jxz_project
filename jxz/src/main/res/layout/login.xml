@@ -16,12 +16,14 @@
             android:paddingRight="30dp">
 
             <RelativeLayout
+                android:id="@+id/logo_back_em"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="80dp">
 
                 <ImageView
-                    android:id="@+id/ip"
+                    android:id="@+id/ip_em"
                     android:layout_width="180dp"
                     android:layout_height="180dp"
                     android:layout_centerHorizontal="true"
@@ -41,53 +43,80 @@
                     android:background="@drawable/jxz"
                     android:scaleType="fitCenter"
                     android:visibility="visible"
-                    android:layout_alignTop="@+id/ip"
-                    android:layout_alignRight="@+id/ip"
-                    android:layout_alignEnd="@+id/ip" />
+                    android:layout_alignTop="@+id/ip_em"
+                    android:layout_alignRight="@+id/ip_em"
+                    android:layout_alignEnd="@+id/ip_em" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/logo_back_cjl"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="80dp">
+
+                <ImageView
+                    android:id="@+id/ip_cjl"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/icon_login"
+                    android:scaleType="fitCenter"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginRight="28dp"
+                    android:layout_marginTop="58dp"
+                    android:background="@drawable/jxz"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone"
+                    android:layout_alignTop="@+id/ip_cjl"
+                    android:layout_alignRight="@+id/ip_cjl"
+                    android:layout_alignEnd="@+id/ip_cjl" />
 
             </RelativeLayout>
 
 
 
-            <!-- 账号 -->
+            <!-- 学校 -->
 
-            <!--<LinearLayout-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="40dp"-->
-                <!--android:gravity="center_vertical"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:paddingBottom="2dp"-->
-                <!--android:paddingLeft="10dp"-->
-                <!--android:paddingRight="10dp"-->
-                <!--android:paddingTop="10dp">-->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="2dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                >
 
-                <!--<TextView-->
-                    <!--android:layout_width="20dp"-->
-                    <!--android:layout_height="20dp"-->
-                    <!--android:background="@drawable/user"-->
-                    <!--android:textColor="@color/black"-->
-                    <!--android:textSize="@dimen/font_big" />-->
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/icon_school"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_big" />
 
-                <!--<TextView-->
-                    <!--android:completionThreshold="1"-->
-                    <!--android:layout_width="fill_parent"-->
-                    <!--android:layout_height="fill_parent"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:background="@null"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:text="@string/select_school"-->
-                    <!--android:singleLine="true"-->
-                    <!--android:textColor="@color/gray"-->
-                    <!--android:textColorHint="@color/gray"-->
-                    <!--android:textSize="@dimen/font_normal" />-->
-            <!--</LinearLayout>-->
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:layout_marginLeft="5dp"-->
-                <!--android:layout_marginRight="5dp"-->
-                <!--android:background="@color/gray" />-->
+                <Spinner
+                    android:id="@+id/spinner_login_school"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/nw">
+                </Spinner>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/gray" />
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -97,7 +126,7 @@
                 android:paddingBottom="2dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:paddingTop="40dp">
+                android:paddingTop="10dp">
 
                 <TextView
                     android:layout_width="20dp"
@@ -105,20 +134,32 @@
                     android:background="@drawable/user"
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_big" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <AutoCompleteTextView
+                        android:completionThreshold="1"
+                        android:id="@+id/etxt_username"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="10dp"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="请输入用户名"
+                        android:singleLine="true"
+                        android:textColor="@color/gray"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/font_normal" />
+                    <ImageView
+                        android:background="@drawable/bg_button_white_selector"
+                        android:clickable="true"
+                        android:id="@+id/delete_username"
+                        android:src="@drawable/btn_address_delect"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
 
-                <AutoCompleteTextView
-                    android:completionThreshold="1"
-                    android:id="@+id/etxt_username"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@null"
-                    android:gravity="center_vertical"
-                    android:hint="请输入用户名"
-                    android:singleLine="true"
-                    android:textColor="@color/gray"
-                    android:textColorHint="@color/gray"
-                    android:textSize="@dimen/font_normal" />
             </LinearLayout>
 
             <TextView

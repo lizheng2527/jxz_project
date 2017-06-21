@@ -105,7 +105,7 @@
                 android:paddingTop="8dip"
                 android:scaleType="matrix"
                 android:text="云课堂"
-                android:drawableTop="@drawable/tab_brand_selector"
+                android:drawableTop="@drawable/tab_ykt_selector"
                 android:textColor="#000000"
                 android:textSize="12sp" />
         </RelativeLayout>
@@ -154,6 +154,13 @@
                 android:textColor="@color/white"
                 android:visibility="invisible" />
         </RelativeLayout>
+
+
+
+
+
+
+
 
         <RelativeLayout
             android:visibility="gone"

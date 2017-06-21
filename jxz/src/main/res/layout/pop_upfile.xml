@@ -38,15 +38,16 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1" 
-            >
+        <!--<RelativeLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1" -->
+            <!--&gt;-->
 
             <Button
+                android:layout_weight="1"
                 android:id="@+id/imageBT"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/list_item_selector"
                 android:drawableTop="@drawable/icon_image"
@@ -55,18 +56,17 @@
                 android:text="图片"
                 android:textColor="@color/text_title"
                 android:textSize="12sp" />
+        <!--</RelativeLayout>-->
 
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            >
-
+        <!--<RelativeLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--&gt;-->
             <Button
+                android:layout_weight="1"
                 android:id="@+id/viedoBT"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/list_item_selector"
                 android:drawableTop="@drawable/icon_file"
@@ -76,16 +76,17 @@
                 android:textColor="@color/text_title"
                 android:textSize="12sp" />
 
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            >
+        <!--</RelativeLayout>-->
+        <!--<RelativeLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--&gt;-->
 
             <Button
+                android:layout_weight="1"
                 android:id="@+id/fileBT"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/list_item_selector"
                 android:drawableTop="@drawable/icon_file"
@@ -95,7 +96,7 @@
                 android:textColor="@color/text_title"
                 android:textSize="12sp" />
 
-        </RelativeLayout>
+        <!--</RelativeLayout>-->
 
     </LinearLayout>
 

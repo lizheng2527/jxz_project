@@ -56,6 +56,7 @@ import com.pgyersdk.update.PgyUpdateManager;
 import com.pgyersdk.update.UpdateManagerListener;
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.SystemConst;
 import com.zdhx.androidbase.entity.WorkSpaceDatasBean;
 import com.zdhx.androidbase.ui.account.HomeFragment;
 import com.zdhx.androidbase.ui.account.LoginActivity;
@@ -269,6 +270,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	 */
 	public static boolean selectBatchLinearIsShowing;
 	public static void showSelectBatchLinear(boolean isShow){
+
 		if (SELECTMENUINDEX == 1){
 			selectBatchLinearIsShowing = isShow;
 		}
@@ -290,7 +292,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		requestBasicPermission();
 		getTopBarView().setVisibility(View.GONE);
 		//只有二毛学校调用统计接口
-		if (ECApplication.getInstance().getAddress().equals("http://117.117.217.19/dc")){
+		if (SystemConst.doAccess){
 			getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
 		}
 		initLauncherUIView();
@@ -310,7 +312,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 						Manifest.permission.RECORD_AUDIO,
 						Manifest.permission.ACCESS_COARSE_LOCATION,
 						Manifest.permission.ACCESS_FINE_LOCATION,
-						Manifest.permission.MANAGE_DOCUMENTS
+						Manifest.permission.MANAGE_DOCUMENTS,
+						Manifest.permission.WRITE_SETTINGS
 				)
 				.request();
 	}
@@ -371,7 +374,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		mTabContainers[0].setSelected(true);
 		typeMenu = (LinearLayout) findViewById(R.id.home_menu);
 		menuSelectedTV = (TextView) findViewById(R.id.menuSelectedTV);
-		homeMenuDatas = new ArrayList<String>();
+		homeMenuDatas = new ArrayList<>();
 
 		if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
 			homeMenuDatas.add("班级");
@@ -730,6 +733,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (ECApplication.getInstance().hasMorContant()){
+			return super.onKeyDown(keyCode, event);
+		}
 		if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
 			if((System.currentTimeMillis()-exitTime) > 2000){
 				Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
@@ -740,6 +746,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			}
 			return true;
 		}
+
 		return super.onKeyDown(keyCode, event);
 	}
 	public static boolean ScroSearchTag = false;

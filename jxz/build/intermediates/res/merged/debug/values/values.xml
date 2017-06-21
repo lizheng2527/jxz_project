@@ -389,7 +389,7 @@
     <string name="UMUpdateTitle">发现新版本</string>
     <string name="add_tag">添加海域</string>
     <item format="float" name="ampm_circle_radius_multiplier" type="string">0.19</item>
-    <string name="app_name">君行早</string>
+    <string name="app_name">师生互动交流</string>
     <string name="cancel">取消</string>
     <item format="float" name="circle_radius_multiplier" type="string">0.82</item>
     <item format="float" name="circle_radius_multiplier_24HourMode" type="string">0.85</item>
@@ -627,20 +627,20 @@ function login(form){
     </style>
     <style name="ActionSheetDialogStyle" parent="@android:style/Theme.Dialog">
 
-        
+        <!-- 背景透明 -->
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
-        
+        <!-- 浮于Activity之上 -->
         <item name="android:windowIsFloating">true</item>
-        
+        <!-- 边框 -->
         <item name="android:windowFrame">@null</item>
-        
+        <!-- Dialog以外的区域模糊效果 -->
         <item name="android:backgroundDimEnabled">true</item>
-        
+        <!-- 无标题 -->
         <item name="android:windowNoTitle">true</item>
-        
+        <!-- 半透明 -->
         <item name="android:windowIsTranslucent">false</item>
-        
+        <!-- Dialog进入及退出动画 -->
         <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
     </style>
     <style name="AlertDialogStyle" parent="@android:style/Theme.Dialog">
@@ -653,7 +653,11 @@ function login(form){
         <item name="android:windowIsTranslucent">true</item>
     </style>
     <style name="AppBaseTheme" parent="android:Theme.Light">
-        
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
     </style>
     <style name="AppTheme" parent="@style/BaseAppTheme">
 
@@ -997,17 +1001,17 @@ function login(form){
     <style name="day_of_week_label_condensed"/>
     <style name="dialog" parent="@android:style/Theme.Dialog">
 
-        
+        <!-- 边框 -->
         <item name="android:windowFrame">@null</item>
-        
+        <!-- 是否浮现在activity之上 -->
         <item name="android:windowIsFloating">true</item>
-        
+        <!-- 半透明 -->
         <item name="android:windowIsTranslucent">true</item>
-        
+        <!-- 无标题 -->
         <item name="android:windowNoTitle">true</item>
-        
+        <!-- 背景透明 -->
         <item name="android:windowBackground">@color/transparent</item>
-        
+        <!-- 模糊 -->
         <item name="android:backgroundDimEnabled">true</item>
     </style>
     <style name="dialogAnim">

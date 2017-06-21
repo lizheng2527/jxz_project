@@ -2,7 +2,6 @@ package com.zdhx.androidbase.ui.treadstree;
 
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.ui.treelistview.bean.TreeBean;
 import com.zdhx.androidbase.ui.treelistview.utils.Node;
 import com.zdhx.androidbase.ui.treelistview.utils.adapter.TreeListViewAdapter;
 import com.zdhx.androidbase.util.LogUtil;
@@ -24,12 +24,14 @@ public class SimpleTreeListViewAdapterForScro<T> extends TreeListViewAdapter<T> 
 
 	private Context context;
 	private String className;
+	private List<TreeBean> list;
 	public SimpleTreeListViewAdapterForScro(ListView tree, Context context,
 											List<T> datas, int defaultExpandLevel,String className)
 			throws IllegalAccessException, IllegalArgumentException {
 		super(tree, context, datas, defaultExpandLevel);
 		this.className = className;
 		this.context = context;
+		list = (List<TreeBean>) datas;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -98,7 +100,6 @@ public class SimpleTreeListViewAdapterForScro<T> extends TreeListViewAdapter<T> 
 				holder.checkBox1.setChecked(false);
 			}
 		}
-
 //			if(!node.isLeaf()){
 //				if(ScroTreeActivity.parentPositionMap.get(node.getId())!=null){
 //					holder.checkBox1.setChecked(true);
@@ -121,7 +122,17 @@ public class SimpleTreeListViewAdapterForScro<T> extends TreeListViewAdapter<T> 
 		}
 		holder.headimgIV.setVisibility(View.GONE);
 		addListener(holder, node,view);
-		Log.e("adapter.getView",node.getName());
+		/*if (className.equals("SearchWorkActivity")){
+			for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getId().equals(node.getId())){
+					if (list.get(i).getType().equals("chapterSubject")||list.get(i).getType().equals("chapterUnit")){
+						holder.checkBox1.setVisibility(View.VISIBLE);
+					}else{
+						holder.checkBox1.setVisibility(View.INVISIBLE);
+					}
+				}
+			}
+		}*/
 		return view;
 	}
 

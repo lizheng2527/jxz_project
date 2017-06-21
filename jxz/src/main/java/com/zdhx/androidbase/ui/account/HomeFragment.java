@@ -22,6 +22,7 @@ import com.zdhx.androidbase.R;
 import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.entity.Treads;
 import com.zdhx.androidbase.ui.MainActivity;
+import com.zdhx.androidbase.ui.treadstree.RequestWithCacheGet;
 import com.zdhx.androidbase.ui.xlistview.XListView;
 import com.zdhx.androidbase.util.DateUtil;
 import com.zdhx.androidbase.util.InputTools;
@@ -36,11 +37,13 @@ import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 import com.zdhx.androidbase.view.pagerslidingtab.PagerSlidingTabStrip;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import volley.Response;
+import volley.VolleyError;
 
 import static com.zdhx.androidbase.ui.xlistview.XListViewUtils.onLoad;
 
@@ -55,6 +58,53 @@ import static com.zdhx.androidbase.ui.xlistview.XListViewUtils.onLoad;
  */
 
 public class HomeFragment extends Fragment {
+
+    private boolean isFromCache0 = true;
+    private boolean isFromCache1 = true;
+    private boolean isFromCache2 = true;
+    private boolean isFromCache3 = true;
+    private boolean isFromCache4 = true;
+    private boolean isFromCache5 = true;
+
+    private void setIsFromCache(int index,boolean b){
+        switch (index){
+            case 0:
+                isFromCache0 = b;
+                break;
+            case 1:
+                isFromCache0 = b;
+                break;
+            case 2:
+                isFromCache0 = b;
+                break;
+            case 3:
+                isFromCache0 = b;
+                break;
+            case 4:
+                isFromCache0 = b;
+                break;
+            case 5:
+                isFromCache0 = b;
+                break;
+        }
+    }
+    private boolean getIsFromCache(int index){
+        switch (index){
+            case 0:
+                return isFromCache0;
+            case 1:
+                return isFromCache1;
+            case 2:
+                return isFromCache2;
+            case 3:
+                return isFromCache3;
+            case 4:
+                return isFromCache4;
+            case 5:
+                return isFromCache5;
+        }
+        return false;
+    }
 
     /**
      * 记录当前加载的是否有下一页
@@ -168,6 +218,7 @@ public class HomeFragment extends Fragment {
      * @param bean = 删除的对象
      */
     public void removeForDeleteTreads(Treads.DataListBean bean){
+
         if (allDatas != null&&allDatas.size()>0&&isSelectIndex != 0){
             for (int i = 0; i < allDatas.size(); i++) {
                 if (allDatas.get(i).getId().equals(bean.getId())){
@@ -454,6 +505,7 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         context = getActivity();
+        cacheGet = new RequestWithCacheGet(context);
         dialog = new ECProgressDialog(context);
         dialog.setPressText("正在加载数据");
         if (getView() == null){
@@ -927,6 +979,9 @@ public class HomeFragment extends Fragment {
         hashMap.put("pageNo",new ParameterValue("1"));
         setLoadMorePager(1,index);
     }
+    private RequestWithCacheGet cacheGet;
+    private String jsonForInit = null;
+
 
     /**
      * 根据当前的加载条件来加载数据
@@ -939,88 +994,113 @@ public class HomeFragment extends Fragment {
         }
         dialog.show();
         hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
+        String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+ZddcUtil.getAllTreadsStr,hashMap);
+        jsonForInit = cacheGet.getRseponse(url, new RequestWithCacheGet.RequestListener() {
+            @Override
+            public void onResponse(String response) {
+                if (response != null && !response.equals(RequestWithCacheGet.NOT_OUTOFDATE)) {
+                    setIsFromCache(index,false);
+                    initAllTreadsDatas(index,response);
+                }else{
+                    setIsFromCache(index,true);
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        if ((jsonForInit != null && !jsonForInit.equals(RequestWithCacheGet.NO_DATA))) {
+            initAllTreadsDatas(index,jsonForInit);
+        }
+
+    }
+
+    private void initAllTreadsDatas(final int index,final String treadsJson){
         ProgressThreadWrap p = new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
             public void run() {
-                try {
-                    String treadsJson = ZddcUtil.getAllTreads(hashMap);
-                    final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                            if (treads != null) {
-                                setStatus(treads.getStatus(),index);
-                                viewPagerListTreadsDatas = treads.getDataList();
-                                switch (index){
-                                    case 0:
-                                        allDatas = viewPagerListTreadsDatas;
-                                        break;
-                                    case 1:
-                                        interactDatas = viewPagerListTreadsDatas;
-                                        break;
-                                    case 2:
-                                        myDatas = viewPagerListTreadsDatas;
-                                        break;
-                                    case 3:
-                                        impDatas = viewPagerListTreadsDatas;
-                                        break;
-                                    case 4:
-                                        attDatas = viewPagerListTreadsDatas;
-                                        break;
-                                    case 5:
-                                        resDatas = viewPagerListTreadsDatas;
-                                        break;
-                                }
-                                setDatasToNotNull(viewPagerListTreadsDatas);
-                                switch (index){
-                                    case 0:
-                                        treadsListViewAdapter0 = new TreadsListViewAdapter(allDatas,context,HomeFragment.this);
-                                        allreadsListView.setAdapter(treadsListViewAdapter0);
-                                        allreadsListView.setEmptyView(allTreadsView.findViewById(R.id.emptyall));
-                                        break;
-                                    case 1:
-                                        treadsListViewAdapter1 = new TreadsListViewAdapter(interactDatas,context,HomeFragment.this);
-                                        interactreadsTtListView.setAdapter(treadsListViewAdapter1);
-                                        interactreadsTtListView.setEmptyView(interacttreadsTreadsView.findViewById(R.id.emptyinter));
-                                        break;
-                                    case 2:
-                                        treadsListViewAdapter2 = new TreadsListViewAdapter(myDatas,context,HomeFragment.this);
-                                        myTreadsListView.setAdapter(treadsListViewAdapter2);
-                                        myTreadsListView.setEmptyView(myTreadsView.findViewById(R.id.emptymy));
-                                        break;
-                                    case 5:
-                                        treadsListViewAdapter5 = new TreadsListViewAdapter(resDatas,context,HomeFragment.this);
-                                        resourcesTreadsListView.setAdapter(treadsListViewAdapter5);
-                                        resourcesTreadsListView.setEmptyView(resourcesTreadsView.findViewById(R.id.emptyres));
-                                        break;
-                                    case 4:
-                                        treadsListViewAdapter4 = new TreadsListViewAdapter(attDatas,context,HomeFragment.this);
-                                        attendsTreadsListView.setAdapter(treadsListViewAdapter4);
-                                        attendsTreadsListView.setEmptyView(attendsTreadsView.findViewById(R.id.emptyatt));
-                                        break;
-                                    case 3:
-                                        treadsListViewAdapter3 = new TreadsListViewAdapter(impDatas,context,HomeFragment.this);
-                                        impTreadsListView.setAdapter(treadsListViewAdapter3);
-                                        impTreadsListView.setEmptyView(impTreadsView.findViewById(R.id.emptyimp));
-                                        break;
-                                }
-                                ProgressUtil.hide();
-                                if (dialog.isShowing()){
-                                    dialog.dismiss();
-                                }
-                            } else {
-                                ToastUtil.showMessage("请检查网络");
-                                ProgressUtil.hide();
-                                if (dialog.isShowing()){
-                                    dialog.dismiss();
-                                }
+//                try {
+//                    String treadsJson = ZddcUtil.getAllTreads(hashMap);
+                final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        if (treads != null) {
+                            setStatus(treads.getStatus(),index);
+                            viewPagerListTreadsDatas = treads.getDataList();
+                            switch (index){
+                                case 0:
+                                    allDatas = viewPagerListTreadsDatas;
+                                    break;
+                                case 1:
+                                    interactDatas = viewPagerListTreadsDatas;
+                                    break;
+                                case 2:
+                                    myDatas = viewPagerListTreadsDatas;
+                                    break;
+                                case 3:
+                                    impDatas = viewPagerListTreadsDatas;
+                                    break;
+                                case 4:
+                                    attDatas = viewPagerListTreadsDatas;
+                                    break;
+                                case 5:
+                                    resDatas = viewPagerListTreadsDatas;
+                                    break;
+                            }
+                            setDatasToNotNull(viewPagerListTreadsDatas);
+                            switch (index){
+                                case 0:
+                                    treadsListViewAdapter0 = new TreadsListViewAdapter(allDatas,context,HomeFragment.this);
+                                    allreadsListView.setAdapter(treadsListViewAdapter0);
+                                    allreadsListView.setEmptyView(allTreadsView.findViewById(R.id.emptyall));
+                                    break;
+                                case 1:
+                                    treadsListViewAdapter1 = new TreadsListViewAdapter(interactDatas,context,HomeFragment.this);
+                                    interactreadsTtListView.setAdapter(treadsListViewAdapter1);
+                                    interactreadsTtListView.setEmptyView(interacttreadsTreadsView.findViewById(R.id.emptyinter));
+                                    break;
+                                case 2:
+                                    treadsListViewAdapter2 = new TreadsListViewAdapter(myDatas,context,HomeFragment.this);
+                                    myTreadsListView.setAdapter(treadsListViewAdapter2);
+                                    myTreadsListView.setEmptyView(myTreadsView.findViewById(R.id.emptymy));
+                                    break;
+                                case 5:
+                                    treadsListViewAdapter5 = new TreadsListViewAdapter(resDatas,context,HomeFragment.this);
+                                    resourcesTreadsListView.setAdapter(treadsListViewAdapter5);
+                                    resourcesTreadsListView.setEmptyView(resourcesTreadsView.findViewById(R.id.emptyres));
+                                    break;
+                                case 4:
+                                    treadsListViewAdapter4 = new TreadsListViewAdapter(attDatas,context,HomeFragment.this);
+                                    attendsTreadsListView.setAdapter(treadsListViewAdapter4);
+                                    attendsTreadsListView.setEmptyView(attendsTreadsView.findViewById(R.id.emptyatt));
+                                    break;
+                                case 3:
+                                    treadsListViewAdapter3 = new TreadsListViewAdapter(impDatas,context,HomeFragment.this);
+                                    impTreadsListView.setAdapter(treadsListViewAdapter3);
+                                    impTreadsListView.setEmptyView(impTreadsView.findViewById(R.id.emptyimp));
+                                    break;
+                            }
+                            ProgressUtil.hide();
+                            if (dialog.isShowing()){
+                                dialog.dismiss();
+                            }
+                        } else {
+                            ToastUtil.showMessage("请检查网络");
+                            ProgressUtil.hide();
+                            if (dialog.isShowing()){
+                                dialog.dismiss();
                             }
                         }
-                    }, 5);
+                    }
+                }, 5);
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    ToastUtil.showMessage("连接服务器失败");
-                }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    ToastUtil.showMessage("连接服务器失败");
+//                }
             }
         });
         p.start();
@@ -1092,12 +1172,10 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onLoadMore() {
-                mHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        onDatasChanged(listView,loadIndex);
-                    }
-                }, 1);
+                if (getStatus(loadIndex).equals("1")){
+                    return;
+                }
+                onDatasChanged(listView,loadIndex);
             }
         });
 
@@ -1108,13 +1186,14 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-
             }
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
-                if (visibleItemCount+firstVisibleItem == totalItemCount-1&&getStatus(loadIndex).equals("0")){
+                if (getStatus(loadIndex).equals("1")){
+                    return;
+                }
+                if (visibleItemCount+firstVisibleItem == totalItemCount-1 && getStatus(loadIndex).equals("0")){
                     listView.startLoadMore();
                 }
             }
@@ -1241,7 +1320,7 @@ public class HomeFragment extends Fragment {
         }
         return false;
     }
-
+    private String jsonForLoadMore = null;
     /**
      * 加载更多时调用的方法
      * @param listView 加载更多时需要刷新的对象
@@ -1294,97 +1373,99 @@ public class HomeFragment extends Fragment {
                 break;
         }
         hashMap.put("pageNo",new ParameterValue(getLoadMorePager()+1+""));
-        if (getStatus(loadIndex).equals("1")){
-            return;
-        }
+
         hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
-        ProgressThreadWrap d  = new ProgressThreadWrap(context,new RunnableWrap() {
+        String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+ZddcUtil.getAllTreadsStr,hashMap);
+        jsonForLoadMore = cacheGet.getRseponse(url, new RequestWithCacheGet.RequestListener() {
             @Override
-            public void run() {
-                try {
-                    String treadsJson = ZddcUtil.getAllTreads(hashMap);
-                    final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                            setStatus(treads.getStatus(),loadIndex);
-                            setLoadMorePager(getLoadMorePager()+1,loadIndex);
-                            List<Treads.DataListBean> list = treads.getDataList();
-                            if (list != null&&list.size()>0){
-                                switch (loadIndex){
-                                    case 0:
-                                        if (allDatas == null)
-                                            allDatas = new ArrayList<>();
-                                        allDatas.addAll(list);
-                                        RelativeLayout lin = (RelativeLayout) allTreadsView.findViewById(R.id.linear_all);
-                                        lin.removeView(allreadsListView);
-                                        lin.addView(allreadsListView);
-                                        treadsListViewAdapter0.notifyDataSetChanged();
-                                        break;
-                                    case 1:
-                                        if (interactDatas == null)
-                                            interactDatas = new ArrayList<>();
-                                        interactDatas.addAll(list);
-                                        RelativeLayout lin1 = (RelativeLayout) interacttreadsTreadsView.findViewById(R.id.linear_interact);
-                                        lin1.removeView(interactreadsTtListView);
-                                        lin1.addView(interactreadsTtListView);
-                                        treadsListViewAdapter1.notifyDataSetChanged();
-                                        break;
-                                    case 2:
-                                        if (myDatas == null)
-                                            myDatas = new ArrayList<>();
-                                        myDatas.addAll(list);
-                                        RelativeLayout lin2 = (RelativeLayout) myTreadsView.findViewById(R.id.linear_my);
-                                        lin2.removeView(myTreadsListView);
-                                        lin2.addView(myTreadsListView);
-                                        treadsListViewAdapter2.notifyDataSetChanged();
-                                        break;
-                                    case 5:
-                                        if (resDatas == null)
-                                            resDatas = new ArrayList<>();
-                                        resDatas.addAll(list);
-                                        RelativeLayout lin3 = (RelativeLayout) resourcesTreadsView.findViewById(R.id.linear_res);
-                                        lin3.removeView(resourcesTreadsListView);
-                                        lin3.addView(resourcesTreadsListView);
-                                        treadsListViewAdapter5.notifyDataSetChanged();
-                                        break;
-                                    case 4:
-                                        if (attDatas == null)
-                                            attDatas = new ArrayList<>();
-                                        attDatas.addAll(list);
-                                        RelativeLayout lin4 = (RelativeLayout) attendsTreadsView.findViewById(R.id.linear_att);
-                                        lin4.removeView(attendsTreadsListView);
-                                        lin4.addView(attendsTreadsListView);
-                                        treadsListViewAdapter4.notifyDataSetChanged();
-                                        break;
-                                    case 3:
-                                        if (impDatas == null)
-                                            impDatas = new ArrayList<>();
-                                        impDatas.addAll(list);
-                                        RelativeLayout lin5 = (RelativeLayout) impTreadsView.findViewById(R.id.linear_imp);
-                                        lin5.removeView(impTreadsListView);
-                                        lin5.addView(impTreadsListView);
-                                        treadsListViewAdapter3.notifyDataSetChanged();
-                                        break;
-
-                                }
-                                setIsLoadMoring(loadIndex,false);
-                                onLoad(listView);
-                            }else{
-                                setIsLoadMoring(loadIndex,false);
-                                onLoad(listView);
-                            }
-                        }
-                    }, 5);
-
-                } catch (IOException e) {
-                    setIsLoadMoring(loadIndex,false);
-                    onLoad(listView);
-                    e.printStackTrace();
-                    ToastUtil.showMessage("连接服务器失败");
+            public void onResponse(String response) {
+                if (response != null && !response.equals(RequestWithCacheGet.NOT_OUTOFDATE)) {
+                    onLoadMoreMethod(loadIndex,listView,response);
+                }else {
+                    onLoadMoreMethod(loadIndex,listView,jsonForLoadMore);
                 }
             }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
         });
-        d.start();
+//        if ((json != null && !json.equals(RequestWithCacheGet.NO_DATA))) {
+//            onLoadMoreMethod(loadIndex,listView,json);
+//        }
+    }
+
+    private void onLoadMoreMethod(final int loadIndex,final XListView listView,final String treadsJson){
+        final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
+        setStatus(treads.getStatus(),loadIndex);
+        setLoadMorePager(getLoadMorePager()+1,loadIndex);
+        List<Treads.DataListBean> list = treads.getDataList();
+        if (list != null && list.size()>0){
+            switch (loadIndex){
+                case 0:
+                    if (allDatas == null)
+                        allDatas = new ArrayList<>();
+                    allDatas.addAll(list);
+                    RelativeLayout lin = (RelativeLayout) allTreadsView.findViewById(R.id.linear_all);
+                    lin.removeView(allreadsListView);
+                    lin.addView(allreadsListView);
+                    treadsListViewAdapter0.notifyDataSetChanged();
+                    break;
+                case 1:
+                    if (interactDatas == null)
+                        interactDatas = new ArrayList<>();
+                    interactDatas.addAll(list);
+                    RelativeLayout lin1 = (RelativeLayout) interacttreadsTreadsView.findViewById(R.id.linear_interact);
+                    lin1.removeView(interactreadsTtListView);
+                    lin1.addView(interactreadsTtListView);
+                    treadsListViewAdapter1.notifyDataSetChanged();
+                    break;
+                case 2:
+                    if (myDatas == null)
+                        myDatas = new ArrayList<>();
+                    myDatas.addAll(list);
+                    RelativeLayout lin2 = (RelativeLayout) myTreadsView.findViewById(R.id.linear_my);
+                    lin2.removeView(myTreadsListView);
+                    lin2.addView(myTreadsListView);
+                    treadsListViewAdapter2.notifyDataSetChanged();
+                    break;
+                case 5:
+                    if (resDatas == null)
+                        resDatas = new ArrayList<>();
+                    resDatas.addAll(list);
+                    RelativeLayout lin3 = (RelativeLayout) resourcesTreadsView.findViewById(R.id.linear_res);
+                    lin3.removeView(resourcesTreadsListView);
+                    lin3.addView(resourcesTreadsListView);
+                    treadsListViewAdapter5.notifyDataSetChanged();
+                    break;
+                case 4:
+                    if (attDatas == null)
+                        attDatas = new ArrayList<>();
+                    attDatas.addAll(list);
+                    RelativeLayout lin4 = (RelativeLayout) attendsTreadsView.findViewById(R.id.linear_att);
+                    lin4.removeView(attendsTreadsListView);
+                    lin4.addView(attendsTreadsListView);
+                    treadsListViewAdapter4.notifyDataSetChanged();
+                    break;
+                case 3:
+                    if (impDatas == null)
+                        impDatas = new ArrayList<>();
+                    impDatas.addAll(list);
+                    RelativeLayout lin5 = (RelativeLayout) impTreadsView.findViewById(R.id.linear_imp);
+                    lin5.removeView(impTreadsListView);
+                    lin5.addView(impTreadsListView);
+                    treadsListViewAdapter3.notifyDataSetChanged();
+                    break;
+
+            }
+            setIsLoadMoring(loadIndex,false);
+            onLoad(listView);
+        }else{
+            setIsLoadMoring(loadIndex,false);
+            onLoad(listView);
+        }
     }
 
     /**
@@ -1395,6 +1476,7 @@ public class HomeFragment extends Fragment {
      * @param eclassId 班级ID
      * @param listView 列表对象
      */
+    String jsonForRefrush = null;
     public void initDatasForRefrush(String startDate, String endDate, String name, String eclassId, final XListView listView, final int index){
 
         if (!NetUtils.isNetworkConnected()){
@@ -1469,76 +1551,105 @@ public class HomeFragment extends Fragment {
         }
         hashMap.put("pageNo",new ParameterValue("1"));
         setLoadMorePager(1,index);
+
+        hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
+        String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+ZddcUtil.getAllTreadsStr,hashMap);
+
+        jsonForRefrush = cacheGet.getRseponse(url, new RequestWithCacheGet.RequestListener() {
+            @Override
+            public void onResponse(String response) {
+                if (response != null && !response.equals(RequestWithCacheGet.NOT_OUTOFDATE)) {
+                    setIsFromCache(index,false);
+                    onRefreshMethod(index,response);
+                }else{
+                    setIsFromCache(index,true);
+                    onRefreshMethod(index,jsonForRefrush);
+                }
+                Log.w("response",response);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+//        if ((jsonForRefrush != null && !jsonForRefrush.equals(RequestWithCacheGet.NO_DATA) && isFromCache)) {
+//            onRefreshMethod(index,jsonForRefrush);
+//        }
+    }
+
+    private void onRefreshMethod(final int index,final String treadsJson){
         ProgressThreadWrap p = new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
             public void run() {
-                hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
-                try {
-                    String treadsJson = ZddcUtil.getAllTreads(hashMap);
-                    final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
+//                hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
+//                try {
+//                    String treadsJson = ZddcUtil.getAllTreads(hashMap);
+                final Treads treads = new Gson().fromJson(treadsJson,Treads.class);
 
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                            setStatus(treads.getStatus(),index);
-                            setDatasToNotNull(viewPagerListTreadsDatas);
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        setStatus(treads.getStatus(),index);
+                        setDatasToNotNull(viewPagerListTreadsDatas);
 //                            if (treads != null) {
-                            ProgressUtil.hide();
-                            viewPagerListTreadsDatas = treads.getDataList();
-                            if (viewPagerListTreadsDatas == null){
-                                viewPagerListTreadsDatas = new ArrayList<>();
-                            }
-                            switch (index){
-                                case 0:
-                                    allDatas = viewPagerListTreadsDatas;
-                                    treadsListViewAdapter0 = new TreadsListViewAdapter(allDatas,context,HomeFragment.this);
-                                    allreadsListView.setAdapter(treadsListViewAdapter0);
-                                    allreadsListView.setEmptyView(allTreadsView.findViewById(R.id.emptyall));
-                                    onLoad(allreadsListView);
-                                    break;
-                                case 1:
-                                    interactDatas = viewPagerListTreadsDatas;
-                                    treadsListViewAdapter1 = new TreadsListViewAdapter(interactDatas,context,HomeFragment.this);
-                                    interactreadsTtListView.setAdapter(treadsListViewAdapter1);
-                                    interactreadsTtListView.setEmptyView(interacttreadsTreadsView.findViewById(R.id.emptyinter));
-                                    onLoad(interactreadsTtListView);
-                                    break;
-                                case 2:
-                                    myDatas = viewPagerListTreadsDatas;
-                                    treadsListViewAdapter2 = new TreadsListViewAdapter(myDatas,context,HomeFragment.this);
-                                    myTreadsListView.setAdapter(treadsListViewAdapter2);
-                                    myTreadsListView.setEmptyView(myTreadsView.findViewById(R.id.emptymy));
-                                    onLoad(myTreadsListView);
-                                    break;
-                                case 5:
-                                    resDatas = viewPagerListTreadsDatas;
-                                    treadsListViewAdapter5 = new TreadsListViewAdapter(resDatas,context,HomeFragment.this);
-                                    resourcesTreadsListView.setAdapter(treadsListViewAdapter5);
-                                    resourcesTreadsListView.setEmptyView(resourcesTreadsView.findViewById(R.id.emptyres));
-                                    onLoad(resourcesTreadsListView);
-                                    break;
-                                case 4:
-                                    attDatas = viewPagerListTreadsDatas;
-                                    treadsListViewAdapter4 = new TreadsListViewAdapter(attDatas,context,HomeFragment.this);
-                                    attendsTreadsListView.setAdapter(treadsListViewAdapter4);
-                                    attendsTreadsListView.setEmptyView(attendsTreadsView.findViewById(R.id.emptyatt));
-                                    onLoad(attendsTreadsListView);
-                                    break;
-                                case 3:
-                                    impDatas = viewPagerListTreadsDatas;
-                                    treadsListViewAdapter3 = new TreadsListViewAdapter(impDatas,context,HomeFragment.this);
-                                    impTreadsListView.setAdapter(treadsListViewAdapter3);
-                                    impTreadsListView.setEmptyView(impTreadsView.findViewById(R.id.emptyimp));
-                                    onLoad(impTreadsListView);
-                                    break;
-                            }
-                            setIsRefshing(false,index);
+                        ProgressUtil.hide();
+                        viewPagerListTreadsDatas = treads.getDataList();
+                        if (viewPagerListTreadsDatas == null){
+                            viewPagerListTreadsDatas = new ArrayList<>();
                         }
-                    }, 5);
+                        switch (index){
+                            case 0:
+                                allDatas = viewPagerListTreadsDatas;
+                                treadsListViewAdapter0 = new TreadsListViewAdapter(allDatas,context,HomeFragment.this);
+                                allreadsListView.setAdapter(treadsListViewAdapter0);
+                                allreadsListView.setEmptyView(allTreadsView.findViewById(R.id.emptyall));
+                                onLoad(allreadsListView);
+                                break;
+                            case 1:
+                                interactDatas = viewPagerListTreadsDatas;
+                                treadsListViewAdapter1 = new TreadsListViewAdapter(interactDatas,context,HomeFragment.this);
+                                interactreadsTtListView.setAdapter(treadsListViewAdapter1);
+                                interactreadsTtListView.setEmptyView(interacttreadsTreadsView.findViewById(R.id.emptyinter));
+                                onLoad(interactreadsTtListView);
+                                break;
+                            case 2:
+                                myDatas = viewPagerListTreadsDatas;
+                                treadsListViewAdapter2 = new TreadsListViewAdapter(myDatas,context,HomeFragment.this);
+                                myTreadsListView.setAdapter(treadsListViewAdapter2);
+                                myTreadsListView.setEmptyView(myTreadsView.findViewById(R.id.emptymy));
+                                onLoad(myTreadsListView);
+                                break;
+                            case 5:
+                                resDatas = viewPagerListTreadsDatas;
+                                treadsListViewAdapter5 = new TreadsListViewAdapter(resDatas,context,HomeFragment.this);
+                                resourcesTreadsListView.setAdapter(treadsListViewAdapter5);
+                                resourcesTreadsListView.setEmptyView(resourcesTreadsView.findViewById(R.id.emptyres));
+                                onLoad(resourcesTreadsListView);
+                                break;
+                            case 4:
+                                attDatas = viewPagerListTreadsDatas;
+                                treadsListViewAdapter4 = new TreadsListViewAdapter(attDatas,context,HomeFragment.this);
+                                attendsTreadsListView.setAdapter(treadsListViewAdapter4);
+                                attendsTreadsListView.setEmptyView(attendsTreadsView.findViewById(R.id.emptyatt));
+                                onLoad(attendsTreadsListView);
+                                break;
+                            case 3:
+                                impDatas = viewPagerListTreadsDatas;
+                                treadsListViewAdapter3 = new TreadsListViewAdapter(impDatas,context,HomeFragment.this);
+                                impTreadsListView.setAdapter(treadsListViewAdapter3);
+                                impTreadsListView.setEmptyView(impTreadsView.findViewById(R.id.emptyimp));
+                                onLoad(impTreadsListView);
+                                break;
+                        }
+                        setIsRefshing(false,index);
+                    }
+                }, 5);
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    ToastUtil.showMessage("连接服务器失败");
-                }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    ToastUtil.showMessage("连接服务器失败");
+//                }
             }
         });
         p.start();

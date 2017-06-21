@@ -87,9 +87,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
 
     private HomeFragment fragment;
 
-    private boolean isLoadingTag = false;
-
-    public TreadsListViewAdapter(List<Treads.DataListBean> list, Activity context, HomeFragment fragment) {
+    TreadsListViewAdapter(List<Treads.DataListBean> list, Activity context, HomeFragment fragment) {
         adapter = this;
         this.list = list;
         this.context = context;
@@ -125,7 +123,7 @@ public class TreadsListViewAdapter extends BaseAdapter {
      * @param text
      * @return
      */
-    public String getEmojyStr(String text){
+    private String getEmojyStr(String text){
         String cs = text.toString();
         if (cs.contains("[em_")) {
             for (int i = 1; i < 76; i++) {
@@ -414,7 +412,6 @@ public class TreadsListViewAdapter extends BaseAdapter {
                             vh.l.setVisibility(View.GONE);
                         } else {
                             String simpleImageUrl = ZddcUtil.getUrlFirstAnd(ECApplication.getInstance().getAddress() + arrs.get(0).getImg(), ECApplication.getInstance().getLoginUrlMap());
-                            LogUtil.e("simpleImageUrl:" + simpleImageUrl);
                             FrescoUtil.load(Uri.parse(simpleImageUrl),vh.simpleImage,DensityUtil.dip2px(150),DensityUtil.dip2px(150));
 //                            Uri uri = Uri.parse(simpleImageUrl);
 //                            vh.simpleImage.setImageURI(uri);
@@ -425,11 +422,10 @@ public class TreadsListViewAdapter extends BaseAdapter {
                         ArrayList<ImageUrlBean> urls = new ArrayList<>();
                         for (int j = 0; j < arrs.size(); j++) {
                             if (arrs.get(j).getImg() == null || arrs.get(j).getImg().equals("")) {
-
+                                LogUtil.e("TreadsListAdapter_muchImagesUrl为空");
                             } else {
                                 ImageUrlBean bean = new ImageUrlBean();
                                 bean.setName(arrs.get(j).getFileName());
-                                LogUtil.w("传入的文件名："+arrs.get(j).getFileName());
                                 bean.setShowUrl(ZddcUtil.getUrlFirstAnd(ECApplication.getInstance().getAddress() + arrs.get(j).getImg(), ECApplication.getInstance().getLoginUrlMap()));
                                 bean.setDownLoadUrl(ZddcUtil.getUrlFirstAnd(ECApplication.getInstance().getAddress() + arrs.get(j).getDownUrl(), ECApplication.getInstance().getLoginUrlMap()));
                                 urls.add(bean);

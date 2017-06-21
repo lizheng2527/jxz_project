@@ -1,6 +1,21 @@
 package com.zdhx.androidbase.util;
 
 public class StringUtil {
+  /*  *//***
+     *
+     * @param strs 替换的字符串
+     * @param isStr 被替换的字符
+     * @param toStr 获取替换的字符
+     * @return 返回替换完成的字符串
+     *//*
+    public static String replaceStrs(String strs,String isStr,String toStr){
+        if (strs == null||"".equals(strs)){
+            Log.w("StringUtil","字符串为空！");
+            return null;
+        }
+        strs.r
+        return "";
+    }*/
 
     /**
      * 是否为空格

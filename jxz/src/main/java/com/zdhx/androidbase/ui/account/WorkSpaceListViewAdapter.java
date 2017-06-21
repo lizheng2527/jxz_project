@@ -47,6 +47,7 @@ import java.util.List;
 
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
+import static android.R.attr.name;
 import static com.mob.tools.utils.R.copyFile;
 import static com.zdhx.androidbase.util.ZddcUtil.getUrl;
 
@@ -61,6 +62,7 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
     private List<WorkSpaceDatasBean.DataListBean> list;
 
     private Context context;
+
 
 //    private LayoutInflater inflater;
 
@@ -125,6 +127,11 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
         //        预览------------------------------------------------------
 
         if (resourceStyle != null){//有时候服务器会返回null（非正常数据）
+            if ("6".equals(resourceStyle)){
+                vh.btnPreview.setImageResource(R.drawable.btn_video_show);
+            }else{
+                vh.btnPreview.setImageResource(R.drawable.btn_preview);
+            }
             switch (resourceStyle){
                 case "1":
                     vh.fileHeadImg.setImageResource(R.drawable.word);
@@ -149,7 +156,10 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
                     vh.btnPreview.setVisibility(View.VISIBLE);
                     break;
                 case "6":
-                    vh.fileHeadImg.setImageResource(R.drawable.video);
+//                    vh.fileHeadImg.setImageResource(R.drawable.video);
+                    String url1 = getUrl(ECApplication.getInstance().getAddress()+ list.get(i).getIconUrl(),ECApplication.getInstance().getLoginUrlMap());
+                    Uri uri1 = Uri.parse(url1);
+                    vh.fileHeadImg.setImageURI(uri1);
                     vh.btnPreview.setVisibility(View.VISIBLE);
                     break;
                 case "7":
@@ -239,8 +249,17 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
             vh.btnPreview.setVisibility(View.GONE);
             vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
         }else{
-            vh.downloadImg.setImageResource(R.drawable.download);
+            String createTime = list.get(i).getCreateTime().replace(":","-");
+            File file1 = new File(dir,createTime+name);
+            if (file1.exists()){
+                vh.btnPreview.setVisibility(View.GONE);
+                vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
+            }else{
+                vh.downloadImg.setImageResource(R.drawable.download);
+            }
         }
+
+
 
         //判断当前是否正在下载任务，如果下载任务，进行标记，将其他的progressBar设置为隐藏
         if (list.get(i).isLoading()){
@@ -249,70 +268,74 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
             vh.progressIndexLinear.setVisibility(View.GONE);
         }
 
-
+        if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
+            vh.highQuantityImgS.setClickable(true);
+            vh.highQuantityImgB.setClickable(true);
 //        无预评权限也无终评权限-----------------------------------------------
-        if (list.get(i).getTeacherpreselection().equals("0")&&list.get(i).getTeacherfinalselection().equals("0")){
-            vh.highQuantityImgS.setVisibility(View.GONE);
-            vh.highQuantityImgB.setVisibility(View.GONE);
-        }
+            if (list.get(i).getTeacherpreselection().equals("0")&&list.get(i).getTeacherfinalselection().equals("0")){
+                vh.highQuantityImgS.setVisibility(View.GONE);
+                vh.highQuantityImgB.setVisibility(View.GONE);
+            }
 //        有预评权限无终评权限-----------------------------------------------
-        if (list.get(i).getTeacherpreselection().equals("1")&&list.get(i).getTeacherfinalselection().equals("0")){
-            switch (list.get(i).getHighQuantity()){
-                case "0":
-                    vh.highQuantityImgS.setVisibility(View.VISIBLE);
-                    vh.highQuantityImgS.setImageResource(R.drawable.good_nor);
-                    vh.highQuantityImgB.setVisibility(View.GONE);
-                    break;
-                case "1":
-                    vh.highQuantityImgS.setVisibility(View.VISIBLE);
-                    vh.highQuantityImgS.setImageResource(R.drawable.good_click);
-                    vh.highQuantityImgB.setVisibility(View.GONE);
-                    break;
-                case "2":
-                    vh.highQuantityImgS.setVisibility(View.GONE);
-                    vh.highQuantityImgB.setVisibility(View.GONE);
-                    break;
+            if (list.get(i).getTeacherpreselection().equals("1")&&list.get(i).getTeacherfinalselection().equals("0")){
+                switch (list.get(i).getHighQuantity()){
+                    case "0":
+                        vh.highQuantityImgS.setVisibility(View.VISIBLE);
+                        vh.highQuantityImgS.setImageResource(R.drawable.good_nor);
+                        vh.highQuantityImgB.setVisibility(View.GONE);
+                        break;
+                    case "1":
+                        vh.highQuantityImgS.setVisibility(View.VISIBLE);
+                        vh.highQuantityImgS.setImageResource(R.drawable.good_click);
+                        vh.highQuantityImgB.setVisibility(View.GONE);
+                        break;
+                    case "2":
+                        vh.highQuantityImgS.setVisibility(View.GONE);
+                        vh.highQuantityImgB.setVisibility(View.GONE);
+                        break;
+                }
+            }
+            //有终评权限，无预评权限
+            if (list.get(i).getTeacherpreselection().equals("0")&&list.get(i).getTeacherfinalselection().equals("1")){
+                switch (list.get(i).getHighQuantity()){
+                    case "0":
+                        vh.highQuantityImgS.setVisibility(View.GONE);
+                        vh.highQuantityImgB.setVisibility(View.GONE);
+                        break;
+                    case "1":
+                        vh.highQuantityImgS.setVisibility(View.GONE);
+                        vh.highQuantityImgB.setVisibility(View.VISIBLE);
+                        vh.highQuantityImgB.setImageResource(R.drawable.quality_nor);
+                        break;
+                    case "2":
+                        vh.highQuantityImgS.setVisibility(View.GONE);
+                        vh.highQuantityImgB.setVisibility(View.VISIBLE);
+                        vh.highQuantityImgB.setImageResource(R.drawable.quality_click);
+                        break;
+                }
+            }
+            //有终评权限，有预评权限
+            if (list.get(i).getTeacherpreselection().equals("1")&&list.get(i).getTeacherfinalselection().equals("1")){
+                switch (list.get(i).getHighQuantity()){
+                    case "0":
+                        vh.highQuantityImgS.setVisibility(View.VISIBLE);
+                        vh.highQuantityImgS.setImageResource(R.drawable.good_nor);
+                        vh.highQuantityImgB.setVisibility(View.GONE);
+                        break;
+                    case "1":
+                        vh.highQuantityImgS.setVisibility(View.GONE);
+                        vh.highQuantityImgB.setVisibility(View.VISIBLE);
+                        vh.highQuantityImgB.setImageResource(R.drawable.quality_nor);
+                        break;
+                    case "2":
+                        vh.highQuantityImgS.setVisibility(View.GONE);
+                        vh.highQuantityImgB.setVisibility(View.VISIBLE);
+                        vh.highQuantityImgB.setImageResource(R.drawable.quality_click);
+                        break;
+                }
             }
         }
-        //有终评权限，无预评权限
-        if (list.get(i).getTeacherpreselection().equals("0")&&list.get(i).getTeacherfinalselection().equals("1")){
-            switch (list.get(i).getHighQuantity()){
-                case "0":
-                    vh.highQuantityImgS.setVisibility(View.GONE);
-                    vh.highQuantityImgB.setVisibility(View.GONE);
-                    break;
-                case "1":
-                    vh.highQuantityImgS.setVisibility(View.GONE);
-                    vh.highQuantityImgB.setVisibility(View.VISIBLE);
-                    vh.highQuantityImgB.setImageResource(R.drawable.quality_nor);
-                    break;
-                case "2":
-                    vh.highQuantityImgS.setVisibility(View.GONE);
-                    vh.highQuantityImgB.setVisibility(View.VISIBLE);
-                    vh.highQuantityImgB.setImageResource(R.drawable.quality_click);
-                    break;
-            }
-        }
-        //有终评权限，有预评权限
-        if (list.get(i).getTeacherpreselection().equals("1")&&list.get(i).getTeacherfinalselection().equals("1")){
-            switch (list.get(i).getHighQuantity()){
-                case "0":
-                    vh.highQuantityImgS.setVisibility(View.VISIBLE);
-                    vh.highQuantityImgS.setImageResource(R.drawable.good_nor);
-                    vh.highQuantityImgB.setVisibility(View.GONE);
-                    break;
-                case "1":
-                    vh.highQuantityImgS.setVisibility(View.GONE);
-                    vh.highQuantityImgB.setVisibility(View.VISIBLE);
-                    vh.highQuantityImgB.setImageResource(R.drawable.quality_nor);
-                    break;
-                case "2":
-                    vh.highQuantityImgS.setVisibility(View.GONE);
-                    vh.highQuantityImgB.setVisibility(View.VISIBLE);
-                    vh.highQuantityImgB.setImageResource(R.drawable.quality_click);
-                    break;
-            }
-        }
+//
         vh.downClick = (LinearLayout) view.findViewById(R.id.downClick);
         vh.browseClick = (LinearLayout) view.findViewById(R.id.browseClick);
 
@@ -340,8 +363,24 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
             vh.batchSelectBox.setChecked(list.get(i).isSelect());
         }else{
             vh.prePass.setVisibility(View.GONE);
-            vh.highQuantityImgS.setVisibility(View.GONE);
-            vh.highQuantityImgB.setVisibility(View.GONE);
+
+            switch (list.get(i).getHighQuantity()){
+                case "0":
+                    vh.highQuantityImgS.setVisibility(View.VISIBLE);
+                    vh.highQuantityImgS.setImageResource(R.drawable.good_nor);
+                    vh.highQuantityImgB.setVisibility(View.GONE);
+                    break;
+                case "1":
+                    vh.highQuantityImgS.setVisibility(View.GONE);
+                    vh.highQuantityImgB.setVisibility(View.VISIBLE);
+                    vh.highQuantityImgB.setImageResource(R.drawable.quality_nor);
+                    break;
+                case "2":
+                    vh.highQuantityImgS.setVisibility(View.GONE);
+                    vh.highQuantityImgB.setVisibility(View.VISIBLE);
+                    vh.highQuantityImgB.setImageResource(R.drawable.quality_click);
+                    break;
+            }
         }
         vh.wxImgBtn = (ImageView) view.findViewById(R.id.wxImgBtn);
 
@@ -351,8 +390,6 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
         }else{
             vh.wxImgBtn.setVisibility(View.GONE);
         }
-
-
         addClick(vh,i);
         return view;
     }
@@ -429,9 +466,7 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
                         downloadAsyncTask.execute(getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()), "aaa", i + "","jxz_workSpace_downFile");
                     }
                 }
-
-                /*else{
-                    Log.w("wx",getUrl(ECApplication.getInstance().getAddress()+list.get(i).getIconUrl(),ECApplication.getInstance().getLoginUrlMap()));
+                else{
                     final ECProgressDialog dialog = new ECProgressDialog(context);
                     dialog.setPressText("正在检索图片...");
                     dialog.setCancelable(false);
@@ -455,15 +490,17 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
                                 if (!fileDir.exists()){
                                     fileDir.mkdir();
                                 }
-                                File file = new File(fileDir,list.get(i).getCreateTime()+list.get(i).getName());
+                                File file = new File(fileDir,list.get(i).getCreateTime()+System.currentTimeMillis()+".jpg");
                                 boolean b = file1.renameTo(file);
                                 if (b){
                                     new SingleMediaScanner(context, file);
                                     OnekeyShare oks = new OnekeyShare();
                                     oks.disableSSOWhenAuthorize();
-                                    oks.setTitle("标题");
-                                    oks.setText(list.get(i).getName());
-                                    oks.setUrl("https://www.pgyer.com/zhwx");
+                                    oks.setTitle(list.get(i).getName());
+                                    oks.setText("优秀作品，欢迎欣赏!");
+                                    oks.setTitleUrl(ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()));
+                                    oks.setUrl(ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+list.get(i).getDownUrl(),ECApplication.getInstance().getLoginUrlMap()));
+//                                    oks.setUrl("https://www.pgyer.com/jxz-test");
                                     oks.setImagePath(file.getPath());//确保SDcard下面存在此张图片
                                     oks.show(context);
                                 }
@@ -480,7 +517,7 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
                         }
                     }, context);
                     downloadAsyncTask.execute(getUrl(ECApplication.getInstance().getAddress()+list.get(i).getIconUrl(),ECApplication.getInstance().getLoginUrlMap()), "aaa", i + "","jxz_workSpace_downFile");
-                }*/
+                }
             }
         });
 
@@ -659,13 +696,15 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
         vh.highQuantityImgS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frag.startCheckAct(list.get(i).getId(),"1",i,frag,list.get(i).getHighQuantity(),list.get(i).getTeacherfinalselection());
+                if (ECApplication.getInstance().getCurrentUser().getType().equals("2"))
+                    frag.startCheckAct(list.get(i).getId(),"1",i,frag,list.get(i).getHighQuantity(),list.get(i).getTeacherfinalselection());
             }
         });
         vh.highQuantityImgB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frag.startCheckAct(list.get(i).getId(),"2",i,frag,list.get(i).getHighQuantity(),list.get(i).getTeacherfinalselection());
+                if (ECApplication.getInstance().getCurrentUser().getType().equals("2"))
+                    frag.startCheckAct(list.get(i).getId(),"2",i,frag,list.get(i).getHighQuantity(),list.get(i).getTeacherfinalselection());
             }
         });
 
@@ -678,112 +717,19 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
                 dialog.show();
                 //TODO判断当前下载附件是否存在
                 String name = list.get(i).getCreateTime()+list.get(i).getName();
+                String name1 = list.get(i).getCreateTime()+list.get(i).getName().replace(":","-");
                 File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
                 File dir = new File(idr+"/jxz");
                 if (!dir.exists()){
                     dir.mkdir();
                 }
                 File file = new File(dir,name);
+                File file1 = new File(dir,name1);
                 if (file.exists()){
-                    String resourceStyle = list.get(i).getResourceStyle();
-                    dialog.dismiss();
-                    try {
-                        switch (resourceStyle){
-                            case "1":
-                                if (IntentUtil.isIntentAvailable(context,IntentUtil.getWordFileIntent(file.getAbsolutePath()))){
-                                    frag.getActivity().startActivity(IntentUtil.getWordFileIntent(file.getAbsolutePath()));
-                                }else{
-                                    ToastUtil.showMessage("当前手机不支持打开该文件");
-                                }
-                                break;
-                            case "2":
-
-                                if (IntentUtil.isIntentAvailable(context,IntentUtil.getPptFileIntent(file.getAbsolutePath()))){
-                                    frag.getActivity().startActivity(IntentUtil.getPptFileIntent(file.getAbsolutePath()));
-                                }else{
-                                    ToastUtil.showMessage("当前手机不支持打开该文件");
-                                }
-                                break;
-                            case "3":
-
-                                if (IntentUtil.isIntentAvailable(context,IntentUtil.getExcelFileIntent(file.getAbsolutePath()))){
-                                    frag.getActivity().startActivity(IntentUtil.getExcelFileIntent(file.getAbsolutePath()));
-                                }else{
-                                    ToastUtil.showMessage("当前手机不支持打开该文件");
-                                }
-                                break;
-                            case "4":
-                                File[] files = dir.listFiles();
-                                ArrayList<String> paths = new ArrayList<>();
-                                int selectCount = 0;
-                                for (File file1 : files) {
-                                    String path = file1.getAbsolutePath().toLowerCase();
-                                    if (path.contains(".jpg") || path.contains(".png") || path.contains(".jpeg")) {
-                                        paths.add(file1.getAbsolutePath());
-                                    }
-                                }
-                                String[] urls = new String[paths.size()];
-                                for (int i1 = 0; i1 < paths.size(); i1++) {
-                                    urls[i1] = paths.get(i1);
-                                    if (paths.get(i1).equals(file.getAbsolutePath())||paths.get(i1).equals(file.getPath())){
-                                        selectCount = i1;
-                                    }
-                                }
-                                Intent intent = new Intent(context, ImagePagerActivity.class);
-                                intent.putExtra("images", urls);
-                                intent.putExtra("image_index",selectCount);
-                                MainActivity.map.put("selectCountForPager",name);
-                                dialog.dismiss();
-                                frag.startActivity(intent);
-                                break;
-                            case "5":
-
-                                if (IntentUtil.isIntentAvailable(context,IntentUtil.getVideoFileIntent(file.getAbsolutePath()))){
-                                    frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getAbsolutePath()));
-                                }else{
-                                    ToastUtil.showMessage("当前手机不支持打开该文件");
-                                }
-                                break;
-                            case "6":
-                                if (IntentUtil.isIntentAvailable(context,IntentUtil.getVideoFileIntent(file.getAbsolutePath()))){
-                                    frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getAbsolutePath()));
-                                }else{
-                                    ToastUtil.showMessage("当前手机不支持打开该文件");
-                                }
-                                break;
-                            case "7":
-                                //跳转到指定位置目录
-                                MainActivity.map.put("parentFile",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
-                                MainActivity.map.put("subFile",new File(ECApplication.getInstance().getDownloadJxzDir()));
-                                MainActivity.map.put("isIntentCode","openFile");
-                                Intent intent1 = new Intent(context,FileExplorerActivity.class);
-                                intent1.putExtra("key_title",context.getResources().getString(R.string.search_file_title));
-                                context.startActivity(intent1);
-                                break;
-                            case "8":
-                                //跳转到指定位置目录
-                                MainActivity.map.put("parentFile",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
-                                MainActivity.map.put("subFile",new File(ECApplication.getInstance().getDownloadJxzDir()));
-                                MainActivity.map.put("isIntentCode","openFile");
-                                Intent intent2 = new Intent(context,FileExplorerActivity.class);
-                                intent2.putExtra("key_title",context.getResources().getString(R.string.search_file_title));
-                                context.startActivity(intent2);
-                                break;
-                            case "0":
-                                //跳转到指定位置目录
-                                MainActivity.map.put("parentFile",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
-                                MainActivity.map.put("subFile",new File(ECApplication.getInstance().getDownloadJxzDir()));
-                                MainActivity.map.put("isIntentCode","openFile");
-                                Intent intent3 = new Intent(context,FileExplorerActivity.class);
-                                intent3.putExtra("key_title",context.getResources().getString(R.string.search_file_title));
-                                context.startActivity(intent3);
-                                break;
-                        }
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        ToastUtil.showMessage("设备中未安装相应的查看程序");
-                    }
+                    previewMethod(dialog,i,file,dir);
+                    return;
+                }else if (file1.exists()){
+                    previewMethod(dialog,i,file1,dir);
                     return;
                 }
 //                if (list.get(i).getUserId().equals(ECApplication.getInstance().getCurrentUser().getId())){
@@ -828,7 +774,7 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
                             public void downloaded(File file1, int position) {
                                 vh.progressIndexLinear.setVisibility(View.GONE);
                                 if (file1 != null){
-                                    File file = new File(file1.getParent(),list.get(i).getCreateTime()+list.get(i).getName());
+                                    File file = new File(file1.getParent(),list.get(i).getCreateTime().replace(":","-")+list.get(i).getName());
                                     file1.renameTo(file);
                                     new SingleMediaScanner(context, file);
                                     downCounts = downCounts -1;
@@ -905,6 +851,115 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
 
             }
         });
+    }
+
+    /**
+     * 当文件存在是直接预览
+     * @param dialog 关闭dialog
+     * @param i 预览的集合下标
+     * @param file 预览的文件
+     * @param dir 文件所在文件夹
+     */
+    private void previewMethod(ECProgressDialog dialog,int i,File file,File dir) {
+        String resourceStyle = list.get(i).getResourceStyle();
+        dialog.dismiss();
+        try {
+            switch (resourceStyle){
+                case "1":
+                    if (IntentUtil.isIntentAvailable(context,IntentUtil.getWordFileIntent(file.getAbsolutePath()))){
+                        frag.getActivity().startActivity(IntentUtil.getWordFileIntent(file.getAbsolutePath()));
+                    }else{
+                        ToastUtil.showMessage("当前手机不支持打开该文件");
+                    }
+                    break;
+                case "2":
+
+                    if (IntentUtil.isIntentAvailable(context,IntentUtil.getPptFileIntent(file.getAbsolutePath()))){
+                        frag.getActivity().startActivity(IntentUtil.getPptFileIntent(file.getAbsolutePath()));
+                    }else{
+                        ToastUtil.showMessage("当前手机不支持打开该文件");
+                    }
+                    break;
+                case "3":
+
+                    if (IntentUtil.isIntentAvailable(context,IntentUtil.getExcelFileIntent(file.getAbsolutePath()))){
+                        frag.getActivity().startActivity(IntentUtil.getExcelFileIntent(file.getAbsolutePath()));
+                    }else{
+                        ToastUtil.showMessage("当前手机不支持打开该文件");
+                    }
+                    break;
+                case "4":
+                    File[] files = dir.listFiles();
+                    ArrayList<String> paths = new ArrayList<>();
+                    int selectCount = 0;
+                    for (File file1 : files) {
+                        String path = file1.getAbsolutePath().toLowerCase();
+                        if (path.contains(".jpg") || path.contains(".png") || path.contains(".jpeg")) {
+                            paths.add(file1.getAbsolutePath());
+                        }
+                    }
+                    String[] urls = new String[paths.size()];
+                    for (int i1 = 0; i1 < paths.size(); i1++) {
+                        urls[i1] = paths.get(i1);
+                        if (paths.get(i1).equals(file.getAbsolutePath())||paths.get(i1).equals(file.getPath())){
+                            selectCount = i1;
+                        }
+                    }
+                    Intent intent = new Intent(context, ImagePagerActivity.class);
+                    intent.putExtra("images", urls);
+                    intent.putExtra("image_index",selectCount);
+                    MainActivity.map.put("selectCountForPager",name);
+                    dialog.dismiss();
+                    frag.startActivity(intent);
+                    break;
+                case "5":
+
+                    if (IntentUtil.isIntentAvailable(context,IntentUtil.getVideoFileIntent(file.getAbsolutePath()))){
+                        frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getAbsolutePath()));
+                    }else{
+                        ToastUtil.showMessage("当前手机不支持打开该文件");
+                    }
+                    break;
+                case "6":
+                    if (IntentUtil.isIntentAvailable(context,IntentUtil.getVideoFileIntent(file.getAbsolutePath()))){
+                        frag.getActivity().startActivity(IntentUtil.getVideoFileIntent(file.getAbsolutePath()));
+                    }else{
+                        ToastUtil.showMessage("当前手机不支持打开该文件");
+                    }
+                    break;
+                case "7":
+                    //跳转到指定位置目录
+                    MainActivity.map.put("parentFile",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
+                    MainActivity.map.put("subFile",new File(ECApplication.getInstance().getDownloadJxzDir()));
+                    MainActivity.map.put("isIntentCode","openFile");
+                    Intent intent1 = new Intent(context,FileExplorerActivity.class);
+                    intent1.putExtra("key_title",context.getResources().getString(R.string.search_file_title));
+                    context.startActivity(intent1);
+                    break;
+                case "8":
+                    //跳转到指定位置目录
+                    MainActivity.map.put("parentFile",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
+                    MainActivity.map.put("subFile",new File(ECApplication.getInstance().getDownloadJxzDir()));
+                    MainActivity.map.put("isIntentCode","openFile");
+                    Intent intent2 = new Intent(context,FileExplorerActivity.class);
+                    intent2.putExtra("key_title",context.getResources().getString(R.string.search_file_title));
+                    context.startActivity(intent2);
+                    break;
+                case "0":
+                    //跳转到指定位置目录
+                    MainActivity.map.put("parentFile",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
+                    MainActivity.map.put("subFile",new File(ECApplication.getInstance().getDownloadJxzDir()));
+                    MainActivity.map.put("isIntentCode","openFile");
+                    Intent intent3 = new Intent(context,FileExplorerActivity.class);
+                    intent3.putExtra("key_title",context.getResources().getString(R.string.search_file_title));
+                    context.startActivity(intent3);
+                    break;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            ToastUtil.showMessage("设备中未安装相应的查看程序");
+        }
     }
 
 

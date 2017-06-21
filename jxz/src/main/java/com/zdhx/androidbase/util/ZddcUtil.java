@@ -132,6 +132,10 @@ public class ZddcUtil {
 	}
 
 	public static String getUrlResponse(String url, Map<String, ParameterValue> map) throws IOException {
+
+		if (map == null){
+			LogUtil.w(url);
+		}
 		HttpURLConnection conn = (HttpURLConnection) (new URL(checkUrl(url)).openConnection());
 		conn.setDoInput(true);
 		conn.setDoOutput(true);
@@ -303,10 +307,6 @@ public class ZddcUtil {
 			Parameter = "";
 		}
 		return Parameter;
-	}
-
-	public static String getSchoolInfoStr(String baseUrl) throws IOException {
-		return getUrlResponse(checkUrl(baseUrl) + "/bd/welcome!ajaxGetSchoolNames.action");
 	}
 
 	public static String uploadFileToServer(String baseUrl, File file) throws IOException {
@@ -574,7 +574,9 @@ public class ZddcUtil {
 		return commitWithFiles(getUrl(checkUrl(ECApplication.getInstance().getAddress()) + "/il/mobile!saveChapterResource.action", loginMap),files, map,callBack,null);
 	}
 
-
+	public static String getSchoolInfoStr(String baseUrl) throws IOException {
+		return getUrlResponse(checkUrl(baseUrl) + "/bd/welcome!ajaxGetSchoolNames.action");
+	}
 
 	/**
 	 * 预览量/下载量+1
@@ -705,6 +707,8 @@ public class ZddcUtil {
 	public static String getAllTreads(Map<String, ParameterValue> map) throws IOException {
 		return getUrlResponse(checkUrl(ECApplication.getInstance().getAddress()) + "/il/mobile!communcationList.action", map);
 	}
+	public static String getAllTreadsStr = "/il/mobile!communcationList.action";
+
 	/**
 	 * 默认获取的工作平台信息
 	 *
@@ -781,7 +785,6 @@ public class ZddcUtil {
 	public static String checkLogin(Map<String, ParameterValue> map) throws IOException {
 		return getUrlResponse(checkUrl(ECApplication.getInstance().getAddress()) + "/bd/welcome!ajaxValidationUser.action", map);
 	}
-
 
 
 //学乐堂---------------------------------------------------------------------------

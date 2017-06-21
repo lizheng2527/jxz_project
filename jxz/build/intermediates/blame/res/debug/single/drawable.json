@@ -16,12 +16,12 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\drawable\\btn_black_textcolor_selector.xml"
     },
     {
-        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\ckbox_order.xml",
-        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\ckbox_order.xml"
-    },
-    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_left.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_left.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\ckbox_order.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\ckbox_order.xml"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\alertdialog_left_btn_normal.xml",
@@ -84,6 +84,10 @@
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\drawable\\btn_green_selector_rectangle.xml"
     },
     {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_button_blue_selentry2.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\bg_button_blue_selentry2.xml"
+    },
+    {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_checkbox_selector.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\photoSelector\\build\\intermediates\\bundles\\default\\res\\drawable\\btn_checkbox_selector.xml"
     },
@@ -98,6 +102,10 @@
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_dialog_left_press.xml",
         "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\btn_dialog_left_press.xml"
+    },
+    {
+        "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_ykt_selector.xml",
+        "source": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\drawable\\tab_ykt_selector.xml"
     },
     {
         "merged": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\build\\intermediates\\res\\merged\\debug\\drawable\\alertdialog_right_btn_click.xml",

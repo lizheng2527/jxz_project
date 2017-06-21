@@ -287,6 +287,7 @@ public class WorkSpaceFragment extends Fragment {
         dialog = new ECProgressDialog(context,"正在加载数据");
         initGridView();
         initListView();
+
     }
     /**
      * 初始化listView数据源及展示
@@ -1062,6 +1063,9 @@ public class WorkSpaceFragment extends Fragment {
         SearchWorkActivity.oldHighQuality = this.highqualityValue;
         this.studentUploadType = studentUploadType;
         this.radioValue = radioValue;
+        this.clickId = clickId;
+        this.name = name;
+        this.type = type;
         //教师登录
         if (ECApplication.getInstance().getCurrentUser().getType().equals("2")){
             if (selectIndexTag == 0){//教师备课资源
@@ -1115,31 +1119,20 @@ public class WorkSpaceFragment extends Fragment {
         hashMap.put("resourceStyle",new ParameterValue(resourceStyle));
         this.resourceStyle = resourceStyle;
 
-        if (clickId == null){//点击的树的节点id
-
-        }else{
+        if (clickId != null){//点击的树的节点id
             hashMap.put("clickId",new ParameterValue(clickId));
-            this.clickId = clickId;
         }
         //点击的树的节点类型  学科/教材/单元/次级单元    subject/teachingMaterial/unit/chapterSubject-chapterUnit
-        if (type == null){
-
-        }else{
+        if (type != null){
             hashMap.put("type",new ParameterValue(type));
-            this.type = type;
         }
-
         hashMap.put("pageNo",new ParameterValue(pageNo));
         this.pageNo = pageNo;
 
         //查询时的搜索文字
-        if (name == null){
-
-        }else{
+        if (name != null){
             hashMap.put("name",new ParameterValue(name));
         }
-        this.name = name;
-
         hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
         new ProgressThreadWrap(context, new RunnableWrap() {
             @Override
@@ -1162,7 +1155,6 @@ public class WorkSpaceFragment extends Fragment {
                                     break;
                                 case 1:
                                     imgDatas = (ArrayList<WorkSpaceDatasBean.DataListBean>) bean.getDataList();
-
                                     workSpaceListViewAdapter1 = new WorkSpaceListViewAdapter(imgDatas,context,WorkSpaceFragment.this,imgXLV);
                                     imgXLV.setAdapter(workSpaceListViewAdapter1);
                                     onLoad(imgXLV);

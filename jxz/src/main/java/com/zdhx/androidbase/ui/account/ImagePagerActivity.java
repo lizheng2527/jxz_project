@@ -22,7 +22,6 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -230,11 +229,7 @@ public class ImagePagerActivity extends Activity {
 									ToastUtil.showMessage("输入名称不能为空!");
 									return;
 								}
-								File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-								File dir = new File(idr+"/jxz");
-								if (!dir.exists()){
-									dir.mkdir();
-								}
+								File dir = new File(ECApplication.getInstance().getDownloadJxzDir());
 								File file = new File(dir,name);
 								if (!file.exists()){
 									final DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(new DownloadAsyncTask.DownloadResponser() {
@@ -279,7 +274,7 @@ public class ImagePagerActivity extends Activity {
 						buildAlert.setContentView(R.layout.config_dcaddress_dialog);
 						String server = imgNames[position];
 						final EditText editText = (EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText));
-						TextView delectTV = (TextView) buildAlert.getWindow().findViewById(R.id.delectTV);
+						ImageView delectTV = (ImageView) buildAlert.getWindow().findViewById(R.id.delectTV);
 						delectTV.setOnClickListener(new View.OnClickListener() {
 
 							@Override
@@ -312,7 +307,8 @@ public class ImagePagerActivity extends Activity {
 			}
 
 			view.addView(imageLayout, 0);
-			if (ECApplication.getInstance().getCurrentUser().getType().equals("2")&&"true".equals(b)){
+			//涂鸦功能
+			if ("true".equals(b)){
 				pzForTeacher.setVisibility(View.VISIBLE);
 				pzForTeacher.setOnClickListener(new View.OnClickListener() {
 					@Override

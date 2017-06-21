@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.SystemConst;
 import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.entity.User;
 import com.zdhx.androidbase.ui.MainActivity;
@@ -31,8 +33,9 @@ import java.util.HashMap;
  * @date 2016-5-3 下午9:22:06
  */
 public class WelcomeActivity extends BaseActivity {
-	
+
 	private Activity context;
+	private TextView imgWelcome;
 
 	@Override
 	protected int getLayoutId() {
@@ -43,29 +46,27 @@ public class WelcomeActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context = this;
+		SystemConst.setTextIp(ECApplication.getInstance().getAddress());
+		imgWelcome = (TextView) findViewById(R.id.textView1);
+		imgWelcome.setBackgroundResource(SystemConst.welcomeId);
 		getTopBarView().setVisibility(View.GONE);
 		initUI();
 	}
 
 	private void initUI() {
-//		User user = ECApplication.getInstance().getCurrentUser();
-//		if(user != null){
-//			login(ECApplication.getInstance().getCurrentUser().getLoginName(),ECApplication.getInstance().getCurrentUser().getPassWord());
-//		}else{
-			new Handler().postDelayed(new Runnable() {
-				@Override
-				public void run() {
-					goIntent();
-				}
-			},2000);
-//		}
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				goIntent();
+			}
+		},2000);
 	}
 
 	private void goIntent() {
 
-        startActivity(new Intent(context, LoginActivity.class));
-        finish();
-    }
+		startActivity(new Intent(context, LoginActivity.class));
+		finish();
+	}
 
 
 	HashMap<String,ParameterValue> loginMap;
@@ -119,5 +120,5 @@ public class WelcomeActivity extends BaseActivity {
 			}
 		}).start();
 	}
-	
+
 }

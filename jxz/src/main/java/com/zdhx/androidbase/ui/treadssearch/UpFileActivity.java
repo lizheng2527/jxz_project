@@ -27,6 +27,7 @@ import com.photoselector.ui.PhotoSelectorActivity;
 import com.zdhx.androidbase.Constant;
 import com.zdhx.androidbase.ECApplication;
 import com.zdhx.androidbase.R;
+import com.zdhx.androidbase.SystemConst;
 import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.account.ImagePagerActivity;
@@ -42,6 +43,7 @@ import com.zdhx.androidbase.ui.ykt.WriteAnswerResults;
 import com.zdhx.androidbase.util.FileUpLoadCallBack;
 import com.zdhx.androidbase.util.IntentUtil;
 import com.zdhx.androidbase.util.LogUtil;
+import com.zdhx.androidbase.util.PhoneShareUtil;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.RoundCornerImageView;
 import com.zdhx.androidbase.util.RunnableWrap;
@@ -116,7 +118,7 @@ public class UpFileActivity extends BaseActivity {
 	private Boolean isOpenTag = true;
 
 	private HashMap<String,WriteAnswerResults> handWriteFilesMap;
-//	private BlackboardWrite blackBorad;
+	//	private BlackboardWrite blackBorad;
 	private ArrayList<BlackboardWrite> blackBoradList;
 	private CourseWare courseWare;
 	private ArrayList<WriteAnswerResults> listForYKT;
@@ -148,11 +150,11 @@ public class UpFileActivity extends BaseActivity {
 		imageBtn = (Button) findViewById(R.id.imageBT);
 		fileBtn = (Button) findViewById(R.id.fileBT);
 		videoBtn = (Button) findViewById(R.id.viedoBT);
+		videoBtn.setVisibility(View.VISIBLE);
 		lv = (ListView) findViewById(R.id.upfile_list);
 		commit = (TextView) findViewById(R.id.commit);
 		upFileTree = (TextView) findViewById(R.id.upfiletree);
 		seleteFile = findViewById(R.id.seleteFile);
-
 
 		upFileTree.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -187,7 +189,8 @@ public class UpFileActivity extends BaseActivity {
 		handWriteFilesMap = (HashMap<String, WriteAnswerResults>) map.get("HandWriteFilesMap");
 		blackBoradList = (ArrayList<BlackboardWrite>) MainActivity.map.get("BlackBorad");
 		courseWare = (CourseWare) MainActivity.map.get("TeachCourse");
-
+		Intent intent = getIntent();
+		String path = PhoneShareUtil.shareFormOtherProg(intent,context);
 		//上传手写笔记
 		if (handWriteFilesMap != null&&handWriteFilesMap.size()>0){
 			seleteFile.setVisibility(View.GONE);
@@ -216,6 +219,21 @@ public class UpFileActivity extends BaseActivity {
 			listForTeachCourse.add(courseWare);
 			adapterForTeachCourse = new AdapterForTeachCourse();
 			lv.setAdapter(adapterForTeachCourse);
+			//来自分享文件
+		}else if (path != null){
+			File file = new File(path);
+			if (paths !=null){
+				bean = new UpFileBean();
+				bean.setFileSize("("+FileUtils.formatFileLength(file.length())+")");
+				bean.setIndex(FILEBTNCODE);
+				bean.setTitle(file.getName());
+				bean.setUserName(ECApplication.getInstance().getCurrentUser().getName());
+				bean.setPath(file.getPath());
+				bean.setAbsolutePath(file.getAbsolutePath());
+				upFileBeens.add(bean);
+				listAdapter = new ListViewAdapter();
+				lv.setAdapter(listAdapter);
+			}
 		}
 		//上传本地资源
 		else{
@@ -318,7 +336,6 @@ public class UpFileActivity extends BaseActivity {
 												public void run() {
 													dialog.dismiss();
 													ToastUtil.showMessage("上传失败!");
-
 												}
 											},5);
 											e.printStackTrace();
@@ -403,12 +420,10 @@ public class UpFileActivity extends BaseActivity {
 									beans.add(bean);
 								}
 								String json = new Gson().toJson(beans);
-								Log.w("YKT" , json);
 								map.put("uploadFilePaths",new ParameterValue(json));
 								map.putAll(ECApplication.getInstance().getLoginUrlMap());
 								try {
 									final String isOver = ZddcUtil.saveChapterResourceForYKT(map);
-									Log.w("YKT",isOver);
 									handler.postDelayed(new Runnable() {
 										@Override
 										public void run() {
@@ -466,7 +481,7 @@ public class UpFileActivity extends BaseActivity {
 									public void run() {
 										dialog.dismiss();
 										MainActivity.map.put("UpFileActivityTag","true");
-										if (ECApplication.getInstance().getAddress().equals("http://117.117.217.19/dc")){
+										if (SystemConst.doAccess){
 											getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
 										}
 										UpFileActivity.this.finish();
@@ -504,7 +519,6 @@ public class UpFileActivity extends BaseActivity {
 				final String name = ((EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText))).getText().toString();
 				if (name == null||name.equals("")){
 					doToast("标题不能为空！");
-					return;
 				}else{
 					//选中要修改的文件地址
 					String selectUrl = upFileBeens.get(position).getAbsolutePath();
@@ -516,7 +530,7 @@ public class UpFileActivity extends BaseActivity {
 					LogUtil.w("选中文件路径："+file.getAbsolutePath());
 					String oldPath = file.getPath();
 					String lastStr = FileUtils.getExtensionName(file.getName());
-					if (name.equals("")){
+					if (!name.equals("")){
 						String newFileUrl = file.getAbsolutePath().replace(file.getName(),name)+"."+lastStr;
 						File newFile = new File(newFileUrl);
 						boolean isSuccess = file.renameTo(newFile);
@@ -538,11 +552,9 @@ public class UpFileActivity extends BaseActivity {
 							listAdapter.notifyDataSetChanged();
 						}else{
 							doToast("修改失败");
-							return;
 						}
 					}else{
 						doToast("请输入新名称..");
-						return;
 					}
 				}
 			}
@@ -552,7 +564,7 @@ public class UpFileActivity extends BaseActivity {
 		buildAlert.setContentView(R.layout.config_dcaddress_dialog);
 		String server = upFileBeens.get(position).getTitle();
 		final EditText editText = (EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText));
-		TextView delectTV = (TextView) buildAlert.getWindow().findViewById(R.id.delectTV);
+		ImageView delectTV = (ImageView) buildAlert.getWindow().findViewById(R.id.delectTV);
 		delectTV.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -589,7 +601,6 @@ public class UpFileActivity extends BaseActivity {
 
 		}
 		if (requestCode == FILEBTNCODE&&data !=null){
-
 			String path = data.getStringExtra("choosed_file_path");
 			File file = new File(path);
 			if (paths !=null){
@@ -1165,7 +1176,7 @@ public class UpFileActivity extends BaseActivity {
 			}
 		}
 		final EditText editText = (EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText));
-		TextView delectTV = (TextView) buildAlert.getWindow().findViewById(R.id.delectTV);
+		ImageView delectTV = (ImageView) buildAlert.getWindow().findViewById(R.id.delectTV);
 		delectTV.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -1207,7 +1218,7 @@ public class UpFileActivity extends BaseActivity {
 			server = listForBlackBorad.get(position).getName();
 		}
 		final EditText editText = (EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText));
-		TextView delectTV = (TextView) buildAlert.getWindow().findViewById(R.id.delectTV);
+		ImageView delectTV = (ImageView) buildAlert.getWindow().findViewById(R.id.delectTV);
 		delectTV.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -1253,7 +1264,7 @@ public class UpFileActivity extends BaseActivity {
 		}
 
 		final EditText editText = (EditText) (buildAlert.getWindow().findViewById(R.id.dcAddressText));
-		TextView delectTV = (TextView) buildAlert.getWindow().findViewById(R.id.delectTV);
+		ImageView delectTV = (ImageView) buildAlert.getWindow().findViewById(R.id.delectTV);
 		delectTV.setOnClickListener(new View.OnClickListener() {
 
 			@Override

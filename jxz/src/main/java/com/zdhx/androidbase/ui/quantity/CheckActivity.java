@@ -18,6 +18,7 @@ import com.zdhx.androidbase.ui.account.WorkSpaceFragment;
 import com.zdhx.androidbase.ui.base.BaseActivity;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.RunnableWrap;
+import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.ZddcUtil;
 import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 
@@ -82,16 +83,16 @@ public class CheckActivity extends BaseActivity {
 			passTag = true;
 			title.setText("预评审核");
 		}else{
+			title.setText("终评审核");
 			if (teacherFinalSelection.equals("0")){//当前为预评级别，没有终评权限，只能选择不通过，
 				pass.setClickable(false);
 				unPass.setChecked(false);
 				unPass.setChecked(true);
 				passTag = false;
-				title.setText("预评审核");
+				ToastUtil.showMessage("您当前没有终评权限");
 			}else{//当前为预评级别，有终评权限，都可以选择，
 				pass.setClickable(true);
 				unPass.setClickable(true);
-				title.setText("预评审核");
 			}
 		}
 		group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

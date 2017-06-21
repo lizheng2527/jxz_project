@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    tools:ignore="HardcodedText,DisableBaselineAlignment" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
+        android:background="@color/title_color"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:gravity="center_vertical"
+            android:text="@string/app_name"/>
+    </LinearLayout>
+        <com.zdhx.androidbase.ui.picturecarousel.PicsView
+            android:id="@+id/picsviewpager"
+            android:layout_width="match_parent"
+            android:layout_height="220dp" >
+        </com.zdhx.androidbase.ui.picturecarousel.PicsView>
+        <ImageView
+            android:visibility="gone"
+            android:src="@drawable/test_schoolmien"
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            android:layout_height="220dp"
+            android:id="@+id/schoolMien"
+            android:background="@color/white"/>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:background="@color/light_gray"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="30dp">
+            <TextView
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:textColor="@color/name_blue"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="重要通知:"
+                />
+            <com.zdhx.androidbase.view.MarqueeTextView
+                android:id="@+id/impNoticeContant"
+                android:ellipsize="marquee"
+                android:focusable="false"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:textColor="@color/dark_gray"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text=""
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"/>
+            <LinearLayout
+                android:id="@+id/btnStartMain"
+                android:clickable="true"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/bg_button_blue_selentry"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="80dp">
+                <ImageView
+                    android:src="@drawable/icon_study"
+                    android:layout_marginLeft="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="学习交流"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="40dp"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <LinearLayout
+                android:id="@+id/btnStartMor"
+                android:clickable="true"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/bg_button_blue_selentry2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="80dp">
+                <ImageView
+                    android:src="@drawable/icon_dy"
+                    android:layout_marginLeft="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="德育评比"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="40dp"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"/>
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>
