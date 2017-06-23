@@ -68,7 +68,7 @@
             <cn.forward.androids.views.STextView
                 android:id="@+id/dialog_enter_btn_01"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -81,7 +81,7 @@
             <cn.forward.androids.views.STextView
                 android:id="@+id/dialog_enter_btn_02"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:gravity="center"

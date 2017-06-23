@@ -988,10 +988,7 @@ public class HomeFragment extends Fragment {
      * @param listView 根据当前条件刷新的listView
      */
     public void initXListViewDatas(final XListView listView,final int index){
-
-        if(listView != null){
-            Log.w("","");
-        }
+        MainActivity.act.resetAnimImg(true);
         dialog.show();
         hashMap.putAll(ECApplication.getInstance().getLoginUrlMap());
         String url = ZddcUtil.getUrl(ECApplication.getInstance().getAddress()+ZddcUtil.getAllTreadsStr,hashMap);
@@ -1004,6 +1001,7 @@ public class HomeFragment extends Fragment {
                 }else{
                     setIsFromCache(index,true);
                 }
+                MainActivity.act.resetAnimImg(false);
             }
 
         }, new Response.ErrorListener() {
@@ -1137,7 +1135,6 @@ public class HomeFragment extends Fragment {
      * @param listView 初始化的listView
      */
     public void initXListView(final XListView listView,final int loadIndex){
-        final Handler mHandler = new Handler();
         listView.setXListViewListener(new XListView.IXListViewListener() {
             @Override
             public void onRefresh() {

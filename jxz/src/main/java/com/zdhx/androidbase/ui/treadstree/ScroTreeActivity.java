@@ -3,7 +3,6 @@ package com.zdhx.androidbase.ui.treadstree;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -55,7 +54,7 @@ public class ScroTreeActivity extends BaseActivity{
 	public static HashMap<String,String> positionMapForUpFile = new HashMap<>();
 	public static HashMap<String,String> positionMapForEclassTree = new HashMap<>();
 
-	private static boolean firstTag = false;
+//	private static boolean firstTag = false;
 
 	private TextView title;
 
@@ -264,15 +263,14 @@ public class ScroTreeActivity extends BaseActivity{
 		if (list != null){
 			listForWork = list;
 		}
-		if (!firstTag){
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getId().equals("20130424113427190508721241586190")){
-					positionMapForSearchWork.put(list.get(i).getContactId(),"true");
-					firstTag = true;
-				}
-			}
-		}
-		Log.e("initTreeDatas","构建树完毕");
+//		if (!firstTag){
+//			for (int i = 0; i < list.size(); i++) {
+//				if (list.get(i).getId().equals("20130424113427190508721241586190")){
+//					positionMapForSearchWork.put(list.get(i).getContactId(),"true");
+//					firstTag = true;
+//				}
+//			}
+//		}
 	}
 	/**
 	 * 初始化班级排名处树数据

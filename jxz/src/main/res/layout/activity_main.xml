@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="HardcodedText,DisableBaselineAlignment" >
+    tools:ignore="HardcodedText,DisableBaselineAlignment">
     <WebView
         android:id="@+id/webView"
         android:layout_width="1dip"
@@ -279,97 +280,108 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/title_color"
-            >
+            android:background="@color/title_color">
+
             <RelativeLayout
                 android:id="@+id/firstRel"
                 android:layout_width="150dp"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:background="@drawable/bg_button_top_title_selector"
-                    android:clickable="true"
                     android:id="@+id/home_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
+                    android:background="@drawable/bg_button_top_title_selector"
+                    android:clickable="true"
                     android:gravity="center|left"
-                    >
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:id="@+id/main_img_left_first"
-                        android:layout_marginLeft="15dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/nav_menu"
-                        />
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/nav_menu" />
+
                     <TextView
-                        android:layout_marginRight="15dp"
-                        android:gravity="center_vertical"
                         android:id="@+id/menuSelectedTV"
-                        android:layout_marginLeft="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        android:textSize="14sp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="15dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/classroom"
                         android:textColor="#ffffff"
-                        android:text="@string/classroom"/>
+                        android:textSize="14sp" />
                 </LinearLayout>
             </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/second"
-                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:layout_centerInParent="true"
                 android:gravity="center"
-                >
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/main_title"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:textColor="#ffffff"
                     android:gravity="center_vertical"
-                    android:text="互动交流"/>
+                    android:text="互动交流"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
             </LinearLayout>
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/iv"
+                android:src="@drawable/title_loading"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/second"
+                android:layout_toEndOf="@+id/second" />
+
             <LinearLayout
-                android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
                 android:orientation="horizontal">
+
                 <LinearLayout
-                    android:background="@drawable/bg_button_top_title_selector"
                     android:id="@+id/main_img_left_second_linear"
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingRight="5dp"
+                    android:background="@drawable/bg_button_top_title_selector"
                     android:gravity="center"
-                    >
+                    android:orientation="horizontal"
+                    android:paddingRight="5dp">
+
                     <ImageView
                         android:id="@+id/main_img_left_second"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/nav_search"
-                        />
+                        android:src="@drawable/nav_search" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:background="@drawable/bg_button_top_title_selector"
                     android:id="@+id/main_img_left_third_linear"
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
+                    android:background="@drawable/bg_button_top_title_selector"
                     android:gravity="center"
-                    >
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:id="@+id/main_img_left_third"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/nav_edit"
-                        />
+                        android:src="@drawable/nav_edit" />
                 </LinearLayout>
             </LinearLayout>
 

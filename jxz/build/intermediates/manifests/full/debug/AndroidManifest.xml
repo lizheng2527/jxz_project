@@ -183,6 +183,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" >
 
+            <!-- 二毛QQ分享 -->
             <!-- <intent-filter> -->
             <!-- <data android:scheme="tencent101402617" /> -->
 
@@ -193,6 +194,7 @@
             <!-- <category android:name="android.intent.category.BROWSABLE" /> -->
             <!-- <category android:name="android.intent.category.DEFAULT" /> -->
             <!-- </intent-filter> -->
+            <!-- 陈经纶QQ分享 -->
             <intent-filter>
                 <data android:scheme="tencent101410688" />
 

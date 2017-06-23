@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:2:1-206:12
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:2:1-208:12
 	package
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:3:5-35
 		INJECTED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml
@@ -132,7 +132,7 @@ ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:2
 	android:name
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:29:22-70
 application
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:31:5-204:19
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:31:5-206:19
 MERGED from [AndroidBase:photoSelector:unspecified] D:\01_work\jxz-project\AndroidBase\photoSelector\build\intermediates\bundles\default\AndroidManifest.xml:16:5-30:19
 MERGED from [AndroidBase:GraffitiLib:unspecified] D:\01_work\jxz-project\AndroidBase\GraffitiLib\build\intermediates\bundles\default\AndroidManifest.xml:14:5-16:19
 MERGED from [AndroidBase:baselibrary:unspecified] D:\01_work\jxz-project\AndroidBase\baselibrary\build\intermediates\bundles\default\AndroidManifest.xml:11:5-15:19
@@ -355,7 +355,7 @@ ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:1
 	android:name
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:155:19-61
 activity#com.mob.tools.MobUIShell
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:158:9-187:20
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:158:9-189:20
 	android:screenOrientation
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:161:13-49
 	android:windowSoftInputMode
@@ -367,39 +367,39 @@ ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:1
 	android:name
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:159:13-52
 intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:172:13-179:29
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:174:13-181:29
 action#android.intent.action.VIEW
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:175:17-69
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:177:17-69
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:175:25-66
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:177:25-66
 category#android.intent.category.BROWSABLE
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:177:17-78
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:179:17-78
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:177:27-75
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:179:27-75
 intent-filter#android.intent.category.DEFAULT+com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:182:13-186:29
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:184:13-188:29
 action#com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:183:17-92
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:185:17-92
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:183:25-89
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:185:25-89
 activity#com.zdhx.androidbase.wxapi.WXEntryActivity
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:191:9-196:75
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:193:9-198:75
 	android:screenOrientation
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:195:13-49
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:197:13-49
 	android:exported
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:194:13-36
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:196:13-36
 	android:configChanges
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:193:13-74
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:195:13-74
 	android:theme
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:196:13-72
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:198:13-72
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:192:13-50
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:194:13-50
 meta-data#PGYER_APPID
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:200:9-203:21
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:202:9-205:21
 	android:value
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:202:13-61
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:204:13-61
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:201:13-39
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:203:13-39
 activity#com.photoselector.ui.PhotoSelectorActivity
 ADDED from [AndroidBase:photoSelector:unspecified] D:\01_work\jxz-project\AndroidBase\photoSelector\build\intermediates\bundles\default\AndroidManifest.xml:17:9-20:20
 	android:label

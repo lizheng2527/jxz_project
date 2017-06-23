@@ -239,8 +239,7 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
             vh.downloadImg.setVisibility(View.VISIBLE);
         }
 
-        File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-        File dir = new File(idr+"/jxz");
+        File dir = new File(ECApplication.getInstance().getDownloadJxzDir());
         if (!dir.exists()){
             dir.mkdir();
         }
@@ -249,7 +248,7 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
             vh.btnPreview.setVisibility(View.GONE);
             vh.downloadImg.setImageResource(R.drawable.amd_list_item_open);
         }else{
-            String createTime = list.get(i).getCreateTime().replace(":","-");
+            String createTime = list.get(i).getCreateTime().replace("：",":").replace(":","-");
             File file1 = new File(dir,createTime+name);
             if (file1.exists()){
                 vh.btnPreview.setVisibility(View.GONE);
@@ -717,9 +716,9 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
                 dialog.show();
                 //TODO判断当前下载附件是否存在
                 String name = list.get(i).getCreateTime()+list.get(i).getName();
-                String name1 = list.get(i).getCreateTime()+list.get(i).getName().replace(":","-");
-                File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-                File dir = new File(idr+"/jxz");
+                String name1 = list.get(i).getCreateTime().replace("：",":").replace(":","-")+list.get(i).getName();
+//                File idr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                File dir = new File(ECApplication.getInstance().getDownloadJxzDir());
                 if (!dir.exists()){
                     dir.mkdir();
                 }
@@ -774,7 +773,7 @@ class WorkSpaceListViewAdapter extends BaseAdapter {
                             public void downloaded(File file1, int position) {
                                 vh.progressIndexLinear.setVisibility(View.GONE);
                                 if (file1 != null){
-                                    File file = new File(file1.getParent(),list.get(i).getCreateTime().replace(":","-")+list.get(i).getName());
+                                    File file = new File(file1.getParent(),list.get(i).getCreateTime().replace("：",":").replace(":","-")+list.get(i).getName());
                                     file1.renameTo(file);
                                     new SingleMediaScanner(context, file);
                                     downCounts = downCounts -1;

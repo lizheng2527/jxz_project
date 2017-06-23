@@ -44,6 +44,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -210,23 +213,23 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	 * @param view
 	 */
 	public void onAllSelectClick(View view){
-			if (!allSelect.getText().toString().contains("取消")){
-				allSelect.setText("取消全选");
-				if (SELECTMENUINDEX == 1){
-					workSpaceFragment.selectAll(true);
-				}
-				if (SELECTMENUINDEX == 2){
-					yktFragment.selectAll(true);
-				}
-			}else{
-				allSelect.setText("全  选");
-				if (SELECTMENUINDEX == 1){
-					workSpaceFragment.selectAll(false);
-				}
-				if (SELECTMENUINDEX == 2){
-					yktFragment.selectAll(false);
-				}
+		if (!allSelect.getText().toString().contains("取消")){
+			allSelect.setText("取消全选");
+			if (SELECTMENUINDEX == 1){
+				workSpaceFragment.selectAll(true);
 			}
+			if (SELECTMENUINDEX == 2){
+				yktFragment.selectAll(true);
+			}
+		}else{
+			allSelect.setText("全  选");
+			if (SELECTMENUINDEX == 1){
+				workSpaceFragment.selectAll(false);
+			}
+			if (SELECTMENUINDEX == 2){
+				yktFragment.selectAll(false);
+			}
+		}
 	}
 
 	/**
@@ -296,6 +299,35 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			getHideWebView().loadUrl(ZddcUtil.doAccess(ECApplication.getInstance().getLoginUrlMap()));
 		}
 		initLauncherUIView();
+
+
+
+		animation = new RotateAnimation(0f,360f, Animation.RELATIVE_TO_SELF,
+				0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+		animation.setDuration(1000);//设置动画持续时间
+		//常用方法
+		animation.setRepeatCount(1000);//设置重复次数
+		animation.setFillAfter(false);//动画执行完后是否停留在执行完的状态
+		animation.setStartOffset(0);//执行前的等待时间
+		animation.setInterpolator(new LinearInterpolator());
+		iv = (ImageView) findViewById(R.id.iv);
+
+	}
+	private ImageView iv;
+	private RotateAnimation animation;
+	public void resetAnimImg(boolean b){
+
+		if (iv == null ||animation == null){
+			return ;
+		}
+		if (b){
+			iv.setVisibility(View.VISIBLE);
+			iv.startAnimation(animation);
+		}else{
+			animation.cancel();
+			iv.clearAnimation();
+			iv.setVisibility(View.INVISIBLE);
+		}
 	}
 
 

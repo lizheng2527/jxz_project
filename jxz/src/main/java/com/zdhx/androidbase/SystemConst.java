@@ -3,9 +3,9 @@ package com.zdhx.androidbase;
 public class SystemConst {
 	
 //	public static String DEFAULT_SERVER = "http://117.117.217.19/dc";//二毛地址
-//	public static String DEFAULT_SERVER = "http://www.zdhx-edu.com/zddc-cs";//测试地址
+	public static String DEFAULT_SERVER = "http://www.zdhx-edu.com/zddc-cs";//测试地址
 //	public static String DEFAULT_SERVER = "http://58.132.20.19:8088/dc";//陈经纶测试
-	public static String DEFAULT_SERVER = "http://58.132.20.15:8088/dc";//陈经纶正式
+//	public static String DEFAULT_SERVER = "http://58.132.20.15:8088/dc";//陈经纶正式
 
 //	http://192.168.1.233:14000/zddc-wisdomclass-lz/wcs/
 	//判断是否有云课堂模块

@@ -60,7 +60,7 @@ public class SelectScroActivity extends BaseActivity implements DatePickerDialog
 
 		selectTree = (TextView) findViewById(R.id.activity_selectscro_tree);
 		if (!MainActivity.ScroSearchTag){
-			selectTree.setText("昌平二毛学校");
+			selectTree.setText("请选择学校");
 		}else{
 			if (lable != null){
 				selectTree.setText(lable);
