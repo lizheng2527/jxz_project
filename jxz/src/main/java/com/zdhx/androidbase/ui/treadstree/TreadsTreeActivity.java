@@ -44,6 +44,7 @@ public class TreadsTreeActivity extends BaseActivity{
 
 	public static HashMap<String,String> positionMap = new HashMap<>();
 	public static HashMap<String,String> parentPositionMap = new HashMap<>();
+	public static HashMap<String,String> showLableMap = new HashMap<>();
 
 	private static boolean firstTag = false;
 
@@ -64,6 +65,7 @@ public class TreadsTreeActivity extends BaseActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getTopBarView().setVisibility(View.GONE);
+		showLableMap.clear();
 		back = (ImageView) findViewById(R.id.activity_scrotree_back);
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -105,8 +107,41 @@ public class TreadsTreeActivity extends BaseActivity{
 			public void onClick(View v) {
 				if (positionMap.size() == 0){
 					doToast("请选择班级");
-					return ;
 				}else{
+					if (parentPositionMap.size()>0&&list.size()>0){
+						//判断选择学校的下标
+						int position = -1;
+						for (String key : parentPositionMap.keySet()) {
+							for (int i = 0; i < list.size(); i++) {
+								//选择学校情况
+								if (list.get(i).getId().equals(key) && list.get(i).getpId().equals("0")) {
+									position = i;
+									break;
+								}
+							}
+							//如果选择了学校，退出
+							if (position != -1){
+								break;
+							}
+						}
+						//判断父集合中是否包含子集合，也就是选择的班级是否存在于选择的年级内
+						if (position == -1){
+							for (String key : positionMap.keySet()) {
+								for (int i = 0; i < list.size(); i++) {
+									//选择年级与班级对比
+									if (list.get(i).getId().equals(key) && !parentPositionMap.containsKey(list.get(i).getpId())) {
+										showLableMap.put(list.get(i).getId(),list.get(i).getLabel());
+									}
+								}
+							}
+						}
+
+						if (position != -1){
+							parentPositionMap.clear();
+							showLableMap.clear();
+							parentPositionMap.put(list.get(position).getId(),list.get(position).getLabel());
+						}
+					}
 					TreadsTreeActivity.this.finish();
 				}
 			}
@@ -162,22 +197,22 @@ public class TreadsTreeActivity extends BaseActivity{
 	 */
 	public void setListView(){
 		try {
-			adapter = new SimpleTreeListViewAdapterForTreads<TreeBean>(lv,context,list,0,className);
+			adapter = new SimpleTreeListViewAdapterForTreads<>(lv,context,list,0,className);
 			lv.setAdapter(adapter);
 			ProgressUtil.hide();
 			adapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener() {
 				@Override
 				public void onClick(Node node, int arg0) {
-						if (node.isLeaf()) {
-							if (positionMap.containsKey(node.getContactId())) {
-								positionMap.remove(node.getContactId());
-								adapter.removeUperNode(node);
-							} else {
-								positionMap.put(node.getContactId(), node.getName());
-								adapter.contentAll(node);
-							}
-							adapter.notifyDataSetChanged();
+					if (node.isLeaf()) {
+						if (positionMap.containsKey(node.getContactId())) {
+							positionMap.remove(node.getContactId());
+							adapter.removeUperNode(node);
+						} else {
+							positionMap.put(node.getContactId(), node.getName());
+							adapter.contentAll(node);
 						}
+						adapter.notifyDataSetChanged();
+					}
 				}
 			});
 		} catch (IllegalAccessException e) {

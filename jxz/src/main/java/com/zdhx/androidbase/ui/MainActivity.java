@@ -765,7 +765,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (ECApplication.getInstance().hasMorContant()){
+		if (SystemConst.hasMorContant){
 			return super.onKeyDown(keyCode, event);
 		}
 		if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){

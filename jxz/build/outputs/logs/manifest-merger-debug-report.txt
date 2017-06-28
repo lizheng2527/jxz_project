@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:2:1-208:12
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:2:1-218:12
 	package
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:3:5-35
 		INJECTED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml
@@ -132,7 +132,7 @@ ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:2
 	android:name
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:29:22-70
 application
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:31:5-206:19
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:31:5-216:19
 MERGED from [AndroidBase:photoSelector:unspecified] D:\01_work\jxz-project\AndroidBase\photoSelector\build\intermediates\bundles\default\AndroidManifest.xml:16:5-30:19
 MERGED from [AndroidBase:GraffitiLib:unspecified] D:\01_work\jxz-project\AndroidBase\GraffitiLib\build\intermediates\bundles\default\AndroidManifest.xml:14:5-16:19
 MERGED from [AndroidBase:baselibrary:unspecified] D:\01_work\jxz-project\AndroidBase\baselibrary\build\intermediates\bundles\default\AndroidManifest.xml:11:5-15:19
@@ -395,11 +395,11 @@ ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:1
 	android:name
 		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:194:13-50
 meta-data#PGYER_APPID
-ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:202:9-205:21
+ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:212:9-215:21
 	android:value
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:204:13-61
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:214:13-61
 	android:name
-		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:203:13-39
+		ADDED from D:\01_work\jxz-project\AndroidBase\jxz\src\main\AndroidManifest.xml:213:13-39
 activity#com.photoselector.ui.PhotoSelectorActivity
 ADDED from [AndroidBase:photoSelector:unspecified] D:\01_work\jxz-project\AndroidBase\photoSelector\build\intermediates\bundles\default\AndroidManifest.xml:17:9-20:20
 	android:label

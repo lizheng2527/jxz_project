@@ -27,6 +27,7 @@ import com.zdhx.androidbase.ui.treadssearch.SearchWorkActivity;
 import com.zdhx.androidbase.ui.xlistview.XListView;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.RunnableWrap;
+import com.zdhx.androidbase.util.ToastUtil;
 import com.zdhx.androidbase.util.ZddcUtil;
 import com.zdhx.androidbase.view.dialog.ECProgressDialog;
 import com.zdhx.androidbase.view.pagerslidingtab.PagerSlidingTabStrip;
@@ -1209,6 +1210,17 @@ public class WorkSpaceFragment extends Fragment {
                         }
                     },5);
                 } catch (IOException e) {
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (dialog.isShowing()){
+                                dialog.dismiss();
+                            }
+                            ToastUtil.showMessage("数据获取失败..");
+                        }
+                    },5);
                     e.printStackTrace();
                 }
             }

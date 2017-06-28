@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.JavascriptInterface;
@@ -119,22 +118,19 @@ public class MoralLevaluationActivity extends BaseActivity {
         //扩展浏览器上传文件
         //3.0++版本
         public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
-
             openFileChooserImpl(uploadMsg);
-            Log.w("webView","第一个");
         }
 
         //3.0--版本
         public void openFileChooser(ValueCallback<Uri> uploadMsg) {
             openFileChooserImpl(uploadMsg);
-            Log.w("webView","第一个");
         }
         public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
             openFileChooserImpl(uploadMsg);
-
         }
 
         // For Android > 5.0
+        @Override
         public boolean onShowFileChooser (WebView webView, ValueCallback<Uri[]> uploadMsg, WebChromeClient.FileChooserParams fileChooserParams) {
             openFileChooserImplForAndroid5(uploadMsg);
             return true;

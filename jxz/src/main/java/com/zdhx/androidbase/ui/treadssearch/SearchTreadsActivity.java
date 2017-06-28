@@ -22,7 +22,6 @@ import com.zdhx.androidbase.entity.ParameterValue;
 import com.zdhx.androidbase.ui.base.BaseActivity;
 import com.zdhx.androidbase.ui.treadstree.TreadsTreeActivity;
 import com.zdhx.androidbase.util.DateUtil;
-import com.zdhx.androidbase.util.LogUtil;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -96,52 +95,6 @@ public class SearchTreadsActivity extends BaseActivity implements DatePickerDial
 				showTree();
 			}
 		});
-//		if (ECApplication.getInstance().getCurrentUser().getType().equals("0")){
-//			spinner.setVisibility(View.GONE);
-//		}else{
-//			ProgressUtil.show(this,"正在加载班级数据");
-//		}
-//		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//			@Override
-//			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//				if (position == 0){
-//
-//				}else{
-//					eclassId = spinnerDatas.get(position).getId();
-//				}
-//			}
-//
-//			@Override
-//			public void onNothingSelected(AdapterView<?> parent) {
-//
-//			}
-//		});
-
-//		new ProgressThreadWrap(this, new RunnableWrap() {
-//			@Override
-//			public void run() {
-//				try {
-//					String json = ZddcUtil.teacherEclassTree(ECApplication.getInstance().getLoginUrlMap());
-//					if (json.contains("ok")){
-//						List<SpinnerBean> bean = new Gson().fromJson(json, new TypeToken<List<SpinnerBean>>(){}.getType());
-//						spinnerDatas = new ArrayList<SpinnerBean.DataListBean>();
-//						SpinnerBean.DataListBean d = new SpinnerBean.DataListBean();
-//						d.setName("请选择班级");
-//						spinnerDatas.add(d);
-//						spinnerDatas.addAll(bean.get(0).getDataList());
-//					}
-//					handler.postDelayed(new Runnable() {
-//						@Override
-//						public void run() {
-//							spinner.setAdapter(new SpinnerAdapter());
-//							ProgressUtil.hide();
-//						}
-//					},5);
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}).start();
 		backImg.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -160,9 +113,9 @@ public class SearchTreadsActivity extends BaseActivity implements DatePickerDial
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if (requestCode == TREADSTREECODE){
-			if (TreadsTreeActivity.parentPositionMap.size() >0){
-				boolean isAll = false;
-				StringBuffer sb1 = new StringBuffer();
+			StringBuffer sb1 = new StringBuffer();
+			//选择了学校
+			if (TreadsTreeActivity.parentPositionMap.size() > 0){
 				int i = 0;
 				for (String key : TreadsTreeActivity.parentPositionMap.keySet()) {
 					if (i != TreadsTreeActivity.parentPositionMap.size()-1 ){
@@ -171,36 +124,50 @@ public class SearchTreadsActivity extends BaseActivity implements DatePickerDial
 						sb1.append(TreadsTreeActivity.parentPositionMap.get(key));
 					}
 					i++;
-					if (TreadsTreeActivity.parentPositionMap.get(key).equals("昌平区二毛学校")){
-						treeBtn.setText("昌平区二毛学校");
-						isAll = true;
-					}
 				}
-				if (!isAll){
-					treeBtn.setText(sb1.toString());
-				}
-				LogUtil.w(sb1.toString());
+				treeBtn.setText(sb1.toString());
 			}
-			if (TreadsTreeActivity.positionMap.size() >0){
+			//选择了班级
+			if (TreadsTreeActivity.showLableMap.size() > 0 && TreadsTreeActivity.parentPositionMap.size() == 0){
 				StringBuffer sb2 = new StringBuffer();
+				int j = 0;
+				for (String key : TreadsTreeActivity.showLableMap.keySet()) {
+					if (j != TreadsTreeActivity.showLableMap.size()-1 ){
+						sb2.append(TreadsTreeActivity.showLableMap.get(key)+",");
+					}else{
+						sb2.append(TreadsTreeActivity.showLableMap.get(key));
+					}
+					j++;
+				}
+				treeBtn.setText(sb2.toString());
+			}
+			//选择年级和不在本年级下的班级
+			if (TreadsTreeActivity.showLableMap.size() > 0 && TreadsTreeActivity.parentPositionMap.size() > 0){
+
+				StringBuffer sb2 = new StringBuffer();
+				int j = 0;
+				for (String key : TreadsTreeActivity.showLableMap.keySet()) {
+					if (j != TreadsTreeActivity.showLableMap.size()-1 ){
+						sb2.append(TreadsTreeActivity.showLableMap.get(key)+",");
+					}else{
+						sb2.append(TreadsTreeActivity.showLableMap.get(key));
+					}
+					j++;
+				}
+				treeBtn.setText(sb1.toString()+","+sb2.toString());
+			}
+			//设置clickIds
+			if (TreadsTreeActivity.positionMap.size() >0){
 				clickIds = new StringBuffer();
 				int j = 0;
 				for (String key : TreadsTreeActivity.positionMap.keySet()) {
 					if (j != TreadsTreeActivity.positionMap.size()-1 ){
-						sb2.append(TreadsTreeActivity.positionMap.get(key)+",");
 						clickIds.append(key+",");
 					}else{
-						sb2.append(TreadsTreeActivity.positionMap.get(key));
 						clickIds.append(key);
 					}
 					j++;
 				}
-				if (TreadsTreeActivity.parentPositionMap.size() == 0){
-					treeBtn.setText(sb2.toString());
-				}
-				LogUtil.w(sb2.toString());
-			}else{
-				treeBtn.setText("无");
 			}
 		}
 	}

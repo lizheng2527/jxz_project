@@ -1067,14 +1067,7 @@
                     "endOffset": 5235
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\colors.xml",
-                    "position": {
-                        "startLine": 119,
-                        "startColumn": 4,
-                        "startOffset": 5795,
-                        "endColumn": 41,
-                        "endOffset": 5832
-                    }
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\colors.xml"
                 }
             },
             {
@@ -1746,14 +1739,7 @@
                     "endOffset": 8115
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\colors.xml",
-                    "position": {
-                        "startLine": 118,
-                        "startColumn": 4,
-                        "startOffset": 5751,
-                        "endColumn": 42,
-                        "endOffset": 5789
-                    }
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\colors.xml"
                 }
             },
             {
@@ -4081,7 +4067,14 @@
                     "endOffset": 31869
                 },
                 "from": {
-                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\01_work\\jxz-project\\AndroidBase\\jxz\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 74,
+                        "endColumn": 43,
+                        "endOffset": 113
+                    }
                 }
             },
             {

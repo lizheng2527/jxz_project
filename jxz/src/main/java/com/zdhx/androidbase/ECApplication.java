@@ -58,8 +58,7 @@ public class ECApplication extends Application {
     private static String userAuth = "no";
 
 
-    //判断是否有德育评比模块
-    private static boolean hasMorContant = false;
+
 
 //    private static final String APP_ID = "wx0e662ccb34bb7889";
 //
@@ -76,15 +75,6 @@ public class ECApplication extends Application {
         }
         return instance;
     }
-    public void setHasMorContant(boolean hasMorContant) {
-        ECApplication.hasMorContant = hasMorContant;
-    }
-
-    public boolean hasMorContant(){
-
-        return ECApplication.hasMorContant;
-    }
-
 
     /**
      * 返回是否有发布重要活动的权限

@@ -42,6 +42,7 @@ import com.zdhx.androidbase.ui.MainActivity;
 import com.zdhx.androidbase.ui.SelectEntryMainActivity;
 import com.zdhx.androidbase.ui.base.BaseActivity;
 import com.zdhx.androidbase.util.LogUtil;
+import com.zdhx.androidbase.util.NetUtils;
 import com.zdhx.androidbase.util.ProgressThreadWrap;
 import com.zdhx.androidbase.util.RunnableWrap;
 import com.zdhx.androidbase.util.StringUtil;
@@ -232,8 +233,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         setSchoolName(ECApplication.getInstance().getAddress());
 
     }
-    private boolean hasSchool = false;
-    private boolean setSchoolName(final String address){
+    private void setSchoolName(final String address){
         final ECProgressDialog dialog = new ECProgressDialog(context);
         dialog.setPressText("正在获取学校信息...");
         dialog.show();
@@ -251,10 +251,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                             if(organizations != null && organizations.size()>0){
                                 organizationSp.setAdapter(new OrganizationSpinnerAdapter(context,organizations));
                                 ECApplication.getInstance().saveValue("address",address);
-                                hasSchool = true;
                             }else{
                                 ToastUtil.showMessage("地址有误，请重新输入!");
-                                hasSchool = false;
                             }
                             dialog.dismiss();
                         }
@@ -264,9 +262,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            hasSchool = false;
                             dialog.dismiss();
-                            ToastUtil.showMessage("地址有误，请重新输入!");
+                            ToastUtil.showMessage("地址错误或网络异常..");
                         }
                     },5);
                     e.printStackTrace();
@@ -274,7 +271,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
             }
         }).start();
-        return hasSchool;
+
     }
 
     public static int code = 1;
@@ -316,6 +313,13 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             dialog.dismiss();
             return;
         }
+
+        if(!NetUtils.isNetworkConnected()){
+            doToast("当前网络不可用..");
+            dialog.dismiss();
+            return;
+        }
+
         loginMap = new HashMap<>();
         loginMap.put("loginName", new ParameterValue(getStringByUI(etxt_username).trim()));
         loginMap.put("password", new ParameterValue(getStringByUI(etxt_pwd).trim()));
@@ -365,13 +369,13 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                             if (loginJson.contains("true")) {
 //                                ProgressUtil.hide();
                                 dialog.dismiss();
-                                if (ECApplication.getInstance().hasMorContant()){
+                                SystemConst.setTextIp(ECApplication.getInstance().getAddress());
+                                if (SystemConst.hasMorContant){
                                     startActivity(new Intent(context,SelectEntryMainActivity.class));
                                     dialog.dismiss();
                                     LoginActivity.this.finish();
                                     return;
                                 }
-                                SystemConst.setTextIp(ECApplication.getInstance().getAddress());
                                 startActivity(new Intent(context, MainActivity.class));
                                 LoginActivity.this.finish();
                             } else {

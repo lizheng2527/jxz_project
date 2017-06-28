@@ -30,7 +30,7 @@ android {
             def outputFile = output.outputFile
             if (outputFile != null && outputFile.name.endsWith('.apk')) {
                 // 输出apk名称为XXXX_v1.0_2016-01-15.apk
-                def fileName = "HDJL_v${defaultConfig.versionName}.${releaseTime()}.apk"
+                def fileName = "QXHD_v${defaultConfig.versionName}.${releaseTime()}.apk"
                 output.outputFile = new File(outputFile.parent, fileName)
             }
         }

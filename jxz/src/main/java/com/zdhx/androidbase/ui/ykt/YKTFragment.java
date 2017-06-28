@@ -369,15 +369,17 @@ public class YKTFragment extends Fragment {
                             hashMap.put("studentId",new ParameterValue(ECApplication.getInstance().getUserForYKT().getId()));
                             eclassId = coursesForStudent.getEclass().getId();
                             hashMap.put("eclassId",new ParameterValue(eclassId));
-                            courseId = coursesForStudent.getCourses().get(0).getId();
-                            hashMap.put("courseId",new ParameterValue(courseId));
+                            if (coursesForStudent.getCourses().size()>0){
+                                courseId = coursesForStudent.getCourses().get(0).getId();
+                                hashMap.put("courseId",new ParameterValue(courseId));
+                            }
                             startDate = (tweekVosForStudent.get(0)).getStartDate();
                             hashMap.put("startDate",new ParameterValue(startDate));
                             endDate = (tweekVosForStudent.get(0)).getEndDate();
                             hashMap.put("endDate",new ParameterValue(endDate));
                             //将本次选择的周存入到搜索条件集合中
                             SearchHandWriteActivity.selectWeekMap.put("true",0);
-                            ToastUtil.showMessage("无数据");
+                            ToastUtil.showMessage("云课堂无数据..");
                         }
 
                         handler.postDelayed(new Runnable() {

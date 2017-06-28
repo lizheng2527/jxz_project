@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">师生互动交流</string>
+    <!--其他学校-->
+    <string name="app_name">青蚕互动学堂</string>
+    <!--二毛学校-->
+    <!--<string name="app_name">君行早</string>-->
     <string name="common_enter_activity">当前所在页面,</string>
 
     <string name="qv_add">+</string>

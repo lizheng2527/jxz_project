@@ -392,7 +392,7 @@
     <string name="UMUpdateTitle">发现新版本</string>
     <string name="add_tag">添加海域</string>
     <item format="float" name="ampm_circle_radius_multiplier" type="string">0.19</item>
-    <string name="app_name">师生互动交流</string>
+    <string name="app_name">青蚕互动学堂</string>
     <string name="cancel">取消</string>
     <item format="float" name="circle_radius_multiplier" type="string">0.82</item>
     <item format="float" name="circle_radius_multiplier_24HourMode" type="string">0.85</item>

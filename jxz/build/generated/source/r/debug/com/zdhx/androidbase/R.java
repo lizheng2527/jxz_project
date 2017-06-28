@@ -2365,8 +2365,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ssdk_back_arr=0x7f0201cc;
         public static final int ssdk_logo=0x7f0201cd;
         public static final int ssdk_oks_classic_platform_cell_back=0x7f0201ce;
-        public static final int ssdk_oks_classic_platfrom_cell_back_nor=0x7f02020a;
-        public static final int ssdk_oks_classic_platfrom_cell_back_sel=0x7f02020b;
+        public static final int ssdk_oks_classic_platfrom_cell_back_nor=0x7f02020b;
+        public static final int ssdk_oks_classic_platfrom_cell_back_sel=0x7f02020c;
         public static final int ssdk_oks_classic_progressbar=0x7f0201cf;
         public static final int ssdk_oks_classic_qq=0x7f0201d0;
         public static final int ssdk_oks_classic_wechat=0x7f0201d1;
@@ -2416,16 +2416,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int video_s=0x7f0201fd;
         public static final int welcome_cjl=0x7f0201fe;
         public static final int welcome_logo=0x7f0201ff;
-        public static final int wheel_val=0x7f020200;
-        public static final int women=0x7f020201;
-        public static final int word=0x7f020202;
-        public static final int word_s=0x7f020203;
-        public static final int wrod_s=0x7f020204;
-        public static final int xiajt=0x7f020205;
-        public static final int xlistview_arrow=0x7f020206;
-        public static final int youjt=0x7f020207;
-        public static final int zip=0x7f020208;
-        public static final int zip_s=0x7f020209;
+        public static final int welcome_qchdl=0x7f020200;
+        public static final int wheel_val=0x7f020201;
+        public static final int women=0x7f020202;
+        public static final int word=0x7f020203;
+        public static final int word_s=0x7f020204;
+        public static final int wrod_s=0x7f020205;
+        public static final int xiajt=0x7f020206;
+        public static final int xlistview_arrow=0x7f020207;
+        public static final int youjt=0x7f020208;
+        public static final int zip=0x7f020209;
+        public static final int zip_s=0x7f02020a;
     }
     public static final class id {
         public static final int Button01=0x7f0c0026;

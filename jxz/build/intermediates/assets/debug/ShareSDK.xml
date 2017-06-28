@@ -53,10 +53,11 @@
 			KakaoTalk      https://developers.kakao.com/
 			KakaoStory     https://developers.kakao.com/
     -->
-    
-    <ShareSDK 
-        AppKey = "1e69404689338"/> <!-- 修改成你在sharesdk后台注册的应用的appkey"-->
-    
+    <!-- 修改成你在sharesdk后台注册的应用的appkey（二毛学校）"-->
+    <!--<ShareSDK AppKey = "1e69404689338"/>-->
+    <!-- 修改成你在sharesdk后台注册的应用的appkey（陈经纶及其他）"-->
+    <ShareSDK AppKey = "1efaa3f6fce7b"/>
+
     <!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
     <SinaWeibo
         Id="1"
@@ -78,35 +79,54 @@
 		审核的应用也可以执行分享，但是仅限于分享文字和图片，不能分享其他类型，
 		默认值为false。此外，微信收藏不支持此字段。
 	-->
+
+
+    <!--二毛学校-->
+    <!--AppId="wx0e662ccb34bb7889"-->
+    <!--AppSecret="c8b32bd94f39e0df5f1fdbe0cd483f52"-->
+
+    <!--陈经纶及其他-->
+    <!--AppId="wxc8d90d21ca76f402"-->
+    <!--AppSecret="255cbf352a06addb02b65c39149d77fb"-->
+
+
     <Wechat
         Id="1"
         SortId="4"
-        AppId="wx0e662ccb34bb7889"
-        AppSecret="c8b32bd94f39e0df5f1fdbe0cd483f52"
+        AppId="wxc8d90d21ca76f402"
+        AppSecret="255cbf352a06addb02b65c39149d77fb"
         BypassApproval="false"
         Enable="true" />
     
     <WechatMoments
         Id="2"
         SortId="5"
-        AppId="wx0e662ccb34bb7889"
-        AppSecret="c8b32bd94f39e0df5f1fdbe0cd483f52"
+        AppId="wxc8d90d21ca76f402"
+        AppSecret="255cbf352a06addb02b65c39149d77fb"
         BypassApproval="false"
         Enable="true" />
         
 	<WechatFavorite
         Id="3"
         SortId="6"
-        AppId="wx0e662ccb34bb7889"
-        AppSecret="c8b32bd94f39e0df5f1fdbe0cd483f52"
+        AppId="wxc8d90d21ca76f402"
+        AppSecret="255cbf352a06addb02b65c39149d77fb"
         Enable="true" />
     
-	<!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
+	<!-- 二毛QQ分享ID KEY -->
+    <!--AppId="101402617"-->
+    <!--AppKey="2415a698f13aab113d64e99890642d0f"-->
+
+	<!-- 陈经纶及其他QQ分享ID KEY -->
+    <!--AppId="101410688"-->
+    <!--AppKey="16e7f84f7e4239c057040633d88deb5b"-->
+
+
  	<QQ
         Id="5"
         SortId="7"
-        AppId="101402617"
-        AppKey="2415a698f13aab113d64e99890642d0f"
+        AppId="101410688"
+        AppKey="16e7f84f7e4239c057040633d88deb5b"
         ShareByAppClient="true"
         BypassApproval="false"
         Enable="true" />
@@ -114,8 +134,8 @@
  	<QZone
         Id="3"
         SortId="3"
-        AppId="101402617"
-        AppKey="2415a698f13aab113d64e99890642d0f"
+        AppId="101410688"
+        AppKey="16e7f84f7e4239c057040633d88deb5b"
         ShareByAppClient="true"
         BypassApproval="true"
         Enable="true" />
